@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\App.xaml
-7-2107994384
+91137905195
 
-25-2086255539
+33717368218
 200449390834
-MainWindow.xaml;View\ImgView.xaml;View\MainView.xaml;View\OperationView.xaml;View\Operation\ImgSplitView.xaml;View\ToolWindow\ImgBlurView.xaml;View\ToolWindow\ImgCvtColorSpaceView.xaml;
+MainWindow.xaml;View\ImgView.xaml;View\MainView.xaml;View\OperationHistoryView.xaml;View\OperationView.xaml;View\RecordEleView.xaml;View\ToolWindow\ImgBlurView.xaml;View\ToolWindow\ImgCvtColorSpaceView.xaml;View\ToolWindow\ImgThresholdView.xaml;
 
 False
 

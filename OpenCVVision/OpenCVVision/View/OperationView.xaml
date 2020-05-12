@@ -18,7 +18,7 @@
                     Background="#FFE5E5E5"
                     ItemsSource="{Binding LoadImgTools}"
                     MouseLeftButtonDown="{s:Action ToolsRun}" />-->
-                <ListBox ItemsSource="{Binding LoadImgTools}">
+                <ListBox ItemsSource="{Binding LoadImgTools}" ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button
@@ -40,16 +40,22 @@
                 </ItemsControl>-->
             </TabItem>
             <TabItem Header="图像变换">
-                <StackPanel Orientation="Vertical">
-                    <Button
-                        Margin="5"
-                        Click="{s:Action ToolsRun}"
-                        Content="图像空间转换" />
-                    <Button
-                        Margin="5"
-                        Click="{s:Action ToolsRun}"
-                        Content="图像滤波" />
-                </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical">
+                        <Button
+                            Margin="5"
+                            Click="{s:Action ToolsRun}"
+                            Content="图像空间转换" />
+                        <Button
+                            Margin="5"
+                            Click="{s:Action ToolsRun}"
+                            Content="图像滤波" />
+                        <Button
+                            Margin="5"
+                            Click="{s:Action ToolsRun}"
+                            Content="常用二值化" />
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
     </Grid>

@@ -4,6 +4,8 @@ using StyletIoC;
 
 using System.IO;
 using OpenCVVision.ViewModel;
+using OpenCVVision.Model.Interface;
+using OpenCVVision.Model.Data;
 
 namespace OpenCVVision
 {
@@ -15,6 +17,7 @@ namespace OpenCVVision
 
             base.ConfigureIoC(builder);
             //builder.Bind<ICam>().To<Basler_pia2400>().InSingletonScope();
+            builder.Bind<IOperaHistory>().To<OperaHistory>().InSingletonScope();
         }
 
         protected override void Configure()

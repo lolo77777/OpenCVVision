@@ -18,7 +18,6 @@ E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\Main
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ImgView.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\MainView.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\OperationView.g.cs
-E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\Operation\ImgSplitView.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ToolWindow\ImgBlurView.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ToolWindow\ImgCvtColorSpaceView.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\App.g.cs
@@ -30,7 +29,6 @@ E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\Main
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ImgView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\MainView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\OperationView.baml
-E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\Operation\ImgSplitView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ToolWindow\ImgBlurView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ToolWindow\ImgCvtColorSpaceView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.g.resources
@@ -42,3 +40,9 @@ E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\Open
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.dll
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.pdb
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.genruntimeconfig.cache
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\OperationHistoryView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\RecordEleView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ToolWindow\ImgThresholdView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\OperationHistoryView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\RecordEleView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ToolWindow\ImgThresholdView.baml

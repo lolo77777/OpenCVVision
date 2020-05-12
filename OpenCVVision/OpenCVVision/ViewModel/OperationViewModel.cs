@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Controls;
 using OpenCVVision.Model.Common;
 using OpenCVVision.Model.Event;
+using OpenCVVision.Model.Interface;
 using OpenCVVision.Model.Interface.Tool;
 using OpenCVVision.ViewModel.ToolWindow;
 using Stylet;
@@ -18,11 +19,13 @@ namespace OpenCVVision.ViewModel
         private string[] loadImgSams;
         private IEventAggregator eventAggregator;
         private IWindowManager windowManager;
+        private IOperaHistory operaHistory;
 
-        public OperationViewModel(IEventAggregator eventAggregator, IWindowManager _windowManager)
+        public OperationViewModel(IEventAggregator eventAggregator,IWindowManager _windowManager,IOperaHistory _operaHistory)
         {
             this.eventAggregator = eventAggregator;
             this.windowManager = _windowManager;
+            operaHistory = _operaHistory;
         }
 
         public BindableCollection<ToolName> LoadImgTools { get; set; }
@@ -46,18 +49,19 @@ namespace OpenCVVision.ViewModel
         {
         }
 
-        public void ToolsRun(object sender, EventArgs eventArgs)
+        public void ToolsRun(object sender,EventArgs eventArgs)
         {
             //Select(x => (ILoadImg)Activator.CreateInstance(x))
 
             var btn = (Button)sender;
+            var str = btn.Content.ToString();
             if (btn.Content.ToString().Contains("滤波"))
             {
-                windowManager.ShowDialog(new ImgBlurViewModel(eventAggregator));
+                windowManager.ShowDialog(new ImgBlurViewModel(eventAggregator,operaHistory));
             }
             else if (btn.Content.ToString().Contains("图像空间"))
             {
-                windowManager.ShowDialog(new ImgCvtColorSpaceViewModel(eventAggregator)); ;
+                windowManager.ShowDialog(new ImgCvtColorSpaceViewModel(eventAggregator,operaHistory));
             }
             else if (btn.Content.ToString().Contains("加载") || btn.Content.ToString().Contains("Load"))
             {
@@ -66,8 +70,12 @@ namespace OpenCVVision.ViewModel
                 .Where(t => t.Name.Equals(btn.Content))
                 .Select(x => (ILoadImg)Activator.CreateInstance(x))).First();
                 var src = loadImgSam.Run();
-
-                eventAggregator.Publish(new DisImgEvent(src));
+                operaHistory.Record.Add(("加载图像", src));
+                eventAggregator.Publish(new UpdateRecord());
+            }
+            else if (str.Contains("常用二值化"))
+            {
+                windowManager.ShowDialog(new ImgThresholdViewModel(eventAggregator,operaHistory));
             }
         }
 
