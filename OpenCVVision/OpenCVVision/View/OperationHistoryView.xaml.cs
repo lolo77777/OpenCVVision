@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OpenCVVision.View.Operation
+namespace OpenCVVision.View
 {
     /// <summary>
-    /// ImgSplitView.xaml 的交互逻辑
+    /// OperationHistoryView.xaml 的交互逻辑
     /// </summary>
-    public partial class ImgSplitView : UserControl
+    public partial class OperationHistoryView : UserControl
     {
-        public ImgSplitView()
+        public OperationHistoryView()
         {
             InitializeComponent();
         }

@@ -16,9 +16,10 @@ namespace OpenCVVision.Model.Tools.ImgPreProcess
     {
         public ImgBlur(IEventAggregator eventAggregator) : base(eventAggregator)
         {
+            Name = "图像滤波";
         }
 
-        public Mat Run(Mat mat, BlurMethod blurMethod, int ksize = 3, int count = 1, float sigmaX = 0.4f, float sigmaY = 0f)
+        public Mat Run(Mat mat,BlurMethod blurMethod,int ksize = 3,int count = 1,float sigmaX = 0.4f,float sigmaY = 0f)
         {
             var dst = new Mat();
             var mattmp = mat.Clone();
@@ -28,7 +29,7 @@ namespace OpenCVVision.Model.Tools.ImgPreProcess
 
                     for (int i = 0; i < count; i++)
                     {
-                        mattmp = mattmp.Blur(new Size(ksize, ksize));
+                        mattmp = mattmp.Blur(new Size(ksize,ksize));
                     }
                     dst = mattmp.Clone();
                     break;
@@ -45,7 +46,7 @@ namespace OpenCVVision.Model.Tools.ImgPreProcess
                 case BlurMethod.Gauss:
                     for (int i = 0; i < count; i++)
                     {
-                        mattmp = mattmp.GaussianBlur(new Size(ksize, ksize), sigmaX, sigmaY);
+                        mattmp = mattmp.GaussianBlur(new Size(ksize,ksize),sigmaX,sigmaY);
                     }
                     dst = mattmp.Clone();
                     break;

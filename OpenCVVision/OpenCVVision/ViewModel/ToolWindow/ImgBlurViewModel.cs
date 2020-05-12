@@ -5,6 +5,7 @@ using System.Text;
 using OpenCvSharp;
 using OpenCVVision.Model.Common;
 using OpenCVVision.Model.Event;
+using OpenCVVision.Model.Interface;
 using OpenCVVision.Model.Tools.ImgPreProcess;
 using Stylet;
 
@@ -13,21 +14,24 @@ namespace OpenCVVision.ViewModel.ToolWindow
     public class ImgBlurViewModel : Screen
     {
         private ImgBlur ImgBlur;
-        private Dictionary<string, int> imgblurDic = new Dictionary<string, int>();
+        private Dictionary<string,int> imgblurDic = new Dictionary<string,int>();
         private IEventAggregator eventAggregator;
+        private IOperaHistory operaHistory;
         private Mat tmpMat = new Mat();
+        private bool savestaus = false;
 
-        public ImgBlurViewModel(IEventAggregator _eventAggregator)
+        public ImgBlurViewModel(IEventAggregator _eventAggregator,IOperaHistory _operaHistory)
         {
             eventAggregator = _eventAggregator;
             ImgBlur = new ImgBlur(eventAggregator);
+            operaHistory = _operaHistory;
             init();
         }
 
         #region BindProperty
 
-        public BindableCollection<string> ImgBlurItems { get; set; } = new BindableCollection<string>();
-        public BindableCollection<int> ImgKSizeItems { get; set; } = new BindableCollection<int> { 3, 5, 7, 9, 11 };
+        public BindableCollection<string> ToolTypeItems { get; set; } = new BindableCollection<string>();
+        public BindableCollection<int> ImgKSizeItems { get; set; } = new BindableCollection<int> { 3,5,7,9,11 };
         private int _runCount;
 
         public int RunCount
@@ -71,14 +75,14 @@ namespace OpenCVVision.ViewModel.ToolWindow
         public string SigmaXLabel { get; set; } = "sigmaX:0";
         public string SigmaYLabel { get; set; } = "sigmaY:0";
         public bool IsGauss { get; set; } = false;
-        private string _imgBlurStr;
+        private string _toolTypeStr;
 
-        public string ImgBlurStr
+        public string ToolTypeStr
         {
-            get => _imgBlurStr;
+            get => _toolTypeStr;
             set
             {
-                _imgBlurStr = value;
+                _toolTypeStr = value;
                 if (value.Contains("Gauss"))
                 {
                     IsGauss = true;
@@ -87,7 +91,7 @@ namespace OpenCVVision.ViewModel.ToolWindow
                 {
                     IsGauss = false;
                 }
-                NotifyOfPropertyChange(() => ImgBlurStr);
+                NotifyOfPropertyChange(() => ToolTypeStr);
             }
         }
 
@@ -97,28 +101,46 @@ namespace OpenCVVision.ViewModel.ToolWindow
 
         public void Run()
         {
-            ImgBlur.OutputMat = ImgBlur.Run(ImgBlur.InputMat, (BlurMethod)imgblurDic[ImgBlurStr], ImgKSize, RunCount, SigmaX / 100f, SigmaY / 100f);
+            ImgBlur.OutputMat = ImgBlur.Run(ImgBlur.InputMat,(BlurMethod)imgblurDic[ToolTypeStr],ImgKSize,RunCount,SigmaX / 100f,SigmaY / 100f);
+            savestaus = true;
             eventAggregator.Publish(new DisImgEvent(ImgBlur.OutputMat));
         }
 
         public void Cancle()
         {
             ImgBlur.Cancle();
-            this.RequestClose();
+            savestaus = false;
+            RequestClose();
+        }
+
+        public void Restore()
+        {
+            ImgBlur.Restore();
+            savestaus = false;
+        }
+
+        protected override void OnClose()
+        {
+            if (savestaus)
+            {
+                operaHistory.Record.Add((ImgBlur.Name, ImgBlur.OutputMat));
+                eventAggregator.Publish(new UpdateRecord());
+            }
+            base.OnClose();
         }
 
         #endregion Action
 
         private void init()
         {
-            ImgBlurItems.Clear();
+            ToolTypeItems.Clear();
             imgblurDic.Clear();
             foreach (var blurmethod in Enum.GetValues(typeof(BlurMethod)))
             {
-                ImgBlurItems.Add(blurmethod.ToString());
+                ToolTypeItems.Add(blurmethod.ToString());
                 imgblurDic[blurmethod.ToString()] = (int)blurmethod;
             }
-            ImgBlurStr = ImgBlurItems.First();
+            ToolTypeStr = ToolTypeItems.First();
             ImgKSize = ImgKSizeItems.First();
         }
     }

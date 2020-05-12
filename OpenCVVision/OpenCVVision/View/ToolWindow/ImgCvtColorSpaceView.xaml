@@ -57,6 +57,10 @@
             Orientation="Horizontal">
             <Button
                 Margin="5"
+                Click="{s:Action Restore}"
+                Content="还原" />
+            <Button
+                Margin="5"
                 Click="{s:Action Run}"
                 Content="确定" />
             <Button

@@ -18,11 +18,19 @@ namespace OpenCVVision.Model.Tools
             InputMat = BaseRes.CurSrc;
         }
 
+        public string Name { set; get; }
         public Mat InputMat { set; get; }
         public Mat OutputMat { set; get; }
 
         public void Cancle()
         {
+            eventAggregator.Publish(new DisImgEvent(InputMat));
+            BaseRes.CurSrc = InputMat.Clone();
+        }
+
+        public void Restore()
+        {
+            OutputMat = InputMat.Clone();
             eventAggregator.Publish(new DisImgEvent(InputMat));
             BaseRes.CurSrc = InputMat.Clone();
         }

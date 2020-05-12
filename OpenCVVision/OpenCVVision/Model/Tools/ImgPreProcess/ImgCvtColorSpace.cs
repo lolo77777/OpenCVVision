@@ -22,9 +22,10 @@ namespace OpenCVVision.Model.Tools.ImgPreProcess
     {
         public ImgCvtColorSpace(IEventAggregator eventAggregator) : base(eventAggregator)
         {
+            Name = "色彩空间变换";
         }
 
-        public Mat Run(Mat src, ImgSpace imgSpace = ImgSpace.Gray, int chanel = 0)
+        public Mat Run(Mat src,ImgSpace imgSpace = ImgSpace.Gray,int chanel = 0)
         {
             var dst = new Mat();
             var remat = new Mat();
@@ -33,7 +34,7 @@ namespace OpenCVVision.Model.Tools.ImgPreProcess
             switch (imgSpace)
             {
                 case ImgSpace.Gray:
-                    Cv2.CvtColor(src, remat, ColorConversionCodes.BGR2GRAY);
+                    Cv2.CvtColor(src,remat,ColorConversionCodes.BGR2GRAY);
                     break;
 
                 case ImgSpace.BGR:
@@ -42,26 +43,26 @@ namespace OpenCVVision.Model.Tools.ImgPreProcess
                     break;
 
                 case ImgSpace.BGRA:
-                    Cv2.CvtColor(src, dst, ColorConversionCodes.BGR2BGRA);
+                    Cv2.CvtColor(src,dst,ColorConversionCodes.BGR2BGRA);
                     chanels = dst.Split();
                     remat = chanels[chanel];
 
                     break;
 
                 case ImgSpace.HSV:
-                    Cv2.CvtColor(src, dst, ColorConversionCodes.BGR2HSV);
+                    Cv2.CvtColor(src,dst,ColorConversionCodes.BGR2HSV);
                     chanels = dst.Split();
                     remat = chanels[chanel];
                     break;
 
                 case ImgSpace.YUV:
-                    Cv2.CvtColor(src, dst, ColorConversionCodes.BGR2YUV);
+                    Cv2.CvtColor(src,dst,ColorConversionCodes.BGR2YUV);
                     chanels = dst.Split();
                     remat = chanels[chanel];
                     break;
 
                 default:
-                    Cv2.CvtColor(src, remat, ColorConversionCodes.BGR2GRAY);
+                    Cv2.CvtColor(src,remat,ColorConversionCodes.BGR2GRAY);
                     break;
             }
 
