@@ -175,6 +175,15 @@
           "OpenCvSharp4.runtime.win": "4.2.0.20200208"
         }
       },
+      "PanAndZoom/2.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/PanAndZoom.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/PanAndZoom.dll": {}
+        }
+      },
       "PropertyChanged.Fody/3.2.8": {
         "type": "package",
         "dependencies": {
@@ -1338,6 +1347,34 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "Wpf.Controls.PanAndZoom/2.3.3": {
+        "type": "package",
+        "dependencies": {
+          "PanAndZoom": "2.3.3",
+          "Wpf.MatrixExtensions": "2.3.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Wpf.Controls.PanAndZoom.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Wpf.Controls.PanAndZoom.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "Wpf.MatrixExtensions/2.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Wpf.MatrixExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Wpf.MatrixExtensions.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -1603,6 +1640,23 @@
         ".signature.p7s",
         "opencvsharp4.windows.4.2.0.20200208.nupkg.sha512",
         "opencvsharp4.windows.nuspec"
+      ]
+    },
+    "PanAndZoom/2.3.3": {
+      "sha512": "8iBIdDtp3EzNEcg7bWwu18fliVY9FvDW9VoIiIPZ+y8XMU94JOdenqAYgeJJS06zyzSKirLu2KFQPiEitSQRzA==",
+      "type": "package",
+      "path": "panandzoom/2.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/PanAndZoom.dll",
+        "lib/net461/PanAndZoom.xml",
+        "lib/netstandard2.0/PanAndZoom.dll",
+        "lib/netstandard2.0/PanAndZoom.xml",
+        "lib/netstandard2.1/PanAndZoom.dll",
+        "lib/netstandard2.1/PanAndZoom.xml",
+        "panandzoom.2.3.3.nupkg.sha512",
+        "panandzoom.nuspec"
       ]
     },
     "PropertyChanged.Fody/3.2.8": {
@@ -4829,6 +4883,36 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "Wpf.Controls.PanAndZoom/2.3.3": {
+      "sha512": "1CIAKAgndDtSk8cF8Ek0cCSLyruv0JdSmnlIvEI8pwkOCbyXiQsJ2FZ0Eq7mClgvD60gDohrP8oSyzR6sa9iNw==",
+      "type": "package",
+      "path": "wpf.controls.panandzoom/2.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/Wpf.Controls.PanAndZoom.dll",
+        "lib/net461/Wpf.Controls.PanAndZoom.xml",
+        "lib/netcoreapp3.1/Wpf.Controls.PanAndZoom.dll",
+        "lib/netcoreapp3.1/Wpf.Controls.PanAndZoom.xml",
+        "wpf.controls.panandzoom.2.3.3.nupkg.sha512",
+        "wpf.controls.panandzoom.nuspec"
+      ]
+    },
+    "Wpf.MatrixExtensions/2.3.3": {
+      "sha512": "VKysC7k1nMz13tj2gNVvd8PERaIlINJXP4+jZH51H0pkDJmwby0MexMhF1WfawpDEFLRb1tIVxwQDTbmp9O09g==",
+      "type": "package",
+      "path": "wpf.matrixextensions/2.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/Wpf.MatrixExtensions.dll",
+        "lib/net461/Wpf.MatrixExtensions.xml",
+        "lib/netcoreapp3.1/Wpf.MatrixExtensions.dll",
+        "lib/netcoreapp3.1/Wpf.MatrixExtensions.xml",
+        "wpf.matrixextensions.2.3.3.nupkg.sha512",
+        "wpf.matrixextensions.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -4836,7 +4920,8 @@
       "MaterialDesignThemes >= 3.1.1",
       "OpenCvSharp4.Windows >= 4.2.0.20200208",
       "PropertyChanged.Fody >= 3.2.8",
-      "Stylet >= 1.3.2"
+      "Stylet >= 1.3.2",
+      "Wpf.Controls.PanAndZoom >= 2.3.3"
     ]
   },
   "packageFolders": {
@@ -4864,6 +4949,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -4875,6 +4961,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "MaterialDesignThemes": {
             "target": "Package",
@@ -4891,6 +4978,10 @@
           "Stylet": {
             "target": "Package",
             "version": "[1.3.2, )"
+          },
+          "Wpf.Controls.PanAndZoom": {
+            "target": "Package",
+            "version": "[2.3.3, )"
           }
         },
         "imports": [
@@ -4911,7 +5002,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

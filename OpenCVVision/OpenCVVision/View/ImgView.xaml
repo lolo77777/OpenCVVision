@@ -6,11 +6,20 @@
     xmlns:local="clr-namespace:OpenCVVision.View"
     xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:paz="clr-namespace:Wpf.Controls.PanAndZoom;assembly=Wpf.Controls.PanAndZoom"
     xmlns:s="https://github.com/canton7/Stylet"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <Image Source="{Binding ImgSource}" />
+        <paz:ZoomBorder
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ClipToBounds="True"
+            Focusable="True"
+            Stretch="None"
+            ZoomSpeed="1.2">
+            <Image Source="{Binding ImgSource}" />
+        </paz:ZoomBorder>
     </Grid>
 </UserControl>

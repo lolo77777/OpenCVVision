@@ -47,3 +47,6 @@ E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Debug\netcoreapp3.1\View\R
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Debug\netcoreapp3.1\View\OperationHistoryView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Debug\netcoreapp3.1\View\RecordEleView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Debug\netcoreapp3.1\OpenCVVision.csprojAssemblyReference.cache
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\bin\Debug\netcoreapp3.1\PanAndZoom.dll
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\bin\Debug\netcoreapp3.1\Wpf.Controls.PanAndZoom.dll
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\bin\Debug\netcoreapp3.1\Wpf.MatrixExtensions.dll

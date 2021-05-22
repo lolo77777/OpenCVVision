@@ -32,10 +32,8 @@ E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ToolWindow\ImgBlurView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ToolWindow\ImgCvtColorSpaceView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.g.resources
-E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.csproj.CoreCompileInputs.cache
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.AssemblyInfoInputs.cache
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.AssemblyInfo.cs
-E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.csproj.Fody.CopyLocal.cache
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.csproj.CopyComplete
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.dll
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.pdb
@@ -46,3 +44,9 @@ E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\OperationHistoryView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\RecordEleView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\View\ToolWindow\ImgThresholdView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.csprojAssemblyReference.cache
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\bin\Release\netcoreapp3.1\PanAndZoom.dll
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\bin\Release\netcoreapp3.1\Wpf.Controls.PanAndZoom.dll
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\bin\Release\netcoreapp3.1\Wpf.MatrixExtensions.dll
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.csproj.CoreCompileInputs.cache
+E:\GitWork\OpenCVVision\OpenCVVision\OpenCVVision\obj\Release\netcoreapp3.1\OpenCVVision.csproj.Fody.CopyLocal.cache
