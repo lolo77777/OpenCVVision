@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
     <PackageReference Include="ReactiveUI" Version="13.3.2" />
     <PackageReference Include="ReactiveUI.Fody" Version="13.3.2" />
   </ItemGroup>

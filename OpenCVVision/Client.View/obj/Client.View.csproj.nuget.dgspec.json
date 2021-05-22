@@ -104,6 +104,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "ReactiveUI": {
               "target": "Package",
               "version": "[13.3.2, )"

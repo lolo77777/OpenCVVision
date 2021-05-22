@@ -258,6 +258,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Client.Common": "1.0.0",
+          "MaterialDesignThemes": "4.0.0",
           "ReactiveUI": "13.3.2",
           "ReactiveUI.Fody": "13.3.2"
         },

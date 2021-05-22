@@ -13,15 +13,15 @@
     x:TypeArguments="viewmodel:NavigationViewModel"
     mc:Ignorable="d">
 
-    <ListView x:Name="NavitionItems">
+    <ListView x:Name="NavitionItems" Foreground="{DynamicResource PrimaryHueMidBrush}">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <Border>
+                <materialDesign:Card ToolTip="{Binding TxtTooltip}">
                     <materialDesign:PackIcon
                         Width="24"
                         Height="24"
-                        Kind="{Binding}" />
-                </Border>
+                        Kind="{Binding Icon}" />
+                </materialDesign:Card>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
