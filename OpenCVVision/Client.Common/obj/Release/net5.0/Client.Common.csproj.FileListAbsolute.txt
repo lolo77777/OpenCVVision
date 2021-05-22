@@ -1,0 +1,12 @@
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\bin\Release\net5.0\Client.Common.deps.json
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\bin\Release\net5.0\Client.Common.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\bin\Release\net5.0\ref\Client.Common.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\bin\Release\net5.0\Client.Common.pdb
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\obj\Release\net5.0\Client.Common.GeneratedMSBuildEditorConfig.editorconfig
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\obj\Release\net5.0\Client.Common.AssemblyInfoInputs.cache
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\obj\Release\net5.0\Client.Common.AssemblyInfo.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\obj\Release\net5.0\Client.Common.csproj.CoreCompileInputs.cache
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\obj\Release\net5.0\Client.Common.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\obj\Release\net5.0\ref\Client.Common.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\obj\Release\net5.0\Client.Common.pdb
+E:\GitWork\OpenCVVision\OpenCVVision\Client.Common\obj\Release\net5.0\Client.Common.csprojAssemblyReference.cache
