@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+57NF08wjgto3eykJOjp1aUgI2NW+zYifZhK9htla1RXvIVkVX389J99pQ9aD+4HJQWFZBachnhtG3tNjzoUcQ==",
+  "success": true,
+  "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Common\\Client.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lolo1\\.nuget\\packages\\splat\\11.1.1\\splat.11.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}
