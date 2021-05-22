@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,10 +32,10 @@ namespace Client.View
             InitializeComponent();
             this.WhenActivated(d =>
             {
-                var list = new List<PackIconKind>();
-                list.Add(PackIconKind.Abc);
-                list.Add(PackIconKind.AbugidaDevanagari);
-                NavitionItems.ItemsSource = list;
+                this.OneWayBind(ViewModel, vm => vm.NaviItems, v => v.NavitionItems.ItemsSource).DisposeWith(d);
+                this.WhenAnyValue(x => x.NavitionItems.SelectedIndex)
+                    .BindTo(ViewModel, x => x.NaviSelectItemIndex)
+                    .DisposeWith(d);
             });
         }
     }

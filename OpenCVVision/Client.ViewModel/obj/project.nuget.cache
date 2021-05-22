@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "xKVveJwlJeYtx8ER6j2gmFmSKRUxqgXTdNtOO490BGALvnY62HknKA0T32ejS+k6G6MSleGrNqD6n9m3/GUFoA==",
+  "dgSpecHash": "BUhz2yms60SKLr17gtRBec2tXbNCeWqYWmGhr5RIOCZ/ctVK+hhkJhYUnHH4sznSSDMPhxpuFtajn90AIAzHYw==",
   "success": true,
   "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.ViewModel\\Client.ViewModel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lolo1\\.nuget\\packages\\dynamicdata\\7.1.16\\dynamicdata.7.1.16.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\fody\\6.5.1\\fody.6.5.1.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\materialdesigncolors\\2.0.0\\materialdesigncolors.2.0.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\materialdesignthemes\\4.0.0\\materialdesignthemes.4.0.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\reactiveui\\13.3.2\\reactiveui.13.3.2.nupkg.sha512",

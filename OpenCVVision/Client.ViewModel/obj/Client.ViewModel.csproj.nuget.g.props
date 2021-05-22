@@ -18,4 +18,7 @@
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)reactiveui.fody\13.3.2\build\ReactiveUI.Fody.props" Condition="Exists('$(NuGetPackageRoot)reactiveui.fody\13.3.2\build\ReactiveUI.Fody.props')" />
   </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMaterialDesignThemes Condition=" '$(PkgMaterialDesignThemes)' == '' ">C:\Users\lolo1\.nuget\packages\materialdesignthemes\4.0.0</PkgMaterialDesignThemes>
+  </PropertyGroup>
 </Project>
