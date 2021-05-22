@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "D0K61Rpi8ySvptVYgiJ7EdMvDMkCBrL0hYV4rc+SOMegdO0mJsctMPYRSh8UphZ6oRkpX3NmNviuTsexWLH/2A==",
+  "dgSpecHash": "6HjTqDDobY+Xdi4BLAt9pkyPBsV2KHP3VT5s+Bmvcmp9zpqG8DI2OXaUZZSKn+25jmqrPcwuXaCqXCenLnycPQ==",
   "success": true,
   "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\OpenCVVision\\OpenCVVision.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\lolo1\\.nuget\\packages\\opencvsharp4\\4.2.0.20200208\\opencvsharp4.4.2.0.20200208.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\opencvsharp4.runtime.win\\4.2.0.20200208\\opencvsharp4.runtime.win.4.2.0.20200208.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\opencvsharp4.windows\\4.2.0.20200208\\opencvsharp4.windows.4.2.0.20200208.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\panandzoom\\2.3.3\\panandzoom.2.3.3.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\propertychanged.fody\\3.2.8\\propertychanged.fody.3.2.8.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -86,7 +87,9 @@
     "C:\\Users\\lolo1\\.nuget\\packages\\system.threading.tasks.extensions\\4.3.0\\system.threading.tasks.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\lolo1\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\wpf.controls.panandzoom\\2.3.3\\wpf.controls.panandzoom.2.3.3.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\wpf.matrixextensions\\2.3.3\\wpf.matrixextensions.2.3.3.nupkg.sha512"
   ],
   "logs": []
 }
