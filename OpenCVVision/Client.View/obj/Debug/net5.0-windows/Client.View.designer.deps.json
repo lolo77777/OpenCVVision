@@ -6,6 +6,18 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
+      "ControlzEx/4.4.0": {
+        "dependencies": {
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.19",
+          "System.Text.Json": "4.7.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/ControlzEx.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.4.0.50"
+          }
+        }
+      },
       "DynamicData/7.1.16": {
         "dependencies": {
           "System.Reactive": "5.0.0"
@@ -18,6 +30,150 @@
         }
       },
       "Fody/6.5.1": {},
+      "MahApps.Metro/2.4.5": {
+        "dependencies": {
+          "ControlzEx": "4.4.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MahApps.Metro.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.4.5.4"
+          }
+        },
+        "resources": {
+          "lib/netcoreapp3.1/de/MahApps.Metro.resources.dll": {
+            "locale": "de"
+          }
+        }
+      },
+      "MahApps.Metro.IconPacks/4.8.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.BootstrapIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.BoxIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Codicons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Entypo.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.EvaIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.FeatherIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.FileIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.FontAwesome.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Fontaudio.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.ForkAwesome.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Ionicons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.JamIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Material.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.MaterialDesign.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.MaterialLight.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Microns.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Modern.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Octicons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.PicolIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.PixelartIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.RPGAwesome.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.RadixIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.RemixIcon.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.SimpleIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Typicons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Unicons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.VaadinIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.WeatherIcons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Zondicons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          }
+        }
+      },
       "MaterialDesignColors/2.0.0": {
         "runtime": {
           "lib/netcoreapp3.1/MaterialDesignColors.dll": {
@@ -37,8 +193,29 @@
           }
         }
       },
+      "MaterialDesignThemes.MahApps/0.1.6": {
+        "dependencies": {
+          "MahApps.Metro": "2.4.5",
+          "MaterialDesignColors": "2.0.0",
+          "MaterialDesignThemes": "4.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MaterialDesignThemes.MahApps.dll": {
+            "assemblyVersion": "0.1.6.2422",
+            "fileVersion": "0.1.6.2422"
+          }
+        }
+      },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.19": {
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Xaml.Behaviors.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.19.35512"
+          }
+        }
+      },
       "ReactiveUI/13.3.2": {
         "dependencies": {
           "DynamicData": "7.1.16",
@@ -160,6 +337,14 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.Text.Json/4.7.2": {
+        "runtime": {
+          "lib/netcoreapp3.0/System.Text.Json.dll": {
+            "assemblyVersion": "4.0.1.2",
+            "fileVersion": "4.700.20.21406"
+          }
+        }
+      },
       "System.Threading.Tasks/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -170,6 +355,13 @@
     }
   },
   "libraries": {
+    "ControlzEx/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pZ5z4hYWwE4R13UMCVs6vII//nL7hz+Nwn4oJlnsZJRGqJNy6Z9KnJiTZfly6lKFu0pMc1aWBZpx+VqFTQKP1Q==",
+      "path": "controlzex/4.4.0",
+      "hashPath": "controlzex.4.4.0.nupkg.sha512"
+    },
     "DynamicData/7.1.16": {
       "type": "package",
       "serviceable": true,
@@ -183,6 +375,20 @@
       "sha512": "sha512-DEw9rPG5vrpaK4vPPze0f4q6Zd0mfzjGNKy49nrmINkftIHpkyf8KH+uC/qF8y6v1askPWu9NbJS9bkmN5wXaA==",
       "path": "fody/6.5.1",
       "hashPath": "fody.6.5.1.nupkg.sha512"
+    },
+    "MahApps.Metro/2.4.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fUmU2yQgHqUTDDZT494+WcMBrg6G/960et7eqIvKGRRwH0I/d6cA6AuvRIJEQezxCFewweRbIkFvIOS62tjqug==",
+      "path": "mahapps.metro/2.4.5",
+      "hashPath": "mahapps.metro.2.4.5.nupkg.sha512"
+    },
+    "MahApps.Metro.IconPacks/4.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-G00GRXwBOzEIryBKOzbKH01SUUGMYKkIg3GQe0G/d1oZoRUJAeWN0Iw+WTs8ARU0CHzzvMAV00Z5y1mCB4pUPg==",
+      "path": "mahapps.metro.iconpacks/4.8.0",
+      "hashPath": "mahapps.metro.iconpacks.4.8.0.nupkg.sha512"
     },
     "MaterialDesignColors/2.0.0": {
       "type": "package",
@@ -198,6 +404,13 @@
       "path": "materialdesignthemes/4.0.0",
       "hashPath": "materialdesignthemes.4.0.0.nupkg.sha512"
     },
+    "MaterialDesignThemes.MahApps/0.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9zf6TbgJh+LHA8uoVyn13H1o/nid3X3+fAfY89NPgU5tuRRQNu/V3WgwoCbqT60JZ32b5wqijCJHojszaYZ1yw==",
+      "path": "materialdesignthemes.mahapps/0.1.6",
+      "hashPath": "materialdesignthemes.mahapps.0.1.6.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
@@ -211,6 +424,13 @@
       "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.Xaml.Behaviors.Wpf/1.1.19": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5sPWkbqImc2t1aQwIfJcKsUo7tOg1Tr8+6xVzZJB56Nzt4u9NlpcLofgdX/aRYpPKdWDA3U23Akw1KQzU5e82g==",
+      "path": "microsoft.xaml.behaviors.wpf/1.1.19",
+      "hashPath": "microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512"
     },
     "ReactiveUI/13.3.2": {
       "type": "package",
@@ -302,6 +522,13 @@
       "sha512": "sha512-BiIg+KWaSDOITze6jGQynxg64naAPtqGHBwDrLaCtixsa5bKiR8dpPOHA7ge3C0JJQizJE+sfkz1wV+BAKAYZw==",
       "path": "system.text.encoding/4.3.0",
       "hashPath": "system.text.encoding.4.3.0.nupkg.sha512"
+    },
+    "System.Text.Json/4.7.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TcMd95wcrubm9nHvJEQs70rC0H/8omiSGGpU4FQ/ZA1URIqD4pjmFJh2Mfv1yH1eHgJDWTi2hMDXwTET+zOOyg==",
+      "path": "system.text.json/4.7.2",
+      "hashPath": "system.text.json.4.7.2.nupkg.sha512"
     },
     "System.Threading.Tasks/4.3.0": {
       "type": "package",

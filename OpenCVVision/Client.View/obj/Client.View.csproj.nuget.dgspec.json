@@ -179,9 +179,21 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "dependencies": {
+            "MahApps.Metro": {
+              "target": "Package",
+              "version": "[2.4.5, )"
+            },
+            "MahApps.Metro.IconPacks": {
+              "target": "Package",
+              "version": "[4.8.0, )"
+            },
             "MaterialDesignThemes": {
               "target": "Package",
               "version": "[4.0.0, )"
+            },
+            "MaterialDesignThemes.MahApps": {
+              "target": "Package",
+              "version": "[0.1.6, )"
             },
             "ReactiveUI": {
               "target": "Package",
