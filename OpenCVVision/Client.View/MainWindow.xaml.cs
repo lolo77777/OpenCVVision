@@ -25,7 +25,7 @@ namespace Client
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IViewFor<MainViewModel>
+    public partial class MainWindow : IViewFor<MainViewModel>
     {
         private IReadonlyDependencyResolver _resolver = Locator.Current;
 

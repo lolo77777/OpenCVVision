@@ -32,8 +32,8 @@ namespace Client.ViewModel
         private IEnumerable<NaviItem> SetItems()
         {
             List<NaviItem> listtmp = new();
-            listtmp.Add(new NaviItem { Icon = PackIconKind.FileLocation, TxtTooltip = "加载图片" });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.UserConvert, TxtTooltip = "转换图像" });
+            listtmp.Add(new NaviItem { Icon = PackIconKind.File, TxtTooltip = "加载图片" });
+            listtmp.Add(new NaviItem { Icon = PackIconKind.Color, TxtTooltip = "转换图像" });
             return listtmp;
         }
     }
