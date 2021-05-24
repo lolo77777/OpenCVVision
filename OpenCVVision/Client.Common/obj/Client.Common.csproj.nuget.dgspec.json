@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "ReactiveUI": {
+              "target": "Package",
+              "version": "[13.3.2, )"
+            },
             "Splat": {
               "target": "Package",
               "version": "[11.1.1, )"

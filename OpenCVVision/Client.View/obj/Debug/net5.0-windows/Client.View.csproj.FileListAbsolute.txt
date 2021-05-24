@@ -124,3 +124,7 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtim
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Client.Model.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Client.Model.pdb
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op01File\LoadFileView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op01File\LoadFileView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op02ColorSpace\ColorSpaceView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op02ColorSpace\ColorSpaceView.baml

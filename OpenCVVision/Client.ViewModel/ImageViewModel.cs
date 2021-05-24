@@ -58,24 +58,29 @@ namespace Client.ViewModel
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Where(i => i >= 0 && HistoryItems.Count > i)
                 .Select(i => HistoryItems.ElementAt(i).HistoryItemId)
-                .Do(guid => MessageBus.Current.SendMessage(guid))
+                .Do(guid => _imageDataManager.InputMatGuid.OnNext(guid))
                 .Select(guid => _imageDataManager.GetImage(guid).ImageMat.ToWriteableBitmap())
                 .ToPropertyEx(this, x => x.InputImg);
 
-            //this.WhenAnyValue(x => x.HistoryItemSelectInd)
-            //    .ObserveOn(RxApp.MainThreadScheduler)
-            //    .Where(i => i >= 0 && HistoryItems.Count > i)
-            //    .Select(i => _imageDataManager.GetImage(HistoryItems.ElementAt(i).HistoryItemId).ImageMat.ToWriteableBitmap())
-            //    .ToPropertyEx(this, x => x.OutputImg);
+            _imageDataManager.OutputMat
+                             .ObserveOn(RxApp.MainThreadScheduler)
+                             .WhereNotNull()
+                             .Select(mat => mat.ToWriteableBitmap())
+                             .ToPropertyEx(this, x => x.OutputImg);
         }
 
         private HistoryItem ConvertData(ImageData imageData)
         {
-            var scaleY = 90d / imageData.ImageMat.Height;
-            var dst = _rt.T(imageData.ImageMat.Resize(Size.Zero, scaleY, scaleY));
-            var wtBitmap = dst.ToWriteableBitmap();
+            var wtBitmap = MatResizeWt(imageData.ImageMat);
 
             return new HistoryItem { HistoryItemId = imageData.ImageId, HistoryItemTxtMark = imageData.TxtMarker, HistoryItemImg = wtBitmap };
+        }
+
+        private WriteableBitmap MatResizeWt(Mat mat)
+        {
+            var scaleY = 90d / mat.Height;
+            var dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
+            return dst.ToWriteableBitmap();
         }
 
         private void UpdateHistoryItems(IChangeSet<HistoryItem, Guid> changes)

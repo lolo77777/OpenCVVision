@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)fody\6.5.1\build\Fody.targets" Condition="Exists('$(NuGetPackageRoot)fody\6.5.1\build\Fody.targets')" />
-    <Import Project="$(NuGetPackageRoot)materialdesignthemes\4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('$(NuGetPackageRoot)materialdesignthemes\4.0.0\build\MaterialDesignThemes.targets')" />
+    <Import Project="$(NuGetPackageRoot)materialdesignthemes\4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('$(NuGetPackageRoot)materialdesignthemes\4.1.0\build\MaterialDesignThemes.targets')" />
   </ImportGroup>
 </Project>

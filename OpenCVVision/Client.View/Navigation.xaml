@@ -56,12 +56,12 @@
                             Height="24"
                             Foreground="LightCyan"
                             Kind="{Binding Icon}"
-                            ToolTip="{Binding TxtTooltip}" />
+                            ToolTip="{Binding OperaPanelInfo}" />
 
                         <Label
                             Margin="5,0"
                             HorizontalAlignment="Center"
-                            Content="{Binding TxtTooltip}"
+                            Content="{Binding OperaPanelInfo}"
                             Foreground="White" />
                     </StackPanel>
                 </DataTemplate>

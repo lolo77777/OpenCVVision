@@ -13,6 +13,12 @@
     <Compile Update="Navigation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op01File\LoadFileView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Operation\Op02ColorSpace\ColorSpaceView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ImageView.xaml">
@@ -22,6 +28,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Navigation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op01File\LoadFileView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op02ColorSpace\ColorSpaceView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

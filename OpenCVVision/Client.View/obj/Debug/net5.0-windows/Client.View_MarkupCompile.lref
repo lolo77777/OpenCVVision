@@ -3,4 +3,6 @@ FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\App.xaml;;
 FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\ImageView.xaml;;
 FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\MainWindow.xaml;;
 FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\Navigation.xaml;;
+FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\Operation\Op01File\LoadFileView.xaml;;
+FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\Operation\Op02ColorSpace\ColorSpaceView.xaml;;
 

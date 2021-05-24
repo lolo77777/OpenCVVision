@@ -64,10 +64,10 @@ namespace Client.View
         {
             withAnimation1.From = 140;
             withAnimation1.To = 41;
-            withAnimation1.Duration = TimeSpan.FromMilliseconds(260);
+            withAnimation1.Duration = TimeSpan.FromMilliseconds(160);
             withAnimation2.From = 41;
             withAnimation2.To = 140;
-            withAnimation2.Duration = TimeSpan.FromMilliseconds(260);
+            withAnimation2.Duration = TimeSpan.FromMilliseconds(160);
         }
     }
 }

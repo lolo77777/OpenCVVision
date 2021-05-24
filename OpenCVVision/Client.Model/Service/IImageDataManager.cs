@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,9 @@ namespace Client.Model.Service
 {
     public interface IImageDataManager
     {
+        Guid CurrentId { set; get; }
+        Subject<Guid> InputMatGuid { set; get; }
+        Subject<Mat> OutputMat { set; get; }
         SourceCache<ImageData, Guid> SourceCacheImageData { set; get; }
 
         bool AddImage(string imageMarkTxt, Mat mat);

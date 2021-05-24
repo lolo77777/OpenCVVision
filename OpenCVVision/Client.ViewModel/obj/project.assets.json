@@ -20,7 +20,7 @@
           "build/Fody.targets": {}
         }
       },
-      "MaterialDesignColors/2.0.0": {
+      "MaterialDesignColors/2.0.1": {
         "type": "package",
         "compile": {
           "lib/netcoreapp3.1/MaterialDesignColors.dll": {}
@@ -29,10 +29,10 @@
           "lib/netcoreapp3.1/MaterialDesignColors.dll": {}
         }
       },
-      "MaterialDesignThemes/4.0.0": {
+      "MaterialDesignThemes/4.1.0": {
         "type": "package",
         "dependencies": {
-          "MaterialDesignColors": "2.0.0"
+          "MaterialDesignColors": "2.0.1"
         },
         "compile": {
           "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll": {}
@@ -343,6 +343,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "ReactiveUI": "13.3.2",
           "Splat": "11.1.1"
         },
         "compile": {
@@ -358,7 +359,8 @@
         "dependencies": {
           "Client.Common": "1.0.0",
           "DynamicData": "7.1.17",
-          "OpenCvSharp4.Windows": "4.5.2.20210404"
+          "OpenCvSharp4.Windows": "4.5.2.20210404",
+          "ReactiveUI": "13.3.2"
         },
         "compile": {
           "bin/placeholder/Client.Model.dll": {}
@@ -424,10 +426,10 @@
         "netstandardtask/Mono.Cecil.pdb"
       ]
     },
-    "MaterialDesignColors/2.0.0": {
-      "sha512": "+JoghC3QRK0u9Wul1To1ORjcfTbFTVzFPjJ02H7VREOdNzIIn427e8G9gP9hXu9pm1r2OneLnoCG/lTma5cG2w==",
+    "MaterialDesignColors/2.0.1": {
+      "sha512": "Azl8nN23SD6QPE0PdsfpKiIqWTvH7rzXwgXPiFSEt91NFOrwB5cx3iq/sbINWMZunhXJ32+jVUHiV03B8eJbZw==",
       "type": "package",
-      "path": "materialdesigncolors/2.0.0",
+      "path": "materialdesigncolors/2.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -436,14 +438,14 @@
         "lib/net452/MaterialDesignColors.pdb",
         "lib/netcoreapp3.1/MaterialDesignColors.dll",
         "lib/netcoreapp3.1/MaterialDesignColors.pdb",
-        "materialdesigncolors.2.0.0.nupkg.sha512",
+        "materialdesigncolors.2.0.1.nupkg.sha512",
         "materialdesigncolors.nuspec"
       ]
     },
-    "MaterialDesignThemes/4.0.0": {
-      "sha512": "+n5oWHuRiYL/gUw2XfQHCRZqHtU8KbrdurgU0IcO98Zsyhw4BvggodfXY8veRtbjjmM9EJ/sG2yKBrgPOGX4JQ==",
+    "MaterialDesignThemes/4.1.0": {
+      "sha512": "WqrO9AbtdE4pLPtDk/C5BZRnkgWFwVGyUHWj7tRJrgnKl089DEobVXBCLeqp2mkgBeFHj4Xe3AfWyhmlnO6AZA==",
       "type": "package",
-      "path": "materialdesignthemes/4.0.0",
+      "path": "materialdesignthemes/4.1.0",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -474,7 +476,7 @@
         "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll",
         "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.pdb",
         "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.xml",
-        "materialdesignthemes.4.0.0.nupkg.sha512",
+        "materialdesignthemes.4.1.0.nupkg.sha512",
         "materialdesignthemes.nuspec",
         "tools/VisualStudioToolsManifest.xml"
       ]
@@ -1489,7 +1491,7 @@
     "net5.0": [
       "Client.Common >= 1.0.0",
       "Client.Model >= 1.0.0",
-      "MaterialDesignThemes >= 4.0.0",
+      "MaterialDesignThemes >= 4.1.0",
       "OpenCvSharp4.Windows >= 4.5.2.20210404",
       "OpenCvSharp4.WpfExtensions >= 4.5.2.20210404",
       "ReactiveUI >= 13.3.2",
@@ -1544,7 +1546,7 @@
         "dependencies": {
           "MaterialDesignThemes": {
             "target": "Package",
-            "version": "[4.0.0, )"
+            "version": "[4.1.0, )"
           },
           "OpenCvSharp4.Windows": {
             "target": "Package",

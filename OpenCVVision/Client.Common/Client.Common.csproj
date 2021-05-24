@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ReactiveUI" Version="13.3.2" />
     <PackageReference Include="Splat" Version="11.1.1" />
   </ItemGroup>
 

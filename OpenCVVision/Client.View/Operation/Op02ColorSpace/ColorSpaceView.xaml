@@ -1,0 +1,63 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="Client.View.Operation.Op02ColorSpace.ColorSpaceView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Client.View.Operation.Op02ColorSpace"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:op02colorspace="clr-namespace:Client.ViewModel.Operation.Op02ColorSpace;assembly=Client.ViewModel"
+    xmlns:rxui="http://reactiveui.net"
+    d:DesignHeight="450"
+    d:DesignWidth="260"
+    x:TypeArguments="op02colorspace:ColorSpaceViewModel"
+    mc:Ignorable="d">
+    <materialDesign:Card Margin="4,8,8,8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="Title"
+                Margin="8"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="ColorSpace" />
+            <Grid Grid.Row="1" Margin="8,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUto" />
+                </Grid.RowDefinitions>
+                <materialDesign:Card>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Margin="8,8"
+                            FontSize="18"
+                            Text="图像类型" />
+                        <StackPanel Grid.Row="1" Margin="8,0">
+
+                            <ComboBox
+                                x:Name="ColorModesCbx"
+                                Margin="8,0"
+                                materialDesign:ComboBoxAssist.ClassicMode="False"
+                                materialDesign:HintAssist.Hint="ColorMode"
+                                DisplayMemberPath="."
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                            <ComboBox
+                                x:Name="ChanelCbx"
+                                Margin="8,8"
+                                materialDesign:ComboBoxAssist.ClassicMode="False"
+                                materialDesign:HintAssist.Hint="Channel"
+                                DisplayMemberPath="."
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+        </Grid>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>
