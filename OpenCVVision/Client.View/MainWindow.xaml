@@ -38,7 +38,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <rxui:ViewModelViewHost
@@ -46,7 +46,19 @@
             Grid.RowSpan="2"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch" />
-        <rxui:ViewModelViewHost x:Name="ImgViewer" Grid.Column="1" />
-        <rxui:RoutedViewHost x:Name="OperaPanel" Grid.Column="2" />
+        <Grid Grid.Column="1">
+            <rxui:ViewModelViewHost
+                x:Name="ImgViewer"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch" />
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <rxui:RoutedViewHost
+                x:Name="OperaPanel"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch" />
+        </Grid>
+
     </Grid>
 </mah:MetroWindow>

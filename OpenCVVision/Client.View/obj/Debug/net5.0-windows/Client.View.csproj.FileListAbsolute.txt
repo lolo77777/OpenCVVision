@@ -110,3 +110,15 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\MahApp
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\MahApps.Metro.IconPacks.WeatherIcons.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\MahApps.Metro.IconPacks.Zondicons.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\MahApps.Metro.IconPacks.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\ImageView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\ImageView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\OpenCvSharp.Extensions.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\OpenCvSharp.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\OpenCvSharp.WpfExtensions.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\System.Drawing.Common.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\win-x64\native\OpenCvSharpExtern.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\win-x64\native\opencv_videoio_ffmpeg452_64.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\win-x86\native\OpenCvSharpExtern.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\win-x86\native\opencv_videoio_ffmpeg452.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll

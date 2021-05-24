@@ -6,12 +6,20 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
+    <PackageReference Include="OpenCvSharp4.Windows" Version="4.5.2.20210404" />
+    <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.5.2.20210404" />
     <PackageReference Include="ReactiveUI" Version="13.3.2" />
     <PackageReference Include="ReactiveUI.Fody" Version="13.3.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Client.Common\Client.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore">
+      <HintPath>..\..\..\white-board-detect\WhiteboardDetect\Client.MVVM\bin\Debug\netstandard2.1\PresentationCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

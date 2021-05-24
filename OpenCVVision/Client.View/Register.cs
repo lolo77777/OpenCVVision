@@ -19,6 +19,7 @@ namespace Client.View
         {
             _mutable.RegisterLazySingleton(() => new MainWindow());
             _mutable.RegisterLazySingleton<IViewFor<NavigationViewModel>>(() => new Navigation());
+            _mutable.RegisterLazySingleton<IViewFor<ImageViewModel>>(() => new ImageView());
         }
     }
 }

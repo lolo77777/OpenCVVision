@@ -108,6 +108,14 @@
               "target": "Package",
               "version": "[4.0.0, )"
             },
+            "OpenCvSharp4.Windows": {
+              "target": "Package",
+              "version": "[4.5.2.20210404, )"
+            },
+            "OpenCvSharp4.WpfExtensions": {
+              "target": "Package",
+              "version": "[4.5.2.20210404, )"
+            },
             "ReactiveUI": {
               "target": "Package",
               "version": "[13.3.2, )"
@@ -189,11 +197,11 @@
             },
             "MaterialDesignThemes": {
               "target": "Package",
-              "version": "[4.0.0, )"
+              "version": "[4.1.0, )"
             },
             "MaterialDesignThemes.MahApps": {
               "target": "Package",
-              "version": "[0.1.6, )"
+              "version": "[0.1.7, )"
             },
             "ReactiveUI": {
               "target": "Package",
