@@ -34,6 +34,8 @@ namespace Client.View
                 this.OneWayBind(ViewModel, vm => vm.InputImg, v => v.InputImg.Source).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.OutputImg, v => v.OutputImg.Source).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.HistoryItemSelectInd, v => v.HistoryImg.SelectedIndex).DisposeWith(d);
+                this.BindCommand(ViewModel, vm => vm.AddOutputImgToImgManagerCommand, v => v.btnAddOutputImage).DisposeWith(d);
+                this.Bind(ViewModel, vm => vm.OutputImageMarkTxt, v => v.OutputMarkTxtBox.Text).DisposeWith(d);
             });
         }
     }

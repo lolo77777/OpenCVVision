@@ -29,6 +29,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label
+                    Height="{Binding ElementName=TitleBar, Path=ActualHeight}"
                     Margin="0,5,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -54,13 +55,40 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label
-                    Margin="0,5,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Content="Output"
-                    FontSize="20"
-                    FontStyle="Oblique" />
+
+                <Grid x:Name="TitleBar" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="AUto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Output"
+                        FontSize="20"
+                        FontStyle="Oblique" />
+                    <TextBox
+                        x:Name="OutputMarkTxtBox"
+                        Grid.Column="1"
+                        MinWidth="120"
+                        HorizontalAlignment="Right"
+                        materialDesign:HintAssist.Hint="MarkTxt"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <Button
+                        x:Name="btnAddOutputImage"
+                        Grid.Column="2"
+                        Width="36"
+                        Height="36"
+                        Margin="8,0,8,0"
+                        HorizontalAlignment="Right"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="将当前输出图像加入操作缓存">
+                        <materialDesign:PackIcon Kind="Add" />
+                    </Button>
+                </Grid>
+
                 <Separator
                     Grid.Row="1"
                     Background="{StaticResource AccentBaseColorBrush}"
