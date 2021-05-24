@@ -10,12 +10,13 @@
         "dependencies": {
           "Client.Common": "1.0.0",
           "Client.Model": "1.0.0",
-          "MaterialDesignThemes": "4.0.0",
+          "MaterialDesignThemes": "4.1.0",
           "OpenCvSharp4.Windows": "4.5.2.20210404",
           "OpenCvSharp4.WpfExtensions": "4.5.2.20210404",
           "ReactiveUI": "13.3.2",
           "ReactiveUI.Fody": "13.3.2",
-          "PresentationCore": "4.0.0.0"
+          "PresentationCore": "4.0.0.0",
+          "System.Windows.Forms": "4.0.0.0"
         },
         "runtime": {
           "Client.ViewModel.dll": {}
@@ -33,22 +34,22 @@
         }
       },
       "Fody/6.5.1": {},
-      "MaterialDesignColors/2.0.0": {
+      "MaterialDesignColors/2.0.1": {
         "runtime": {
           "lib/netcoreapp3.1/MaterialDesignColors.dll": {
-            "assemblyVersion": "2.0.0.2422",
-            "fileVersion": "2.0.0.2422"
+            "assemblyVersion": "2.0.1.2556",
+            "fileVersion": "2.0.1.2556"
           }
         }
       },
-      "MaterialDesignThemes/4.0.0": {
+      "MaterialDesignThemes/4.1.0": {
         "dependencies": {
-          "MaterialDesignColors": "2.0.0"
+          "MaterialDesignColors": "2.0.1"
         },
         "runtime": {
           "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll": {
-            "assemblyVersion": "4.0.0.2422",
-            "fileVersion": "4.0.0.2422"
+            "assemblyVersion": "4.1.0.2556",
+            "fileVersion": "4.1.0.2556"
           }
         }
       },
@@ -271,6 +272,7 @@
       },
       "Client.Common/1.0.0": {
         "dependencies": {
+          "ReactiveUI": "13.3.2",
           "Splat": "11.1.1"
         },
         "runtime": {
@@ -281,7 +283,8 @@
         "dependencies": {
           "Client.Common": "1.0.0",
           "DynamicData": "7.1.17",
-          "OpenCvSharp4.Windows": "4.5.2.20210404"
+          "OpenCvSharp4.Windows": "4.5.2.20210404",
+          "ReactiveUI": "13.3.2"
         },
         "runtime": {
           "Client.Model.dll": {}
@@ -290,6 +293,14 @@
       "PresentationCore/4.0.0.0": {
         "runtime": {
           "PresentationCore.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.7.3062.0"
+          }
+        }
+      },
+      "System.Windows.Forms/4.0.0.0": {
+        "runtime": {
+          "System.Windows.Forms.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.7.3062.0"
           }
@@ -343,14 +354,6 @@
           }
         }
       },
-      "System.Windows.Forms/4.0.0.0": {
-        "runtime": {
-          "System.Windows.Forms.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.7.3062.0"
-          }
-        }
-      },
       "System.Runtime.Serialization.Formatters.Soap/4.0.0.0": {
         "runtime": {
           "System.Runtime.Serialization.Formatters.Soap.dll": {
@@ -381,19 +384,19 @@
       "path": "fody/6.5.1",
       "hashPath": "fody.6.5.1.nupkg.sha512"
     },
-    "MaterialDesignColors/2.0.0": {
+    "MaterialDesignColors/2.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+JoghC3QRK0u9Wul1To1ORjcfTbFTVzFPjJ02H7VREOdNzIIn427e8G9gP9hXu9pm1r2OneLnoCG/lTma5cG2w==",
-      "path": "materialdesigncolors/2.0.0",
-      "hashPath": "materialdesigncolors.2.0.0.nupkg.sha512"
+      "sha512": "sha512-Azl8nN23SD6QPE0PdsfpKiIqWTvH7rzXwgXPiFSEt91NFOrwB5cx3iq/sbINWMZunhXJ32+jVUHiV03B8eJbZw==",
+      "path": "materialdesigncolors/2.0.1",
+      "hashPath": "materialdesigncolors.2.0.1.nupkg.sha512"
     },
-    "MaterialDesignThemes/4.0.0": {
+    "MaterialDesignThemes/4.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+n5oWHuRiYL/gUw2XfQHCRZqHtU8KbrdurgU0IcO98Zsyhw4BvggodfXY8veRtbjjmM9EJ/sG2yKBrgPOGX4JQ==",
-      "path": "materialdesignthemes/4.0.0",
-      "hashPath": "materialdesignthemes.4.0.0.nupkg.sha512"
+      "sha512": "sha512-WqrO9AbtdE4pLPtDk/C5BZRnkgWFwVGyUHWj7tRJrgnKl089DEobVXBCLeqp2mkgBeFHj4Xe3AfWyhmlnO6AZA==",
+      "path": "materialdesignthemes/4.1.0",
+      "hashPath": "materialdesignthemes.4.1.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/5.0.0": {
       "type": "package",
@@ -571,6 +574,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "System.Windows.Forms/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "System.Xaml/4.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -597,11 +605,6 @@
       "sha512": ""
     },
     "Accessibility/4.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Windows.Forms/4.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

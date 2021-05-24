@@ -7,6 +7,10 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Client.Common;
+using Client.ViewModel.Operation.Op01File;
+using Client.ViewModel.Operation.Op02ColorSpace;
+
 using MaterialDesignThemes.Wpf;
 
 using ReactiveUI;
@@ -32,8 +36,8 @@ namespace Client.ViewModel
         private IEnumerable<NaviItem> SetItems()
         {
             List<NaviItem> listtmp = new();
-            listtmp.Add(new NaviItem { Icon = PackIconKind.File, TxtTooltip = "加载图片" });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.Color, TxtTooltip = "转换图像" });
+            listtmp.Add(new NaviItem { Icon = PackIconKind.File, OperaPanelInfo = StaticMethod.GetInfo(typeof(LoadFileViewModel)) });
+            listtmp.Add(new NaviItem { Icon = PackIconKind.Color, OperaPanelInfo = StaticMethod.GetInfo(typeof(ColorSpaceViewModel)) });
             return listtmp;
         }
     }
@@ -41,6 +45,6 @@ namespace Client.ViewModel
     public class NaviItem
     {
         public PackIconKind Icon { get; set; }
-        public string TxtTooltip { get; set; }
+        public string OperaPanelInfo { get; set; }
     }
 }

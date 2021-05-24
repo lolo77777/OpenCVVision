@@ -447,6 +447,7 @@
       },
       "Client.Common/1.0.0": {
         "dependencies": {
+          "ReactiveUI": "13.3.2",
           "Splat": "11.1.1"
         },
         "runtime": {
@@ -457,7 +458,8 @@
         "dependencies": {
           "Client.Common": "1.0.0",
           "DynamicData": "7.1.17",
-          "OpenCvSharp4.Windows": "4.5.2.20210404"
+          "OpenCvSharp4.Windows": "4.5.2.20210404",
+          "ReactiveUI": "13.3.2"
         },
         "runtime": {
           "Client.Model.dll": {}

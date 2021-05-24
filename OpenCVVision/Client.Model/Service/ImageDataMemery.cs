@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,11 +16,15 @@ namespace Client.Model.Service
 {
     public class ImageDataMemery : IImageDataManager
     {
+        public Guid CurrentId { get; set; }
+        public Subject<Guid> InputMatGuid { get; set; } = new();
+        public Subject<Mat> OutputMat { get; set; } = new();
         public SourceCache<ImageData, Guid> SourceCacheImageData { get; set; }
 
         public ImageDataMemery()
         {
             SourceCacheImageData = new SourceCache<ImageData, Guid>(t => t.ImageId);
+            InputMatGuid.Subscribe(guid => CurrentId = guid);
             SampleData();
         }
 

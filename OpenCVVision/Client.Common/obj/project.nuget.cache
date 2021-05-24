@@ -1,10 +1,24 @@
 {
   "version": 2,
-  "dgSpecHash": "L6Nn3+6cV0CAjqJBGZ0GG8p3AZJNBRPWMyvwPErB5o9sKj/xO0wRHVkbMQtUx0og7zAy9uDv21qmFFsvA9eQAA==",
+  "dgSpecHash": "U8eoHMlx3xWgNv4gKQDIjchMCX4GAx+W02h+0YdNlxmtbLBfSK7TRsByuUBnzMgug4rAWH19eL3lPoZGVmyrBg==",
   "success": true,
   "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Common\\Client.Common.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\lolo1\\.nuget\\packages\\splat\\11.1.1\\splat.11.1.1.nupkg.sha512"
+    "C:\\Users\\lolo1\\.nuget\\packages\\dynamicdata\\7.1.16\\dynamicdata.7.1.16.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\reactiveui\\13.3.2\\reactiveui.13.3.2.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\splat\\11.1.1\\splat.11.1.1.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.reactive\\5.0.0\\system.reactive.5.0.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.resources.resourcemanager\\4.3.0\\system.resources.resourcemanager.4.3.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.runtime.serialization.primitives\\4.3.0\\system.runtime.serialization.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

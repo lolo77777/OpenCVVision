@@ -20,6 +20,6 @@
     <Import Project="$(NuGetPackageRoot)opencvsharp4.runtime.win\4.5.2.20210404\build\netcoreapp\OpenCvSharp4.runtime.win.props" Condition="Exists('$(NuGetPackageRoot)opencvsharp4.runtime.win\4.5.2.20210404\build\netcoreapp\OpenCvSharp4.runtime.win.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgMaterialDesignThemes Condition=" '$(PkgMaterialDesignThemes)' == '' ">C:\Users\lolo1\.nuget\packages\materialdesignthemes\4.0.0</PkgMaterialDesignThemes>
+    <PkgMaterialDesignThemes Condition=" '$(PkgMaterialDesignThemes)' == '' ">C:\Users\lolo1\.nuget\packages\materialdesignthemes\4.1.0</PkgMaterialDesignThemes>
   </PropertyGroup>
 </Project>

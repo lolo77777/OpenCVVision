@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "4x6D5St02lCg3KiKmQgrVbeChZbH7DYD3HOqPIEwmrRX7Pn0jICFyV4onBI3f7MAB9hXwfKLQ2tKkzmrAVDb+g==",
+  "dgSpecHash": "6VYvOW4pd9fQDZ5KmGGM0HMnTSgqExOju2NPAEuqJR++uCwCvu9oCg/YJsFO0I2vIGflMiJYWytsMhHP8Ft58A==",
   "success": true,
   "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.ViewModel\\Client.ViewModel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lolo1\\.nuget\\packages\\dynamicdata\\7.1.17\\dynamicdata.7.1.17.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\fody\\6.5.1\\fody.6.5.1.nupkg.sha512",
-    "C:\\Users\\lolo1\\.nuget\\packages\\materialdesigncolors\\2.0.0\\materialdesigncolors.2.0.0.nupkg.sha512",
-    "C:\\Users\\lolo1\\.nuget\\packages\\materialdesignthemes\\4.0.0\\materialdesignthemes.4.0.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\materialdesigncolors\\2.0.1\\materialdesigncolors.2.0.1.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\materialdesignthemes\\4.1.0\\materialdesignthemes.4.1.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
