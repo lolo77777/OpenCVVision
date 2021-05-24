@@ -18,6 +18,7 @@ namespace Client.ViewModel
         {
             _mutable.RegisterLazySingleton(() => new MainViewModel());
             _mutable.RegisterLazySingleton(() => new NavigationViewModel());
+            _mutable.RegisterLazySingleton(() => new ImageViewModel());
         }
     }
 }

@@ -108,6 +108,14 @@
               "target": "Package",
               "version": "[4.0.0, )"
             },
+            "OpenCvSharp4.Windows": {
+              "target": "Package",
+              "version": "[4.5.2.20210404, )"
+            },
+            "OpenCvSharp4.WpfExtensions": {
+              "target": "Package",
+              "version": "[4.5.2.20210404, )"
+            },
             "ReactiveUI": {
               "target": "Package",
               "version": "[13.3.2, )"

@@ -14,13 +14,16 @@ namespace Client.ViewModel
     public class MainViewModel : ReactiveObject
     {
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
+        public ImageViewModel ImageVMSam { get; private set; }
         public NavigationViewModel NavigationViewModelSam { get; private set; }
         [Reactive] public string TxtUi { get; set; } = "hello";
 
-        public MainViewModel(NavigationViewModel navigationViewModel = null)
+        public MainViewModel(NavigationViewModel navigationViewModel = null, ImageViewModel imageViewModel = null)
         {
             navigationViewModel ??= _resolver.GetService<NavigationViewModel>();
+            imageViewModel ??= _resolver.GetService<ImageViewModel>();
             NavigationViewModelSam = navigationViewModel;
+            ImageVMSam = imageViewModel;
         }
     }
 }
