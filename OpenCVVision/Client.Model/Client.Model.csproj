@@ -4,4 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DynamicData" Version="7.1.17" />
+    <PackageReference Include="OpenCvSharp4.Windows" Version="4.5.2.20210404" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client.Common\Client.Common.csproj" />
+  </ItemGroup>
+
 </Project>

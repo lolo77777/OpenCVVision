@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "NwKyPWUjqFU9/xFLOGAUoF5oI67fVf9ne/WrGd3fCbH6+DVcsCxCIAFyvSbgYchj1W3tHw7HQccOzH/gcZPVrw==",
+  "dgSpecHash": "HpJZL9VFYWpDc6zyRf/SUCJq6c3/0wpmI1bnB+idzUvhaksX39v43EzXSpbhVz85PJrux69zd8yjKDuoK73axA==",
   "success": true,
   "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.View\\Client.View.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lolo1\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
-    "C:\\Users\\lolo1\\.nuget\\packages\\dynamicdata\\7.1.16\\dynamicdata.7.1.16.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\dynamicdata\\7.1.17\\dynamicdata.7.1.17.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\fody\\6.5.1\\fody.6.5.1.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\mahapps.metro\\2.4.5\\mahapps.metro.2.4.5.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\mahapps.metro.iconpacks\\4.8.0\\mahapps.metro.iconpacks.4.8.0.nupkg.sha512",

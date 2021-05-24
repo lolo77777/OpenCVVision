@@ -39,3 +39,5 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Debug\net5.0\Client.Vi
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Debug\net5.0\Client.ViewModel.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Debug\net5.0\ref\Client.ViewModel.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Debug\net5.0\Client.ViewModel.pdb
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Debug\net5.0\Client.Model.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Debug\net5.0\Client.Model.pdb

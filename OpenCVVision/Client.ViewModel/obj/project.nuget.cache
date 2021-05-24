@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "99JwYf77G7szL26POmtyTmRCL/wZ5r2zb35xdrPYVv5DoukNo3XL6WqFJCRKozfxqXiARGQeRrmZreJSrs/IcQ==",
+  "dgSpecHash": "4x6D5St02lCg3KiKmQgrVbeChZbH7DYD3HOqPIEwmrRX7Pn0jICFyV4onBI3f7MAB9hXwfKLQ2tKkzmrAVDb+g==",
   "success": true,
   "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.ViewModel\\Client.ViewModel.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\lolo1\\.nuget\\packages\\dynamicdata\\7.1.16\\dynamicdata.7.1.16.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\dynamicdata\\7.1.17\\dynamicdata.7.1.17.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\fody\\6.5.1\\fody.6.5.1.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\materialdesigncolors\\2.0.0\\materialdesigncolors.2.0.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\materialdesignthemes\\4.0.0\\materialdesignthemes.4.0.0.nupkg.sha512",
