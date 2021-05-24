@@ -18,7 +18,7 @@
           "Microsoft.WindowsDesktop.App.WPF"
         ]
       },
-      "DynamicData/7.1.16": {
+      "DynamicData/7.1.17": {
         "type": "package",
         "dependencies": {
           "System.Reactive": "5.0.0"
@@ -514,11 +514,27 @@
           "bin/placeholder/Client.Common.dll": {}
         }
       },
+      "Client.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Client.Common": "1.0.0",
+          "DynamicData": "7.1.17",
+          "OpenCvSharp4.Windows": "4.5.2.20210404"
+        },
+        "compile": {
+          "bin/placeholder/Client.Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Client.Model.dll": {}
+        }
+      },
       "Client.ViewModel/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Client.Common": "1.0.0",
+          "Client.Model": "1.0.0",
           "MaterialDesignThemes": "4.0.0",
           "OpenCvSharp4.Windows": "4.5.2.20210404",
           "OpenCvSharp4.WpfExtensions": "4.5.2.20210404",
@@ -559,15 +575,15 @@
         "logo-mini.png"
       ]
     },
-    "DynamicData/7.1.16": {
-      "sha512": "CMXT1lXzKSW3siHty4sNZO5XUHPWMH51aksCwFIW1u3e3Js0zkMSw9DqgNC3eLoIiOKwUO5gPK0YSg96nHl1bQ==",
+    "DynamicData/7.1.17": {
+      "sha512": "xCPDDyitEYMtLa+UN985RDQ4VgxLz3MgIjfQgIUC6sYFiO6S+WNTBa/BE6g7WDiz1XFe+JGIJF1SFX0ju2Yl8g==",
       "type": "package",
-      "path": "dynamicdata/7.1.16",
+      "path": "dynamicdata/7.1.17",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE/LICENSE",
-        "dynamicdata.7.1.16.nupkg.sha512",
+        "dynamicdata.7.1.17.nupkg.sha512",
         "dynamicdata.nuspec",
         "lib/net461/DynamicData.dll",
         "lib/net461/DynamicData.xml",
@@ -2473,6 +2489,11 @@
       "type": "project",
       "path": "../Client.Common/Client.Common.csproj",
       "msbuildProject": "../Client.Common/Client.Common.csproj"
+    },
+    "Client.Model/1.0.0": {
+      "type": "project",
+      "path": "../Client.Model/Client.Model.csproj",
+      "msbuildProject": "../Client.Model/Client.Model.csproj"
     },
     "Client.ViewModel/1.0.0": {
       "type": "project",

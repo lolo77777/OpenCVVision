@@ -29,10 +29,11 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label
+                    Margin="0,5,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Content="Input"
-                    FontSize="28"
+                    FontSize="20"
                     FontStyle="Oblique" />
                 <Separator
                     Grid.Row="1"
@@ -54,10 +55,11 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label
+                    Margin="0,5,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Content="Output"
-                    FontSize="28"
+                    FontSize="20"
                     FontStyle="Oblique" />
                 <Separator
                     Grid.Row="1"
@@ -81,7 +83,7 @@
 
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label Content="操作记录" />
+                <Label Content="操作缓存" />
                 <ListView x:Name="HistoryImg" Grid.Row="1">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -96,18 +98,18 @@
                                     <Image Margin="20" Source="{Binding HistoryItemImg}" />
                                     <Border
                                         Grid.Row="0"
-                                        Width="32"
-                                        Height="32"
                                         Margin="0,0,40,10"
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Bottom"
-                                        Background="{StaticResource AccentBaseColorBrush}"
-                                        CornerRadius="16">
+                                        Background="{StaticResource HighlightBrush}"
+                                        CornerRadius="1">
                                         <TextBlock
+                                            Margin="2"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
-                                            FontSize="16"
-                                            Text="{Binding HistoryItemId}" />
+                                            FontSize="15"
+                                            Foreground="WhiteSmoke"
+                                            Text="{Binding HistoryItemTxtMark}" />
                                     </Border>
                                 </Grid>
                             </materialDesign:Card>

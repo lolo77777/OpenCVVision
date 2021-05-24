@@ -33,14 +33,14 @@
           }
         }
       },
-      "DynamicData/7.1.16": {
+      "DynamicData/7.1.17": {
         "dependencies": {
           "System.Reactive": "5.0.0"
         },
         "runtime": {
           "lib/net5.0/DynamicData.dll": {
             "assemblyVersion": "7.1.0.0",
-            "fileVersion": "7.1.16.9158"
+            "fileVersion": "7.1.17.34753"
           }
         }
       },
@@ -297,7 +297,7 @@
       },
       "ReactiveUI/13.3.2": {
         "dependencies": {
-          "DynamicData": "7.1.16",
+          "DynamicData": "7.1.17",
           "Splat": "11.1.1",
           "System.Reactive": "5.0.0",
           "System.Runtime.Serialization.Primitives": "4.3.0"
@@ -453,9 +453,20 @@
           "Client.Common.dll": {}
         }
       },
+      "Client.Model/1.0.0": {
+        "dependencies": {
+          "Client.Common": "1.0.0",
+          "DynamicData": "7.1.17",
+          "OpenCvSharp4.Windows": "4.5.2.20210404"
+        },
+        "runtime": {
+          "Client.Model.dll": {}
+        }
+      },
       "Client.ViewModel/1.0.0": {
         "dependencies": {
           "Client.Common": "1.0.0",
+          "Client.Model": "1.0.0",
           "MaterialDesignThemes": "4.1.0",
           "OpenCvSharp4.Windows": "4.5.2.20210404",
           "OpenCvSharp4.WpfExtensions": "4.5.2.20210404",
@@ -481,12 +492,12 @@
       "path": "controlzex/4.4.0",
       "hashPath": "controlzex.4.4.0.nupkg.sha512"
     },
-    "DynamicData/7.1.16": {
+    "DynamicData/7.1.17": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CMXT1lXzKSW3siHty4sNZO5XUHPWMH51aksCwFIW1u3e3Js0zkMSw9DqgNC3eLoIiOKwUO5gPK0YSg96nHl1bQ==",
-      "path": "dynamicdata/7.1.16",
-      "hashPath": "dynamicdata.7.1.16.nupkg.sha512"
+      "sha512": "sha512-xCPDDyitEYMtLa+UN985RDQ4VgxLz3MgIjfQgIUC6sYFiO6S+WNTBa/BE6g7WDiz1XFe+JGIJF1SFX0ju2Yl8g==",
+      "path": "dynamicdata/7.1.17",
+      "hashPath": "dynamicdata.7.1.17.nupkg.sha512"
     },
     "Fody/6.5.1": {
       "type": "package",
@@ -713,6 +724,11 @@
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
     "Client.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Client.Model/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -122,3 +122,5 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtim
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\win-x86\native\opencv_videoio_ffmpeg452.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Client.Model.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Client.Model.pdb

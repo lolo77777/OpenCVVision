@@ -1,8 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "4zlSe1vRm/44wdhmnc6yhWkQoJzvRzmjUF0vGP0VJtsXYrwx/PWujoV8GAeKj1DOf5usOida7hM7g7C1EqEZLw==",
+  "dgSpecHash": "8c2FVdijftrnlJ88ShxNiAcJNc0Fmo4Wcx4c578+Lyq5gu8qIEj2DMg3TwLXbJlwBXRfXdv/x7lpYBZTWROxlQ==",
   "success": true,
   "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Model\\Client.Model.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\lolo1\\.nuget\\packages\\dynamicdata\\7.1.17\\dynamicdata.7.1.17.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\opencvsharp4\\4.5.2.20210404\\opencvsharp4.4.5.2.20210404.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\opencvsharp4.runtime.win\\4.5.2.20210404\\opencvsharp4.runtime.win.4.5.2.20210404.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\opencvsharp4.windows\\4.5.2.20210404\\opencvsharp4.windows.4.5.2.20210404.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\opencvsharp4.wpfextensions\\4.5.2.20210404\\opencvsharp4.wpfextensions.4.5.2.20210404.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\splat\\11.1.1\\splat.11.1.1.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.reactive\\5.0.0\\system.reactive.5.0.0.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

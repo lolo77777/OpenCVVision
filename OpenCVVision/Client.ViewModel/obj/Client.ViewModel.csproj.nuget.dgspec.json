@@ -64,6 +64,74 @@
         }
       }
     },
+    "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Model\\Client.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Model\\Client.Model.csproj",
+        "projectName": "Client.Model",
+        "projectPath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Model\\Client.Model.csproj",
+        "packagesPath": "C:\\Users\\lolo1\\.nuget\\packages\\",
+        "outputPath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lolo1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Common\\Client.Common.csproj": {
+                "projectPath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Common\\Client.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "DynamicData": {
+              "target": "Package",
+              "version": "[7.1.17, )"
+            },
+            "OpenCvSharp4.Windows": {
+              "target": "Package",
+              "version": "[4.5.2.20210404, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.ViewModel\\Client.ViewModel.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -90,6 +158,9 @@
             "projectReferences": {
               "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Common\\Client.Common.csproj": {
                 "projectPath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Common\\Client.Common.csproj"
+              },
+              "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Model\\Client.Model.csproj": {
+                "projectPath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Model\\Client.Model.csproj"
               }
             }
           }
