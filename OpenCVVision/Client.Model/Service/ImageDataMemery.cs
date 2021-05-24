@@ -18,13 +18,15 @@ namespace Client.Model.Service
     {
         public Guid CurrentId { get; set; }
         public Subject<Guid> InputMatGuid { get; set; } = new();
-        public Subject<Mat> OutputMat { get; set; } = new();
+        public Mat OutputMat { get; set; }
+        public Subject<Mat> OutputMatSubject { get; set; } = new();
         public SourceCache<ImageData, Guid> SourceCacheImageData { get; set; }
 
         public ImageDataMemery()
         {
             SourceCacheImageData = new SourceCache<ImageData, Guid>(t => t.ImageId);
             InputMatGuid.Subscribe(guid => CurrentId = guid);
+            OutputMatSubject.Subscribe(mat => OutputMat = mat.Clone());
             SampleData();
         }
 
@@ -54,9 +56,20 @@ namespace Client.Model.Service
             }
             else
             {
-                var imageMarkTxtNew = string.Concat(imageMarkTxt, DateTime.Now.ToShortTimeString());
+                var imageMarkTxtNew = $"{imageMarkTxt}_{DateTime.Now.ToShortTimeString()}";
                 return AddImage(imageMarkTxtNew, mat);
             }
+        }
+
+        public void AddOutputImage(string outputImageMarkTxt)
+        {
+            var str = string.IsNullOrWhiteSpace(outputImageMarkTxt) ? "dst" : outputImageMarkTxt;
+            AddImage(str, OutputMat);
+        }
+
+        public Mat GetCurrentMat()
+        {
+            return GetImage(CurrentId).ImageMat;
         }
 
         public ImageData GetImage(Guid guid)

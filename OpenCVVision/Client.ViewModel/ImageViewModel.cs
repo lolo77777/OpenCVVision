@@ -19,6 +19,7 @@ using Client.Model.Service;
 using Splat;
 using Client.Model.Entity;
 using DynamicData.Tests;
+using System.Reactive;
 
 namespace Client.ViewModel
 {
@@ -36,24 +37,27 @@ namespace Client.ViewModel
         private IImageDataManager _imageDataManager;
         private IReadonlyDependencyResolver _resolver = Locator.Current;
         private ResourcesTracker _rt = new ResourcesTracker();
+        public ReactiveCommand<Unit, Unit> AddOutputImgToImgManagerCommand { get; set; }
         public ReadOnlyObservableCollection<HistoryItem> HistoryItems => _historyItems;
         [Reactive] public int HistoryItemSelectInd { get; set; }
         public WriteableBitmap InputImg { [ObservableAsProperty] get; }
+        [Reactive] public string OutputImageMarkTxt { get; set; }
         public WriteableBitmap OutputImg { [ObservableAsProperty]get; }
 
         public ImageViewModel(IImageDataManager imageDataManager = null)
         {
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
             _imageDataManager.SourceCacheImageData
-                             .Connect()
-                             .ObserveOn(RxApp.MainThreadScheduler)
-                             .Transform(it => ConvertData(it))
-                             .Do(it => UpdateHistoryItems(it))
-                             .Subscribe();
-            _historyItemsTmp.Connect()
-                            .ObserveOn(RxApp.MainThreadScheduler)
-                            .Bind(out _historyItems)
-                            .Subscribe();
+                .Connect()
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Transform(it => ConvertData(it))
+                .Do(it => UpdateHistoryItems(it))
+                .Subscribe();
+            _historyItemsTmp
+                .Connect()
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Bind(out _historyItems)
+                .Subscribe();
             this.WhenAnyValue(x => x.HistoryItemSelectInd)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Where(i => i >= 0 && HistoryItems.Count > i)
@@ -62,11 +66,12 @@ namespace Client.ViewModel
                 .Select(guid => _imageDataManager.GetImage(guid).ImageMat.ToWriteableBitmap())
                 .ToPropertyEx(this, x => x.InputImg);
 
-            _imageDataManager.OutputMat
-                             .ObserveOn(RxApp.MainThreadScheduler)
-                             .WhereNotNull()
-                             .Select(mat => mat.ToWriteableBitmap())
-                             .ToPropertyEx(this, x => x.OutputImg);
+            _imageDataManager.OutputMatSubject
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .WhereNotNull()
+                .Select(mat => mat.ToWriteableBitmap())
+                .ToPropertyEx(this, x => x.OutputImg);
+            AddOutputImgToImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.AddOutputImage(OutputImageMarkTxt));
         }
 
         private HistoryItem ConvertData(ImageData imageData)

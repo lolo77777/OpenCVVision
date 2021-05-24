@@ -39,7 +39,7 @@ namespace Client.ViewModel.Operation.Op01File
                 .Where(str => !string.IsNullOrWhiteSpace(str))
                 .Select(str => Cv2.ImRead(str))
                 .Do(mat => _imageDataManager.AddImage("Src", mat))
-                .Do(mat => _imageDataManager.OutputMat.OnNext(mat))
+                .Do(mat => _imageDataManager.OutputMatSubject.OnNext(mat))
                 .Subscribe();
         }
 

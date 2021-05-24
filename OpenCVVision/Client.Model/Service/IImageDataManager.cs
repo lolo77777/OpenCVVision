@@ -17,10 +17,15 @@ namespace Client.Model.Service
     {
         Guid CurrentId { set; get; }
         Subject<Guid> InputMatGuid { set; get; }
-        Subject<Mat> OutputMat { set; get; }
+        Mat OutputMat { get; set; }
+        Subject<Mat> OutputMatSubject { set; get; }
         SourceCache<ImageData, Guid> SourceCacheImageData { set; get; }
 
         bool AddImage(string imageMarkTxt, Mat mat);
+
+        void AddOutputImage(string outputImageMarkTxt);
+
+        Mat GetCurrentMat();
 
         ImageData GetImage(Guid guid);
 

@@ -34,6 +34,7 @@ namespace Client.View.Operation.Op02ColorSpace
                 this.OneWayBind(ViewModel, vm => vm.Channels, v => v.ChanelCbx.ItemsSource).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.ColorModeSelectInd, v => v.ColorModesCbx.SelectedIndex).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.ChannelSelectInd, v => v.ChanelCbx.SelectedIndex).DisposeWith(d);
+                this.Bind(ViewModel, vm => vm.CanOperat, v => v.cardMain.IsEnabled).DisposeWith(d);
             });
         }
     }
