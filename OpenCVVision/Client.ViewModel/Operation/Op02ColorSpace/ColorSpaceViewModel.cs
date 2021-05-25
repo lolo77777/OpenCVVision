@@ -22,23 +22,15 @@ using Splat;
 namespace Client.ViewModel.Operation.Op02ColorSpace
 {
     [OperationInfo("色彩空间")]
-    public class ColorSpaceViewModel : ReactiveObject, IOperationViewModel
+    public class ColorSpaceViewModel : OperaViewModelBase
     {
-        private IImageDataManager _imageDataManager;
-        private ResourcesTracker _rt = new ResourcesTracker();
-        private Mat _src;
-        [Reactive] public bool CanOperat { get; private set; }
         [ObservableAsProperty] public IEnumerable<int> Channels { get; set; }
         [Reactive] public int ChannelSelectInd { get; set; }
         public ReadOnlyCollection<string> ColorModes { get; private set; }
         [Reactive] public int ColorModeSelectInd { get; set; }
-        public IScreen HostScreen { get; }
 
-        public string UrlPathSegment { get; }
-
-        public ColorSpaceViewModel(IImageDataManager imageDataManager = null)
+        public ColorSpaceViewModel()
         {
-            _imageDataManager = imageDataManager ?? Locator.Current.GetService<IImageDataManager>();
             CanOperat = _imageDataManager.GetCurrentMat().Channels() > 1;
             ColorModes = new ReadOnlyCollection<string>(new[] { "Gray", "BGR", "HSV", "HLS" });
 
@@ -52,13 +44,12 @@ namespace Client.ViewModel.Operation.Op02ColorSpace
                 .Where(guid => CanOperat)
                 .Do(i => UpdateOutput(i.Item1, i.Item2))
                 .Subscribe();
-            _imageDataManager.InputMatGuid
+            _imageDataManager.InputMatGuidSubject
                 .WhereNotNull()
                 .Where(guid => CanOperat)
                 .Do(guid => UpdateOutput(ColorModeSelectInd, ChannelSelectInd))
-
                 .Subscribe();
-            _imageDataManager.InputMatGuid
+            _imageDataManager.InputMatGuidSubject
                 .WhereNotNull()
                 .Select(guid => _imageDataManager.GetCurrentMat().Channels() > 1)
                 .BindTo(this, x => x.CanOperat);

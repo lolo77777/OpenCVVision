@@ -15,8 +15,8 @@ namespace Client.Model.Service
 {
     public interface IImageDataManager
     {
-        Guid CurrentId { set; get; }
-        Subject<Guid> InputMatGuid { set; get; }
+        Guid? CurrentId { set; get; }
+        Subject<Guid?> InputMatGuidSubject { set; get; }
         Mat OutputMat { get; set; }
         Subject<Mat> OutputMatSubject { set; get; }
         SourceCache<ImageData, Guid> SourceCacheImageData { set; get; }
@@ -27,10 +27,12 @@ namespace Client.Model.Service
 
         Mat GetCurrentMat();
 
-        ImageData GetImage(Guid guid);
+        ImageData GetImage(Guid? guid);
+
+        bool RemoveCurrentImage();
 
         bool RemoveIamge(string imageMarkTxt);
 
-        bool RemoveImage(Guid guid);
+        bool RemoveImage(Guid? guid);
     }
 }
