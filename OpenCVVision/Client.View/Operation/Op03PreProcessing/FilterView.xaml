@@ -1,0 +1,89 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="Client.View.Operation.Op03PreProcessing.FilterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Client.View.Operation.Op03PreProcessing"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:op03preprocessing="clr-namespace:Client.ViewModel.Operation.Op03PreProcessing;assembly=Client.ViewModel"
+    xmlns:rxui="http://reactiveui.net"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    x:TypeArguments="op03preprocessing:FilterViewModel"
+    mc:Ignorable="d">
+    <materialDesign:Card x:Name="cardMain" Margin="0,8,8,8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="Title"
+                Margin="8"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="Filter" />
+            <Grid Grid.Row="1" Margin="8,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUto" />
+                </Grid.RowDefinitions>
+                <materialDesign:Card>
+                    <Grid>
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Margin="8,8"
+                            FontSize="18"
+                            Text="滤波类型" />-->
+                        <StackPanel Grid.Row="1" Margin="8,0">
+
+                            <ComboBox
+                                x:Name="cbxFilterType"
+                                Margin="8,0"
+                                materialDesign:ComboBoxAssist.ClassicMode="True"
+                                materialDesign:HintAssist.Hint="滤波类型"
+                                DisplayMemberPath="."
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+                            <Slider
+                                x:Name="sliderKernelSizeX"
+                                Margin="8,8"
+                                Maximum="11"
+                                Minimum="3"
+                                Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                TickFrequency="2"
+                                TickPlacement="BottomRight"
+                                ToolTip="KernelSize"
+                                Value="3" />
+                            <Slider
+                                x:Name="sliderKernelSizeY"
+                                Margin="8,0"
+                                Maximum="11"
+                                Minimum="3"
+                                Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                TickFrequency="2"
+                                TickPlacement="BottomRight"
+                                ToolTip="KernelSize"
+                                Value="3" />
+                            <TextBox
+                                x:Name="txtBoxSigmaX"
+                                Margin="8,0"
+                                materialDesign:HintAssist.Hint="SigmaX"
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            <TextBox
+                                x:Name="txtBoxSigmaY"
+                                Margin="8,8"
+                                materialDesign:HintAssist.Hint="SigmaY"
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+        </Grid>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>

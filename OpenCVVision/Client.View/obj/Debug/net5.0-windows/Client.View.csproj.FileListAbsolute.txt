@@ -128,3 +128,5 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operat
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op01File\LoadFileView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op02ColorSpace\ColorSpaceView.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op02ColorSpace\ColorSpaceView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op03PreProcessing\FilterView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op03PreProcessing\FilterView.baml
