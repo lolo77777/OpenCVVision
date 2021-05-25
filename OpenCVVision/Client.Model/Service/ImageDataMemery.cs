@@ -16,8 +16,8 @@ namespace Client.Model.Service
 {
     public class ImageDataMemery : IImageDataManager
     {
-        public Guid CurrentId { get; set; }
-        public Subject<Guid> InputMatGuid { get; set; } = new();
+        public Guid? CurrentId { get; set; }
+        public Subject<Guid?> InputMatGuidSubject { get; set; } = new();
         public Mat OutputMat { get; set; }
         public Subject<Mat> OutputMatSubject { get; set; } = new();
         public SourceCache<ImageData, Guid> SourceCacheImageData { get; set; }
@@ -25,7 +25,7 @@ namespace Client.Model.Service
         public ImageDataMemery()
         {
             SourceCacheImageData = new SourceCache<ImageData, Guid>(t => t.ImageId);
-            InputMatGuid.Subscribe(guid => CurrentId = guid);
+            InputMatGuidSubject.Subscribe(guid => CurrentId = guid);
             OutputMatSubject.Subscribe(mat => OutputMat = mat.Clone());
             SampleData();
         }
@@ -46,7 +46,9 @@ namespace Client.Model.Service
             {
                 try
                 {
-                    SourceCacheImageData.AddOrUpdate(new ImageData { ImageId = Guid.NewGuid(), TxtMarker = imageMarkTxt, ImageMat = mat });
+                    var guid = Guid.NewGuid();
+                    SourceCacheImageData.AddOrUpdate(new ImageData { ImageId = guid, TxtMarker = imageMarkTxt, ImageMat = mat });
+                    InputMatGuidSubject.OnNext(guid);
                     return true;
                 }
                 catch (Exception)
@@ -72,9 +74,36 @@ namespace Client.Model.Service
             return GetImage(CurrentId).ImageMat;
         }
 
-        public ImageData GetImage(Guid guid)
+        public ImageData GetImage(Guid? guid)
         {
             return SourceCacheImageData.Items.Single(t => t.ImageId.Equals(guid));
+        }
+
+        public bool RemoveCurrentImage()
+        {
+            if (CurrentId.HasValue)
+            {
+                var bol = RemoveImage(CurrentId);
+
+                if (bol)
+                {
+                    if (SourceCacheImageData.Items.Count() > 0)
+                    {
+                        CurrentId = SourceCacheImageData.Items.LastOrDefault().ImageId;
+                    }
+                    else
+                    {
+                        CurrentId = null;
+                    }
+                    InputMatGuidSubject.OnNext(CurrentId);
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool RemoveIamge(string imageMarkTxt)
@@ -98,11 +127,11 @@ namespace Client.Model.Service
             }
         }
 
-        public bool RemoveImage(Guid guid)
+        public bool RemoveImage(Guid? guid)
         {
             try
             {
-                SourceCacheImageData.RemoveKey(guid);
+                SourceCacheImageData.RemoveKey(guid.Value);
                 return true;
             }
             catch (Exception)

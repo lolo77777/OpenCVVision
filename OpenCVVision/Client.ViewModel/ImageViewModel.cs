@@ -43,6 +43,7 @@ namespace Client.ViewModel
         public WriteableBitmap InputImg { [ObservableAsProperty] get; }
         [Reactive] public string OutputImageMarkTxt { get; set; }
         public WriteableBitmap OutputImg { [ObservableAsProperty]get; }
+        public ReactiveCommand<Unit, bool> RemoveImgFromImgManagerCommand { get; set; }
 
         public ImageViewModel(IImageDataManager imageDataManager = null)
         {
@@ -62,7 +63,10 @@ namespace Client.ViewModel
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Where(i => i >= 0 && HistoryItems.Count > i)
                 .Select(i => HistoryItems.ElementAt(i).HistoryItemId)
-                .Do(guid => _imageDataManager.InputMatGuid.OnNext(guid))
+                .Do(guid => _imageDataManager.InputMatGuidSubject.OnNext(guid))
+                .Subscribe();
+            _imageDataManager.InputMatGuidSubject
+                .WhereNotNull()
                 .Select(guid => _imageDataManager.GetImage(guid).ImageMat.ToWriteableBitmap())
                 .ToPropertyEx(this, x => x.InputImg);
 
@@ -72,6 +76,7 @@ namespace Client.ViewModel
                 .Select(mat => mat.ToWriteableBitmap())
                 .ToPropertyEx(this, x => x.OutputImg);
             AddOutputImgToImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.AddOutputImage(OutputImageMarkTxt));
+            RemoveImgFromImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.RemoveCurrentImage());
         }
 
         private HistoryItem ConvertData(ImageData imageData)

@@ -20,18 +20,14 @@ using Splat;
 namespace Client.ViewModel.Operation.Op01File
 {
     [OperationInfo("加载图片")]
-    public class LoadFileViewModel : ReactiveObject, IOperationViewModel
+    public class LoadFileViewModel : OperaViewModelBase
     {
-        private IImageDataManager _imageDataManager;
-        private IReadonlyDependencyResolver _resolver = Locator.Current;
-        public IScreen HostScreen { get; }
         public ReactiveCommand<Unit, Unit> LoadImageCommand { get; private set; }
-        [Reactive] public string TxtImageFilePath { get; set; }
-        public string UrlPathSegment { get; }
 
-        public LoadFileViewModel(IImageDataManager imageDataManager = null)
+        [Reactive] public string TxtImageFilePath { get; set; }
+
+        public LoadFileViewModel()
         {
-            _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
             LoadImageCommand = ReactiveCommand.Create(LoadFile);
             this.WhenAnyValue(x => x.TxtImageFilePath)
                 .ObserveOn(RxApp.MainThreadScheduler)
