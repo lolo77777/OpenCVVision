@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Client.Common;
 using Client.ViewModel.Operation.Op01File;
 using Client.ViewModel.Operation.Op02ColorSpace;
+using Client.ViewModel.Operation.Op03PreProcessing;
 
 using MaterialDesignThemes.Wpf;
 
@@ -38,6 +39,7 @@ namespace Client.ViewModel
             List<NaviItem> listtmp = new();
             listtmp.Add(new NaviItem { Icon = PackIconKind.File, OperaPanelInfo = StaticMethod.GetInfo(typeof(LoadFileViewModel)) });
             listtmp.Add(new NaviItem { Icon = PackIconKind.Color, OperaPanelInfo = StaticMethod.GetInfo(typeof(ColorSpaceViewModel)) });
+            listtmp.Add(new NaviItem { Icon = PackIconKind.Filter, OperaPanelInfo = StaticMethod.GetInfo(typeof(FilterViewModel)) });
             return listtmp;
         }
     }
