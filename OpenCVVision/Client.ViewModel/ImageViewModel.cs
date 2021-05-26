@@ -44,6 +44,7 @@ namespace Client.ViewModel
         [Reactive] public string OutputImageMarkTxt { get; set; }
         public WriteableBitmap OutputImg { [ObservableAsProperty]get; }
         public ReactiveCommand<Unit, bool> RemoveImgFromImgManagerCommand { get; set; }
+        [Reactive] public string Time { get; private set; }
 
         public ImageViewModel(IImageDataManager imageDataManager = null)
         {
@@ -75,6 +76,10 @@ namespace Client.ViewModel
                 .WhereNotNull()
                 .Select(mat => mat.ToWriteableBitmap())
                 .ToPropertyEx(this, x => x.OutputImg);
+            MessageBus.Current.Listen<double>("Time")
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Select(d => $"{d}ms")
+                .BindTo(this, x => x.Time);
             AddOutputImgToImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.AddOutputImage(OutputImageMarkTxt));
             RemoveImgFromImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.RemoveCurrentImage());
         }

@@ -18,22 +18,35 @@ using Splat;
 
 namespace Client.ViewModel
 {
-    public class OperaViewModelBase : ReactiveObject, IOperationViewModel
+    public class OperaViewModelBase : ReactiveObject, IOperationViewModel, IActivatableViewModel
     {
         protected IImageDataManager _imageDataManager;
         protected IReadonlyDependencyResolver _resolver = Locator.Current;
         protected ResourcesTracker _rt = new ResourcesTracker();
         protected Mat _src;
+
+        public ViewModelActivator Activator { get; }
         [Reactive] public bool CanOperat { get; set; }
         public IScreen HostScreen { get; }
         public string UrlPathSegment { get; }
 
         public OperaViewModelBase(IImageDataManager imageDataManager = null)
         {
+            Activator = new ViewModelActivator();
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
             _imageDataManager.InputMatGuidSubject
-                .Select(guid => guid != null)
-                .BindTo(this, x => x.CanOperat);
+              .Select(guid => guid != null)
+              .BindTo(this, x => x.CanOperat);
+        }
+
+        protected void SendTime(Action action)
+        {
+            var t1 = Cv2.GetTickCount();
+            _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
+            action.Invoke();
+            var t2 = Cv2.GetTickCount();
+            var t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
+            MessageBus.Current.SendMessage(t, "Time");
         }
     }
 }

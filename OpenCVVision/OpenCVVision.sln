@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCVVision", "OpenCVVision\OpenCVVision.csproj", "{77B99179-15A6-4038-A49A-4E807A3FBB96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.View", "Client.View\Client.View.csproj", "{3FB0A9C5-D793-4B84-8B1B-75E47FCC0B81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.View", "Client.View\Client.View.csproj", "{3FB0A9C5-D793-4B84-8B1B-75E47FCC0B81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.ViewModel", "Client.ViewModel\Client.ViewModel.csproj", "{617A856A-35EE-4249-8EDD-D64C0F350373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.ViewModel", "Client.ViewModel\Client.ViewModel.csproj", "{617A856A-35EE-4249-8EDD-D64C0F350373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Model", "Client.Model\Client.Model.csproj", "{585D61C3-CA08-4933-823B-5531596A68D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Model", "Client.Model\Client.Model.csproj", "{585D61C3-CA08-4933-823B-5531596A68D0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Common", "Client.Common\Client.Common.csproj", "{B97BED1F-225B-4AE4-8FD0-6BC73C9093A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Common", "Client.Common\Client.Common.csproj", "{B97BED1F-225B-4AE4-8FD0-6BC73C9093A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{77B99179-15A6-4038-A49A-4E807A3FBB96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77B99179-15A6-4038-A49A-4E807A3FBB96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77B99179-15A6-4038-A49A-4E807A3FBB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77B99179-15A6-4038-A49A-4E807A3FBB96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3FB0A9C5-D793-4B84-8B1B-75E47FCC0B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3FB0A9C5-D793-4B84-8B1B-75E47FCC0B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FB0A9C5-D793-4B84-8B1B-75E47FCC0B81}.Release|Any CPU.ActiveCfg = Release|Any CPU

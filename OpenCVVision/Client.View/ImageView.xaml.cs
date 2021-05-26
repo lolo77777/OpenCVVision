@@ -37,6 +37,7 @@ namespace Client.View
                 this.BindCommand(ViewModel, vm => vm.AddOutputImgToImgManagerCommand, v => v.btnAddOutputImage).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.OutputImageMarkTxt, v => v.OutputMarkTxtBox.Text).DisposeWith(d);
                 this.BindCommand(ViewModel, vm => vm.RemoveImgFromImgManagerCommand, v => v.btnRemoveImage).DisposeWith(d);
+                this.Bind(ViewModel, vm => vm.Time, v => v.lblTime.Text).DisposeWith(d);
             });
         }
     }

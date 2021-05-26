@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,30 +20,93 @@ namespace Client.ViewModel.Operation.Op03PreProcessing
     [OperationInfo("滤波")]
     public class FilterViewModel : OperaViewModelBase
     {
+        [ObservableAsProperty] public bool BolSigmaColorAndSpace { get; set; }
         [ObservableAsProperty] public bool BolSigmaIsEnable { get; set; }
+        [ObservableAsProperty] public bool BolSizeIsEnable { get; set; }
+        [ObservableAsProperty] public bool BolSizeYIsEnable { get; set; }
         public ReadOnlyCollection<string> FilterModes { get; private set; }
         [Reactive] public int FilterModeSelectIndex { get; set; }
+        [Reactive] public int KernelDiam { get; set; }
+        [Reactive] public double SigmaColor { get; set; }
+        [Reactive] public double SigmaSpace { get; set; }
+        [Reactive] public double SigmaX { get; set; }
+        [Reactive] public double SigmaY { get; set; }
+        [Reactive] public int SizeX { get; set; }
+        [Reactive] public int SizeY { get; set; }
 
         public FilterViewModel()
         {
-            FilterModes = new ReadOnlyCollection<string>(new[] { "Blur", "Gaussian", "Median" });
-            this.WhenAnyValue(x => x.FilterModeSelectIndex)
-                .Select(i => i.Equals(1))
-                .ToProperty(this, x => x.BolSigmaIsEnable);
+            CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
+            FilterModes = new ReadOnlyCollection<string>(new[] { "Blur", "Gaussian", "Median", "BilateralFilter" });
+
+            this.WhenActivated(d =>
+            {
+                this.WhenAnyValue(x => x.FilterModeSelectIndex)
+                    .Select(i => i.Equals(1))
+                    .ToPropertyEx(this, x => x.BolSigmaIsEnable)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.FilterModeSelectIndex)
+                    .Select(i => !i.Equals(2))
+                    .ToPropertyEx(this, x => x.BolSizeYIsEnable)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.FilterModeSelectIndex)
+                    .Select(i => i.Equals(3))
+                    .ToPropertyEx(this, x => x.BolSigmaColorAndSpace)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.FilterModeSelectIndex)
+                    .Select(i => !i.Equals(3))
+                    .ToPropertyEx(this, x => x.BolSizeIsEnable)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.SizeX, x => x.SizeY, x => x.SigmaX, x => x.SigmaY)
+                    .Where(vt => CanOperat)
+                    .Where(vt => vt.Item1 < 3)
+                    .Throttle(TimeSpan.FromMilliseconds(100))
+                    .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
+                    .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
+                    .Subscribe()
+                    .DisposeWith(d);
+
+                this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.KernelDiam, x => x.SigmaColor, x => x.SigmaSpace)
+                    .Where(vt => CanOperat)
+                    .Where(vt => vt.Item1.Equals(3))
+                    .Throttle(TimeSpan.FromMilliseconds(1000))
+                    .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
+                    .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
+                    .Subscribe()
+                    .DisposeWith(d);
+                _imageDataManager.InputMatGuidSubject
+                    .WhereNotNull()
+                    .Where(guid => CanOperat)
+                    .Do(guid => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
+                    .Subscribe()
+                    .DisposeWith(d);
+            });
         }
 
-        private void UpdateUi(int filterModeSelectIndex, int kernelSizeX, int kernelSizeY, double sigmaX, double sigmaY)
+        private void UpdateUi(int filterModeSelectIndex, int kernelSizeX, int kernelSizeY, double sigmaX, double sigmaY, int kernelDiam, double sigmaColor, double sigmaSpace)
         {
-            var dst = _rt.NewMat();
-            dst = filterModeSelectIndex switch
+            SendTime(() =>
             {
-                0 => _src.Blur(new Size(kernelSizeX, kernelSizeY)),
-                1 => _src.GaussianBlur(new Size(kernelSizeX, kernelSizeY), sigmaX, sigmaY),
-                2 => _src.MedianBlur(kernelSizeX),
-                _ => _src.Clone()
-            };
-            _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-            _rt.Dispose();
+                if (filterModeSelectIndex > 2)
+                {
+                    Mat dst = _rt.NewMat();
+                    dst = _src.BilateralFilter(kernelDiam, sigmaColor, sigmaSpace);
+                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+                }
+                else
+                {
+                    Mat dst = _rt.NewMat();
+                    dst = filterModeSelectIndex switch
+                    {
+                        0 => _src.Blur(new Size(kernelSizeX, kernelSizeY)),
+                        1 => _src.GaussianBlur(new Size(kernelSizeX, kernelSizeY), sigmaX, sigmaY),
+                        2 => _src.MedianBlur(kernelSizeX),
+                        _ => _src.Clone()
+                    };
+                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+                }
+                _rt.Dispose();
+            });
         }
     }
 }

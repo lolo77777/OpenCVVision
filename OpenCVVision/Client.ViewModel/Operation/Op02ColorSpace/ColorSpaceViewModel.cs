@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,48 +32,58 @@ namespace Client.ViewModel.Operation.Op02ColorSpace
 
         public ColorSpaceViewModel()
         {
-            CanOperat = _imageDataManager.GetCurrentMat().Channels() > 1;
+            CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
             ColorModes = new ReadOnlyCollection<string>(new[] { "Gray", "BGR", "HSV", "HLS" });
+            this.WhenActivated(d =>
+            {
+                this.WhenAnyValue(x => x.ColorModeSelectInd)
+                    .Where(i => i >= 0)
+                    .Select(i => i.Equals(0) ? (new[] { 0 }).AsEnumerable() : (new[] { -1, 0, 1, 2 }).AsEnumerable())
+                    .ToPropertyEx(this, x => x.Channels)
+                    .DisposeWith(d);
 
-            this.WhenAnyValue(x => x.ColorModeSelectInd)
-                .Where(i => i >= 0)
-                .Select(i => i.Equals(0) ? (new[] { 0 }).AsEnumerable() : (new[] { -1, 0, 1, 2 }).AsEnumerable())
-                .ToPropertyEx(this, x => x.Channels);
+                this.WhenAnyValue(x => x.ColorModeSelectInd, x => x.ChannelSelectInd)
+                    .Where(i => i.Item1 >= 0 && i.Item2 >= 0 && Channels != null && Channels.Any())
+                    .Where(guid => CanOperat)
+                    .Do(i => UpdateOutput(i.Item1, i.Item2))
+                    .Subscribe()
+                    .DisposeWith(d);
 
-            this.WhenAnyValue(x => x.ColorModeSelectInd, x => x.ChannelSelectInd)
-                .Where(i => i.Item1 >= 0 && i.Item2 >= 0 && Channels != null && Channels.Any())
-                .Where(guid => CanOperat)
-                .Do(i => UpdateOutput(i.Item1, i.Item2))
-                .Subscribe();
-            _imageDataManager.InputMatGuidSubject
-                .WhereNotNull()
-                .Where(guid => CanOperat)
-                .Do(guid => UpdateOutput(ColorModeSelectInd, ChannelSelectInd))
-                .Subscribe();
-            _imageDataManager.InputMatGuidSubject
-                .WhereNotNull()
-                .Select(guid => _imageDataManager.GetCurrentMat().Channels() > 1)
-                .BindTo(this, x => x.CanOperat);
+                _imageDataManager.InputMatGuidSubject
+                    .WhereNotNull()
+                    .Where(guid => CanOperat)
+                    .Do(guid => UpdateOutput(ColorModeSelectInd, ChannelSelectInd))
+                    .Subscribe()
+                    .DisposeWith(d);
+
+                _imageDataManager.InputMatGuidSubject
+                    .WhereNotNull()
+                    .Select(guid => _imageDataManager.GetCurrentMat().Channels() > 1)
+                    .BindTo(this, x => x.CanOperat)
+                    .DisposeWith(d);
+            });
         }
 
         private void UpdateOutput(int colorModeInd, int channel)
         {
-            _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
-            if (!_src.Channels().Equals(1))
+            SendTime(() =>
             {
-                var dst = _rt.NewMat();
-                dst = colorModeInd switch
+                if (!_src.Channels().Equals(1))
                 {
-                    0 => _src.CvtColor(ColorConversionCodes.BGR2GRAY),
-                    1 => channel.Equals(0) ? _src : _src.Split()[channel - 1],
-                    2 => channel.Equals(0) ? _src : _src.CvtColor(ColorConversionCodes.BGR2HSV).Split()[channel - 1],
-                    3 => channel.Equals(0) ? _src : _src.CvtColor(ColorConversionCodes.BGR2HLS).Split()[channel - 1],
-                    _ => _src.Clone()
-                };
+                    var dst = _rt.NewMat();
+                    dst = colorModeInd switch
+                    {
+                        0 => _src.CvtColor(ColorConversionCodes.BGR2GRAY),
+                        1 => channel.Equals(0) ? _src : _src.Split()[channel - 1],
+                        2 => channel.Equals(0) ? _src : _src.CvtColor(ColorConversionCodes.BGR2HSV).Split()[channel - 1],
+                        3 => channel.Equals(0) ? _src : _src.CvtColor(ColorConversionCodes.BGR2HLS).Split()[channel - 1],
+                        _ => _src.Clone()
+                    };
 
-                _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-                _rt.Dispose();
-            }
+                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+                    _rt.Dispose();
+                }
+            });
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +28,46 @@ namespace Client.View.Operation.Op03PreProcessing
         public FilterView()
         {
             InitializeComponent();
+            this.WhenActivated(d =>
+            {
+                this.OneWayBind(ViewModel, vm => vm.FilterModes, v => v.cbxFilterType.ItemsSource).DisposeWith(d);
+                this.Bind(ViewModel, vm => vm.FilterModeSelectIndex, v => v.cbxFilterType.SelectedIndex).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.BolSigmaIsEnable, v => v.txtBoxSigmaX.IsEnabled).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.BolSigmaIsEnable, v => v.txtBoxSigmaY.IsEnabled).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.BolSizeYIsEnable, v => v.sliderKernelSizeY.IsEnabled).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.CanOperat, v => v.cardMain.IsEnabled).DisposeWith(d);
+
+                this.OneWayBind(ViewModel, vm => vm.BolSigmaColorAndSpace, v => v.BilateralFilterPanel.IsEnabled).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.BolSizeIsEnable, v => v.sliderKernelSizeX.IsEnabled).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.BolSizeIsEnable, v => v.sliderKernelSizeY.IsEnabled).DisposeWith(d);
+                this.WhenAnyValue(x => x.txtBoxSigmaX.Text)
+                    .BindTo(ViewModel, x => x.SigmaX)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.txtBoxSigmaY.Text)
+                    .BindTo(ViewModel, x => x.SigmaY)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.txtBoxSigmaX.Text)
+                    .BindTo(this, x => x.txtBoxSigmaY.Text)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderKernelSizeX.Value)
+                    .BindTo(ViewModel, x => x.SizeX)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderKernelSizeY.Value)
+                    .BindTo(ViewModel, x => x.SizeY)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderKernelSizeX.Value)
+                    .BindTo(this, x => x.sliderKernelSizeY.Value)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderKernelDiam.Value)
+                    .BindTo(ViewModel, x => x.KernelDiam)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.slidersigmaColor.Value)
+                    .BindTo(ViewModel, x => x.SigmaColor)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.slidersigmaSpace.Value)
+                    .BindTo(ViewModel, x => x.SigmaSpace)
+                    .DisposeWith(d);
+            });
         }
     }
 }

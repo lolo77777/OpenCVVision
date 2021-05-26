@@ -45,15 +45,8 @@ namespace Client.ViewModel.Operation.Op01File
         {
             OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = "Image files (*.jpg)|*.jpg|(*.bmp)|*.bmp|(*.png)|*.png";
-            var result = openFileDialog.ShowDialog();
-            if (result.Equals(DialogResult.OK))
-            {
-                TxtImageFilePath = openFileDialog.FileName;
-            }
-            else
-            {
-                TxtImageFilePath = string.Empty;
-            }
+            DialogResult result = openFileDialog.ShowDialog();
+            TxtImageFilePath = result.Equals(DialogResult.OK) ? openFileDialog.FileName : string.Empty;
         }
 
         #endregion PrivateFunction

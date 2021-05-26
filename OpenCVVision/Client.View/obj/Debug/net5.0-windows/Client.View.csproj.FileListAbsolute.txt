@@ -53,7 +53,6 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Client
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Client.ViewModel.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Client.Common.pdb
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Client.ViewModel.pdb
-E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Client.View.csprojAssemblyReference.cache
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\MainWindow.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\App.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Client.View_MarkupCompile.cache
@@ -130,3 +129,4 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operat
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op02ColorSpace\ColorSpaceView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op03PreProcessing\FilterView.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op03PreProcessing\FilterView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Client.View.csproj.AssemblyReference.cache
