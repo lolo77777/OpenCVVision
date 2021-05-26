@@ -71,12 +71,26 @@ namespace Client.Model.Service
 
         public Mat GetCurrentMat()
         {
-            return GetImage(CurrentId).ImageMat;
+            if (CurrentId.HasValue)
+            {
+                return GetImage(CurrentId).ImageMat;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public ImageData GetImage(Guid? guid)
         {
-            return SourceCacheImageData.Items.Single(t => t.ImageId.Equals(guid));
+            if (guid.HasValue)
+            {
+                return SourceCacheImageData.Items.Single(t => t.ImageId.Equals(guid));
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public bool RemoveCurrentImage()

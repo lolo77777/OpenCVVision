@@ -77,6 +77,7 @@
                 <Grid x:Name="TitleBar" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="AUto" />
+                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
@@ -86,16 +87,24 @@
                         Content="Output"
                         FontSize="20"
                         FontStyle="Oblique" />
+                    <TextBlock
+                        x:Name="lblTime"
+                        Grid.Column="1"
+                        Margin="10,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        FontStyle="Oblique" />
                     <TextBox
                         x:Name="OutputMarkTxtBox"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         MinWidth="120"
                         HorizontalAlignment="Right"
                         materialDesign:HintAssist.Hint="MarkTxt"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <Button
                         x:Name="btnAddOutputImage"
-                        Grid.Column="2"
+                        Grid.Column="3"
                         Width="36"
                         Height="36"
                         Margin="8,0,8,0"

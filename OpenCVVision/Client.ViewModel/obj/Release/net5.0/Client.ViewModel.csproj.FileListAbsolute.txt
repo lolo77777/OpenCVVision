@@ -4,7 +4,6 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\ref\Cli
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\Client.ViewModel.pdb
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\Client.Common.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\Client.Common.pdb
-E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Release\net5.0\Client.ViewModel.csprojAssemblyReference.cache
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Release\net5.0\Client.ViewModel.GeneratedMSBuildEditorConfig.editorconfig
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Release\net5.0\Client.ViewModel.AssemblyInfoInputs.cache
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Release\net5.0\Client.ViewModel.AssemblyInfo.cs
@@ -14,3 +13,15 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Release\net5.0\Client.
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Release\net5.0\Client.ViewModel.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Release\net5.0\ref\Client.ViewModel.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Release\net5.0\Client.ViewModel.pdb
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\Client.Model.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\PresentationCore.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\System.Windows.Forms.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\System.Xaml.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\UIAutomationTypes.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\System.Windows.Input.Manipulations.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\UIAutomationProvider.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\System.Deployment.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\Accessibility.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\System.Runtime.Serialization.Formatters.Soap.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\bin\Release\net5.0\Client.Model.pdb
+E:\GitWork\OpenCVVision\OpenCVVision\Client.ViewModel\obj\Release\net5.0\Client.ViewModel.csproj.AssemblyReference.cache

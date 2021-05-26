@@ -47,27 +47,41 @@
                                 materialDesign:HintAssist.Hint="滤波类型"
                                 DisplayMemberPath="."
                                 Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                            <Grid Margin="8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Margin="0,0,8,0" Content="SizeX" />
+                                <Slider
+                                    x:Name="sliderKernelSizeX"
+                                    Grid.Column="1"
+                                    Maximum="11"
+                                    Minimum="3"
+                                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                    TickFrequency="2"
+                                    TickPlacement="BottomRight"
+                                    ToolTip="KernelSize"
+                                    Value="3" />
+                            </Grid>
+                            <Grid Margin="8,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Margin="0,0,8,0" Content="SizeY" />
+                                <Slider
+                                    x:Name="sliderKernelSizeY"
+                                    Grid.Column="1"
+                                    Maximum="11"
+                                    Minimum="3"
+                                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                    TickFrequency="2"
+                                    TickPlacement="BottomRight"
+                                    ToolTip="KernelSize"
+                                    Value="3" />
+                            </Grid>
 
-                            <Slider
-                                x:Name="sliderKernelSizeX"
-                                Margin="8,8"
-                                Maximum="11"
-                                Minimum="3"
-                                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                                TickFrequency="2"
-                                TickPlacement="BottomRight"
-                                ToolTip="KernelSize"
-                                Value="3" />
-                            <Slider
-                                x:Name="sliderKernelSizeY"
-                                Margin="8,0"
-                                Maximum="11"
-                                Minimum="3"
-                                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                                TickFrequency="2"
-                                TickPlacement="BottomRight"
-                                ToolTip="KernelSize"
-                                Value="3" />
                             <TextBox
                                 x:Name="txtBoxSigmaX"
                                 Margin="8,0"
@@ -80,6 +94,60 @@
                                 materialDesign:HintAssist.Hint="SigmaY"
                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            <StackPanel x:Name="BilateralFilterPanel" Orientation="Vertical">
+
+                                <Grid Margin="8,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Margin="0,0,8,0" Content="KernelDiam" />
+                                    <Slider
+                                        x:Name="sliderKernelDiam"
+                                        Grid.Column="1"
+                                        Maximum="100"
+                                        Minimum="0"
+                                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                        TickFrequency="1"
+                                        TickPlacement="BottomRight"
+                                        ToolTip="KernelDiam"
+                                        Value="3" />
+                                </Grid>
+                                <Grid Margin="8,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Margin="0,0,8,0" Content="SigmaColor" />
+                                    <Slider
+                                        x:Name="slidersigmaColor"
+                                        Grid.Column="1"
+                                        Maximum="100"
+                                        Minimum="0"
+                                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                        TickFrequency="1"
+                                        TickPlacement="BottomRight"
+                                        ToolTip="SigmaColor"
+                                        Value="3" />
+                                </Grid>
+                                <Grid Margin="8,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Margin="0,0,8,0" Content="SigmaSpace" />
+                                    <Slider
+                                        x:Name="slidersigmaSpace"
+                                        Grid.Column="1"
+                                        Maximum="100"
+                                        Minimum="0"
+                                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                        TickFrequency="1"
+                                        TickPlacement="BottomRight"
+                                        ToolTip="SigmaSpace"
+                                        Value="3" />
+                                </Grid>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </materialDesign:Card>
