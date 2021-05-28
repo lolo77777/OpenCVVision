@@ -12,13 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.10" />
     <PackageReference Include="MahApps.Metro" Version="2.4.5" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.7" />
     <PackageReference Include="ReactiveUI" Version="13.3.2" />
     <PackageReference Include="ReactiveUI.WPF" Version="13.3.2" />
-    <PackageReference Include="ScottPlot.WPF" Version="4.1.15" />
+    <PackageReference Include="Wpf.Controls.PanAndZoom" Version="2.3.4" />
   </ItemGroup>
 
   <ItemGroup>

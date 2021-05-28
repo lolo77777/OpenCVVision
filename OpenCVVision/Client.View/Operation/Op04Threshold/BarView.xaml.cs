@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +16,9 @@ using System.Windows.Shapes;
 
 using Client.ViewModel.Operation;
 
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+
 using ReactiveUI;
 
 namespace Client.View.Operation
@@ -27,6 +31,12 @@ namespace Client.View.Operation
         public BarView()
         {
             InitializeComponent();
+            this.WhenActivated(d =>
+            {
+                this.OneWayBind(ViewModel, vm => vm.Series, v => v.barChart.Series).DisposeWith(d);
+                barChart.XAxes = new[] { new Axis { MinStep = 2 } };
+                barChart.YAxes = new[] { new Axis { MinStep = 2 } };
+            });
         }
     }
 }

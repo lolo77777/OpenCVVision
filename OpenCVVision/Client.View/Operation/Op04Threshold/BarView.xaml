@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Client.View.Operation"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:op04threshold="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
     xmlns:rxui="http://reactiveui.net"
@@ -11,5 +13,7 @@
     d:DesignWidth="300"
     x:TypeArguments="op04threshold:BarViewModel"
     mc:Ignorable="d">
-    <TextBlock Text="faf" />
+    <materialDesign:Card>
+        <lvc:CartesianChart x:Name="barChart" Height="{Binding ElementName=barChart, Path=ActualWidth}" />
+    </materialDesign:Card>
 </rxui:ReactiveUserControl>

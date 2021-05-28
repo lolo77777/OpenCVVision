@@ -183,6 +183,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "LiveChartsCore.SkiaSharpView": {
+              "target": "Package",
+              "version": "[2.0.0-beta.10, )"
+            },
             "MaterialDesignThemes": {
               "target": "Package",
               "version": "[4.1.0, )"
@@ -266,6 +270,10 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "dependencies": {
+            "LiveChartsCore.SkiaSharpView.WPF": {
+              "target": "Package",
+              "version": "[2.0.0-beta.10, )"
+            },
             "MahApps.Metro": {
               "target": "Package",
               "version": "[2.4.5, )"
@@ -290,9 +298,9 @@
               "target": "Package",
               "version": "[13.3.2, )"
             },
-            "ScottPlot.WPF": {
+            "Wpf.Controls.PanAndZoom": {
               "target": "Package",
-              "version": "[4.1.15, )"
+              "version": "[2.3.4, )"
             }
           },
           "imports": [

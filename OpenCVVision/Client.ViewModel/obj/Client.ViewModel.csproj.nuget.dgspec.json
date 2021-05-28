@@ -183,6 +183,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "LiveChartsCore.SkiaSharpView": {
+              "target": "Package",
+              "version": "[2.0.0-beta.10, )"
+            },
             "MaterialDesignThemes": {
               "target": "Package",
               "version": "[4.1.0, )"

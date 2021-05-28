@@ -36,6 +36,44 @@
           "build/_._": {}
         }
       },
+      "LiveChartsCore/2.0.0-beta.10": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/LiveChartsCore.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/LiveChartsCore.dll": {}
+        }
+      },
+      "LiveChartsCore.SkiaSharpView/2.0.0-beta.10": {
+        "type": "package",
+        "dependencies": {
+          "LiveChartsCore": "2.0.0-beta.10",
+          "SkiaSharp": "2.80.2"
+        },
+        "compile": {
+          "lib/netcoreapp2.0/LiveChartsCore.SkiaSharpView.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/LiveChartsCore.SkiaSharpView.dll": {}
+        }
+      },
+      "LiveChartsCore.SkiaSharpView.WPF/2.0.0-beta.10": {
+        "type": "package",
+        "dependencies": {
+          "LiveChartsCore.SkiaSharpView": "2.0.0-beta.10",
+          "SkiaSharp.Views.WPF": "2.80.2"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/LiveChartsCore.SkiaSharpView.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/LiveChartsCore.SkiaSharpView.WPF.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
       "MahApps.Metro/2.4.5": {
         "type": "package",
         "dependencies": {
@@ -274,6 +312,15 @@
           "lib/netcoreapp3.1/OpenCvSharp.WpfExtensions.dll": {}
         }
       },
+      "PanAndZoom/2.3.4": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/PanAndZoom.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/PanAndZoom.dll": {}
+        }
+      },
       "ReactiveUI/13.3.2": {
         "type": "package",
         "dependencies": {
@@ -325,33 +372,60 @@
           "Microsoft.WindowsDesktop.App.WPF"
         ]
       },
-      "ScottPlot/4.1.15": {
+      "SkiaSharp/2.80.2": {
         "type": "package",
         "dependencies": {
-          "System.Drawing.Common": "4.6.1"
+          "System.Memory": "4.5.3"
         },
         "compile": {
-          "lib/net5.0/ScottPlot.dll": {}
+          "lib/netstandard2.0/SkiaSharp.dll": {}
         },
         "runtime": {
-          "lib/net5.0/ScottPlot.dll": {}
+          "lib/netstandard2.0/SkiaSharp.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libSkiaSharp.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          },
+          "runtimes/win-arm64/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
         }
       },
-      "ScottPlot.WPF/4.1.15": {
+      "SkiaSharp.Views.Desktop.Common/2.80.2": {
         "type": "package",
         "dependencies": {
-          "ScottPlot": "4.1.15",
-          "System.Drawing.Common": "5.0.0"
+          "SkiaSharp": "2.80.2"
         },
         "compile": {
-          "lib/net5.0-windows7.0/ScottPlot.WPF.dll": {}
+          "lib/netcoreapp3.0/SkiaSharp.Views.Desktop.Common.dll": {}
         },
         "runtime": {
-          "lib/net5.0-windows7.0/ScottPlot.WPF.dll": {}
+          "lib/netcoreapp3.0/SkiaSharp.Views.Desktop.Common.dll": {}
+        }
+      },
+      "SkiaSharp.Views.WPF/2.80.2": {
+        "type": "package",
+        "dependencies": {
+          "SkiaSharp": "2.80.2",
+          "SkiaSharp.Views.Desktop.Common": "2.80.2"
         },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WPF"
-        ]
+        "compile": {
+          "lib/netcoreapp3.0/SkiaSharp.Views.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/SkiaSharp.Views.WPF.dll": {}
+        }
       },
       "Splat/11.1.1": {
         "type": "package",
@@ -529,6 +603,34 @@
           "ref/netstandard1.3/_._": {}
         }
       },
+      "Wpf.Controls.PanAndZoom/2.3.4": {
+        "type": "package",
+        "dependencies": {
+          "PanAndZoom": "2.3.4",
+          "Wpf.MatrixExtensions": "2.3.4"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Wpf.Controls.PanAndZoom.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Wpf.Controls.PanAndZoom.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "Wpf.MatrixExtensions/2.3.4": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Wpf.MatrixExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Wpf.MatrixExtensions.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
       "Client.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -565,6 +667,7 @@
         "dependencies": {
           "Client.Common": "1.0.0",
           "Client.Model": "1.0.0",
+          "LiveChartsCore.SkiaSharpView": "2.0.0-beta.10",
           "MaterialDesignThemes": "4.1.0",
           "OpenCvSharp4.Windows": "4.5.2.20210404",
           "OpenCvSharp4.WpfExtensions": "4.5.2.20210404",
@@ -657,6 +760,55 @@
         "netstandardtask/Mono.Cecil.Rocks.pdb",
         "netstandardtask/Mono.Cecil.dll",
         "netstandardtask/Mono.Cecil.pdb"
+      ]
+    },
+    "LiveChartsCore/2.0.0-beta.10": {
+      "sha512": "RqHOMKq9K06fX25rZG+jR688ewXcc4aN5VvMoBmnxmX8mC1W28Jbh85YiGwn6QJlIoGgzrc2hvY/Fppjcm9+xA==",
+      "type": "package",
+      "path": "livechartscore/2.0.0-beta.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/LiveChartsCore.dll",
+        "lib/net462/LiveChartsCore.xml",
+        "lib/netcoreapp2.0/LiveChartsCore.dll",
+        "lib/netcoreapp2.0/LiveChartsCore.xml",
+        "lib/netstandard2.0/LiveChartsCore.dll",
+        "lib/netstandard2.0/LiveChartsCore.xml",
+        "livechartscore.2.0.0-beta.10.nupkg.sha512",
+        "livechartscore.nuspec"
+      ]
+    },
+    "LiveChartsCore.SkiaSharpView/2.0.0-beta.10": {
+      "sha512": "vm9oOOkIk6n92vPXDUbM+yE6GMyNX67Ps5/Pzq2lBdkXis79Yk+5new35+sPwlSpG+hYdEQPRlbKGeccDDuanQ==",
+      "type": "package",
+      "path": "livechartscore.skiasharpview/2.0.0-beta.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/LiveChartsCore.SkiaSharpView.dll",
+        "lib/net462/LiveChartsCore.SkiaSharpView.xml",
+        "lib/netcoreapp2.0/LiveChartsCore.SkiaSharpView.dll",
+        "lib/netcoreapp2.0/LiveChartsCore.SkiaSharpView.xml",
+        "lib/netstandard2.0/LiveChartsCore.SkiaSharpView.dll",
+        "lib/netstandard2.0/LiveChartsCore.SkiaSharpView.xml",
+        "livechartscore.skiasharpview.2.0.0-beta.10.nupkg.sha512",
+        "livechartscore.skiasharpview.nuspec"
+      ]
+    },
+    "LiveChartsCore.SkiaSharpView.WPF/2.0.0-beta.10": {
+      "sha512": "UfYR8mj5MzilzOmAhotwDZPL0ftdc+yn+28T63OmFnooHtncZScmd8izSGeGfQMLB9sp37QUanICIm/9xhGNLA==",
+      "type": "package",
+      "path": "livechartscore.skiasharpview.wpf/2.0.0-beta.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/LiveChartsCore.SkiaSharpView.WPF.dll",
+        "lib/net462/LiveChartsCore.SkiaSharpView.WPF.xml",
+        "lib/netcoreapp3.0/LiveChartsCore.SkiaSharpView.WPF.dll",
+        "lib/netcoreapp3.0/LiveChartsCore.SkiaSharpView.WPF.xml",
+        "livechartscore.skiasharpview.wpf.2.0.0-beta.10.nupkg.sha512",
+        "livechartscore.skiasharpview.wpf.nuspec"
       ]
     },
     "MahApps.Metro/2.4.5": {
@@ -1606,6 +1758,23 @@
         "opencvsharp4.wpfextensions.nuspec"
       ]
     },
+    "PanAndZoom/2.3.4": {
+      "sha512": "zlsyA/2pJDYvn4o02RKd53MW9qcZwJZWQ/v1qnrG05RAHUAvMQoXvlqrVzbFnhu4ZQ2fOcQ3HAk+FfYidyirNw==",
+      "type": "package",
+      "path": "panandzoom/2.3.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/PanAndZoom.dll",
+        "lib/net461/PanAndZoom.xml",
+        "lib/netstandard2.0/PanAndZoom.dll",
+        "lib/netstandard2.0/PanAndZoom.xml",
+        "lib/netstandard2.1/PanAndZoom.dll",
+        "lib/netstandard2.1/PanAndZoom.xml",
+        "panandzoom.2.3.4.nupkg.sha512",
+        "panandzoom.nuspec"
+      ]
+    },
     "ReactiveUI/13.3.2": {
       "sha512": "+XJGnk+u7ZuYuAaBVfs0X3nLZ6g4ysiZrVou7ndVJYOUFeUW0jyfaMl3TfOqpr/afQNaIw8nY6yOwtI6HGkgsQ==",
       "type": "package",
@@ -1702,44 +1871,121 @@
         "reactiveui.wpf.nuspec"
       ]
     },
-    "ScottPlot/4.1.15": {
-      "sha512": "HgfXJy4d1mxqgJKGW8epz2AWt8BIqPv7j0sbF6vx8ifFmH0Jb1sAXSt9hsFZ8djMNghhH1dJ1WyBEOMpeCNE/w==",
+    "SkiaSharp/2.80.2": {
+      "sha512": "D25rzdCwh+3L+XyXqpNa+H/yiLJbE3/R3K/XexwHyQjGdzZvSufFW3oqf3En7hhqSIsxsJ8f5NEZ0J5W5wlGBg==",
       "type": "package",
-      "path": "scottplot/4.1.15",
+      "path": "skiasharp/2.80.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "README.txt",
-        "icon.ico",
-        "icon.png",
-        "lib/net461/ScottPlot.dll",
-        "lib/net461/ScottPlot.xml",
-        "lib/net5.0/ScottPlot.dll",
-        "lib/net5.0/ScottPlot.xml",
-        "lib/netstandard2.0/ScottPlot.dll",
-        "lib/netstandard2.0/ScottPlot.xml",
-        "scottplot.4.1.15.nupkg.sha512",
-        "scottplot.nuspec"
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/monoandroid1.0/SkiaSharp.targets",
+        "build/monoandroid1.0/arm/libSkiaSharp.so",
+        "build/monoandroid1.0/arm64/libSkiaSharp.so",
+        "build/monoandroid1.0/x64/libSkiaSharp.so",
+        "build/monoandroid1.0/x86/libSkiaSharp.so",
+        "build/net462/SkiaSharp.targets",
+        "build/tizen40/SkiaSharp.targets",
+        "build/tizen40/arm/libSkiaSharp.so",
+        "build/tizen40/x86/libSkiaSharp.so",
+        "build/xamarinios1.0/SkiaSharp.targets",
+        "build/xamarinios1.0/libSkiaSharp.framework/Info.plist",
+        "build/xamarinios1.0/libSkiaSharp.framework/Modules/module.modulemap",
+        "build/xamarinios1.0/libSkiaSharp.framework/_CodeSignature/CodeResources",
+        "build/xamarinios1.0/libSkiaSharp.framework/libSkiaSharp",
+        "build/xamarinmac2.0/SkiaSharp.targets",
+        "build/xamarintvos1.0/SkiaSharp.targets",
+        "build/xamarintvos1.0/libSkiaSharp.framework/Info.plist",
+        "build/xamarintvos1.0/libSkiaSharp.framework/Modules/module.modulemap",
+        "build/xamarintvos1.0/libSkiaSharp.framework/_CodeSignature/CodeResources",
+        "build/xamarintvos1.0/libSkiaSharp.framework/libSkiaSharp",
+        "build/xamarinwatchos1.0/SkiaSharp.targets",
+        "build/xamarinwatchos1.0/libSkiaSharp.framework/Info.plist",
+        "build/xamarinwatchos1.0/libSkiaSharp.framework/Modules/module.modulemap",
+        "build/xamarinwatchos1.0/libSkiaSharp.framework/_CodeSignature/CodeResources",
+        "build/xamarinwatchos1.0/libSkiaSharp.framework/libSkiaSharp",
+        "buildTransitive/monoandroid1.0/SkiaSharp.targets",
+        "buildTransitive/net462/SkiaSharp.targets",
+        "buildTransitive/tizen40/SkiaSharp.targets",
+        "buildTransitive/xamarinios1.0/SkiaSharp.targets",
+        "buildTransitive/xamarinmac2.0/SkiaSharp.targets",
+        "buildTransitive/xamarintvos1.0/SkiaSharp.targets",
+        "buildTransitive/xamarinwatchos1.0/SkiaSharp.targets",
+        "lib/monoandroid1.0/SkiaSharp.dll",
+        "lib/monoandroid1.0/SkiaSharp.xml",
+        "lib/net462/SkiaSharp.dll",
+        "lib/net462/SkiaSharp.xml",
+        "lib/netstandard1.3/SkiaSharp.dll",
+        "lib/netstandard1.3/SkiaSharp.xml",
+        "lib/netstandard2.0/SkiaSharp.dll",
+        "lib/netstandard2.0/SkiaSharp.xml",
+        "lib/tizen40/SkiaSharp.dll",
+        "lib/tizen40/SkiaSharp.xml",
+        "lib/uap10.0.10240/SkiaSharp.dll",
+        "lib/uap10.0.10240/SkiaSharp.xml",
+        "lib/uap10.0.16299/SkiaSharp.dll",
+        "lib/uap10.0.16299/SkiaSharp.xml",
+        "lib/xamarinios1.0/SkiaSharp.dll",
+        "lib/xamarinios1.0/SkiaSharp.xml",
+        "lib/xamarinmac2.0/SkiaSharp.dll",
+        "lib/xamarinmac2.0/SkiaSharp.xml",
+        "lib/xamarintvos1.0/SkiaSharp.dll",
+        "lib/xamarintvos1.0/SkiaSharp.xml",
+        "lib/xamarinwatchos1.0/SkiaSharp.dll",
+        "lib/xamarinwatchos1.0/SkiaSharp.xml",
+        "runtimes/osx/native/libSkiaSharp.dylib",
+        "runtimes/win-arm64/native/libSkiaSharp.dll",
+        "runtimes/win-x64/native/libSkiaSharp.dll",
+        "runtimes/win-x86/native/libSkiaSharp.dll",
+        "runtimes/win10-arm/nativeassets/uap10.0/libEGL.dll",
+        "runtimes/win10-arm/nativeassets/uap10.0/libGLESv2.dll",
+        "runtimes/win10-arm/nativeassets/uap10.0/libSkiaSharp.dll",
+        "runtimes/win10-arm64/nativeassets/uap10.0/libEGL.dll",
+        "runtimes/win10-arm64/nativeassets/uap10.0/libGLESv2.dll",
+        "runtimes/win10-arm64/nativeassets/uap10.0/libSkiaSharp.dll",
+        "runtimes/win10-x64/nativeassets/uap10.0/libEGL.dll",
+        "runtimes/win10-x64/nativeassets/uap10.0/libGLESv2.dll",
+        "runtimes/win10-x64/nativeassets/uap10.0/libSkiaSharp.dll",
+        "runtimes/win10-x86/nativeassets/uap10.0/libEGL.dll",
+        "runtimes/win10-x86/nativeassets/uap10.0/libGLESv2.dll",
+        "runtimes/win10-x86/nativeassets/uap10.0/libSkiaSharp.dll",
+        "skiasharp.2.80.2.nupkg.sha512",
+        "skiasharp.nuspec"
       ]
     },
-    "ScottPlot.WPF/4.1.15": {
-      "sha512": "U4WfAbKjgumVwU+Wb4CqXe1iRFafw8fhnshIPnchIu2Ip51OtIzeFMBBQqqfgcBCa4ivvM7ieGPqlLIGWk5YMw==",
+    "SkiaSharp.Views.Desktop.Common/2.80.2": {
+      "sha512": "0vBvweMysgl1wgjuTQUhdJMD5z5nBjtYqmnHPeX+qHfkc336Wj2L3jEqwmGb0YP+RV47gFGz0EzMAW6szZch9w==",
       "type": "package",
-      "path": "scottplot.wpf/4.1.15",
-      "hasTools": true,
+      "path": "skiasharp.views.desktop.common/2.80.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "README.txt",
-        "icon.ico",
-        "icon.png",
-        "lib/net461/ScottPlot.WPF.dll",
-        "lib/net472/ScottPlot.WPF.dll",
-        "lib/net5.0-windows7.0/ScottPlot.WPF.dll",
-        "lib/netcoreapp3.1/ScottPlot.WPF.dll",
-        "scottplot.wpf.4.1.15.nupkg.sha512",
-        "scottplot.wpf.nuspec",
-        "tools/VisualStudioToolsManifest.xml"
+        "LICENSE.txt",
+        "lib/net462/SkiaSharp.Views.Desktop.Common.dll",
+        "lib/net462/SkiaSharp.Views.Desktop.Common.xml",
+        "lib/netcoreapp3.0/SkiaSharp.Views.Desktop.Common.dll",
+        "lib/netcoreapp3.0/SkiaSharp.Views.Desktop.Common.xml",
+        "lib/netstandard2.0/SkiaSharp.Views.Desktop.Common.dll",
+        "lib/netstandard2.0/SkiaSharp.Views.Desktop.Common.xml",
+        "skiasharp.views.desktop.common.2.80.2.nupkg.sha512",
+        "skiasharp.views.desktop.common.nuspec"
+      ]
+    },
+    "SkiaSharp.Views.WPF/2.80.2": {
+      "sha512": "Fzo2+MNwHDh9Cob8sk7OO26kp3bhofjXMwlEK8IncF1ehu9hi3sH9iQDJrue9a88VEJJ+yyLISPUFcmXlGHSyQ==",
+      "type": "package",
+      "path": "skiasharp.views.wpf/2.80.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/net462/SkiaSharp.Views.WPF.dll",
+        "lib/net462/SkiaSharp.Views.WPF.xml",
+        "lib/netcoreapp3.0/SkiaSharp.Views.WPF.dll",
+        "lib/netcoreapp3.0/SkiaSharp.Views.WPF.xml",
+        "skiasharp.views.wpf.2.80.2.nupkg.sha512",
+        "skiasharp.views.wpf.nuspec"
       ]
     },
     "Splat/11.1.1": {
@@ -2555,6 +2801,36 @@
         "system.threading.tasks.nuspec"
       ]
     },
+    "Wpf.Controls.PanAndZoom/2.3.4": {
+      "sha512": "tgkTtdvNV8qnz8j18JuQNZwmRQd1EsYbesGtfV3ahxB9RB9Od7UhA+jpyqFVA/3QaILdFikX9cAfVSWKfq9CfQ==",
+      "type": "package",
+      "path": "wpf.controls.panandzoom/2.3.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/Wpf.Controls.PanAndZoom.dll",
+        "lib/net461/Wpf.Controls.PanAndZoom.xml",
+        "lib/netcoreapp3.1/Wpf.Controls.PanAndZoom.dll",
+        "lib/netcoreapp3.1/Wpf.Controls.PanAndZoom.xml",
+        "wpf.controls.panandzoom.2.3.4.nupkg.sha512",
+        "wpf.controls.panandzoom.nuspec"
+      ]
+    },
+    "Wpf.MatrixExtensions/2.3.4": {
+      "sha512": "+OuEFTtiR5bpVfdXtHwbnEUebqwB5p1h4D6aCsmcQcQgRGRJosgjYxLc/6qwvzdWEgYzFNR6I8/fqXwD360bVQ==",
+      "type": "package",
+      "path": "wpf.matrixextensions/2.3.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/Wpf.MatrixExtensions.dll",
+        "lib/net461/Wpf.MatrixExtensions.xml",
+        "lib/netcoreapp3.1/Wpf.MatrixExtensions.dll",
+        "lib/netcoreapp3.1/Wpf.MatrixExtensions.xml",
+        "wpf.matrixextensions.2.3.4.nupkg.sha512",
+        "wpf.matrixextensions.nuspec"
+      ]
+    },
     "Client.Common/1.0.0": {
       "type": "project",
       "path": "../Client.Common/Client.Common.csproj",
@@ -2575,13 +2851,14 @@
     "net5.0-windows7.0": [
       "Client.Common >= 1.0.0",
       "Client.ViewModel >= 1.0.0",
+      "LiveChartsCore.SkiaSharpView.WPF >= 2.0.0-beta.10",
       "MahApps.Metro >= 2.4.5",
       "MahApps.Metro.IconPacks >= 4.8.0",
       "MaterialDesignThemes >= 4.1.0",
       "MaterialDesignThemes.MahApps >= 0.1.7",
       "ReactiveUI >= 13.3.2",
       "ReactiveUI.WPF >= 13.3.2",
-      "ScottPlot.WPF >= 4.1.15"
+      "Wpf.Controls.PanAndZoom >= 2.3.4"
     ]
   },
   "packageFolders": {
@@ -2630,6 +2907,10 @@
       "net5.0-windows7.0": {
         "targetAlias": "net5.0-windows",
         "dependencies": {
+          "LiveChartsCore.SkiaSharpView.WPF": {
+            "target": "Package",
+            "version": "[2.0.0-beta.10, )"
+          },
           "MahApps.Metro": {
             "target": "Package",
             "version": "[2.4.5, )"
@@ -2654,9 +2935,9 @@
             "target": "Package",
             "version": "[13.3.2, )"
           },
-          "ScottPlot.WPF": {
+          "Wpf.Controls.PanAndZoom": {
             "target": "Package",
-            "version": "[4.1.15, )"
+            "version": "[2.3.4, )"
           }
         },
         "imports": [
