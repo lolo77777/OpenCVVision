@@ -130,3 +130,9 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operat
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op03PreProcessing\FilterView.g.cs
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op03PreProcessing\FilterView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Client.View.csproj.AssemblyReference.cache
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op04Threshold\BarView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op04Threshold\ThresholdView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\ScottPlot.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\ScottPlot.WPF.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op04Threshold\BarView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op04Threshold\ThresholdView.baml

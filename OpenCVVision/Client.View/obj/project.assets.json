@@ -325,6 +325,34 @@
           "Microsoft.WindowsDesktop.App.WPF"
         ]
       },
+      "ScottPlot/4.1.15": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing.Common": "4.6.1"
+        },
+        "compile": {
+          "lib/net5.0/ScottPlot.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/ScottPlot.dll": {}
+        }
+      },
+      "ScottPlot.WPF/4.1.15": {
+        "type": "package",
+        "dependencies": {
+          "ScottPlot": "4.1.15",
+          "System.Drawing.Common": "5.0.0"
+        },
+        "compile": {
+          "lib/net5.0-windows7.0/ScottPlot.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/ScottPlot.WPF.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
       "Splat/11.1.1": {
         "type": "package",
         "compile": {
@@ -1674,6 +1702,46 @@
         "reactiveui.wpf.nuspec"
       ]
     },
+    "ScottPlot/4.1.15": {
+      "sha512": "HgfXJy4d1mxqgJKGW8epz2AWt8BIqPv7j0sbF6vx8ifFmH0Jb1sAXSt9hsFZ8djMNghhH1dJ1WyBEOMpeCNE/w==",
+      "type": "package",
+      "path": "scottplot/4.1.15",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.txt",
+        "icon.ico",
+        "icon.png",
+        "lib/net461/ScottPlot.dll",
+        "lib/net461/ScottPlot.xml",
+        "lib/net5.0/ScottPlot.dll",
+        "lib/net5.0/ScottPlot.xml",
+        "lib/netstandard2.0/ScottPlot.dll",
+        "lib/netstandard2.0/ScottPlot.xml",
+        "scottplot.4.1.15.nupkg.sha512",
+        "scottplot.nuspec"
+      ]
+    },
+    "ScottPlot.WPF/4.1.15": {
+      "sha512": "U4WfAbKjgumVwU+Wb4CqXe1iRFafw8fhnshIPnchIu2Ip51OtIzeFMBBQqqfgcBCa4ivvM7ieGPqlLIGWk5YMw==",
+      "type": "package",
+      "path": "scottplot.wpf/4.1.15",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.txt",
+        "icon.ico",
+        "icon.png",
+        "lib/net461/ScottPlot.WPF.dll",
+        "lib/net472/ScottPlot.WPF.dll",
+        "lib/net5.0-windows7.0/ScottPlot.WPF.dll",
+        "lib/netcoreapp3.1/ScottPlot.WPF.dll",
+        "scottplot.wpf.4.1.15.nupkg.sha512",
+        "scottplot.wpf.nuspec",
+        "tools/VisualStudioToolsManifest.xml"
+      ]
+    },
     "Splat/11.1.1": {
       "sha512": "qIgixm6tg+6Sztd5BM36Y+sRWdmzlCV2TYnViOSwqvOGAMaYYE9EhIaKHLbZHn6KXWAML8GMGx0kaosUMUA0rA==",
       "type": "package",
@@ -2512,7 +2580,8 @@
       "MaterialDesignThemes >= 4.1.0",
       "MaterialDesignThemes.MahApps >= 0.1.7",
       "ReactiveUI >= 13.3.2",
-      "ReactiveUI.WPF >= 13.3.2"
+      "ReactiveUI.WPF >= 13.3.2",
+      "ScottPlot.WPF >= 4.1.15"
     ]
   },
   "packageFolders": {
@@ -2584,6 +2653,10 @@
           "ReactiveUI.WPF": {
             "target": "Package",
             "version": "[13.3.2, )"
+          },
+          "ScottPlot.WPF": {
+            "target": "Package",
+            "version": "[4.1.15, )"
           }
         },
         "imports": [

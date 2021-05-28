@@ -12,19 +12,34 @@ using Client.ViewModel;
 using Client.ViewModel.Operation.Op01File;
 using Client.ViewModel.Operation.Op02ColorSpace;
 using Client.ViewModel.Operation.Op03PreProcessing;
+using Client.ViewModel.Operation;
 
 namespace Client.ViewModel
 {
     internal class Register : RegisterBase
     {
+        private void RegistLazySingletonOpVM<T>() where T : IOperationViewModel, new()
+        {
+            _mutable.RegisterLazySingleton<IOperationViewModel>(() => new T(), StaticMethod.GetInfo<T>());
+        }
+
+        public static T ResolveVM<T>() where T : IOperationViewModel, new()
+        {
+            return (T)Locator.Current.GetService<IOperationViewModel>(StaticMethod.GetInfo<T>());
+        }
+
         public override void ConfigService()
         {
             _mutable.RegisterLazySingleton(() => new MainViewModel());
             _mutable.RegisterLazySingleton(() => new NavigationViewModel());
             _mutable.RegisterLazySingleton(() => new ImageViewModel());
-            _mutable.RegisterLazySingleton<IOperationViewModel>(() => new LoadFileViewModel(), StaticMethod.GetInfo(typeof(LoadFileViewModel)));
-            _mutable.RegisterLazySingleton<IOperationViewModel>(() => new ColorSpaceViewModel(), StaticMethod.GetInfo(typeof(ColorSpaceViewModel)));
-            _mutable.RegisterLazySingleton<IOperationViewModel>(() => new FilterViewModel(), StaticMethod.GetInfo(typeof(FilterViewModel)));
+
+            RegistLazySingletonOpVM<LoadFileViewModel>();
+            RegistLazySingletonOpVM<ColorSpaceViewModel>();
+            RegistLazySingletonOpVM<FilterViewModel>();
+            RegistLazySingletonOpVM<BarViewModel>();
+
+            RegistLazySingletonOpVM<ThreshouldViewModel>();
         }
     }
 }
