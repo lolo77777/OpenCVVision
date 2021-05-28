@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 
 using Client.ViewModel.Operation;
 
+using Microsoft.Windows.Themes;
+
 using ReactiveUI;
 
 namespace Client.View.Operation
@@ -30,7 +32,11 @@ namespace Client.View.Operation
             InitializeComponent();
             this.WhenActivated(d =>
             {
-                this.OneWayBind(ViewModel, vm => vm.BarViewModelSam, v => v.BarVMViewHost.ViewModel).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.Series, v => v.barChart.Series).DisposeWith(d);
+                barChart.XAxes.ElementAt(0).MinStep = 2;
+                barChart.XAxes.ElementAt(0).MaxLimit = 256;
+
+                barChart.YAxes.ElementAt(0).MinStep = 2;
             });
         }
     }

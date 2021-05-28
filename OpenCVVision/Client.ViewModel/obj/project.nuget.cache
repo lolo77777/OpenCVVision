@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "E3blbue+PkfeSDzJftfYW+oJGy+Ig5Q1UBcDSwKOCtNPutYRz6u0xT46PwaCISzkD3M1iMm/kI4plQMD5jB3wQ==",
+  "dgSpecHash": "G2we9RHySHKn0duc6qFx63LOqfYtFED8R2wKTVSvgbI9p3kNkamEFEbHXVjG5Zwy+ZKjoDR6IIyt4y4sr0Yliw==",
   "success": true,
   "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.ViewModel\\Client.ViewModel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lolo1\\.nuget\\packages\\dynamicdata\\7.1.17\\dynamicdata.7.1.17.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\fody\\6.5.1\\fody.6.5.1.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\livechartscore\\2.0.0-beta.10\\livechartscore.2.0.0-beta.10.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\livechartscore.skiasharpview\\2.0.0-beta.10\\livechartscore.skiasharpview.2.0.0-beta.10.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\materialdesigncolors\\2.0.1\\materialdesigncolors.2.0.1.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\materialdesignthemes\\4.1.0\\materialdesignthemes.4.1.0.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
@@ -17,6 +19,7 @@
     "C:\\Users\\lolo1\\.nuget\\packages\\opencvsharp4.wpfextensions\\4.5.2.20210404\\opencvsharp4.wpfextensions.4.5.2.20210404.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\reactiveui\\13.3.2\\reactiveui.13.3.2.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\reactiveui.fody\\13.3.2\\reactiveui.fody.13.3.2.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\skiasharp\\2.80.2\\skiasharp.2.80.2.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\splat\\11.1.1\\splat.11.1.1.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",

@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Client.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:paz="clr-namespace:Wpf.Controls.PanAndZoom;assembly=Wpf.Controls.PanAndZoom"
     xmlns:rxui="http://reactiveui.net"
     xmlns:viewmodel="clr-namespace:Client.ViewModel;assembly=Client.ViewModel"
     d:DesignHeight="450"
@@ -58,12 +59,9 @@
                     Grid.Row="1"
                     Background="{StaticResource AccentBaseColorBrush}"
                     Style="{StaticResource MaterialDesignLightSeparator}" />
-
-                <Image
-                    x:Name="InputImg"
-                    Grid.Row="2"
-                    Margin="0,0,0,10"
-                    Stretch="Uniform" />
+                <paz:ZoomBorder Grid.Row="2" Margin="0,0,0,10">
+                    <Image x:Name="InputImg" Stretch="Uniform" />
+                </paz:ZoomBorder>
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card Grid.Column="1" Margin="4,8,8,8">
@@ -120,11 +118,9 @@
                     Grid.Row="1"
                     Background="{StaticResource AccentBaseColorBrush}"
                     Style="{StaticResource MaterialDesignLightSeparator}" />
-                <Image
-                    x:Name="OutputImg"
-                    Grid.Row="2"
-                    Margin="0,0,0,10"
-                    Stretch="Uniform" />
+                <paz:ZoomBorder Grid.Row="2" Margin="0,0,0,10">
+                    <Image x:Name="OutputImg" Stretch="Uniform" />
+                </paz:ZoomBorder>
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card

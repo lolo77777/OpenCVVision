@@ -30,6 +30,38 @@
         }
       },
       "Fody/6.5.1": {},
+      "LiveChartsCore/2.0.0-beta.10": {
+        "runtime": {
+          "lib/netcoreapp2.0/LiveChartsCore.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "LiveChartsCore.SkiaSharpView/2.0.0-beta.10": {
+        "dependencies": {
+          "LiveChartsCore": "2.0.0-beta.10",
+          "SkiaSharp": "2.80.2"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/LiveChartsCore.SkiaSharpView.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "LiveChartsCore.SkiaSharpView.WPF/2.0.0-beta.10": {
+        "dependencies": {
+          "LiveChartsCore.SkiaSharpView": "2.0.0-beta.10",
+          "SkiaSharp.Views.WPF": "2.80.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/LiveChartsCore.SkiaSharpView.WPF.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
       "MahApps.Metro/2.4.5": {
         "dependencies": {
           "ControlzEx": "4.4.0"
@@ -294,6 +326,14 @@
           }
         }
       },
+      "PanAndZoom/2.3.4": {
+        "runtime": {
+          "lib/netstandard2.1/PanAndZoom.dll": {
+            "assemblyVersion": "2.3.4.0",
+            "fileVersion": "2.3.4.0"
+          }
+        }
+      },
       "ReactiveUI/13.3.2": {
         "dependencies": {
           "DynamicData": "7.1.17",
@@ -333,26 +373,59 @@
           }
         }
       },
-      "ScottPlot/4.1.15": {
+      "SkiaSharp/2.80.2": {
         "dependencies": {
-          "System.Drawing.Common": "5.0.2"
+          "System.Memory": "4.5.4"
         },
         "runtime": {
-          "lib/net5.0/ScottPlot.dll": {
-            "assemblyVersion": "4.1.15.0",
-            "fileVersion": "4.1.15.0"
+          "lib/netstandard2.0/SkiaSharp.dll": {
+            "assemblyVersion": "2.80.0.0",
+            "fileVersion": "2.80.2.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libSkiaSharp.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/libSkiaSharp.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libSkiaSharp.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libSkiaSharp.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
           }
         }
       },
-      "ScottPlot.WPF/4.1.15": {
+      "SkiaSharp.Views.Desktop.Common/2.80.2": {
         "dependencies": {
-          "ScottPlot": "4.1.15",
-          "System.Drawing.Common": "5.0.2"
+          "SkiaSharp": "2.80.2"
         },
         "runtime": {
-          "lib/net5.0-windows7.0/ScottPlot.WPF.dll": {
-            "assemblyVersion": "4.1.15.0",
-            "fileVersion": "4.1.15.0"
+          "lib/netcoreapp3.0/SkiaSharp.Views.Desktop.Common.dll": {
+            "assemblyVersion": "2.80.0.0",
+            "fileVersion": "2.80.2.0"
+          }
+        }
+      },
+      "SkiaSharp.Views.WPF/2.80.2": {
+        "dependencies": {
+          "SkiaSharp": "2.80.2",
+          "SkiaSharp.Views.Desktop.Common": "2.80.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/SkiaSharp.Views.WPF.dll": {
+            "assemblyVersion": "2.80.0.0",
+            "fileVersion": "2.80.2.0"
           }
         }
       },
@@ -486,6 +559,26 @@
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
         }
+      },
+      "Wpf.Controls.PanAndZoom/2.3.4": {
+        "dependencies": {
+          "PanAndZoom": "2.3.4",
+          "Wpf.MatrixExtensions": "2.3.4"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Wpf.Controls.PanAndZoom.dll": {
+            "assemblyVersion": "2.3.4.0",
+            "fileVersion": "2.3.4.0"
+          }
+        }
+      },
+      "Wpf.MatrixExtensions/2.3.4": {
+        "runtime": {
+          "lib/netcoreapp3.1/Wpf.MatrixExtensions.dll": {
+            "assemblyVersion": "2.3.4.0",
+            "fileVersion": "2.3.4.0"
+          }
+        }
       }
     }
   },
@@ -510,6 +603,27 @@
       "sha512": "sha512-DEw9rPG5vrpaK4vPPze0f4q6Zd0mfzjGNKy49nrmINkftIHpkyf8KH+uC/qF8y6v1askPWu9NbJS9bkmN5wXaA==",
       "path": "fody/6.5.1",
       "hashPath": "fody.6.5.1.nupkg.sha512"
+    },
+    "LiveChartsCore/2.0.0-beta.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RqHOMKq9K06fX25rZG+jR688ewXcc4aN5VvMoBmnxmX8mC1W28Jbh85YiGwn6QJlIoGgzrc2hvY/Fppjcm9+xA==",
+      "path": "livechartscore/2.0.0-beta.10",
+      "hashPath": "livechartscore.2.0.0-beta.10.nupkg.sha512"
+    },
+    "LiveChartsCore.SkiaSharpView/2.0.0-beta.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vm9oOOkIk6n92vPXDUbM+yE6GMyNX67Ps5/Pzq2lBdkXis79Yk+5new35+sPwlSpG+hYdEQPRlbKGeccDDuanQ==",
+      "path": "livechartscore.skiasharpview/2.0.0-beta.10",
+      "hashPath": "livechartscore.skiasharpview.2.0.0-beta.10.nupkg.sha512"
+    },
+    "LiveChartsCore.SkiaSharpView.WPF/2.0.0-beta.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UfYR8mj5MzilzOmAhotwDZPL0ftdc+yn+28T63OmFnooHtncZScmd8izSGeGfQMLB9sp37QUanICIm/9xhGNLA==",
+      "path": "livechartscore.skiasharpview.wpf/2.0.0-beta.10",
+      "hashPath": "livechartscore.skiasharpview.wpf.2.0.0-beta.10.nupkg.sha512"
     },
     "MahApps.Metro/2.4.5": {
       "type": "package",
@@ -602,6 +716,13 @@
       "path": "opencvsharp4.wpfextensions/4.5.2.20210404",
       "hashPath": "opencvsharp4.wpfextensions.4.5.2.20210404.nupkg.sha512"
     },
+    "PanAndZoom/2.3.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zlsyA/2pJDYvn4o02RKd53MW9qcZwJZWQ/v1qnrG05RAHUAvMQoXvlqrVzbFnhu4ZQ2fOcQ3HAk+FfYidyirNw==",
+      "path": "panandzoom/2.3.4",
+      "hashPath": "panandzoom.2.3.4.nupkg.sha512"
+    },
     "ReactiveUI/13.3.2": {
       "type": "package",
       "serviceable": true,
@@ -623,19 +744,26 @@
       "path": "reactiveui.wpf/13.3.2",
       "hashPath": "reactiveui.wpf.13.3.2.nupkg.sha512"
     },
-    "ScottPlot/4.1.15": {
+    "SkiaSharp/2.80.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-HgfXJy4d1mxqgJKGW8epz2AWt8BIqPv7j0sbF6vx8ifFmH0Jb1sAXSt9hsFZ8djMNghhH1dJ1WyBEOMpeCNE/w==",
-      "path": "scottplot/4.1.15",
-      "hashPath": "scottplot.4.1.15.nupkg.sha512"
+      "sha512": "sha512-D25rzdCwh+3L+XyXqpNa+H/yiLJbE3/R3K/XexwHyQjGdzZvSufFW3oqf3En7hhqSIsxsJ8f5NEZ0J5W5wlGBg==",
+      "path": "skiasharp/2.80.2",
+      "hashPath": "skiasharp.2.80.2.nupkg.sha512"
     },
-    "ScottPlot.WPF/4.1.15": {
+    "SkiaSharp.Views.Desktop.Common/2.80.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-U4WfAbKjgumVwU+Wb4CqXe1iRFafw8fhnshIPnchIu2Ip51OtIzeFMBBQqqfgcBCa4ivvM7ieGPqlLIGWk5YMw==",
-      "path": "scottplot.wpf/4.1.15",
-      "hashPath": "scottplot.wpf.4.1.15.nupkg.sha512"
+      "sha512": "sha512-0vBvweMysgl1wgjuTQUhdJMD5z5nBjtYqmnHPeX+qHfkc336Wj2L3jEqwmGb0YP+RV47gFGz0EzMAW6szZch9w==",
+      "path": "skiasharp.views.desktop.common/2.80.2",
+      "hashPath": "skiasharp.views.desktop.common.2.80.2.nupkg.sha512"
+    },
+    "SkiaSharp.Views.WPF/2.80.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Fzo2+MNwHDh9Cob8sk7OO26kp3bhofjXMwlEK8IncF1ehu9hi3sH9iQDJrue9a88VEJJ+yyLISPUFcmXlGHSyQ==",
+      "path": "skiasharp.views.wpf/2.80.2",
+      "hashPath": "skiasharp.views.wpf.2.80.2.nupkg.sha512"
     },
     "Splat/11.1.1": {
       "type": "package",
@@ -741,6 +869,20 @@
       "sha512": "sha512-LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
+    },
+    "Wpf.Controls.PanAndZoom/2.3.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tgkTtdvNV8qnz8j18JuQNZwmRQd1EsYbesGtfV3ahxB9RB9Od7UhA+jpyqFVA/3QaILdFikX9cAfVSWKfq9CfQ==",
+      "path": "wpf.controls.panandzoom/2.3.4",
+      "hashPath": "wpf.controls.panandzoom.2.3.4.nupkg.sha512"
+    },
+    "Wpf.MatrixExtensions/2.3.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+OuEFTtiR5bpVfdXtHwbnEUebqwB5p1h4D6aCsmcQcQgRGRJosgjYxLc/6qwvzdWEgYzFNR6I8/fqXwD360bVQ==",
+      "path": "wpf.matrixextensions/2.3.4",
+      "hashPath": "wpf.matrixextensions.2.3.4.nupkg.sha512"
     }
   }
 }
