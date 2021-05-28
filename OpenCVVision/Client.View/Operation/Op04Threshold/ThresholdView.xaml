@@ -17,6 +17,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock
@@ -36,6 +37,56 @@
                 </materialDesign:Card>
                 <materialDesign:Card Grid.Row="1" />
             </Grid>
+            <StackPanel Grid.Row="2" Margin="8,0">
+                <ComboBox
+                    x:Name="cbxChannels"
+                    Margin="8,8"
+                    materialDesign:ComboBoxAssist.ClassicMode="True"
+                    materialDesign:HintAssist.Hint="通道数"
+                    DisplayMemberPath="."
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                <ComboBox
+                    x:Name="cbxThreshouldType"
+                    Margin="8,0"
+                    materialDesign:ComboBoxAssist.ClassicMode="True"
+                    materialDesign:HintAssist.Hint="二值化类型"
+                    DisplayMemberPath="."
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="Thresh" />
+                    <Slider
+                        x:Name="sliderThresh"
+                        Grid.Column="1"
+                        Maximum="255"
+                        Minimum="0"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="2"
+                        TickPlacement="BottomRight"
+                        ToolTip="KernelSize"
+                        Value="3" />
+                </Grid>
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="Maxval" />
+                    <Slider
+                        x:Name="sliderMaxval"
+                        Grid.Column="1"
+                        Maximum="255"
+                        Minimum="0"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="2"
+                        TickPlacement="BottomRight"
+                        ToolTip="KernelSize"
+                        Value="3" />
+                </Grid>
+            </StackPanel>
         </Grid>
     </materialDesign:Card>
 </rxui:ReactiveUserControl>

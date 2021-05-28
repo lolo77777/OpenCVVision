@@ -24,7 +24,7 @@ namespace Client.ViewModel
         protected IReadonlyDependencyResolver _resolver = Locator.Current;
         protected ResourcesTracker _rt = new ResourcesTracker();
         protected Mat _src;
-
+        protected bool IsRun = false;
         public ViewModelActivator Activator { get; }
         [Reactive] public bool CanOperat { get; set; }
         public IScreen HostScreen { get; }
@@ -41,12 +41,18 @@ namespace Client.ViewModel
 
         protected void SendTime(Action action)
         {
-            var t1 = Cv2.GetTickCount();
-            _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
-            action.Invoke();
-            var t2 = Cv2.GetTickCount();
-            var t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
-            MessageBus.Current.SendMessage(t, "Time");
+            if (!IsRun)
+            {
+                IsRun = true;
+                var t1 = Cv2.GetTickCount();
+                _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
+                action.Invoke();
+                _rt.Dispose();
+                var t2 = Cv2.GetTickCount();
+                var t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
+                MessageBus.Current.SendMessage(t, "Time");
+                IsRun = false;
+            }
         }
     }
 }

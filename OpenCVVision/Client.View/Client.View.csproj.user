@@ -22,9 +22,6 @@
     <Compile Update="Operation\Op03PreProcessing\FilterView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Operation\Op04Threshold\BarView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Operation\Op04Threshold\ThresholdView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,9 +43,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op03PreProcessing\FilterView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Operation\Op04Threshold\BarView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op04Threshold\ThresholdView.xaml">

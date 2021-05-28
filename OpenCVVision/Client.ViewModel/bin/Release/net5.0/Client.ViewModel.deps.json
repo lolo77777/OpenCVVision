@@ -10,6 +10,7 @@
         "dependencies": {
           "Client.Common": "1.0.0",
           "Client.Model": "1.0.0",
+          "LiveChartsCore.SkiaSharpView": "2.0.0-beta.10",
           "MaterialDesignThemes": "4.1.0",
           "OpenCvSharp4.Windows": "4.5.2.20210404",
           "OpenCvSharp4.WpfExtensions": "4.5.2.20210404",
@@ -34,6 +35,26 @@
         }
       },
       "Fody/6.5.1": {},
+      "LiveChartsCore/2.0.0-beta.10": {
+        "runtime": {
+          "lib/netcoreapp2.0/LiveChartsCore.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "LiveChartsCore.SkiaSharpView/2.0.0-beta.10": {
+        "dependencies": {
+          "LiveChartsCore": "2.0.0-beta.10",
+          "SkiaSharp": "2.80.2"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/LiveChartsCore.SkiaSharpView.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
       "MaterialDesignColors/2.0.1": {
         "runtime": {
           "lib/netcoreapp3.1/MaterialDesignColors.dll": {
@@ -157,6 +178,39 @@
           "lib/net5.0/ReactiveUI.Fody.Helpers.dll": {
             "assemblyVersion": "13.3.0.0",
             "fileVersion": "13.3.2.62526"
+          }
+        }
+      },
+      "SkiaSharp/2.80.2": {
+        "dependencies": {
+          "System.Memory": "4.5.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/SkiaSharp.dll": {
+            "assemblyVersion": "2.80.0.0",
+            "fileVersion": "2.80.2.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libSkiaSharp.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/libSkiaSharp.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libSkiaSharp.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libSkiaSharp.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -384,6 +438,20 @@
       "path": "fody/6.5.1",
       "hashPath": "fody.6.5.1.nupkg.sha512"
     },
+    "LiveChartsCore/2.0.0-beta.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RqHOMKq9K06fX25rZG+jR688ewXcc4aN5VvMoBmnxmX8mC1W28Jbh85YiGwn6QJlIoGgzrc2hvY/Fppjcm9+xA==",
+      "path": "livechartscore/2.0.0-beta.10",
+      "hashPath": "livechartscore.2.0.0-beta.10.nupkg.sha512"
+    },
+    "LiveChartsCore.SkiaSharpView/2.0.0-beta.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vm9oOOkIk6n92vPXDUbM+yE6GMyNX67Ps5/Pzq2lBdkXis79Yk+5new35+sPwlSpG+hYdEQPRlbKGeccDDuanQ==",
+      "path": "livechartscore.skiasharpview/2.0.0-beta.10",
+      "hashPath": "livechartscore.skiasharpview.2.0.0-beta.10.nupkg.sha512"
+    },
     "MaterialDesignColors/2.0.1": {
       "type": "package",
       "serviceable": true,
@@ -460,6 +528,13 @@
       "sha512": "sha512-6Q+El/lnoL/9aZ4uOE0ISb4v3h9YhrhzkkvuX5jfJ1PW5NCXFbiGav6CH51/R9fxXqqAlmerm2fyhsMi/7P3wQ==",
       "path": "reactiveui.fody/13.3.2",
       "hashPath": "reactiveui.fody.13.3.2.nupkg.sha512"
+    },
+    "SkiaSharp/2.80.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D25rzdCwh+3L+XyXqpNa+H/yiLJbE3/R3K/XexwHyQjGdzZvSufFW3oqf3En7hhqSIsxsJ8f5NEZ0J5W5wlGBg==",
+      "path": "skiasharp/2.80.2",
+      "hashPath": "skiasharp.2.80.2.nupkg.sha512"
     },
     "Splat/11.1.1": {
       "type": "package",

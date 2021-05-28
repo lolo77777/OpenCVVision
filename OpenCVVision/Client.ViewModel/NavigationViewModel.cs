@@ -42,7 +42,7 @@ namespace Client.ViewModel
             listtmp.Add(new NaviItem { Icon = PackIconKind.Color, OperaPanelInfo = StaticMethod.GetInfo<ColorSpaceViewModel>() });
             listtmp.Add(new NaviItem { Icon = PackIconKind.Filter, OperaPanelInfo = StaticMethod.GetInfo<FilterViewModel>() });
             listtmp.Add(new NaviItem { Icon = PackIconKind.NumericZero, OperaPanelInfo = StaticMethod.GetInfo<ThreshouldViewModel>() });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.ChartBar, OperaPanelInfo = StaticMethod.GetInfo<BarViewModel>() });
+
             return listtmp;
         }
     }

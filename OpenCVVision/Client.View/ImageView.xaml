@@ -59,9 +59,14 @@
                     Grid.Row="1"
                     Background="{StaticResource AccentBaseColorBrush}"
                     Style="{StaticResource MaterialDesignLightSeparator}" />
-                <paz:ZoomBorder Grid.Row="2" Margin="0,0,0,10">
-                    <Image x:Name="InputImg" Stretch="Uniform" />
-                </paz:ZoomBorder>
+                <materialDesign:Card
+                    Grid.Row="2"
+                    Margin="0,0,0,10"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                    <paz:ZoomBorder>
+                        <Image x:Name="InputImg" Stretch="Uniform" />
+                    </paz:ZoomBorder>
+                </materialDesign:Card>
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card Grid.Column="1" Margin="4,8,8,8">
@@ -118,9 +123,15 @@
                     Grid.Row="1"
                     Background="{StaticResource AccentBaseColorBrush}"
                     Style="{StaticResource MaterialDesignLightSeparator}" />
-                <paz:ZoomBorder Grid.Row="2" Margin="0,0,0,10">
-                    <Image x:Name="OutputImg" Stretch="Uniform" />
-                </paz:ZoomBorder>
+                <materialDesign:Card
+                    Grid.Row="2"
+                    Margin="0,0,0,10"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                    <paz:ZoomBorder>
+
+                        <Image x:Name="OutputImg" Stretch="Uniform" />
+                    </paz:ZoomBorder>
+                </materialDesign:Card>
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card
