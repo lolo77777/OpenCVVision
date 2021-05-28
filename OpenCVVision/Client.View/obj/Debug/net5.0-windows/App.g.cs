@@ -14,6 +14,7 @@ using MaterialDesignThemes.MahApps;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Converters;
 using MaterialDesignThemes.Wpf.Transitions;
+using ScottPlot;
 using System;
 using System.Diagnostics;
 using System.Windows;

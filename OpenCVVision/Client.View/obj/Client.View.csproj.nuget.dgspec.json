@@ -289,6 +289,10 @@
             "ReactiveUI.WPF": {
               "target": "Package",
               "version": "[13.3.2, )"
+            },
+            "ScottPlot.WPF": {
+              "target": "Package",
+              "version": "[4.1.15, )"
             }
           },
           "imports": [

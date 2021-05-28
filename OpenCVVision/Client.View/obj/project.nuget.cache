@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yOLBptr5vsIVXZbtXYayOg9pehw1Eh5iedWSE2XxdH4HQGqvJrOQP3Vp2IR/Q79cXB2frqC1AOLFu82uj/MFaw==",
+  "dgSpecHash": "cxqU146/YKAIlC5D9CRYb2CNVCMppaAgWV8d8PED0VDoHEL7GZmN1TTkJdnoiGA8pzle8P2sR6bHLg2Zaby+FA==",
   "success": true,
   "projectFilePath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.View\\Client.View.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,8 @@
     "C:\\Users\\lolo1\\.nuget\\packages\\reactiveui\\13.3.2\\reactiveui.13.3.2.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\reactiveui.fody\\13.3.2\\reactiveui.fody.13.3.2.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\reactiveui.wpf\\13.3.2\\reactiveui.wpf.13.3.2.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\scottplot\\4.1.15\\scottplot.4.1.15.nupkg.sha512",
+    "C:\\Users\\lolo1\\.nuget\\packages\\scottplot.wpf\\4.1.15\\scottplot.wpf.4.1.15.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\splat\\11.1.1\\splat.11.1.1.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512",
     "C:\\Users\\lolo1\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",

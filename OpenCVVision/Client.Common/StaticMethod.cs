@@ -8,9 +8,14 @@ namespace Client.Common
 {
     public static class StaticMethod
     {
-        public static string GetInfo(Type t)
+        /// <summary>
+        /// 获取类型的特性信息，用来做操作面板VM标记
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static string GetInfo<T>()
         {
-            object[] attributes = t.GetCustomAttributes(true);
+            object[] attributes = typeof(T).GetCustomAttributes(true);
             OperationInfoAttribute attribute = attributes[0] as OperationInfoAttribute;
             return attribute.Info;
         }

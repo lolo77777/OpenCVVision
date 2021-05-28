@@ -15,7 +15,8 @@
           "MaterialDesignThemes": "4.1.0",
           "MaterialDesignThemes.MahApps": "0.1.7",
           "ReactiveUI": "13.3.2",
-          "ReactiveUI.WPF": "13.3.2"
+          "ReactiveUI.WPF": "13.3.2",
+          "ScottPlot.WPF": "4.1.15"
         },
         "runtime": {
           "Client.View.dll": {}
@@ -334,6 +335,29 @@
           }
         }
       },
+      "ScottPlot/4.1.15": {
+        "dependencies": {
+          "System.Drawing.Common": "5.0.2"
+        },
+        "runtime": {
+          "lib/net5.0/ScottPlot.dll": {
+            "assemblyVersion": "4.1.15.0",
+            "fileVersion": "4.1.15.0"
+          }
+        }
+      },
+      "ScottPlot.WPF/4.1.15": {
+        "dependencies": {
+          "ScottPlot": "4.1.15",
+          "System.Drawing.Common": "5.0.2"
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/ScottPlot.WPF.dll": {
+            "assemblyVersion": "4.1.15.0",
+            "fileVersion": "4.1.15.0"
+          }
+        }
+      },
       "Splat/11.1.1": {
         "runtime": {
           "lib/net5.0/Splat.dll": {
@@ -619,6 +643,20 @@
       "sha512": "sha512-b0BPNQSV/WWEVLndxSaUZ9JiUp9FK1ue+fnkOFBhvRVSNMK4x5l9pyruWUKsqoAY/IMcrJhwM5ALXzOQh2RXIg==",
       "path": "reactiveui.wpf/13.3.2",
       "hashPath": "reactiveui.wpf.13.3.2.nupkg.sha512"
+    },
+    "ScottPlot/4.1.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HgfXJy4d1mxqgJKGW8epz2AWt8BIqPv7j0sbF6vx8ifFmH0Jb1sAXSt9hsFZ8djMNghhH1dJ1WyBEOMpeCNE/w==",
+      "path": "scottplot/4.1.15",
+      "hashPath": "scottplot.4.1.15.nupkg.sha512"
+    },
+    "ScottPlot.WPF/4.1.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U4WfAbKjgumVwU+Wb4CqXe1iRFafw8fhnshIPnchIu2Ip51OtIzeFMBBQqqfgcBCa4ivvM7ieGPqlLIGWk5YMw==",
+      "path": "scottplot.wpf/4.1.15",
+      "hashPath": "scottplot.wpf.4.1.15.nupkg.sha512"
     },
     "Splat/11.1.1": {
       "type": "package",
