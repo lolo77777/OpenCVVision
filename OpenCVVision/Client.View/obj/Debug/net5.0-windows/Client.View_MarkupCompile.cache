@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\App.xaml
-81442110429
+7-31260600
 
-11-543713724
+10-1887240307
 260-1567246699
-ImageView.xaml;MainWindow.xaml;Navigation.xaml;Operation\Op01File\LoadFileView.xaml;Operation\Op02ColorSpace\ColorSpaceView.xaml;Operation\Op03PreProcessing\FilterView.xaml;Operation\Op04Threshold\BarView.xaml;Operation\Op04Threshold\ThresholdView.xaml;
+ImageView.xaml;MainWindow.xaml;Navigation.xaml;Operation\Op01File\LoadFileView.xaml;Operation\Op02ColorSpace\ColorSpaceView.xaml;Operation\Op03PreProcessing\FilterView.xaml;Operation\Op04Threshold\ThresholdView.xaml;
 
 False
 

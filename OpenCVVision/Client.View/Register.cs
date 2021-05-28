@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,16 +24,24 @@ namespace Client.View
 {
     internal class Register : RegisterBase
     {
+        private void RegisterVLazySingleton<T1, T2>() where T1 : OperaViewModelBase where T2 : IViewFor<T1>, new()
+        {
+            _mutable.Register<IViewFor<T1>>(() => new T2());
+        }
+
         public override void ConfigService()
         {
             _mutable.RegisterLazySingleton(() => new MainWindow());
             _mutable.RegisterLazySingleton<IViewFor<NavigationViewModel>>(() => new Navigation());
             _mutable.RegisterLazySingleton<IViewFor<ImageViewModel>>(() => new ImageView());
-            _mutable.RegisterLazySingleton<IViewFor<LoadFileViewModel>>(() => new LoadFileView());
-            _mutable.RegisterLazySingleton<IViewFor<ColorSpaceViewModel>>(() => new ColorSpaceView());
-            _mutable.RegisterLazySingleton<IViewFor<FilterViewModel>>(() => new FilterView());
-            _mutable.RegisterLazySingleton<IViewFor<BarViewModel>>(() => new BarView());
-            _mutable.RegisterLazySingleton<IViewFor<ThreshouldViewModel>>(() => new ThresholdView());
+            //_mutable.RegisterLazySingleton<IViewFor<LoadFileViewModel>>(() => new LoadFileView());
+            //_mutable.RegisterLazySingleton<IViewFor<ColorSpaceViewModel>>(() => new ColorSpaceView());
+            //_mutable.RegisterLazySingleton<IViewFor<FilterViewModel>>(() => new FilterView());
+            RegisterVLazySingleton<LoadFileViewModel, LoadFileView>();
+            RegisterVLazySingleton<ColorSpaceViewModel, ColorSpaceView>();
+            RegisterVLazySingleton<FilterViewModel, FilterView>();
+
+            RegisterVLazySingleton<ThreshouldViewModel, ThresholdView>();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Client.ViewModel
     {
         private void RegistLazySingletonOpVM<T>() where T : IOperationViewModel, new()
         {
-            _mutable.RegisterLazySingleton<IOperationViewModel>(() => new T(), StaticMethod.GetInfo<T>());
+            _mutable.Register<IOperationViewModel>(() => new T(), StaticMethod.GetInfo<T>());
         }
 
         public static T ResolveVM<T>() where T : IOperationViewModel, new()
@@ -37,7 +37,6 @@ namespace Client.ViewModel
             RegistLazySingletonOpVM<LoadFileViewModel>();
             RegistLazySingletonOpVM<ColorSpaceViewModel>();
             RegistLazySingletonOpVM<FilterViewModel>();
-            RegistLazySingletonOpVM<BarViewModel>();
 
             RegistLazySingletonOpVM<ThreshouldViewModel>();
         }

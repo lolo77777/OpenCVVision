@@ -33,7 +33,7 @@ namespace Client.ViewModel
             MessageBus.Current.Listen<NaviItem>()
                       .Select(it => _resolver.GetService<IOperationViewModel>(it.OperaPanelInfo))
                       .WhereNotNull()
-                      .Do(vm => Router.Navigate.Execute(vm))
+                      .Do(vm => { Router.Navigate.Execute(vm); GC.Collect(); })
                       .Subscribe();
         }
     }
