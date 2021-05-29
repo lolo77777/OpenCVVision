@@ -105,7 +105,6 @@ namespace Client.ViewModel.Operation.Op03PreProcessing
                     };
                     _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
                 }
-                _rt.Dispose();
             });
         }
     }

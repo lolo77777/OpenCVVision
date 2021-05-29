@@ -125,7 +125,7 @@ namespace Client.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Client.View;component/imageview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Client.View;V1.0.0.0;component/imageview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ImageView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

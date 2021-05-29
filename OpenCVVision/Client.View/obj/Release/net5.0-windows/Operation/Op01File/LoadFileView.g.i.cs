@@ -84,7 +84,7 @@ namespace Client.View.Operation._01File {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Client.View;component/operation/op01file/loadfileview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Client.View;V1.0.0.0;component/operation/op01file/loadfileview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Operation\Op01File\LoadFileView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

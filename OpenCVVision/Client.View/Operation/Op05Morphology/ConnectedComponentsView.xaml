@@ -1,0 +1,44 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="Client.View.Operation.ConnectedComponentsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Client.View.Operation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
+    xmlns:rxui="http://reactiveui.net"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    x:TypeArguments="operation:ConnectedComponentsViewModel"
+    mc:Ignorable="d">
+    <materialDesign:Card x:Name="cardMain" Margin="0,8,8,8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="Title"
+                Margin="8"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="连通域" />
+
+            <StackPanel Grid.Row="2" Margin="8,0">
+
+                <ListBox x:Name="FilterList" Style="{StaticResource MaterialDesignFilterChipOutlineListBox}">
+                    <ListBoxItem Content="Area" IsSelected="True" />
+                    <ListBoxItem Content="Centroid" IsSelected="True" />
+                    <ListBoxItem Content="Height" IsSelected="True" />
+                    <!--<ListBoxItem Content="Label" IsSelected="True" />-->
+                    <ListBoxItem Content="Left" />
+                    <!--<ListBoxItem Content="Rect" />-->
+                    <ListBoxItem Content="Top" />
+                    <ListBoxItem Content="Width" />
+                </ListBox>
+            </StackPanel>
+        </Grid>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>

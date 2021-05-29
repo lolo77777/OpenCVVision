@@ -23,6 +23,7 @@ namespace Client.ViewModel
         protected IImageDataManager _imageDataManager;
         protected IReadonlyDependencyResolver _resolver = Locator.Current;
         protected ResourcesTracker _rt = new ResourcesTracker();
+        protected Mat _sigleSrc;
         protected Mat _src;
         protected bool IsRun = false;
         public ViewModelActivator Activator { get; }
@@ -46,6 +47,7 @@ namespace Client.ViewModel
                 IsRun = true;
                 var t1 = Cv2.GetTickCount();
                 _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
+                _sigleSrc = _rt.T(_src.Channels() > 1 ? _src.CvtColor(ColorConversionCodes.BGR2GRAY) : _src);
                 action.Invoke();
                 _rt.Dispose();
                 var t2 = Cv2.GetTickCount();

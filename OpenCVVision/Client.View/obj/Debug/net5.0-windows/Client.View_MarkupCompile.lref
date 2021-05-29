@@ -6,4 +6,6 @@ FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\Navigation.xaml;;
 FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\Operation\Op01File\LoadFileView.xaml;;
 FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\Operation\Op02ColorSpace\ColorSpaceView.xaml;;
 FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\Operation\Op03PreProcessing\FilterView.xaml;;
+FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\Operation\Op05Morphology\ConnectedComponentsView.xaml;;
+FE:\GitWork\OpenCVVision\OpenCVVision\Client.View\Operation\Op05Morphology\MorphologyView.xaml;;
 

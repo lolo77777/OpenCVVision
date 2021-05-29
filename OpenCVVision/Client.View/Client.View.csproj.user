@@ -25,6 +25,12 @@
     <Compile Update="Operation\Op04Threshold\ThresholdView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op05Morphology\ConnectedComponentsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Operation\Op05Morphology\MorphologyView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ImageView.xaml">
@@ -46,6 +52,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op04Threshold\ThresholdView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op05Morphology\ConnectedComponentsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op05Morphology\MorphologyView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

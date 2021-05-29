@@ -42,6 +42,8 @@ namespace Client.View
             RegisterVLazySingleton<FilterViewModel, FilterView>();
 
             RegisterVLazySingleton<ThreshouldViewModel, ThresholdView>();
+            RegisterVLazySingleton<MorphologyViewModel, MorphologyView>();
+            RegisterVLazySingleton<ConnectedComponentsViewModel, ConnectedComponentsView>();
         }
     }
 }

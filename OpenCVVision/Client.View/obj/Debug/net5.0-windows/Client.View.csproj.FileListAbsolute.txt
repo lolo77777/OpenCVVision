@@ -145,3 +145,7 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\runtim
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\PanAndZoom.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Wpf.Controls.PanAndZoom.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Debug\net5.0-windows\Wpf.MatrixExtensions.dll
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op05Morphology\MorphologyView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op05Morphology\MorphologyView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op05Morphology\ConnectedComponentsView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Debug\net5.0-windows\Operation\Op05Morphology\ConnectedComponentsView.baml
