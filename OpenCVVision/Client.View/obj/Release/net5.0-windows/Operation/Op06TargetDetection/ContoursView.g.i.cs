@@ -108,7 +108,7 @@ namespace Client.View.Operation {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Client.View;component/operation/op06targetdetection/contoursview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Client.View;V1.0.0.0;component/operation/op06targetdetection/contoursview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Operation\Op06TargetDetection\ContoursView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

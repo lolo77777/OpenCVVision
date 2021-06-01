@@ -43,80 +43,55 @@ namespace Client.ViewModel.Operation
         {
             this.WhenActivated(d =>
             {
-                _imageDataManager.InputMatGuidSubject
+                var currentMatOb = _imageDataManager.InputMatGuidSubject
                     .WhereNotNull()
                     .Where(g => CanOperat)
-                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .ObserveOn(RxApp.MainThreadScheduler);
+
+                currentMatOb
                     .Do(g => UpdateOutput(Filters))
                     .Subscribe()
                     .DisposeWith(d);
-                _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Where(g => CanOperat)
-                    .ObserveOn(RxApp.MainThreadScheduler)
+
+                currentMatOb
                     .Select(guid => _imageDataManager.GetCurrentMat())
                     .WhereNotNull()
                     .Select(mat => mat.Width)
                     .ToPropertyEx(this, x => x.WidthLimit)
                     .DisposeWith(d);
-                _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Where(g => CanOperat)
-                    .ObserveOn(RxApp.MainThreadScheduler)
+
+                currentMatOb
                     .Select(guid => _imageDataManager.GetCurrentMat())
                     .WhereNotNull()
                     .Select(mat => mat.Height)
                     .ToPropertyEx(this, x => x.HeightLimit)
                     .DisposeWith(d);
-                _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Where(g => CanOperat)
-                    .ObserveOn(RxApp.MainThreadScheduler)
+
+                currentMatOb
                     .Select(guid => _imageDataManager.GetCurrentMat())
                     .WhereNotNull()
                     .Select(mat => mat.Rows * mat.Cols)
                     .ToPropertyEx(this, x => x.AreaLimit)
                     .DisposeWith(d);
-                this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
-                    .Throttle(TimeSpan.FromMilliseconds(200))
-                     .ObserveOn(RxApp.MainThreadScheduler)
-                    .Where(vt => Filters.Any(t => t.Equals("Area")))
-                    .Where(vt => CanOperat)
-
-                    .Do(vt => UpdateOutput(Filters))
-                    .Subscribe();
-                this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
-                    .Throttle(TimeSpan.FromMilliseconds(200))
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Where(vt => Filters.Any(t => t.Equals("Height")))
-                    .Where(vt => CanOperat)
-
-                    .Do(vt => UpdateOutput(Filters))
-                    .Subscribe();
-                this.WhenAnyValue(x => x.WidthMax, x => x.WidthMin)
+                var areaOb = this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
+                     .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Area")));
+                var heightOb = this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
+                     .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Height")));
+                var widthOb = this.WhenAnyValue(x => x.WidthMax, x => x.WidthMin)
+                     .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Width")));
+                var leftOb = this.WhenAnyValue(x => x.LeftMax, x => x.LeftMin)
+                    .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Left")));
+                var topOb = this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
+                    .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Top")));
+                var paraOb = Observable.Merge(new[] { areaOb, heightOb, widthOb, leftOb, topOb });
+                paraOb
+                    .Where(b => CanOperat)
                     .Throttle(TimeSpan.FromMilliseconds(200))
                     .ObserveOn(RxApp.MainThreadScheduler)
-                    .Where(vt => Filters.Any(t => t.Equals("Width")))
-                    .Where(vt => CanOperat)
-
-                    .Do(vt => UpdateOutput(Filters))
-                    .Subscribe();
-                this.WhenAnyValue(x => x.LeftMax, x => x.LeftMin)
-                    .Throttle(TimeSpan.FromMilliseconds(200))
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Where(vt => Filters.Any(t => t.Equals("Left")))
-                    .Where(vt => CanOperat)
-
-                    .Do(vt => UpdateOutput(Filters))
-                    .Subscribe();
-                this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
-                    .Throttle(TimeSpan.FromMilliseconds(200))
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Where(vt => Filters.Any(t => t.Equals("Top")))
-                    .Where(vt => CanOperat)
-
-                    .Do(vt => UpdateOutput(Filters))
-                    .Subscribe();
+                    .SubscribeOn(RxApp.TaskpoolScheduler)
+                    .Do(b => UpdateOutput(Filters))
+                    .Subscribe()
+                    .DisposeWith(d);
             });
         }
 
