@@ -1,0 +1,81 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="Client.View.Operation.ContoursView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Client.View.Operation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
+    xmlns:rxui="http://reactiveui.net"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    x:TypeArguments="operation:ContoursViewModel"
+    mc:Ignorable="d">
+    <materialDesign:Card x:Name="cardMain" Margin="0,8,8,8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="Title"
+                Margin="8"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="轮廓" />
+
+            <StackPanel Grid.Row="2" Margin="8,0">
+                <ComboBox
+                    x:Name="cbxChannels"
+                    Margin="8,8"
+                    materialDesign:ComboBoxAssist.ClassicMode="True"
+                    materialDesign:HintAssist.Hint="通道数"
+                    DisplayMemberPath="."
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                <ComboBox
+                    x:Name="cbxThreshouldType"
+                    Margin="8,0"
+                    materialDesign:ComboBoxAssist.ClassicMode="True"
+                    materialDesign:HintAssist.Hint="二值化类型"
+                    DisplayMemberPath="."
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="Thresh" />
+                    <Slider
+                        x:Name="sliderThresh"
+                        Grid.Column="1"
+                        Maximum="255"
+                        Minimum="0"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="2"
+                        TickPlacement="BottomRight"
+                        ToolTip="KernelSize"
+                        Value="3" />
+                </Grid>
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="Maxval" />
+                    <Slider
+                        x:Name="sliderMaxval"
+                        Grid.Column="1"
+                        Maximum="255"
+                        Minimum="0"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="2"
+                        TickPlacement="BottomRight"
+                        ToolTip="KernelSize"
+                        Value="3" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>

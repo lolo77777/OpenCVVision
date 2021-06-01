@@ -12,7 +12,7 @@
     d:DesignWidth="300"
     x:TypeArguments="op03preprocessing:FilterViewModel"
     mc:Ignorable="d">
-    <materialDesign:Card x:Name="cardMain" Margin="0,8,8,8">
+    <materialDesign:Card x:Name="cardMain" Margin="2,8,8,8">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />

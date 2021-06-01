@@ -36,6 +36,10 @@ namespace Client
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            SplashScreen s = new SplashScreen("Vison.ico");
+
+            s.Show(false);
+            s.Close(TimeSpan.FromMilliseconds(100));
             base.OnStartup(e);
             Init();
             Locator.Current.GetService<MainWindow>().Show();

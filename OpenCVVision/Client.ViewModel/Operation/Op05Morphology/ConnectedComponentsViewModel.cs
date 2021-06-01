@@ -185,6 +185,7 @@ namespace Client.ViewModel.Operation
                     connCom.FilterByBlobs(_sigleSrc, dst, tmpBlobs1);
                     var dstColor = _rt.T(dst.CvtColor(ColorConversionCodes.GRAY2BGR));
                     tmpBlobs1.ToList().ForEach(blob => dstColor.Rectangle(blob.Rect, Scalar.RandomColor()));
+
                     _imageDataManager.OutputMatSubject.OnNext(dstColor.Clone());
                 }
                 else

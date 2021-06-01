@@ -32,11 +32,11 @@ namespace Client.Model.Service
 
         private void SampleData()
         {
-            Mat mat = Cv2.ImRead(@"E:\Pictures\高清壁纸Z\ta(1)(1).bmp");
+            //Mat mat = Cv2.ImRead("ta.bmp");
 
-            AddImage("Sam1", mat);
-            var mat1 = Cv2.ImRead(@"E:\Pictures\高清壁纸Z\kaer.jpg");
-            AddImage("Sam1", mat1);
+            //AddImage("Sam1", mat);
+            //var mat1 = Cv2.ImRead(@"E:\Pictures\高清壁纸Z\kaer.jpg");
+            //AddImage("Sam1", mat1);
         }
 
         public bool AddImage(string imageMarkTxt, Mat mat)

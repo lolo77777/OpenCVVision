@@ -107,3 +107,9 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Release\net5.0-windows\runt
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\bin\Release\net5.0-windows\runtimes\win-x86\native\libSkiaSharp.dll
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op04Threshold\ThresholdView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op04Threshold\ThresholdView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op05Morphology\ConnectedComponentsView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op05Morphology\MorphologyView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op06TargetDetection\ContoursView.g.cs
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op05Morphology\ConnectedComponentsView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op05Morphology\MorphologyView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op06TargetDetection\ContoursView.baml

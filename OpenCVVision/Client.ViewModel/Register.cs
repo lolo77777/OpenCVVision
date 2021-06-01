@@ -41,6 +41,7 @@ namespace Client.ViewModel
             RegistLazySingletonOpVM<ThreshouldViewModel>();
             RegistLazySingletonOpVM<MorphologyViewModel>();
             RegistLazySingletonOpVM<ConnectedComponentsViewModel>();
+            RegistLazySingletonOpVM<ContoursViewModel>();
         }
     }
 }

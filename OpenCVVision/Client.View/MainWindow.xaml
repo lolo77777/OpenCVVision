@@ -16,11 +16,15 @@
     TextElement.FontSize="14"
     TextElement.FontWeight="Medium"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    WindowState="Maximized"
     mc:Ignorable="d">
     <mah:MetroWindow.LeftWindowCommands>
         <mah:WindowCommands>
 
-            <Button x:Name="OpenGitSite" ToolTip="Open up the GitHub site">
+            <Button
+                x:Name="OpenGitSite"
+                Click="OpenGitSite_Click"
+                ToolTip="打开Git托管地址">
                 <materialdesign:PackIcon
                     Width="22"
                     Height="22"
@@ -39,6 +43,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <rxui:ViewModelViewHost
@@ -52,8 +57,11 @@
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch" />
         </Grid>
-
-        <Grid Grid.Column="2">
+        <GridSplitter
+            Grid.Column="2"
+            Margin="0,8"
+            HorizontalAlignment="Stretch" />
+        <Grid Grid.Column="3">
             <rxui:RoutedViewHost
                 x:Name="OperaPanel"
                 HorizontalContentAlignment="Stretch"

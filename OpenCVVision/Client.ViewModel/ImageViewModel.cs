@@ -91,6 +91,10 @@ namespace Client.ViewModel
             return new HistoryItem { HistoryItemId = imageData.ImageId, HistoryItemTxtMark = imageData.TxtMarker, HistoryItemImg = wtBitmap };
         }
 
+        private void Init()
+        {
+        }
+
         private WriteableBitmap MatResizeWt(Mat mat)
         {
             var scaleY = 90d / mat.Height;

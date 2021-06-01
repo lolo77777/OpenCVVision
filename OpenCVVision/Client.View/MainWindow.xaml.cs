@@ -19,6 +19,7 @@ using ReactiveUI;
 using Splat;
 
 using Client.ViewModel;
+using System.Diagnostics;
 
 namespace Client
 {
@@ -58,6 +59,11 @@ namespace Client
                 this.OneWayBind(ViewModel, vm => vm.ImageVMSam, v => v.ImgViewer.ViewModel).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.Router, v => v.OperaPanel.Router).DisposeWith(d);
             });
+        }
+
+        private void OpenGitSite_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", "https://gitee.com/lolo77/OpenCVVision");
         }
     }
 }
