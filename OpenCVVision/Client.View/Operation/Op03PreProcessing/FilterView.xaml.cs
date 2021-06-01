@@ -42,15 +42,7 @@ namespace Client.View.Operation.Op03PreProcessing
                 this.OneWayBind(ViewModel, vm => vm.BolSizeIsEnable, v => v.sliderKernelSizeY.IsEnabled).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.SigmaX, v => v.txtBoxSigmaX.Text).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.SigmaY, v => v.txtBoxSigmaY.Text).DisposeWith(d);
-                //this.WhenAnyValue(x => x.txtBoxSigmaX.Text)
-                //    .BindTo(ViewModel, x => x.SigmaX)
-                //    .DisposeWith(d);
-                //this.WhenAnyValue(x => x.txtBoxSigmaY.Text)
-                //    .BindTo(ViewModel, x => x.SigmaY)
-                //    .DisposeWith(d);
-                //this.WhenAnyValue(x => x.txtBoxSigmaX.Text)
-                //    .BindTo(this, x => x.txtBoxSigmaY.Text)
-                //    .DisposeWith(d);
+
                 this.WhenAnyValue(x => x.sliderKernelSizeX.Value)
                     .BindTo(ViewModel, x => x.SizeX)
                     .DisposeWith(d);

@@ -57,32 +57,32 @@ namespace Client.ViewModel.Operation
                     .Select(guid => _imageDataManager.GetCurrentMat())
                     .WhereNotNull()
                     .Select(mat => mat.Width)
-                    .ToPropertyEx(this, x => x.WidthLimit)
+                    .ToPropertyEx(this, x => x.WidthLimit, deferSubscription: true)
                     .DisposeWith(d);
 
                 currentMatOb
                     .Select(guid => _imageDataManager.GetCurrentMat())
                     .WhereNotNull()
                     .Select(mat => mat.Height)
-                    .ToPropertyEx(this, x => x.HeightLimit)
+                    .ToPropertyEx(this, x => x.HeightLimit, deferSubscription: true)
                     .DisposeWith(d);
 
                 currentMatOb
                     .Select(guid => _imageDataManager.GetCurrentMat())
                     .WhereNotNull()
                     .Select(mat => mat.Rows * mat.Cols)
-                    .ToPropertyEx(this, x => x.AreaLimit)
+                    .ToPropertyEx(this, x => x.AreaLimit, deferSubscription: true)
                     .DisposeWith(d);
                 var areaOb = this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
-                     .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Area")));
+                     .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Area")));
                 var heightOb = this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
-                     .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Height")));
+                     .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Height")));
                 var widthOb = this.WhenAnyValue(x => x.WidthMax, x => x.WidthMin)
-                     .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Width")));
+                     .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Width")));
                 var leftOb = this.WhenAnyValue(x => x.LeftMax, x => x.LeftMin)
-                    .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Left")));
+                    .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Left")));
                 var topOb = this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
-                    .Where(vt => Filters != null && Filters.Count() > 0 && Filters.Any(t => t.Equals("Top")));
+                    .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Top")));
                 var paraOb = Observable.Merge(new[] { areaOb, heightOb, widthOb, leftOb, topOb });
                 paraOb
                     .Where(b => CanOperat)
@@ -92,6 +92,7 @@ namespace Client.ViewModel.Operation
                     .Do(b => UpdateOutput(Filters))
                     .Subscribe()
                     .DisposeWith(d);
+                _imageDataManager.RaiseCurrent();
             });
         }
 

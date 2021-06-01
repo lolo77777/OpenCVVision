@@ -93,6 +93,11 @@ namespace Client.Model.Service
             }
         }
 
+        public void RaiseCurrent()
+        {
+            InputMatGuidSubject.OnNext(CurrentId);
+        }
+
         public bool RemoveCurrentImage()
         {
             if (CurrentId.HasValue)

@@ -45,6 +45,7 @@ namespace Client.ViewModel.Operation
                     .Do(guid => UpdataOutput(SizeX, SizeY, (MorphShapes)Enum.Parse(typeof(MorphShapes), MorphShapeSelectValue), (MorphTypes)Enum.Parse(typeof(MorphTypes), MorphTypeSelectValue)))
                     .Subscribe()
                     .DisposeWith(d);
+                _imageDataManager.RaiseCurrent();
             });
         }
 

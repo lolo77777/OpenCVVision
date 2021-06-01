@@ -43,7 +43,6 @@ namespace Client.ViewModel.Operation
                 Series = new ObservableCollection<ISeries> { new ColumnSeries<ObservablePoint> { Values = _observablePoints } };
 
                 _imageDataManager.InputMatGuidSubject
-
                     .Throttle(TimeSpan.FromMilliseconds(100))
                     .WhereNotNull()
                     .Where(guid => CanOperat && ChanelSelectIndex >= 0)
@@ -52,7 +51,6 @@ namespace Client.ViewModel.Operation
                     .Subscribe()
                     .DisposeWith(d);
                 _imageDataManager.InputMatGuidSubject
-
                     .WhereNotNull()
                     .Where(guid => CanOperat && ChanelSelectIndex >= 0 && ThresholdSelectValue != null)
                     .ObserveOn(RxApp.MainThreadScheduler)
@@ -60,7 +58,6 @@ namespace Client.ViewModel.Operation
                     .Subscribe()
                     .DisposeWith(d);
                 this.WhenAnyValue(x => x.ThresholdSelectValue, x => x.Thresh, x => x.Maxval, x => x.ChanelSelectIndex)
-
                     .Throttle(TimeSpan.FromMilliseconds(100))
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Where(str => CanOperat && ThresholdSelectValue != null && ChanelSelectIndex >= 0)
@@ -68,14 +65,12 @@ namespace Client.ViewModel.Operation
                     .Subscribe()
                     .DisposeWith(d);
                 this.WhenAnyValue(x => x.ChanelSelectIndex)
-
                     .Where(i => i >= 0 && CanOperat)
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Do(i => UpdateBar(ChanelSelectIndex))
                     .Subscribe()
                     .DisposeWith(d);
                 _imageDataManager.InputMatGuidSubject
-
                     .WhereNotNull()
                     .Select(src => _imageDataManager.GetCurrentMat())
                     .Select(src => Enumerable.Range(0, src.Channels()))
@@ -83,8 +78,8 @@ namespace Client.ViewModel.Operation
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Do(vs => ChanelSelectIndex = 0)
                     .ToPropertyEx(this, x => x.Channels)
-
                     .DisposeWith(d);
+                _imageDataManager.RaiseCurrent();
             });
         }
 
