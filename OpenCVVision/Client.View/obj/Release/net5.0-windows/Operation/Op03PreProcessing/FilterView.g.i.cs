@@ -148,7 +148,7 @@ namespace Client.View.Operation.Op03PreProcessing {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Client.View;V1.0.0.0;component/operation/op03preprocessing/filterview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Client.View;component/operation/op03preprocessing/filterview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Operation\Op03PreProcessing\FilterView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
