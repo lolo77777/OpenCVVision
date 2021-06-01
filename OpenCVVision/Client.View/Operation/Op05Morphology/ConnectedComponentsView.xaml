@@ -30,14 +30,116 @@
 
                 <ListBox x:Name="FilterList" Style="{StaticResource MaterialDesignFilterChipOutlineListBox}">
                     <ListBoxItem Content="Area" IsSelected="True" />
-                    <ListBoxItem Content="Centroid" IsSelected="True" />
-                    <ListBoxItem Content="Height" IsSelected="True" />
+                    <!--<ListBoxItem Content="Centroid" IsSelected="True" />-->
+                    <ListBoxItem Content="Height" />
                     <!--<ListBoxItem Content="Label" IsSelected="True" />-->
                     <ListBoxItem Content="Left" />
                     <!--<ListBoxItem Content="Rect" />-->
                     <ListBoxItem Content="Top" />
                     <ListBoxItem Content="Width" />
                 </ListBox>
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="AreaMin(%)" />
+                    <Slider
+                        x:Name="sliderAreaMin"
+                        Grid.Column="1"
+                        Maximum="100"
+                        Minimum="0"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        ToolTip="AreaMin"
+                        Value="3" />
+                </Grid>
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="AreaMax(%)" />
+                    <Slider
+                        x:Name="sliderAreaMax"
+                        Grid.Column="1"
+                        Maximum="100"
+                        Minimum="1"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        ToolTip="AreaMax"
+                        Value="3" />
+                </Grid>
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="HeightMin(%)" />
+                    <Slider
+                        x:Name="sliderHeightMin"
+                        Grid.Column="1"
+                        Maximum="100"
+                        Minimum="1"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        ToolTip="HeightMin"
+                        Value="3" />
+                </Grid>
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="HeightMax(%)" />
+                    <Slider
+                        x:Name="sliderHeightMax"
+                        Grid.Column="1"
+                        Maximum="100"
+                        Minimum="1"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        ToolTip="HeightMax"
+                        Value="3" />
+                </Grid>
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="WidthMin(%)" />
+                    <Slider
+                        x:Name="sliderWidthMin"
+                        Grid.Column="1"
+                        Maximum="100"
+                        Minimum="1"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        ToolTip="WidthMin"
+                        Value="3" />
+                </Grid>
+                <Grid Margin="8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="WidthMax(%)" />
+                    <Slider
+                        x:Name="sliderWidthMax"
+                        Grid.Column="1"
+                        Maximum="100"
+                        Minimum="1"
+                        Style="{StaticResource MaterialDesignDiscreteSlider}"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        ToolTip="WidthMax"
+                        Value="3" />
+                </Grid>
             </StackPanel>
         </Grid>
     </materialDesign:Card>

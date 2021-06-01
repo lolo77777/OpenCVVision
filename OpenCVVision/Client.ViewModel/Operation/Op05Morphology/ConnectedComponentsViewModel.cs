@@ -14,26 +14,30 @@ using LiveChartsCore.Kernel;
 using OpenCvSharp;
 
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace Client.ViewModel.Operation
 {
     [OperationInfo("连通域")]
     public class ConnectedComponentsViewModel : OperaViewModelBase
     {
-        public int AreaMax { get; set; }
-        public int AreaMin { get; set; }
-        public ReadOnlyCollection<string> Filters { get; private set; }
-        public int HeightMax { get; set; }
-        public int HeightMin { get; set; }
-        public int LeftMax { get; set; }
-        public int LeftMin { get; set; }
-        public double Point2dDistance { get; set; }
-        public double Point2dX { get; set; }
-        public double Point2dY { get; set; }
-        public int TopMax { get; set; }
-        public int TopMin { get; set; }
-        public int WidthMax { get; set; }
-        public int WidthMin { get; set; }
+        [ObservableAsProperty] public int AreaLimit { get; private set; }
+        [Reactive] public int AreaMax { get; set; }
+        [Reactive] public int AreaMin { get; set; }
+        public IEnumerable<string> Filters { get; set; }
+        [ObservableAsProperty] public int HeightLimit { get; set; }
+        [Reactive] public int HeightMax { get; set; }
+        [Reactive] public int HeightMin { get; set; }
+        [Reactive] public int LeftMax { get; set; }
+        [Reactive] public int LeftMin { get; set; }
+        [Reactive] public double Point2dDistance { get; set; }
+        [Reactive] public double Point2dX { get; set; }
+        [Reactive] public double Point2dY { get; set; }
+        [Reactive] public int TopMax { get; set; }
+        [Reactive] public int TopMin { get; set; }
+        [ObservableAsProperty] public int WidthLimit { get; set; }
+        [Reactive] public int WidthMax { get; set; }
+        [Reactive] public int WidthMin { get; set; }
 
         public ConnectedComponentsViewModel()
         {
@@ -42,29 +46,92 @@ namespace Client.ViewModel.Operation
                 _imageDataManager.InputMatGuidSubject
                     .WhereNotNull()
                     .Where(g => CanOperat)
-                    .Do(g => UpdateOutput())
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Do(g => UpdateOutput(Filters))
                     .Subscribe()
                     .DisposeWith(d);
-                this.WhenAnyValue(x => x.Filters)
+                _imageDataManager.InputMatGuidSubject
                     .WhereNotNull()
-                    .Where(vs => vs.Count() > 0)
-                    .Do(vs => UpdateOutput(Filters))
+                    .Where(g => CanOperat)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Select(guid => _imageDataManager.GetCurrentMat())
+                    .WhereNotNull()
+                    .Select(mat => mat.Width)
+                    .ToPropertyEx(this, x => x.WidthLimit)
+                    .DisposeWith(d);
+                _imageDataManager.InputMatGuidSubject
+                    .WhereNotNull()
+                    .Where(g => CanOperat)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Select(guid => _imageDataManager.GetCurrentMat())
+                    .WhereNotNull()
+                    .Select(mat => mat.Height)
+                    .ToPropertyEx(this, x => x.HeightLimit)
+                    .DisposeWith(d);
+                _imageDataManager.InputMatGuidSubject
+                    .WhereNotNull()
+                    .Where(g => CanOperat)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Select(guid => _imageDataManager.GetCurrentMat())
+                    .WhereNotNull()
+                    .Select(mat => mat.Rows * mat.Cols)
+                    .ToPropertyEx(this, x => x.AreaLimit)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
+                    .Throttle(TimeSpan.FromMilliseconds(200))
+                     .ObserveOn(RxApp.MainThreadScheduler)
+                    .Where(vt => Filters.Any(t => t.Equals("Area")))
+                    .Where(vt => CanOperat)
+
+                    .Do(vt => UpdateOutput(Filters))
+                    .Subscribe();
+                this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
+                    .Throttle(TimeSpan.FromMilliseconds(200))
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Where(vt => Filters.Any(t => t.Equals("Height")))
+                    .Where(vt => CanOperat)
+
+                    .Do(vt => UpdateOutput(Filters))
+                    .Subscribe();
+                this.WhenAnyValue(x => x.WidthMax, x => x.WidthMin)
+                    .Throttle(TimeSpan.FromMilliseconds(200))
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Where(vt => Filters.Any(t => t.Equals("Width")))
+                    .Where(vt => CanOperat)
+
+                    .Do(vt => UpdateOutput(Filters))
+                    .Subscribe();
+                this.WhenAnyValue(x => x.LeftMax, x => x.LeftMin)
+                    .Throttle(TimeSpan.FromMilliseconds(200))
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Where(vt => Filters.Any(t => t.Equals("Left")))
+                    .Where(vt => CanOperat)
+
+                    .Do(vt => UpdateOutput(Filters))
+                    .Subscribe();
+                this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
+                    .Throttle(TimeSpan.FromMilliseconds(200))
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Where(vt => Filters.Any(t => t.Equals("Top")))
+                    .Where(vt => CanOperat)
+
+                    .Do(vt => UpdateOutput(Filters))
                     .Subscribe();
             });
         }
 
-        private IEnumerable<ConnectedComponents.Blob> FilterBlob(IEnumerable<ConnectedComponents.Blob> blobs, string filterStr)
+        private IEnumerable<ConnectedComponents.Blob> FilterBlob(IEnumerable<ConnectedComponents.Blob> blobs, string filterStr, Mat mat)
         {
             IEnumerable<ConnectedComponents.Blob> reBlobs = new List<ConnectedComponents.Blob>();
             switch (filterStr)
             {
                 case "Area":
-                    reBlobs = blobs.Where(b => b.Area >= AreaMin && b.Area <= AreaMax);
+                    reBlobs = blobs.Where(b => b.Area >= AreaMin && b.Area <= AreaMax).ToList();
                     break;
 
-                case "Centroid":
-                    reBlobs = blobs.Where(b => Point2d.Distance(b.Centroid, new Point2d(Point2dX, Point2dY)) <= Point2dDistance);
-                    break;
+                //case "Centroid":
+                //    reBlobs = blobs.Where(b => Point2d.Distance(b.Centroid, new Point2d(Point2dX, Point2dY)) <= Point2dDistance);
+                //    break;
 
                 case "Height":
                     reBlobs = blobs.Where(b => b.Height >= HeightMin && b.Height <= HeightMax);
@@ -101,8 +168,29 @@ namespace Client.ViewModel.Operation
             SendTime(() =>
             {
                 var connCom = _sigleSrc.ConnectedComponentsEx();
+
+                IEnumerable<ConnectedComponents.Blob> tmpBlobs1 = connCom.Blobs.ToList();
+                IEnumerable<ConnectedComponents.Blob> tmpBlobs2;
                 if (filters != null)
                 {
+                    foreach (string filter in filters)
+                    {
+                        tmpBlobs2 = new List<ConnectedComponents.Blob>(FilterBlob(tmpBlobs1, filter, _sigleSrc));
+                        tmpBlobs1 = new List<ConnectedComponents.Blob>(tmpBlobs2.ToList());
+                    }
+                }
+                var dst = _rt.NewMat();
+                if (tmpBlobs1.Any())
+                {
+                    connCom.FilterByBlobs(_sigleSrc, dst, tmpBlobs1);
+                    var dstColor = _rt.T(dst.CvtColor(ColorConversionCodes.GRAY2BGR));
+                    tmpBlobs1.ToList().ForEach(blob => dstColor.Rectangle(blob.Rect, Scalar.RandomColor()));
+                    _imageDataManager.OutputMatSubject.OnNext(dstColor.Clone());
+                }
+                else
+                {
+                    connCom.RenderBlobs(dst);
+                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
                 }
             });
         }
