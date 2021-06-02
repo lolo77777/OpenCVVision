@@ -38,7 +38,10 @@ namespace Client.View.Operation
                 this.OneWayBind(ViewModel, vm => vm.AreaLimit, v => v.sliderAreaMin.Maximum).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.HeightLimit, v => v.sliderHeightMin.Maximum).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.WidthLimit, v => v.sliderWidthMin.Maximum).DisposeWith(d);
-
+                this.OneWayBind(ViewModel, vm => vm.HeightLimit, v => v.sliderTopMax.Maximum).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.HeightLimit, v => v.sliderTopMin.Maximum).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.WidthLimit, v => v.sliderLeftMax.Maximum).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.WidthLimit, v => v.sliderLeftMin.Maximum).DisposeWith(d);
                 this.WhenAnyValue(x => x.FilterList.SelectedItems)
                     .Select(t => (IEnumerable<object>)t)
                     .Where(listtmp => listtmp.Count() > 0)
@@ -62,6 +65,18 @@ namespace Client.View.Operation
                     .DisposeWith(d);
                 this.WhenAnyValue(x => x.sliderWidthMax.Value)
                     .BindTo(ViewModel, x => x.WidthMax)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderLeftMin.Value)
+                    .BindTo(ViewModel, x => x.LeftMin)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderLeftMax.Value)
+                    .BindTo(ViewModel, x => x.LeftMax)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderTopMin.Value)
+                    .BindTo(ViewModel, x => x.TopMin)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderTopMax.Value)
+                    .BindTo(ViewModel, x => x.TopMax)
                     .DisposeWith(d);
             });
         }
