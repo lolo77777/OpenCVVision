@@ -33,7 +33,24 @@
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>
     <mah:MetroWindow.RightWindowCommands>
-        <mah:WindowCommands />
+        <mah:WindowCommands>
+            <ToggleButton
+                x:Name="TBtnTheme"
+                Width="30"
+                Height="30"
+                Margin="4,0"
+                Click="ToggleButton_Click"
+                Content="{materialdesign:PackIcon Kind=WhiteBalanceSunny}"
+                Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                ToolTip="切换主题">
+                <materialdesign:ToggleButtonAssist.OnContent>
+                    <materialdesign:PackIcon
+                        Width="22"
+                        Height="22"
+                        Kind="WeatherNight" />
+                </materialdesign:ToggleButtonAssist.OnContent>
+            </ToggleButton>
+        </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
     <Grid>
         <Grid.RowDefinitions>

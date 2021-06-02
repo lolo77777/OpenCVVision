@@ -20,6 +20,7 @@ using Splat;
 
 using Client.ViewModel;
 using System.Diagnostics;
+using MaterialDesignThemes.Wpf;
 
 namespace Client
 {
@@ -28,7 +29,9 @@ namespace Client
     /// </summary>
     public partial class MainWindow : IViewFor<MainViewModel>
     {
+        private PaletteHelper _paletteHelper = new();
         private IReadonlyDependencyResolver _resolver = Locator.Current;
+        private ITheme _theme;
 
         public static readonly DependencyProperty ViewModelProperty =
            DependencyProperty.Register(
@@ -63,7 +66,24 @@ namespace Client
 
         private void OpenGitSite_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", "https://gitee.com/lolo77/OpenCVVision");
+            Process.Start("explorer.exe", "https://gitee.com/lolo77/OpenCVVision");
+        }
+
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            _theme = _theme ?? _paletteHelper.GetTheme();
+            if (TBtnTheme.IsChecked.HasValue && TBtnTheme.IsChecked.Value)
+            {
+                _theme.SetBaseTheme(Theme.Dark);
+
+                _paletteHelper.SetTheme(_theme);
+            }
+            else
+            {
+                _theme.SetBaseTheme(Theme.Light);
+
+                _paletteHelper.SetTheme(_theme);
+            }
         }
     }
 }
