@@ -12,7 +12,10 @@
     d:DesignWidth="260"
     x:TypeArguments="op02colorspace:ColorSpaceViewModel"
     mc:Ignorable="d">
-    <materialDesign:Card x:Name="cardMain" Margin="2,8,8,8">
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -20,11 +23,11 @@
             </Grid.RowDefinitions>
             <TextBlock
                 x:Name="Title"
-                Margin="8"
+                Margin="{StaticResource marginOdd}"
                 FontSize="22"
                 FontWeight="UltraBlack"
                 Text="ColorSpace" />
-            <Grid Grid.Row="1" Margin="8,0">
+            <Grid Grid.Row="1" Margin="{StaticResource marginEven}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="AUto" />
                 </Grid.RowDefinitions>
@@ -35,25 +38,19 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <TextBlock
-                            Margin="8,8"
+                            Margin="{StaticResource marginOdd}"
                             FontSize="18"
                             Text="图像类型" />
-                        <StackPanel Grid.Row="1" Margin="8,0">
+                        <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
 
                             <ComboBox
                                 x:Name="ColorModesCbx"
-                                Margin="8,0"
-                                materialDesign:ComboBoxAssist.ClassicMode="True"
-                                materialDesign:HintAssist.Hint="ColorMode"
-                                DisplayMemberPath="."
-                                Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                                Margin="{StaticResource marginEven}"
+                                materialDesign:HintAssist.Hint="ColorMode" />
                             <ComboBox
                                 x:Name="ChanelCbx"
-                                Margin="8,8"
-                                materialDesign:ComboBoxAssist.ClassicMode="True"
-                                materialDesign:HintAssist.Hint="Channel"
-                                DisplayMemberPath="."
-                                Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                                Margin="{StaticResource marginOdd}"
+                                materialDesign:HintAssist.Hint="Channel" />
                         </StackPanel>
                     </Grid>
                 </materialDesign:Card>

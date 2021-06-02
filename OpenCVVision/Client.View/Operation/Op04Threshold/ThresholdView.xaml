@@ -13,7 +13,10 @@
     d:DesignWidth="300"
     x:TypeArguments="op04threshold:ThreshouldViewModel"
     mc:Ignorable="d">
-    <materialDesign:Card x:Name="cardMain" Margin="2,8,8,8">
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -22,11 +25,11 @@
             </Grid.RowDefinitions>
             <TextBlock
                 x:Name="Title"
-                Margin="8"
+                Margin="{StaticResource marginOdd}"
                 FontSize="22"
                 FontWeight="UltraBlack"
                 Text="二值化" />
-            <Grid Grid.Row="1" Margin="8,0">
+            <Grid Grid.Row="1" Margin="{StaticResource marginEven}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="AUto" />
                     <RowDefinition Height="auto" />
@@ -37,22 +40,16 @@
                 </materialDesign:Card>
                 <materialDesign:Card Grid.Row="1" />
             </Grid>
-            <StackPanel Grid.Row="2" Margin="8,0">
+            <StackPanel Grid.Row="2" Margin="{StaticResource marginEven}">
                 <ComboBox
                     x:Name="cbxChannels"
-                    Margin="8,8"
-                    materialDesign:ComboBoxAssist.ClassicMode="True"
-                    materialDesign:HintAssist.Hint="通道数"
-                    DisplayMemberPath="."
-                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                    Margin="{StaticResource marginOdd}"
+                    materialDesign:HintAssist.Hint="通道数" />
                 <ComboBox
                     x:Name="cbxThreshouldType"
-                    Margin="8,0"
-                    materialDesign:ComboBoxAssist.ClassicMode="True"
-                    materialDesign:HintAssist.Hint="二值化类型"
-                    DisplayMemberPath="."
-                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
-                <Grid Margin="8,8">
+                    Margin="{StaticResource marginEven}"
+                    materialDesign:HintAssist.Hint="二值化类型" />
+                <Grid Margin="{StaticResource marginOdd}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -63,13 +60,12 @@
                         Grid.Column="1"
                         Maximum="255"
                         Minimum="0"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="2"
                         TickPlacement="BottomRight"
                         ToolTip="KernelSize"
                         Value="3" />
                 </Grid>
-                <Grid Margin="8,8">
+                <Grid Margin="{StaticResource marginOdd}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
@@ -80,7 +76,6 @@
                         Grid.Column="1"
                         Maximum="255"
                         Minimum="0"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="2"
                         TickPlacement="BottomRight"
                         ToolTip="KernelSize"

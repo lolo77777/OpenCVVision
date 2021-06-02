@@ -12,7 +12,10 @@
     d:DesignWidth="300"
     x:TypeArguments="op03preprocessing:FilterViewModel"
     mc:Ignorable="d">
-    <materialDesign:Card x:Name="cardMain" Margin="2,8,8,8">
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -38,16 +41,13 @@
                             Margin="8,8"
                             FontSize="18"
                             Text="滤波类型" />-->
-                        <StackPanel Grid.Row="1" Margin="8,0">
+                        <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
 
                             <ComboBox
                                 x:Name="cbxFilterType"
-                                Margin="8,0"
-                                materialDesign:ComboBoxAssist.ClassicMode="True"
-                                materialDesign:HintAssist.Hint="滤波类型"
-                                DisplayMemberPath="."
-                                Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
-                            <Grid Margin="8,8">
+                                Margin="{StaticResource marginEven}"
+                                materialDesign:HintAssist.Hint="滤波类型" />
+                            <Grid Margin="{StaticResource marginOdd}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -58,13 +58,12 @@
                                     Grid.Column="1"
                                     Maximum="11"
                                     Minimum="3"
-                                    Style="{StaticResource MaterialDesignDiscreteSlider}"
                                     TickFrequency="2"
                                     TickPlacement="BottomRight"
                                     ToolTip="KernelSize"
                                     Value="3" />
                             </Grid>
-                            <Grid Margin="8,0">
+                            <Grid Margin="{StaticResource marginEven}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
                                     <ColumnDefinition Width="*" />
@@ -75,7 +74,6 @@
                                     Grid.Column="1"
                                     Maximum="11"
                                     Minimum="3"
-                                    Style="{StaticResource MaterialDesignDiscreteSlider}"
                                     TickFrequency="2"
                                     TickPlacement="BottomRight"
                                     ToolTip="KernelSize"
@@ -84,19 +82,15 @@
 
                             <TextBox
                                 x:Name="txtBoxSigmaX"
-                                Margin="8,0"
-                                materialDesign:HintAssist.Hint="SigmaX"
-                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                Margin="{StaticResource marginEven}"
+                                materialDesign:HintAssist.Hint="SigmaX" />
                             <TextBox
                                 x:Name="txtBoxSigmaY"
-                                Margin="8,8"
-                                materialDesign:HintAssist.Hint="SigmaY"
-                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                Margin="{StaticResource marginOdd}"
+                                materialDesign:HintAssist.Hint="SigmaY" />
                             <StackPanel x:Name="BilateralFilterPanel" Orientation="Vertical">
 
-                                <Grid Margin="8,8">
+                                <Grid Margin="{StaticResource marginOdd}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="*" />
@@ -107,13 +101,12 @@
                                         Grid.Column="1"
                                         Maximum="100"
                                         Minimum="0"
-                                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                                         TickFrequency="1"
                                         TickPlacement="BottomRight"
                                         ToolTip="KernelDiam"
                                         Value="3" />
                                 </Grid>
-                                <Grid Margin="8,8">
+                                <Grid Margin="{StaticResource marginOdd}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="*" />
@@ -124,13 +117,12 @@
                                         Grid.Column="1"
                                         Maximum="100"
                                         Minimum="0"
-                                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                                         TickFrequency="1"
                                         TickPlacement="BottomRight"
                                         ToolTip="SigmaColor"
                                         Value="3" />
                                 </Grid>
-                                <Grid Margin="8,8">
+                                <Grid Margin="{StaticResource marginOdd}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="*" />
@@ -141,7 +133,6 @@
                                         Grid.Column="1"
                                         Maximum="100"
                                         Minimum="0"
-                                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                                         TickFrequency="1"
                                         TickPlacement="BottomRight"
                                         ToolTip="SigmaSpace"

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Thickness x:Key="marginOp">
+        2,8,8,8
+    </Thickness>
+    <Thickness x:Key="marginOdd">
+        8
+    </Thickness>
+    <Thickness x:Key="marginEven">
+        8,0
+    </Thickness>
+    <Style BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}" TargetType="ComboBox">
+        <Setter Property="DisplayMemberPath" Value="." />
+        <Setter Property="materialDesign:ComboBoxAssist.ClassicMode" Value="True" />
+    </Style>
+    <Style BasedOn="{StaticResource MaterialDesignDiscreteSlider}" TargetType="Slider" />
+    <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="TextBox" />
+</ResourceDictionary>

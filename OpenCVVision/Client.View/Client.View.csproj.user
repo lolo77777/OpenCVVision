@@ -36,6 +36,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Dictionary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ImageView.xaml">
       <SubType>Designer</SubType>
     </Page>

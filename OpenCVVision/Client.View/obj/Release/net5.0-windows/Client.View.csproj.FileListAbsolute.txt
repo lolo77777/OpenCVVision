@@ -113,3 +113,4 @@ E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Oper
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op05Morphology\ConnectedComponentsView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op05Morphology\MorphologyView.baml
 E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Operation\Op06TargetDetection\ContoursView.baml
+E:\GitWork\OpenCVVision\OpenCVVision\Client.View\obj\Release\net5.0-windows\Dictionary.baml

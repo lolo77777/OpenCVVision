@@ -73,6 +73,7 @@ namespace Client.ViewModel.Operation
                     .Select(mat => mat.Rows * mat.Cols)
                     .ToPropertyEx(this, x => x.AreaLimit, deferSubscription: true)
                     .DisposeWith(d);
+
                 var areaOb = this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
                      .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Area")));
                 var heightOb = this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
@@ -83,6 +84,7 @@ namespace Client.ViewModel.Operation
                     .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Left")));
                 var topOb = this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
                     .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Top")));
+
                 var paraOb = Observable.Merge(new[] { areaOb, heightOb, widthOb, leftOb, topOb });
                 paraOb
                     .Where(b => CanOperat)
@@ -159,10 +161,8 @@ namespace Client.ViewModel.Operation
                 if (tmpBlobs1.Any())
                 {
                     connCom.FilterByBlobs(_sigleSrc, dst, tmpBlobs1);
-                    var dstColor = _rt.T(dst.CvtColor(ColorConversionCodes.GRAY2BGR));
-                    tmpBlobs1.ToList().ForEach(blob => dstColor.Rectangle(blob.Rect, Scalar.RandomColor()));
 
-                    _imageDataManager.OutputMatSubject.OnNext(dstColor.Clone());
+                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
                 }
                 else
                 {

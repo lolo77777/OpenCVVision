@@ -12,7 +12,10 @@
     d:DesignWidth="300"
     x:TypeArguments="operation:ConnectedComponentsViewModel"
     mc:Ignorable="d">
-    <materialDesign:Card x:Name="cardMain" Margin="2,8,8,8">
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -49,7 +52,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="0"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="2"
                         TickPlacement="BottomRight"
                         ToolTip="AreaMin"
@@ -66,7 +68,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="1"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="2"
                         TickPlacement="BottomRight"
                         ToolTip="AreaMax"
@@ -83,7 +84,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="1"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="1"
                         TickPlacement="BottomRight"
                         ToolTip="HeightMin"
@@ -100,7 +100,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="1"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="1"
                         TickPlacement="BottomRight"
                         ToolTip="HeightMax"
@@ -117,7 +116,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="1"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="1"
                         TickPlacement="BottomRight"
                         ToolTip="WidthMin"
@@ -134,7 +132,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="1"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="1"
                         TickPlacement="BottomRight"
                         ToolTip="WidthMax"
@@ -151,7 +148,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="1"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="1"
                         TickPlacement="BottomRight"
                         ToolTip="LeftMin"
@@ -168,7 +164,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="1"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="1"
                         TickPlacement="BottomRight"
                         ToolTip="LeftMax"
@@ -185,7 +180,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="1"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="1"
                         TickPlacement="BottomRight"
                         ToolTip="LeftMin"
@@ -202,7 +196,6 @@
                         Grid.Column="1"
                         Maximum="100"
                         Minimum="1"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
                         TickFrequency="1"
                         TickPlacement="BottomRight"
                         ToolTip="TopMax"

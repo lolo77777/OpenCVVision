@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +28,19 @@ namespace Client.View.Operation
         public ContoursView()
         {
             InitializeComponent();
+            this.WhenActivated(d =>
+            {
+                this.OneWayBind(ViewModel, vm => vm.RetrievalModesStr, v => v.cbxRetrievalModes.ItemsSource).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.ContourApproximationModesStr, v => v.cbxContourApproximationModes.ItemsSource).DisposeWith(d);
+                this.WhenAnyValue(x => x.cbxRetrievalModes.SelectedValue)
+                    .WhereNotNull()
+                    .BindTo(ViewModel, x => x.RetrievalSelectValue)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.cbxContourApproximationModes.SelectedValue)
+                    .WhereNotNull()
+                    .BindTo(ViewModel, x => x.ContourApproximationSelectValue)
+                    .DisposeWith(d);
+            });
         }
     }
 }

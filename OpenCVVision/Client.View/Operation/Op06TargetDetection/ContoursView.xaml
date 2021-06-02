@@ -12,69 +12,33 @@
     d:DesignWidth="300"
     x:TypeArguments="operation:ContoursViewModel"
     mc:Ignorable="d">
-    <materialDesign:Card x:Name="cardMain" Margin="0,8,8,8">
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+
             <TextBlock
                 x:Name="Title"
-                Margin="8"
+                Margin="{StaticResource marginOdd}"
                 FontSize="22"
                 FontWeight="UltraBlack"
                 Text="轮廓" />
 
             <StackPanel Grid.Row="2" Margin="8,0">
                 <ComboBox
-                    x:Name="cbxChannels"
-                    Margin="8,8"
-                    materialDesign:ComboBoxAssist.ClassicMode="True"
-                    materialDesign:HintAssist.Hint="通道数"
-                    DisplayMemberPath="."
-                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                    x:Name="cbxRetrievalModes"
+                    Margin="{StaticResource marginOdd}"
+                    materialDesign:HintAssist.Hint="RetrievalModes" />
                 <ComboBox
-                    x:Name="cbxThreshouldType"
-                    Margin="8,0"
-                    materialDesign:ComboBoxAssist.ClassicMode="True"
-                    materialDesign:HintAssist.Hint="二值化类型"
-                    DisplayMemberPath="."
-                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
-                <Grid Margin="8,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Margin="0,0,8,0" Content="Thresh" />
-                    <Slider
-                        x:Name="sliderThresh"
-                        Grid.Column="1"
-                        Maximum="255"
-                        Minimum="0"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
-                        TickFrequency="2"
-                        TickPlacement="BottomRight"
-                        ToolTip="KernelSize"
-                        Value="3" />
-                </Grid>
-                <Grid Margin="8,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Margin="0,0,8,0" Content="Maxval" />
-                    <Slider
-                        x:Name="sliderMaxval"
-                        Grid.Column="1"
-                        Maximum="255"
-                        Minimum="0"
-                        Style="{StaticResource MaterialDesignDiscreteSlider}"
-                        TickFrequency="2"
-                        TickPlacement="BottomRight"
-                        ToolTip="KernelSize"
-                        Value="3" />
-                </Grid>
+                    x:Name="cbxContourApproximationModes"
+                    Margin="{StaticResource marginEven}"
+                    materialDesign:HintAssist.Hint="ContourApproximationModes" />
             </StackPanel>
         </Grid>
     </materialDesign:Card>
