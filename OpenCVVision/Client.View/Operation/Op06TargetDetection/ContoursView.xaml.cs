@@ -32,6 +32,7 @@ namespace Client.View.Operation
             {
                 this.OneWayBind(ViewModel, vm => vm.RetrievalModesStr, v => v.cbxRetrievalModes.ItemsSource).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.ContourApproximationModesStr, v => v.cbxContourApproximationModes.ItemsSource).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.ContourIdItems, v => v.cbxContourIdItems.ItemsSource).DisposeWith(d);
                 this.WhenAnyValue(x => x.cbxRetrievalModes.SelectedValue)
                     .WhereNotNull()
                     .BindTo(ViewModel, x => x.RetrievalSelectValue)
@@ -39,6 +40,9 @@ namespace Client.View.Operation
                 this.WhenAnyValue(x => x.cbxContourApproximationModes.SelectedValue)
                     .WhereNotNull()
                     .BindTo(ViewModel, x => x.ContourApproximationSelectValue)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.cbxContourIdItems.SelectedValue)
+                    .BindTo(ViewModel, x => x.ContourIdItemSelectValue)
                     .DisposeWith(d);
             });
         }

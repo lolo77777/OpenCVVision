@@ -161,15 +161,18 @@ namespace Client.ViewModel.Operation
                 if (tmpBlobs1.Any())
                 {
                     connCom.FilterByBlobs(_sigleSrc, dst, tmpBlobs1);
-
+                    connCom.RenderBlobs(dst, tmpBlobs1, connCom.Labels, connCom.Blobs.Count);
                     _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
                 }
                 else
                 {
-                    connCom.RenderBlobs(dst);
-                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+                    _imageDataManager.OutputMatSubject.OnNext(_sigleSrc.Clone());
                 }
             });
+        }
+
+        private void UpdateSelectItem()
+        {
         }
     }
 }

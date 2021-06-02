@@ -39,6 +39,10 @@
                     x:Name="cbxContourApproximationModes"
                     Margin="{StaticResource marginEven}"
                     materialDesign:HintAssist.Hint="ContourApproximationModes" />
+                <ComboBox
+                    x:Name="cbxContourIdItems"
+                    Margin="{StaticResource marginOdd}"
+                    materialDesign:HintAssist.Hint="ContourIdItems" />
             </StackPanel>
         </Grid>
     </materialDesign:Card>

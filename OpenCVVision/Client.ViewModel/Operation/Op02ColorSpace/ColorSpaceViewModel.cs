@@ -38,7 +38,7 @@ namespace Client.ViewModel.Operation.Op02ColorSpace
             {
                 this.WhenAnyValue(x => x.ColorModeSelectInd)
                     .Where(i => i >= 0)
-                    .Select(i => i.Equals(0) ? (new[] { 0 }).AsEnumerable() : (new[] { -1, 0, 1, 2 }).AsEnumerable())
+                    .Select(i => i.Equals(0) ? (new[] { 0 }).AsEnumerable() : Enumerable.Range(-1, 4))
                     .ToPropertyEx(this, x => x.Channels, deferSubscription: true)
                     .DisposeWith(d);
 
