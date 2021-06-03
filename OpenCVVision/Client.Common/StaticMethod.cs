@@ -16,7 +16,7 @@ namespace Client.Common
         public static string GetInfo<T>()
         {
             object[] attributes = typeof(T).GetCustomAttributes(true);
-            OperationInfoAttribute attribute = attributes[0] as OperationInfoAttribute;
+            OperationInfoAttribute attribute = attributes.FirstOrDefault() as OperationInfoAttribute;
             return attribute.Info;
         }
     }

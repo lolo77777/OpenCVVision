@@ -20,13 +20,14 @@ namespace Client.ViewModel.Operation
     [OperationInfo("轮廓")]
     public class ContoursViewModel : OperaViewModelBase
     {
-        private IEnumerable<Mat<Point>> _contours;
-
+        private const int THICK3 = 3;
+        private IEnumerable<IEnumerable<Point>> _contours;
+        [Reactive] public string BoundingShapeSelectValue { get; set; }
+        public IEnumerable<string> BoundingShapesItems { get; }
         public IEnumerable<string> ContourApproximationModesStr { get; set; }
 
         [Reactive] public string ContourApproximationSelectValue { get; set; }
-        [ObservableAsProperty] public IEnumerable<int> ContourIdItems { get; private set; }
-
+        [ObservableAsProperty] public IEnumerable<int> ContourIdItems { get; }
         [Reactive] public int ContourIdItemSelectValue { get; set; }
 
         public IEnumerable<string> RetrievalModesStr { get; set; }
@@ -36,6 +37,7 @@ namespace Client.ViewModel.Operation
         {
             RetrievalModesStr = Enum.GetNames(typeof(RetrievalModes));
             ContourApproximationModesStr = Enum.GetNames(typeof(ContourApproximationModes));
+            BoundingShapesItems = new[] { "BoundingRect", "MinAreaRect", "ConvexHull", "MinEnclosingCircle", "MinEnclosingTriangle", "FitEllipse" };
 
             this.WhenActivated(d =>
             {
@@ -59,38 +61,107 @@ namespace Client.ViewModel.Operation
                     .Select(vs => Enumerable.Range(-1, vs.Count() + 1))
                     .ToPropertyEx(this, x => x.ContourIdItems)
                     .DisposeWith(d);
-                this.WhenAnyValue(x => x.ContourIdItemSelectValue)
-                    .Where(i => i >= -1 && ContourIdItems != null && ContourIdItems.Any())
-                    .ObserveOn(RxApp.MainThreadScheduler).Subscribe(i => UpdateSelectContour(_contours, i))
+                this.WhenAnyValue(x => x.ContourIdItemSelectValue, x => x.BoundingShapeSelectValue)
+                    .Where(vt => vt.Item1 >= -1 && ContourIdItems != null && ContourIdItems.Any())
+                    .Where(vt => vt.Item2 != null)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Subscribe(vt => UpdateSelectContour(_contours, vt.Item1, vt.Item2))
                     .DisposeWith(d);
+
                 _imageDataManager.RaiseCurrent();
             });
         }
 
-        private IEnumerable<Mat<Point>> Updateoutput(string restrieval, string contourApproximation)
+        private IEnumerable<IEnumerable<Point>> Updateoutput(string restrieval, string contourApproximation)
         {
             SendTime(() =>
             {
                 if (restrieval.Equals("FloodFill"))
                 {
-                    var dsttmp = _rt.NewMat();
+                    Mat dsttmp = _rt.NewMat();
                     _sigleSrc.ConvertTo(dsttmp, MatType.CV_32SC1);
-                    _contours = Cv2.FindContoursAsMat(dsttmp, Enum.Parse<RetrievalModes>(restrieval), Enum.Parse<ContourApproximationModes>(contourApproximation));
+                    _contours = Cv2.FindContoursAsArray(dsttmp, Enum.Parse<RetrievalModes>(restrieval), Enum.Parse<ContourApproximationModes>(contourApproximation));
                 }
                 else
                 {
-                    _contours = Cv2.FindContoursAsMat(_sigleSrc, Enum.Parse<RetrievalModes>(restrieval), Enum.Parse<ContourApproximationModes>(contourApproximation));
+                    _contours = Cv2.FindContoursAsArray(_sigleSrc, Enum.Parse<RetrievalModes>(restrieval), Enum.Parse<ContourApproximationModes>(contourApproximation));
                 }
             });
             return _contours;
         }
 
-        private void UpdateSelectContour(IEnumerable<Mat<Point>> contours, int selectIndx)
+        private void UpdateSelectContour(IEnumerable<IEnumerable<Point>> contours, int selectIndx, string boundingShape)
         {
             SendTime(() =>
             {
-                var dst = _rt.T(_sigleSrc.Clone().CvtColor(ColorConversionCodes.GRAY2BGR));
-                Cv2.DrawContours(dst, contours, selectIndx, Scalar.RandomColor());
+                Mat dst = _rt.T(_sigleSrc.Clone().CvtColor(ColorConversionCodes.GRAY2BGR));
+
+                Cv2.DrawContours(dst, contours, selectIndx, Scalar.RandomColor(), THICK3);
+                switch (boundingShape)
+                {
+                    case "BoundingRect":
+                        var rect = Cv2.BoundingRect(contours.ElementAt(selectIndx));
+                        Cv2.Rectangle(dst, rect, Scalar.RandomColor(), THICK3);
+                        break;
+
+                    case "MinAreaRect":
+                        if (contours.ElementAt(selectIndx).Count() > 5)
+                        {
+                            var rotateRec = Cv2.MinAreaRect(contours.ElementAt(selectIndx));
+
+                            var pts = rotateRec.Points();
+                            for (int i = 0; i < 4; i++)
+                            {
+                                Cv2.Line(dst, pts[i].ToPoint(), pts[(i + 1) % 4].ToPoint(), Scalar.RandomColor(), THICK3);
+                            }
+                            var pt1 = rotateRec.Center;
+                            var ang = (rotateRec.Angle / 360d) * Cv2.PI * 2;
+                            var pt2 = new Point((int)(pt1.X + 100 * Math.Sin(ang)), (int)(pt1.Y - 100 * Math.Cos(ang)));
+                            Cv2.ArrowedLine(dst, pt1.ToPoint(), pt2, Scalar.RandomColor(), THICK3);
+                        }
+                        break;
+
+                    case "ConvexHull":
+                        var pts3 = Cv2.ConvexHull(contours.ElementAt(selectIndx));
+                        for (int i = 0; i < pts3.Length; i++)
+                        {
+                            Cv2.Line(dst, pts3[i], pts3[(i + 1) % pts3.Length], Scalar.RandomColor(), THICK3);
+                        }
+                        break;
+
+                    case "MinEnclosingCircle":
+                        Cv2.MinEnclosingCircle(contours.ElementAt(selectIndx), out var ptcen, out var radius);
+                        Cv2.Circle(dst, ptcen.ToPoint(), (int)radius, Scalar.RandomColor(), THICK3);
+                        break;
+
+                    case "MinEnclosingTriangle":
+                        Cv2.MinEnclosingTriangle(contours.ElementAt(selectIndx), out var pts1);
+                        for (int i = 0; i < pts1.Length; i++)
+                        {
+                            Cv2.Line(dst, pts1[i].ToPoint(), pts1[(i + 1) % pts1.Length].ToPoint(), Scalar.RandomColor(), THICK3);
+                        }
+                        break;
+
+                    case "FitEllipse":
+                        if (contours.ElementAt(selectIndx).Count() > 5)
+                        {
+                            var rotateRec1 = Cv2.FitEllipse(contours.ElementAt(selectIndx));
+                            var pts2 = rotateRec1.Points();
+                            for (int i = 0; i < pts2.Length; i++)
+                            {
+                                Cv2.Line(dst, pts2[i].ToPoint(), pts2[(i + 1) % pts2.Length].ToPoint(), Scalar.RandomColor(), THICK3);
+                            }
+                            var pt11 = rotateRec1.Center;
+                            var ang1 = (rotateRec1.Angle / 360d) * Cv2.PI * 2;
+                            var pt21 = new Point((int)(pt11.X + 100 * Math.Sin(ang1)), (int)(pt11.Y - 100 * Math.Cos(ang1)));
+                            Cv2.ArrowedLine(dst, pt11.ToPoint(), pt21, Scalar.RandomColor(), THICK3);
+                        }
+
+                        break;
+
+                    default:
+                        break;
+                }
 
                 _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
             });

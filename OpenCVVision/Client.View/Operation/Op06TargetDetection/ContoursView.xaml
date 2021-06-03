@@ -20,7 +20,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <TextBlock
@@ -43,6 +45,18 @@
                     x:Name="cbxContourIdItems"
                     Margin="{StaticResource marginOdd}"
                     materialDesign:HintAssist.Hint="ContourIdItems" />
+            </StackPanel>
+            <TextBlock
+                Grid.Row="3"
+                Margin="{StaticResource marginOdd}"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="外接形状" />
+            <StackPanel Grid.Row="4" Margin="8,0">
+                <ComboBox
+                    x:Name="cbxBoundingShapes"
+                    Margin="{StaticResource marginOdd}"
+                    materialDesign:HintAssist.Hint="BoundingShapes" />
             </StackPanel>
         </Grid>
     </materialDesign:Card>

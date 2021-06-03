@@ -117,7 +117,7 @@ namespace Client.View.Operation {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Client.View;component/operation/op04threshold/thresholdview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Client.View;V1.0.0.0;component/operation/op04threshold/thresholdview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Operation\Op04Threshold\ThresholdView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

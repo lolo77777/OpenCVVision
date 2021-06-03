@@ -44,7 +44,7 @@ namespace Client.ViewModel.Operation.Op01File
         private void LoadFile()
         {
             OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "Image files (*.jpg)|*.jpg|(*.bmp)|*.bmp|(*.png)|*.png";
+            openFileDialog.Filter = "Image files (*.jpg;*.bmp;*.png)|*.jpg;*.bmp;*.png";
             DialogResult result = openFileDialog.ShowDialog();
             TxtImageFilePath = result.Equals(DialogResult.OK) ? openFileDialog.FileName : string.Empty;
         }
