@@ -1,29 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="LiveChartsCore.SkiaSharpView" Version="2.0.0-beta.10" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
-    <PackageReference Include="OpenCvSharp4.Windows" Version="4.5.2.20210404" />
-    <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.5.2.20210404" />
-    <PackageReference Include="ReactiveUI" Version="13.3.2" />
-    <PackageReference Include="ReactiveUI.Fody" Version="13.3.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="LiveChartsCore.SkiaSharpView" Version="2.0.0-beta.10" />
+		<PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
+		<PackageReference Include="OpenCvSharp4.Windows" Version="4.5.2.20210404" />
+		<PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.5.2.20210404" />
+		<PackageReference Include="ReactiveUI" Version="13.3.2" />
+		<PackageReference Include="ReactiveUI.Fody" Version="13.3.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Client.Common\Client.Common.csproj" />
-    <ProjectReference Include="..\Client.Model\Client.Model.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PresentationCore">
-      <HintPath>..\..\..\white-board-detect\WhiteboardDetect\Client.MVVM\bin\Debug\netstandard2.1\PresentationCore.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms">
-      <HintPath>..\..\..\white-board-detect\WhiteboardDetect\Client.MVVM\bin\Debug\netstandard2.1\System.Windows.Forms.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Client.Common\Client.Common.csproj" />
+		<ProjectReference Include="..\Client.Model\Client.Model.csproj" />
+	</ItemGroup>
 </Project>

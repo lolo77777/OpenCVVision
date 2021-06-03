@@ -5,7 +5,6 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 using Client.Common;
 using Client.Model.Service;
@@ -22,6 +21,8 @@ namespace Client.ViewModel.Operation.Op01File
     [OperationInfo("加载图片")]
     public class LoadFileViewModel : OperaViewModelBase
     {
+        private Interaction<Unit, string> _loadFileConfirm = new();
+        public Interaction<Unit, string> LoadFileConfirm => _loadFileConfirm;
         public ReactiveCommand<Unit, Unit> LoadImageCommand { get; private set; }
 
         [Reactive] public string TxtImageFilePath { get; set; }
@@ -43,10 +44,8 @@ namespace Client.ViewModel.Operation.Op01File
 
         private void LoadFile()
         {
-            OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "Image files (*.jpg;*.bmp;*.png)|*.jpg;*.bmp;*.png";
-            DialogResult result = openFileDialog.ShowDialog();
-            TxtImageFilePath = result.Equals(DialogResult.OK) ? openFileDialog.FileName : string.Empty;
+            _loadFileConfirm.Handle(Unit.Default)
+               .Subscribe(str => TxtImageFilePath = str);
         }
 
         #endregion PrivateFunction

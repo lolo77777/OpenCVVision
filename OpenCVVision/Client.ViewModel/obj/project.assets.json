@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {
+    "net5.0-windows7.0": {
       "DynamicData/7.1.17": {
         "type": "package",
         "dependencies": {
@@ -171,11 +171,14 @@
           "System.Runtime.Serialization.Primitives": "4.3.0"
         },
         "compile": {
-          "lib/net5.0/ReactiveUI.dll": {}
+          "lib/net5.0-windows7.0/ReactiveUI.dll": {}
         },
         "runtime": {
-          "lib/net5.0/ReactiveUI.dll": {}
-        }
+          "lib/net5.0-windows7.0/ReactiveUI.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ]
       },
       "ReactiveUI.Fody/13.3.2": {
         "type": "package",
@@ -1657,7 +1660,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net5.0": [
+    "net5.0-windows7.0": [
       "Client.Common >= 1.0.0",
       "Client.Model >= 1.0.0",
       "LiveChartsCore.SkiaSharpView >= 2.0.0-beta.10",
@@ -1685,15 +1688,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "net5.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
           "projectReferences": {
             "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Common\\Client.Common.csproj": {
               "projectPath": "E:\\GitWork\\OpenCVVision\\OpenCVVision\\Client.Common\\Client.Common.csproj"
@@ -1711,8 +1714,8 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "net5.0-windows7.0": {
+        "targetAlias": "net5.0-windows",
         "dependencies": {
           "LiveChartsCore.SkiaSharpView": {
             "target": "Package",
@@ -1752,6 +1755,9 @@
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
