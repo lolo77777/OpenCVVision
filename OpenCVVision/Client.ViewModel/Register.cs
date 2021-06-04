@@ -42,6 +42,7 @@ namespace Client.ViewModel
             RegistLazySingletonOpVM<MorphologyViewModel>();
             RegistLazySingletonOpVM<ConnectedComponentsViewModel>();
             RegistLazySingletonOpVM<ContoursViewModel>();
+            RegistLazySingletonOpVM<RoiViewModel>();
         }
     }
 }

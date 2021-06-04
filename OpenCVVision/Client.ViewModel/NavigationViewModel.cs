@@ -46,6 +46,7 @@ namespace Client.ViewModel
         {
             List<NaviItem> listtmp = new();
             listtmp.Add(new NaviItem { Icon = PackIconKind.File, OperaPanelInfo = StaticMethod.GetInfo<LoadFileViewModel>() });
+            listtmp.Add(new NaviItem { Icon = PackIconKind.RectangleOutline, OperaPanelInfo = StaticMethod.GetInfo<RoiViewModel>() });
             listtmp.Add(new NaviItem { Icon = PackIconKind.Color, OperaPanelInfo = StaticMethod.GetInfo<ColorSpaceViewModel>() });
             listtmp.Add(new NaviItem { Icon = PackIconKind.Filter, OperaPanelInfo = StaticMethod.GetInfo<FilterViewModel>() });
             listtmp.Add(new NaviItem { Icon = PackIconKind.NumericZero, OperaPanelInfo = StaticMethod.GetInfo<ThreshouldViewModel>() });

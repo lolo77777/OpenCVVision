@@ -57,21 +57,21 @@ namespace Client.ViewModel.Operation
                     .Select(guid => _imageDataManager.GetCurrentMat())
                     .WhereNotNull()
                     .Select(mat => mat.Width)
-                    .ToPropertyEx(this, x => x.WidthLimit, deferSubscription: true)
+                    .ToPropertyEx(this, x => x.WidthLimit)
                     .DisposeWith(d);
 
                 currentMatOb
                     .Select(guid => _imageDataManager.GetCurrentMat())
                     .WhereNotNull()
                     .Select(mat => mat.Height)
-                    .ToPropertyEx(this, x => x.HeightLimit, deferSubscription: true)
+                    .ToPropertyEx(this, x => x.HeightLimit)
                     .DisposeWith(d);
 
                 currentMatOb
                     .Select(guid => _imageDataManager.GetCurrentMat())
                     .WhereNotNull()
                     .Select(mat => mat.Rows * mat.Cols)
-                    .ToPropertyEx(this, x => x.AreaLimit, deferSubscription: true)
+                    .ToPropertyEx(this, x => x.AreaLimit)
                     .DisposeWith(d);
 
                 var areaOb = this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)

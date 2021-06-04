@@ -45,6 +45,7 @@ namespace Client.View
             RegisterVLazySingleton<MorphologyViewModel, MorphologyView>();
             RegisterVLazySingleton<ConnectedComponentsViewModel, ConnectedComponentsView>();
             RegisterVLazySingleton<ContoursViewModel, ContoursView>();
+            RegisterVLazySingleton<RoiViewModel, RoiView>();
         }
     }
 }

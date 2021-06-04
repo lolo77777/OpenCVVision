@@ -34,6 +34,9 @@
     <Compile Update="Operation\Op06TargetDetection\ContoursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op07Roi\RoiView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Dictionary.xaml">
@@ -67,6 +70,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op06TargetDetection\ContoursView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op07Roi\RoiView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
