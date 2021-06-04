@@ -1,5 +1,0 @@
-E:\GitWork\OpenCVVision\OpenCVVision\Client\obj\Debug\net5.0-windows\Client.csprojAssemblyReference.cache
-E:\GitWork\OpenCVVision\OpenCVVision\Client\obj\Debug\net5.0-windows\MainWindow.g.cs
-E:\GitWork\OpenCVVision\OpenCVVision\Client\obj\Debug\net5.0-windows\App.g.cs
-E:\GitWork\OpenCVVision\OpenCVVision\Client\obj\Debug\net5.0-windows\Client_MarkupCompile.cache
-E:\GitWork\OpenCVVision\OpenCVVision\Client\obj\Debug\net5.0-windows\Client_MarkupCompile.lref
