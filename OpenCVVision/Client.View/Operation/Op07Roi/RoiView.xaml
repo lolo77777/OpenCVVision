@@ -34,7 +34,7 @@
                 <materialDesign:Card>
 
                     <StackPanel Margin="{StaticResource marginOdd}">
-                        <ListBox x:Name="RoiList" Style="{StaticResource MaterialDesignChoiceChipListBox}">
+                        <ListBox x:Name="RoiList" Style="{StaticResource MaterialDesignChoiceChipAccentListBox}">
                             <ListBoxItem Content="Roi" IsSelected="True" />
 
                             <ListBoxItem Content="Mask1" />

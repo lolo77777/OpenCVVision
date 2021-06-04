@@ -18,4 +18,9 @@
     </Style>
     <Style BasedOn="{StaticResource MaterialDesignDiscreteSlider}" TargetType="Slider" />
     <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="TextBox" />
+    <Style TargetType="UserControl">
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    </Style>
 </ResourceDictionary>

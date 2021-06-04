@@ -43,9 +43,11 @@ namespace Client.View.Operation
                     .BindTo(ViewModel, x => x.ContourApproximationSelectValue)
                     .DisposeWith(d);
                 this.WhenAnyValue(x => x.cbxContourIdItems.SelectedValue)
+                    .WhereNotNull()
                     .BindTo(ViewModel, x => x.ContourIdItemSelectValue)
                     .DisposeWith(d);
                 this.WhenAnyValue(x => x.cbxBoundingShapes.SelectedValue)
+                    .WhereNotNull()
                     .BindTo(ViewModel, x => x.BoundingShapeSelectValue)
                     .DisposeWith(d);
             });

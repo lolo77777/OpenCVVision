@@ -31,7 +31,7 @@
 
             <StackPanel Grid.Row="2" Margin="8,0">
 
-                <ListBox x:Name="FilterList" Style="{StaticResource MaterialDesignFilterChipOutlineListBox}">
+                <ListBox x:Name="FilterList" Style="{StaticResource MaterialDesignFilterChipAccentListBox}">
                     <ListBoxItem Content="Area" IsSelected="True" />
                     <!--<ListBoxItem Content="Centroid" IsSelected="True" />-->
                     <ListBoxItem Content="Height" />
