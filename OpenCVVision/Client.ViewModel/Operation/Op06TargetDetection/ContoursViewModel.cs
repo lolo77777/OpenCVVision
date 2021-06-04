@@ -72,6 +72,75 @@ namespace Client.ViewModel.Operation
             });
         }
 
+        private void AddShape(Mat dst, IEnumerable<Point> contour, string boundingShape)
+        {
+            switch (boundingShape)
+            {
+                case "BoundingRect":
+                    var rect = Cv2.BoundingRect(contour);
+                    Cv2.Rectangle(dst, rect, Scalar.RandomColor(), THICK3);
+                    break;
+
+                case "MinAreaRect":
+                    if (contour.Count() > 5)
+                    {
+                        var rotateRec = Cv2.MinAreaRect(contour);
+
+                        var pts = rotateRec.Points();
+                        for (int i = 0; i < 4; i++)
+                        {
+                            Cv2.Line(dst, pts[i].ToPoint(), pts[(i + 1) % 4].ToPoint(), Scalar.RandomColor(), THICK3);
+                        }
+                        var pt1 = rotateRec.Center;
+                        var ang = (rotateRec.Angle / 360d) * Cv2.PI * 2;
+                        var pt2 = new Point((int)(pt1.X + 100 * Math.Sin(ang)), (int)(pt1.Y - 100 * Math.Cos(ang)));
+                        Cv2.ArrowedLine(dst, pt1.ToPoint(), pt2, Scalar.RandomColor(), THICK3);
+                    }
+                    break;
+
+                case "ConvexHull":
+                    var pts3 = Cv2.ConvexHull(contour);
+                    for (int i = 0; i < pts3.Length; i++)
+                    {
+                        Cv2.Line(dst, pts3[i], pts3[(i + 1) % pts3.Length], Scalar.RandomColor(), THICK3);
+                    }
+                    break;
+
+                case "MinEnclosingCircle":
+                    Cv2.MinEnclosingCircle(contour, out var ptcen, out var radius);
+                    Cv2.Circle(dst, ptcen.ToPoint(), (int)radius, Scalar.RandomColor(), THICK3);
+                    break;
+
+                case "MinEnclosingTriangle":
+                    Cv2.MinEnclosingTriangle(contour, out var pts1);
+                    for (int i = 0; i < pts1.Length; i++)
+                    {
+                        Cv2.Line(dst, pts1[i].ToPoint(), pts1[(i + 1) % pts1.Length].ToPoint(), Scalar.RandomColor(), THICK3);
+                    }
+                    break;
+
+                case "FitEllipse":
+                    if (contour.Count() > 5)
+                    {
+                        var rotateRec1 = Cv2.FitEllipse(contour);
+                        var pts2 = rotateRec1.Points();
+                        for (int i = 0; i < pts2.Length; i++)
+                        {
+                            Cv2.Line(dst, pts2[i].ToPoint(), pts2[(i + 1) % pts2.Length].ToPoint(), Scalar.RandomColor(), THICK3);
+                        }
+                        var pt11 = rotateRec1.Center;
+                        var ang1 = (rotateRec1.Angle / 360d) * Cv2.PI * 2;
+                        var pt21 = new Point((int)(pt11.X + 100 * Math.Sin(ang1)), (int)(pt11.Y - 100 * Math.Cos(ang1)));
+                        Cv2.ArrowedLine(dst, pt11.ToPoint(), pt21, Scalar.RandomColor(), THICK3);
+                    }
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         private IEnumerable<IEnumerable<Point>> Updateoutput(string restrieval, string contourApproximation)
         {
             SendTime(() =>
@@ -96,71 +165,20 @@ namespace Client.ViewModel.Operation
             {
                 Mat dst = _rt.T(_sigleSrc.Clone().CvtColor(ColorConversionCodes.GRAY2BGR));
 
-                Cv2.DrawContours(dst, contours, selectIndx, Scalar.RandomColor(), THICK3);
-                switch (boundingShape)
+                if (selectIndx == -1)
                 {
-                    case "BoundingRect":
-                        var rect = Cv2.BoundingRect(contours.ElementAt(selectIndx));
-                        Cv2.Rectangle(dst, rect, Scalar.RandomColor(), THICK3);
-                        break;
+                    for (int i = 0; i < contours.Count(); i++)
+                    {
+                        Cv2.DrawContours(dst, contours, i, Scalar.RandomColor(), THICK3);
 
-                    case "MinAreaRect":
-                        if (contours.ElementAt(selectIndx).Count() > 5)
-                        {
-                            var rotateRec = Cv2.MinAreaRect(contours.ElementAt(selectIndx));
+                        AddShape(dst, contours.ElementAt(i), boundingShape);
+                    }
+                }
+                else
+                {
+                    Cv2.DrawContours(dst, contours, selectIndx, Scalar.RandomColor(), THICK3);
 
-                            var pts = rotateRec.Points();
-                            for (int i = 0; i < 4; i++)
-                            {
-                                Cv2.Line(dst, pts[i].ToPoint(), pts[(i + 1) % 4].ToPoint(), Scalar.RandomColor(), THICK3);
-                            }
-                            var pt1 = rotateRec.Center;
-                            var ang = (rotateRec.Angle / 360d) * Cv2.PI * 2;
-                            var pt2 = new Point((int)(pt1.X + 100 * Math.Sin(ang)), (int)(pt1.Y - 100 * Math.Cos(ang)));
-                            Cv2.ArrowedLine(dst, pt1.ToPoint(), pt2, Scalar.RandomColor(), THICK3);
-                        }
-                        break;
-
-                    case "ConvexHull":
-                        var pts3 = Cv2.ConvexHull(contours.ElementAt(selectIndx));
-                        for (int i = 0; i < pts3.Length; i++)
-                        {
-                            Cv2.Line(dst, pts3[i], pts3[(i + 1) % pts3.Length], Scalar.RandomColor(), THICK3);
-                        }
-                        break;
-
-                    case "MinEnclosingCircle":
-                        Cv2.MinEnclosingCircle(contours.ElementAt(selectIndx), out var ptcen, out var radius);
-                        Cv2.Circle(dst, ptcen.ToPoint(), (int)radius, Scalar.RandomColor(), THICK3);
-                        break;
-
-                    case "MinEnclosingTriangle":
-                        Cv2.MinEnclosingTriangle(contours.ElementAt(selectIndx), out var pts1);
-                        for (int i = 0; i < pts1.Length; i++)
-                        {
-                            Cv2.Line(dst, pts1[i].ToPoint(), pts1[(i + 1) % pts1.Length].ToPoint(), Scalar.RandomColor(), THICK3);
-                        }
-                        break;
-
-                    case "FitEllipse":
-                        if (contours.ElementAt(selectIndx).Count() > 5)
-                        {
-                            var rotateRec1 = Cv2.FitEllipse(contours.ElementAt(selectIndx));
-                            var pts2 = rotateRec1.Points();
-                            for (int i = 0; i < pts2.Length; i++)
-                            {
-                                Cv2.Line(dst, pts2[i].ToPoint(), pts2[(i + 1) % pts2.Length].ToPoint(), Scalar.RandomColor(), THICK3);
-                            }
-                            var pt11 = rotateRec1.Center;
-                            var ang1 = (rotateRec1.Angle / 360d) * Cv2.PI * 2;
-                            var pt21 = new Point((int)(pt11.X + 100 * Math.Sin(ang1)), (int)(pt11.Y - 100 * Math.Cos(ang1)));
-                            Cv2.ArrowedLine(dst, pt11.ToPoint(), pt21, Scalar.RandomColor(), THICK3);
-                        }
-
-                        break;
-
-                    default:
-                        break;
+                    AddShape(dst, contours.ElementAt(selectIndx), boundingShape);
                 }
 
                 _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
