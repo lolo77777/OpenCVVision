@@ -9,3 +9,10 @@
 |界面控件|[MaterialDesignInXamlToolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)  
 |标题栏|[MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
 |响应式集合|[DynamicData](https://github.com/reactivemarbles/DynamicData)
+
+## 推荐
+交流讨论QQ群:827888895 
+
+其它项目：
+
+[OpenCVSharpHelper](https://gitee.com/tfarcraw/opencvsharphelper)
