@@ -120,64 +120,62 @@ namespace Client.ViewModel.Operation
         {
         }
 
-        protected override void SetupSubscriptions()
+        protected override void SetupSubscriptions(CompositeDisposable d)
         {
-            base.SetupSubscriptions();
-            this.WhenActivated(d =>
-            {
-                var currentMatOb = _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Where(g => CanOperat)
-                    .ObserveOn(RxApp.MainThreadScheduler);
+            base.SetupSubscriptions(d);
 
-                currentMatOb
-                    .Do(g => UpdateOutput(Filters))
-                    .Subscribe()
-                    .DisposeWith(d);
+            var currentMatOb = _imageDataManager.InputMatGuidSubject
+                .WhereNotNull()
+                .Where(g => CanOperat)
+                .ObserveOn(RxApp.MainThreadScheduler);
 
-                currentMatOb
-                    .Select(guid => _imageDataManager.GetCurrentMat())
-                    .WhereNotNull()
-                    .Select(mat => mat.Width)
-                    .ToPropertyEx(this, x => x.WidthLimit)
-                    .DisposeWith(d);
+            currentMatOb
+                .Do(g => UpdateOutput(Filters))
+                .Subscribe()
+                .DisposeWith(d);
 
-                currentMatOb
-                    .Select(guid => _imageDataManager.GetCurrentMat())
-                    .WhereNotNull()
-                    .Select(mat => mat.Height)
-                    .ToPropertyEx(this, x => x.HeightLimit)
-                    .DisposeWith(d);
+            currentMatOb
+                .Select(guid => _imageDataManager.GetCurrentMat())
+                .WhereNotNull()
+                .Select(mat => mat.Width)
+                .ToPropertyEx(this, x => x.WidthLimit)
+                .DisposeWith(d);
 
-                currentMatOb
-                    .Select(guid => _imageDataManager.GetCurrentMat())
-                    .WhereNotNull()
-                    .Select(mat => mat.Rows * mat.Cols)
-                    .ToPropertyEx(this, x => x.AreaLimit)
-                    .DisposeWith(d);
+            currentMatOb
+                .Select(guid => _imageDataManager.GetCurrentMat())
+                .WhereNotNull()
+                .Select(mat => mat.Height)
+                .ToPropertyEx(this, x => x.HeightLimit)
+                .DisposeWith(d);
 
-                var areaOb = this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
-                     .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Area")));
-                var heightOb = this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
-                     .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Height")));
-                var widthOb = this.WhenAnyValue(x => x.WidthMax, x => x.WidthMin)
-                     .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Width")));
-                var leftOb = this.WhenAnyValue(x => x.LeftMax, x => x.LeftMin)
-                    .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Left")));
-                var topOb = this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
-                    .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Top")));
+            currentMatOb
+                .Select(guid => _imageDataManager.GetCurrentMat())
+                .WhereNotNull()
+                .Select(mat => mat.Rows * mat.Cols)
+                .ToPropertyEx(this, x => x.AreaLimit)
+                .DisposeWith(d);
 
-                var paraOb = Observable.Merge(new[] { areaOb, heightOb, widthOb, leftOb, topOb });
-                paraOb
-                    .Where(b => CanOperat)
-                    .Throttle(TimeSpan.FromMilliseconds(200))
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .SubscribeOn(RxApp.TaskpoolScheduler)
-                    .Do(b => UpdateOutput(Filters))
-                    .Subscribe()
-                    .DisposeWith(d);
-                _imageDataManager.RaiseCurrent();
-            });
+            var areaOb = this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
+                 .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Area")));
+            var heightOb = this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
+                 .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Height")));
+            var widthOb = this.WhenAnyValue(x => x.WidthMax, x => x.WidthMin)
+                 .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Width")));
+            var leftOb = this.WhenAnyValue(x => x.LeftMax, x => x.LeftMin)
+                .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Left")));
+            var topOb = this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
+                .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Top")));
+
+            var paraOb = Observable.Merge(new[] { areaOb, heightOb, widthOb, leftOb, topOb });
+            paraOb
+                .Where(b => CanOperat)
+                .Throttle(TimeSpan.FromMilliseconds(200))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
+                .Do(b => UpdateOutput(Filters))
+                .Subscribe()
+                .DisposeWith(d);
+            _imageDataManager.RaiseCurrent();
         }
     }
 }

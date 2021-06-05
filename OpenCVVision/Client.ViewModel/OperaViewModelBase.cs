@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,9 +51,12 @@ namespace Client.ViewModel
         {
             Activator = new ViewModelActivator();
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
-            SetupStart();
-            SetupCommands();
-            SetupSubscriptions();
+            this.WhenActivated(d =>
+            {
+                SetupStart(d);
+                SetupCommands(d);
+                SetupSubscriptions(d);
+            });
         }
 
         /// <summary>
@@ -79,25 +83,26 @@ namespace Client.ViewModel
         /// <summary>
         /// 设置命令
         /// </summary>
-        protected virtual void SetupCommands()
+        protected virtual void SetupCommands(CompositeDisposable d)
         {
         }
 
         /// <summary>
         /// 设置启动时加载
         /// </summary>
-        protected virtual void SetupStart()
+        protected virtual void SetupStart(CompositeDisposable d)
         {
         }
 
         /// <summary>
         /// 设置流订阅
         /// </summary>
-        protected virtual void SetupSubscriptions()
+        protected virtual void SetupSubscriptions(CompositeDisposable d)
         {
             _imageDataManager.InputMatGuidSubject
               .Select(guid => guid != null)
-              .BindTo(this, x => x.CanOperat);
+              .BindTo(this, x => x.CanOperat)
+              .DisposeWith(d);
         }
     }
 }

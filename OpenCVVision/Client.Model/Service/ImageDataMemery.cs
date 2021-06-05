@@ -6,6 +6,7 @@ using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
 
+using Client.Data;
 using Client.Model.Entity;
 
 using DynamicData;
@@ -32,11 +33,9 @@ namespace Client.Model.Service
 
         private void SampleData()
         {
-            //Mat mat = Cv2.ImRead("ta.bmp");
+            Mat mat = Cv2.ImRead(FilePath.Image.Ta);
 
-            //AddImage("Sam1", mat);
-            //var mat1 = Cv2.ImRead(@"E:\Pictures\高清壁纸Z\kaer.jpg");
-            //AddImage("Sam1", mat1);
+            AddImage("Sam1", mat);
         }
 
         public bool AddImage(string imageMarkTxt, Mat mat)

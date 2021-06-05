@@ -63,59 +63,57 @@ namespace Client.ViewModel.Operation.Op03PreProcessing
             });
         }
 
-        protected override void SetupStart()
+        protected override void SetupStart(CompositeDisposable d)
         {
-            base.SetupStart();
+            base.SetupStart(d);
             CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
             FilterModes = new ReadOnlyCollection<string>(new[] { "Blur", "Gaussian", "Median", "BilateralFilter" });
         }
 
-        protected override void SetupSubscriptions()
+        protected override void SetupSubscriptions(CompositeDisposable d)
         {
-            base.SetupSubscriptions();
-            this.WhenActivated(d =>
-            {
-                this.WhenAnyValue(x => x.FilterModeSelectIndex)
-                    .Select(i => i.Equals(1))
-                    .ToPropertyEx(this, x => x.BolSigmaIsEnable, deferSubscription: true)
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.FilterModeSelectIndex)
-                    .Select(i => !i.Equals(2))
-                    .ToPropertyEx(this, x => x.BolSizeYIsEnable, deferSubscription: true)
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.FilterModeSelectIndex)
-                    .Select(i => i.Equals(3))
-                    .ToPropertyEx(this, x => x.BolSigmaColorAndSpace, deferSubscription: true)
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.FilterModeSelectIndex)
-                    .Select(i => !i.Equals(3))
-                    .ToPropertyEx(this, x => x.BolSizeIsEnable, deferSubscription: true)
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.SizeX, x => x.SizeY, x => x.SigmaX, x => x.SigmaY)
-                    .Where(vt => CanOperat)
-                    .Where(vt => vt.Item1 < 3)
-                    .Throttle(TimeSpan.FromMilliseconds(200))
-                    .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
-                    .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
-                    .Subscribe()
-                    .DisposeWith(d);
+            base.SetupSubscriptions(d);
 
-                this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.KernelDiam, x => x.SigmaColor, x => x.SigmaSpace)
-                    .Where(vt => CanOperat)
-                    .Where(vt => vt.Item1.Equals(3))
-                    .Throttle(TimeSpan.FromMilliseconds(200))
-                    .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
-                    .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
-                    .Subscribe()
-                    .DisposeWith(d);
-                _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Where(guid => CanOperat)
-                    .Do(guid => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
-                    .Subscribe()
-                    .DisposeWith(d);
-                _imageDataManager.RaiseCurrent();
-            });
+            this.WhenAnyValue(x => x.FilterModeSelectIndex)
+                .Select(i => i.Equals(1))
+                .ToPropertyEx(this, x => x.BolSigmaIsEnable, deferSubscription: true)
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.FilterModeSelectIndex)
+                .Select(i => !i.Equals(2))
+                .ToPropertyEx(this, x => x.BolSizeYIsEnable, deferSubscription: true)
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.FilterModeSelectIndex)
+                .Select(i => i.Equals(3))
+                .ToPropertyEx(this, x => x.BolSigmaColorAndSpace, deferSubscription: true)
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.FilterModeSelectIndex)
+                .Select(i => !i.Equals(3))
+                .ToPropertyEx(this, x => x.BolSizeIsEnable, deferSubscription: true)
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.SizeX, x => x.SizeY, x => x.SigmaX, x => x.SigmaY)
+                .Where(vt => CanOperat)
+                .Where(vt => vt.Item1 < 3)
+                .Throttle(TimeSpan.FromMilliseconds(200))
+                .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
+                .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
+                .Subscribe()
+                .DisposeWith(d);
+
+            this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.KernelDiam, x => x.SigmaColor, x => x.SigmaSpace)
+                .Where(vt => CanOperat)
+                .Where(vt => vt.Item1.Equals(3))
+                .Throttle(TimeSpan.FromMilliseconds(200))
+                .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
+                .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
+                .Subscribe()
+                .DisposeWith(d);
+            _imageDataManager.InputMatGuidSubject
+                .WhereNotNull()
+                .Where(guid => CanOperat)
+                .Do(guid => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
+                .Subscribe()
+                .DisposeWith(d);
+            _imageDataManager.RaiseCurrent();
         }
     }
 }

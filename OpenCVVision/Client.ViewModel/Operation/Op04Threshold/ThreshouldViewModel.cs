@@ -104,58 +104,56 @@ namespace Client.ViewModel.Operation
             });
         }
 
-        protected override void SetupStart()
+        protected override void SetupStart(CompositeDisposable d)
         {
-            base.SetupStart();
+            base.SetupStart(d);
             ThreshouldModes = new ReadOnlyCollection<string>(Enum.GetNames(typeof(ThresholdTypes)));
         }
 
-        protected override void SetupSubscriptions()
+        protected override void SetupSubscriptions(CompositeDisposable d)
         {
-            base.SetupSubscriptions();
-            this.WhenActivated(d =>
-            {
-                Series = new ObservableCollection<ISeries> { new ColumnSeries<ObservablePoint> { Values = _observablePoints } };
+            base.SetupSubscriptions(d);
 
-                _imageDataManager.InputMatGuidSubject
-                    .Throttle(TimeSpan.FromMilliseconds(100))
-                    .WhereNotNull()
-                    .Where(guid => CanOperat && ChanelSelectIndex >= 0)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Do(guid => UpdateBar(ChanelSelectIndex))
-                    .Subscribe()
-                    .DisposeWith(d);
-                _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Where(guid => CanOperat && ChanelSelectIndex >= 0 && ThresholdSelectValue != null)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Do(guid => UpdateOutput(Thresh, Maxval, (ThresholdTypes)Enum.Parse(typeof(ThresholdTypes), ThresholdSelectValue), ChanelSelectIndex))
-                    .Subscribe()
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.ThresholdSelectValue, x => x.Thresh, x => x.Maxval, x => x.ChanelSelectIndex)
-                    .Throttle(TimeSpan.FromMilliseconds(100))
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Where(str => CanOperat && ThresholdSelectValue != null && ChanelSelectIndex >= 0)
-                    .Do(str => UpdateOutput(Thresh, Maxval, (ThresholdTypes)Enum.Parse(typeof(ThresholdTypes), ThresholdSelectValue), ChanelSelectIndex))
-                    .Subscribe()
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.ChanelSelectIndex)
-                    .Where(i => i >= 0 && CanOperat)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Do(i => UpdateBar(ChanelSelectIndex))
-                    .Subscribe()
-                    .DisposeWith(d);
-                _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Select(src => _imageDataManager.GetCurrentMat())
-                    .Select(src => Enumerable.Range(0, src.Channels()))
-                    .Where(vs => vs.Count() > 0)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Do(vs => ChanelSelectIndex = 0)
-                    .ToPropertyEx(this, x => x.Channels)
-                    .DisposeWith(d);
-                _imageDataManager.RaiseCurrent();
-            });
+            Series = new ObservableCollection<ISeries> { new ColumnSeries<ObservablePoint> { Values = _observablePoints } };
+
+            _imageDataManager.InputMatGuidSubject
+                .Throttle(TimeSpan.FromMilliseconds(100))
+                .WhereNotNull()
+                .Where(guid => CanOperat && ChanelSelectIndex >= 0)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Do(guid => UpdateBar(ChanelSelectIndex))
+                .Subscribe()
+                .DisposeWith(d);
+            _imageDataManager.InputMatGuidSubject
+                .WhereNotNull()
+                .Where(guid => CanOperat && ChanelSelectIndex >= 0 && ThresholdSelectValue != null)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Do(guid => UpdateOutput(Thresh, Maxval, (ThresholdTypes)Enum.Parse(typeof(ThresholdTypes), ThresholdSelectValue), ChanelSelectIndex))
+                .Subscribe()
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.ThresholdSelectValue, x => x.Thresh, x => x.Maxval, x => x.ChanelSelectIndex)
+                .Throttle(TimeSpan.FromMilliseconds(100))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Where(str => CanOperat && ThresholdSelectValue != null && ChanelSelectIndex >= 0)
+                .Do(str => UpdateOutput(Thresh, Maxval, (ThresholdTypes)Enum.Parse(typeof(ThresholdTypes), ThresholdSelectValue), ChanelSelectIndex))
+                .Subscribe()
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.ChanelSelectIndex)
+                .Where(i => i >= 0 && CanOperat)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Do(i => UpdateBar(ChanelSelectIndex))
+                .Subscribe()
+                .DisposeWith(d);
+            _imageDataManager.InputMatGuidSubject
+                .WhereNotNull()
+                .Select(src => _imageDataManager.GetCurrentMat())
+                .Select(src => Enumerable.Range(0, src.Channels()))
+                .Where(vs => vs.Count() > 0)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Do(vs => ChanelSelectIndex = 0)
+                .ToPropertyEx(this, x => x.Channels)
+                .DisposeWith(d);
+            _imageDataManager.RaiseCurrent();
         }
     }
 }

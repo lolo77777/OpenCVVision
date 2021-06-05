@@ -1,0 +1,129 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144000_0921_0004.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144007_0492_0002.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144013_0364_0004.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144019_0087_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144025_0200_0004.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144030_0430_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144057_0342_0002.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144118_0108_0004.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144132_0144_0002.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144329_0977_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144343_0257_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144500_0527_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_144515_0193_0004.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201123_150510_0119_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201210_161042_0304_0004.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201210_164406_0245_0004.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201210_165412_0255_0004.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201210_165624_0297_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Board\0000_20201210_165802_0618_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Light\0000_20201123_144313_0403_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Light\0000_20201123_144325_0459_0004.bmp" />
+    <None Remove="Data\Image\LaserLine\Light\0000_20201123_144353_0461_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Light\0000_20201123_144506_0173_0003.bmp" />
+    <None Remove="Data\Image\LaserLine\Light\0000_20201123_144528_0227_0002.bmp" />
+    <None Remove="Data\Image\LaserLine\Template.bmp" />
+    <None Remove="Data\Image\ta.bmp" />
+    <None Remove="Data\Yaml\LaserLine\LightLaserCali.yaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144000_0921_0004.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144007_0492_0002.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144013_0364_0004.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144019_0087_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144025_0200_0004.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144030_0430_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144057_0342_0002.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144118_0108_0004.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144132_0144_0002.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144329_0977_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144343_0257_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144500_0527_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_144515_0193_0004.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201123_150510_0119_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201210_161042_0304_0004.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201210_164406_0245_0004.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201210_165412_0255_0004.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201210_165624_0297_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Board\0000_20201210_165802_0618_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Light\0000_20201123_144313_0403_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Light\0000_20201123_144325_0459_0004.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Light\0000_20201123_144353_0461_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Light\0000_20201123_144506_0173_0003.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Light\0000_20201123_144528_0227_0002.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\LaserLine\Template.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Image\ta.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Yaml\LaserLine\LightLaserCali.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Image\LaserLine\Test\" />
+  </ItemGroup>
+
+</Project>

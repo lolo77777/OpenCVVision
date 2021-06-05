@@ -37,6 +37,9 @@
     <Compile Update="Operation\Op07Roi\RoiView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op083D\LaserLineView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Dictionary.xaml">
@@ -73,6 +76,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op07Roi\RoiView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op083D\LaserLineView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

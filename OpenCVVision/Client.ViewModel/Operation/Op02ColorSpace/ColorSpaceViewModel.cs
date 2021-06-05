@@ -56,47 +56,45 @@ namespace Client.ViewModel.Operation.Op02ColorSpace
             });
         }
 
-        protected override void SetupStart()
+        protected override void SetupStart(CompositeDisposable d)
         {
-            base.SetupStart();
+            base.SetupStart(d);
             CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
             ColorModes = new ReadOnlyCollection<string>(new[] { "Gray", "BGR", "HSV", "HLS" });
         }
 
-        protected override void SetupSubscriptions()
+        protected override void SetupSubscriptions(CompositeDisposable d)
         {
-            base.SetupSubscriptions();
-            this.WhenActivated(d =>
-            {
-                this.WhenAnyValue(x => x.ColorModeSelectInd)
-                    .Where(i => i >= 0)
-                    .Select(i => i.Equals(0) ? (new[] { 0 }).AsEnumerable() : Enumerable.Range(-1, 4))
-                    .ToPropertyEx(this, x => x.Channels, deferSubscription: true)
-                    .DisposeWith(d);
+            base.SetupSubscriptions(d);
 
-                this.WhenAnyValue(x => x.ColorModeSelectInd, x => x.ChannelSelectInd)
-                    .Where(i => i.Item1 >= 0 && i.Item2 >= 0 && Channels != null && Channels.Any())
-                    .Where(guid => CanOperat)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Do(i => UpdateOutput(i.Item1, i.Item2))
-                    .Subscribe()
-                    .DisposeWith(d);
+            this.WhenAnyValue(x => x.ColorModeSelectInd)
+                .Where(i => i >= 0)
+                .Select(i => i.Equals(0) ? (new[] { 0 }).AsEnumerable() : Enumerable.Range(-1, 4))
+                .ToPropertyEx(this, x => x.Channels, deferSubscription: true)
+                .DisposeWith(d);
 
-                _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Where(guid => CanOperat)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Do(guid => UpdateOutput(ColorModeSelectInd, ChannelSelectInd))
-                    .Subscribe()
-                    .DisposeWith(d);
+            this.WhenAnyValue(x => x.ColorModeSelectInd, x => x.ChannelSelectInd)
+                .Where(i => i.Item1 >= 0 && i.Item2 >= 0 && Channels != null && Channels.Any())
+                .Where(guid => CanOperat)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Do(i => UpdateOutput(i.Item1, i.Item2))
+                .Subscribe()
+                .DisposeWith(d);
 
-                _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Select(guid => _imageDataManager.GetCurrentMat().Channels() > 1)
-                    .BindTo(this, x => x.CanOperat)
-                    .DisposeWith(d);
-                _imageDataManager.RaiseCurrent();
-            });
+            _imageDataManager.InputMatGuidSubject
+                .WhereNotNull()
+                .Where(guid => CanOperat)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Do(guid => UpdateOutput(ColorModeSelectInd, ChannelSelectInd))
+                .Subscribe()
+                .DisposeWith(d);
+
+            _imageDataManager.InputMatGuidSubject
+                .WhereNotNull()
+                .Select(guid => _imageDataManager.GetCurrentMat().Channels() > 1)
+                .BindTo(this, x => x.CanOperat)
+                .DisposeWith(d);
+            _imageDataManager.RaiseCurrent();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,15 +32,15 @@ namespace Client.ViewModel.Operation.Op01File
         {
         }
 
-        protected override void SetupCommands()
+        protected override void SetupCommands(CompositeDisposable d)
         {
-            base.SetupCommands();
+            base.SetupCommands(d);
             LoadImageCommand = ReactiveCommand.Create(LoadFile);
         }
 
-        protected override void SetupSubscriptions()
+        protected override void SetupSubscriptions(CompositeDisposable d)
         {
-            base.SetupSubscriptions();
+            base.SetupSubscriptions(d);
             this.WhenAnyValue(x => x.TxtImageFilePath)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .SubscribeOn(RxApp.TaskpoolScheduler)

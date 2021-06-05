@@ -42,33 +42,31 @@ namespace Client.ViewModel.Operation
             });
         }
 
-        protected override void SetupStart()
+        protected override void SetupStart(CompositeDisposable d)
         {
-            base.SetupStart();
+            base.SetupStart(d);
             MorphTypesItems = new ReadOnlyCollection<string>(Enum.GetNames(typeof(MorphTypes)));
             MorphShapesItems = new ReadOnlyCollection<string>(Enum.GetNames(typeof(MorphShapes)));
         }
 
-        protected override void SetupSubscriptions()
+        protected override void SetupSubscriptions(CompositeDisposable d)
         {
-            base.SetupSubscriptions();
-            this.WhenActivated(d =>
-            {
-                this.WhenAnyValue(x => x.MorphTypeSelectValue, x => x.MorphShapeSelectValue, x => x.SizeX, x => x.SizeY)
-                    .Throttle(TimeSpan.FromMilliseconds(150))
-                    .Where(vt => CanOperat && MorphShapeSelectValue != null && MorphTypeSelectValue != null)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Do(vt => UpdataOutput(vt.Item3, vt.Item4, (MorphShapes)Enum.Parse(typeof(MorphShapes), vt.Item2), (MorphTypes)Enum.Parse(typeof(MorphTypes), vt.Item1)))
-                    .Subscribe()
-                    .DisposeWith(d);
-                _imageDataManager.InputMatGuidSubject
-                    .WhereNotNull()
-                    .Where(guid => MorphShapeSelectValue != null && MorphTypeSelectValue != null)
-                    .Do(guid => UpdataOutput(SizeX, SizeY, (MorphShapes)Enum.Parse(typeof(MorphShapes), MorphShapeSelectValue), (MorphTypes)Enum.Parse(typeof(MorphTypes), MorphTypeSelectValue)))
-                    .Subscribe()
-                    .DisposeWith(d);
-                _imageDataManager.RaiseCurrent();
-            });
+            base.SetupSubscriptions(d);
+
+            this.WhenAnyValue(x => x.MorphTypeSelectValue, x => x.MorphShapeSelectValue, x => x.SizeX, x => x.SizeY)
+                .Throttle(TimeSpan.FromMilliseconds(150))
+                .Where(vt => CanOperat && MorphShapeSelectValue != null && MorphTypeSelectValue != null)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Do(vt => UpdataOutput(vt.Item3, vt.Item4, (MorphShapes)Enum.Parse(typeof(MorphShapes), vt.Item2), (MorphTypes)Enum.Parse(typeof(MorphTypes), vt.Item1)))
+                .Subscribe()
+                .DisposeWith(d);
+            _imageDataManager.InputMatGuidSubject
+                .WhereNotNull()
+                .Where(guid => MorphShapeSelectValue != null && MorphTypeSelectValue != null)
+                .Do(guid => UpdataOutput(SizeX, SizeY, (MorphShapes)Enum.Parse(typeof(MorphShapes), MorphShapeSelectValue), (MorphTypes)Enum.Parse(typeof(MorphTypes), MorphTypeSelectValue)))
+                .Subscribe()
+                .DisposeWith(d);
+            _imageDataManager.RaiseCurrent();
         }
     }
 }
