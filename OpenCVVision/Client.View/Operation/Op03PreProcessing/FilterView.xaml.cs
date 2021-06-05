@@ -28,6 +28,11 @@ namespace Client.View.Operation.Op03PreProcessing
         public FilterView()
         {
             InitializeComponent();
+            SetupBinding();
+        }
+
+        private void SetupBinding()
+        {
             this.WhenActivated(d =>
             {
                 this.OneWayBind(ViewModel, vm => vm.FilterModes, v => v.cbxFilterType.ItemsSource).DisposeWith(d);

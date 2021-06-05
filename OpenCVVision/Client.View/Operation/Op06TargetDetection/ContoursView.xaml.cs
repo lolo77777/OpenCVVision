@@ -28,6 +28,11 @@ namespace Client.View.Operation
         public ContoursView()
         {
             InitializeComponent();
+            SetupBinding();
+        }
+
+        private void SetupBinding()
+        {
             this.WhenActivated(d =>
             {
                 this.OneWayBind(ViewModel, vm => vm.RetrievalModesStr, v => v.cbxRetrievalModes.ItemsSource).DisposeWith(d);

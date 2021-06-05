@@ -29,7 +29,17 @@ namespace Client.ViewModel.Operation.Op01File
 
         public LoadFileViewModel()
         {
+        }
+
+        protected override void SetupCommands()
+        {
+            base.SetupCommands();
             LoadImageCommand = ReactiveCommand.Create(LoadFile);
+        }
+
+        protected override void SetupSubscriptions()
+        {
+            base.SetupSubscriptions();
             this.WhenAnyValue(x => x.TxtImageFilePath)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .SubscribeOn(RxApp.TaskpoolScheduler)

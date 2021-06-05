@@ -27,9 +27,31 @@ namespace Client.ViewModel.Operation
 
         public MorphologyViewModel()
         {
+        }
+
+        private void UpdataOutput(int sizex, int sizey, MorphShapes morphShapes, MorphTypes morphTypes)
+        {
+            SendTime(() =>
+            {
+                var element = _rt.T(Cv2.GetStructuringElement(morphShapes, new Size(sizex, sizey)));
+
+                Mat reMat = _rt.NewMat();
+                Cv2.MorphologyEx(_sigleSrc, reMat, morphTypes, element);
+
+                _imageDataManager.OutputMatSubject.OnNext(reMat.Clone());
+            });
+        }
+
+        protected override void SetupStart()
+        {
+            base.SetupStart();
             MorphTypesItems = new ReadOnlyCollection<string>(Enum.GetNames(typeof(MorphTypes)));
             MorphShapesItems = new ReadOnlyCollection<string>(Enum.GetNames(typeof(MorphShapes)));
+        }
 
+        protected override void SetupSubscriptions()
+        {
+            base.SetupSubscriptions();
             this.WhenActivated(d =>
             {
                 this.WhenAnyValue(x => x.MorphTypeSelectValue, x => x.MorphShapeSelectValue, x => x.SizeX, x => x.SizeY)
@@ -46,19 +68,6 @@ namespace Client.ViewModel.Operation
                     .Subscribe()
                     .DisposeWith(d);
                 _imageDataManager.RaiseCurrent();
-            });
-        }
-
-        private void UpdataOutput(int sizex, int sizey, MorphShapes morphShapes, MorphTypes morphTypes)
-        {
-            SendTime(() =>
-            {
-                var element = _rt.T(Cv2.GetStructuringElement(morphShapes, new Size(sizex, sizey)));
-
-                Mat reMat = _rt.NewMat();
-                Cv2.MorphologyEx(_sigleSrc, reMat, morphTypes, element);
-
-                _imageDataManager.OutputMatSubject.OnNext(reMat.Clone());
             });
         }
     }

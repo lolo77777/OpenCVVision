@@ -30,11 +30,16 @@ namespace Client.ViewModel
             imageViewModel ??= _resolver.GetService<ImageViewModel>();
             NavigationViewModelSam = navigationViewModel;
             ImageVMSam = imageViewModel;
+            SetupSubscriptions();
+        }
+
+        private void SetupSubscriptions()
+        {
             MessageBus.Current.Listen<NaviItem>()
-                      .Select(it => _resolver.GetService<IOperationViewModel>(it.OperaPanelInfo))
-                      .WhereNotNull()
-                      .Do(vm => { Router.Navigate.Execute(vm); GC.Collect(); })
-                      .Subscribe();
+                     .Select(it => _resolver.GetService<IOperationViewModel>(it.OperaPanelInfo))
+                     .WhereNotNull()
+                     .Do(vm => { Router.Navigate.Execute(vm); GC.Collect(); })
+                     .Subscribe();
         }
     }
 }

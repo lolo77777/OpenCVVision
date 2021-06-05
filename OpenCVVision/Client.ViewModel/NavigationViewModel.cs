@@ -29,17 +29,7 @@ namespace Client.ViewModel
         {
             //NaviItems = SetItems();
 
-            this.WhenAnyValue(x => x.NaviSelectItemIndex)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Where(ind => ind >= 0 && NaviItems.Count() > ind)
-                .Do(ind => MessageBus.Current.SendMessage(NaviItems.ElementAt(ind)))
-                .Subscribe();
-
-            Observable
-                .Start(() => SetItems())
-
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .BindTo(this, x => x.NaviItems);
+            SetupSubscriptions();
         }
 
         private IEnumerable<NaviItem> SetItems()
@@ -54,6 +44,21 @@ namespace Client.ViewModel
             listtmp.Add(new NaviItem { Icon = PackIconKind.Connection, OperaPanelInfo = StaticMethod.GetInfo<ConnectedComponentsViewModel>() });
             listtmp.Add(new NaviItem { Icon = PackIconKind.Circle, OperaPanelInfo = StaticMethod.GetInfo<ContoursViewModel>() });
             return listtmp;
+        }
+
+        private void SetupSubscriptions()
+        {
+            this.WhenAnyValue(x => x.NaviSelectItemIndex)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Where(ind => ind >= 0 && NaviItems.Count() > ind)
+                .Do(ind => MessageBus.Current.SendMessage(NaviItems.ElementAt(ind)))
+                .Subscribe();
+
+            Observable
+                .Start(() => SetItems())
+
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .BindTo(this, x => x.NaviItems);
         }
     }
 

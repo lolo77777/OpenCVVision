@@ -49,12 +49,42 @@ namespace Client.ViewModel
         public ImageViewModel(IImageDataManager imageDataManager = null)
         {
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
+            SetupCommands();
+            SetupSubscriptions();
+        }
+
+        private HistoryItem ConvertData(ImageData imageData)
+        {
+            var wtBitmap = MatResizeWt(imageData.ImageMat);
+
+            return new HistoryItem { HistoryItemId = imageData.ImageId, HistoryItemTxtMark = imageData.TxtMarker, HistoryItemImg = wtBitmap };
+        }
+
+        private void Init()
+        {
+        }
+
+        private WriteableBitmap MatResizeWt(Mat mat)
+        {
+            var scaleY = 90d / mat.Height;
+            var dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
+            return dst.ToWriteableBitmap();
+        }
+
+        private void SetupCommands()
+        {
+            AddOutputImgToImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.AddOutputImage(OutputImageMarkTxt));
+            RemoveImgFromImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.RemoveCurrentImage());
+        }
+
+        private void SetupSubscriptions()
+        {
             _imageDataManager.SourceCacheImageData
-                .Connect()
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Transform(it => ConvertData(it))
-                .Do(it => UpdateHistoryItems(it))
-                .Subscribe();
+               .Connect()
+               .ObserveOn(RxApp.MainThreadScheduler)
+               .Transform(it => ConvertData(it))
+               .Do(it => UpdateHistoryItems(it))
+               .Subscribe();
             _historyItemsTmp
                 .Connect()
                 .ObserveOn(RxApp.MainThreadScheduler)
@@ -80,26 +110,6 @@ namespace Client.ViewModel
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Select(d => $"{d}ms")
                 .BindTo(this, x => x.Time);
-            AddOutputImgToImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.AddOutputImage(OutputImageMarkTxt));
-            RemoveImgFromImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.RemoveCurrentImage());
-        }
-
-        private HistoryItem ConvertData(ImageData imageData)
-        {
-            var wtBitmap = MatResizeWt(imageData.ImageMat);
-
-            return new HistoryItem { HistoryItemId = imageData.ImageId, HistoryItemTxtMark = imageData.TxtMarker, HistoryItemImg = wtBitmap };
-        }
-
-        private void Init()
-        {
-        }
-
-        private WriteableBitmap MatResizeWt(Mat mat)
-        {
-            var scaleY = 90d / mat.Height;
-            var dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
-            return dst.ToWriteableBitmap();
         }
 
         private void UpdateHistoryItems(IChangeSet<HistoryItem, Guid> changes)

@@ -28,35 +28,6 @@ namespace Client.ViewModel.Operation
 
         public RoiViewModel()
         {
-            this.WhenActivated(d =>
-            {
-                var currentMatOb = _imageDataManager.InputMatGuidSubject
-
-                    .ObserveOn(RxApp.MainThreadScheduler);
-                currentMatOb
-                    .Select(guid => _imageDataManager.GetCurrentMat())
-                    .WhereNotNull()
-                    .Select(mat => mat.Width)
-                    .Do(w => Width = w)
-                    .ToPropertyEx(this, x => x.WidthLimit)
-                    .DisposeWith(d);
-
-                currentMatOb
-                    .Select(guid => _imageDataManager.GetCurrentMat())
-                    .WhereNotNull()
-                    .Select(mat => mat.Height)
-                    .Do(h => Height = h)
-                    .ToPropertyEx(this, x => x.HeightLimit)
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.Left, x => x.Top, x => x.Width, x => x.Height, x => x.RoiModeSelectValue)
-                    .Throttle(TimeSpan.FromMilliseconds(160))
-                    .Where(vt => CanOperat && RoiModeSelectValue != null)
-                    .Where(vt => Left + Width <= WidthLimit && Top + Height <= HeightLimit)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Subscribe(vt => UpdateOutput(new Rect(vt.Item1, vt.Item2, vt.Item3, vt.Item4), vt.Item5))
-                    .DisposeWith(d);
-                _imageDataManager.RaiseCurrent();
-            });
         }
 
         private void UpdateOutput(Rect rect, string roiMode)
@@ -89,6 +60,40 @@ namespace Client.ViewModel.Operation
                 }
 
                 _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+            });
+        }
+
+        protected override void SetupSubscriptions()
+        {
+            base.SetupSubscriptions();
+            this.WhenActivated(d =>
+            {
+                var currentMatOb = _imageDataManager.InputMatGuidSubject
+
+                    .ObserveOn(RxApp.MainThreadScheduler);
+                currentMatOb
+                    .Select(guid => _imageDataManager.GetCurrentMat())
+                    .WhereNotNull()
+                    .Select(mat => mat.Width)
+                    .Do(w => Width = w)
+                    .ToPropertyEx(this, x => x.WidthLimit)
+                    .DisposeWith(d);
+
+                currentMatOb
+                    .Select(guid => _imageDataManager.GetCurrentMat())
+                    .WhereNotNull()
+                    .Select(mat => mat.Height)
+                    .Do(h => Height = h)
+                    .ToPropertyEx(this, x => x.HeightLimit)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.Left, x => x.Top, x => x.Width, x => x.Height, x => x.RoiModeSelectValue)
+                    .Throttle(TimeSpan.FromMilliseconds(160))
+                    .Where(vt => CanOperat && RoiModeSelectValue != null)
+                    .Where(vt => Left + Width <= WidthLimit && Top + Height <= HeightLimit)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Subscribe(vt => UpdateOutput(new Rect(vt.Item1, vt.Item2, vt.Item3, vt.Item4), vt.Item5))
+                    .DisposeWith(d);
+                _imageDataManager.RaiseCurrent();
             });
         }
     }

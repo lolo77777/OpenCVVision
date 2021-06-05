@@ -23,7 +23,7 @@ namespace Client.ViewModel.Operation
         private const int THICK3 = 3;
         private IEnumerable<IEnumerable<Point>> _contours;
         [Reactive] public string BoundingShapeSelectValue { get; set; }
-        public IEnumerable<string> BoundingShapesItems { get; }
+        public IEnumerable<string> BoundingShapesItems { get; set; }
         public IEnumerable<string> ContourApproximationModesStr { get; set; }
 
         [Reactive] public string ContourApproximationSelectValue { get; set; }
@@ -35,41 +35,6 @@ namespace Client.ViewModel.Operation
 
         public ContoursViewModel()
         {
-            RetrievalModesStr = Enum.GetNames(typeof(RetrievalModes));
-            ContourApproximationModesStr = Enum.GetNames(typeof(ContourApproximationModes));
-            BoundingShapesItems = new[] { "BoundingRect", "MinAreaRect", "ConvexHull", "MinEnclosingCircle", "MinEnclosingTriangle", "FitEllipse" };
-
-            this.WhenActivated(d =>
-            {
-                _imageDataManager.InputMatGuidSubject
-                   .Select(guid => _imageDataManager.GetCurrentMat())
-                   .WhereNotNull()
-                   .Where(mat => CanOperat)
-                   .Where(vt => !string.IsNullOrWhiteSpace(RetrievalSelectValue) && !string.IsNullOrWhiteSpace(ContourApproximationSelectValue))
-                   .ObserveOn(RxApp.MainThreadScheduler)
-                   .Select(mat => Updateoutput(RetrievalSelectValue, ContourApproximationSelectValue))
-                   .WhereNotNull()
-                   .Select(vs => Enumerable.Range(-1, vs.Count() + 1))
-                   .ToPropertyEx(this, x => x.ContourIdItems)
-                   .DisposeWith(d);
-                this.WhenAnyValue(x => x.RetrievalSelectValue, x => x.ContourApproximationSelectValue)
-                    .Where(vt => !string.IsNullOrWhiteSpace(vt.Item1) && !string.IsNullOrWhiteSpace(vt.Item2))
-                    .Where(vt => CanOperat)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Select(vt => Updateoutput(RetrievalSelectValue, ContourApproximationSelectValue))
-                    .WhereNotNull()
-                    .Select(vs => Enumerable.Range(-1, vs.Count() + 1))
-                    .ToPropertyEx(this, x => x.ContourIdItems)
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.ContourIdItemSelectValue, x => x.BoundingShapeSelectValue)
-                    .Where(vt => vt.Item1 >= -1 && ContourIdItems != null && ContourIdItems.Any())
-                    .Where(vt => vt.Item2 != null)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Subscribe(vt => UpdateSelectContour(_contours, vt.Item1, vt.Item2))
-                    .DisposeWith(d);
-
-                _imageDataManager.RaiseCurrent();
-            });
         }
 
         private void AddShape(Mat dst, IEnumerable<Point> contour, string boundingShape)
@@ -182,6 +147,50 @@ namespace Client.ViewModel.Operation
                 }
 
                 _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+            });
+        }
+
+        protected override void SetupStart()
+        {
+            base.SetupStart();
+            RetrievalModesStr = Enum.GetNames(typeof(RetrievalModes));
+            ContourApproximationModesStr = Enum.GetNames(typeof(ContourApproximationModes));
+            BoundingShapesItems = new[] { "BoundingRect", "MinAreaRect", "ConvexHull", "MinEnclosingCircle", "MinEnclosingTriangle", "FitEllipse" };
+        }
+
+        protected override void SetupSubscriptions()
+        {
+            base.SetupSubscriptions();
+            this.WhenActivated(d =>
+            {
+                _imageDataManager.InputMatGuidSubject
+                   .Select(guid => _imageDataManager.GetCurrentMat())
+                   .WhereNotNull()
+                   .Where(mat => CanOperat)
+                   .Where(vt => !string.IsNullOrWhiteSpace(RetrievalSelectValue) && !string.IsNullOrWhiteSpace(ContourApproximationSelectValue))
+                   .ObserveOn(RxApp.MainThreadScheduler)
+                   .Select(mat => Updateoutput(RetrievalSelectValue, ContourApproximationSelectValue))
+                   .WhereNotNull()
+                   .Select(vs => Enumerable.Range(-1, vs.Count() + 1))
+                   .ToPropertyEx(this, x => x.ContourIdItems)
+                   .DisposeWith(d);
+                this.WhenAnyValue(x => x.RetrievalSelectValue, x => x.ContourApproximationSelectValue)
+                    .Where(vt => !string.IsNullOrWhiteSpace(vt.Item1) && !string.IsNullOrWhiteSpace(vt.Item2))
+                    .Where(vt => CanOperat)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Select(vt => Updateoutput(RetrievalSelectValue, ContourApproximationSelectValue))
+                    .WhereNotNull()
+                    .Select(vs => Enumerable.Range(-1, vs.Count() + 1))
+                    .ToPropertyEx(this, x => x.ContourIdItems)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.ContourIdItemSelectValue, x => x.BoundingShapeSelectValue)
+                    .Where(vt => vt.Item1 >= -1 && ContourIdItems != null && ContourIdItems.Any())
+                    .Where(vt => vt.Item2 != null)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Subscribe(vt => UpdateSelectContour(_contours, vt.Item1, vt.Item2))
+                    .DisposeWith(d);
+
+                _imageDataManager.RaiseCurrent();
             });
         }
     }

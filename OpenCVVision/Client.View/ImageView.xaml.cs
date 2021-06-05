@@ -28,6 +28,11 @@ namespace Client.View
         public ImageView()
         {
             InitializeComponent();
+            SetupBinding();
+        }
+
+        private void SetupBinding()
+        {
             this.WhenActivated(d =>
             {
                 this.OneWayBind(ViewModel, vm => vm.HistoryItems, v => v.HistoryImg.ItemsSource).DisposeWith(d);

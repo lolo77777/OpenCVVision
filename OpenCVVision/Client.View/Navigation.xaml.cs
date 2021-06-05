@@ -37,27 +37,7 @@ namespace Client.View
             InitializeComponent();
 
             LoadAnimation();
-            this.WhenActivated(d =>
-            {
-                this.OneWayBind(ViewModel, vm => vm.NaviItems, v => v.NavigationTab.ItemsSource).DisposeWith(d);
-                this.WhenAnyValue(x => x.NavigationTab.SelectedIndex)
-                    .BindTo(ViewModel, x => x.NaviSelectItemIndex)
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.HumToggle.IsChecked)
-                    .WhereNotNull()
-                    .Do(b =>
-                    {
-                        if (!b.Value)
-                        {
-                            GridMain.BeginAnimation(WidthProperty, withAnimation1);
-                        }
-                        else
-                        {
-                            GridMain.BeginAnimation(WidthProperty, withAnimation2);
-                        }
-                    })
-                    .Subscribe();
-            });
+            SetupBinding();
         }
 
         private void LoadAnimation()
@@ -68,6 +48,31 @@ namespace Client.View
             withAnimation2.From = 41;
             withAnimation2.To = 140;
             withAnimation2.Duration = TimeSpan.FromMilliseconds(120);
+        }
+
+        private void SetupBinding()
+        {
+            this.WhenActivated(d =>
+             {
+                 this.OneWayBind(ViewModel, vm => vm.NaviItems, v => v.NavigationTab.ItemsSource).DisposeWith(d);
+                 this.WhenAnyValue(x => x.NavigationTab.SelectedIndex)
+                     .BindTo(ViewModel, x => x.NaviSelectItemIndex)
+                     .DisposeWith(d);
+                 this.WhenAnyValue(x => x.HumToggle.IsChecked)
+                     .WhereNotNull()
+                     .Do(b =>
+                     {
+                         if (!b.Value)
+                         {
+                             GridMain.BeginAnimation(WidthProperty, withAnimation1);
+                         }
+                         else
+                         {
+                             GridMain.BeginAnimation(WidthProperty, withAnimation2);
+                         }
+                     })
+                     .Subscribe();
+             });
         }
     }
 }

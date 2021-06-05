@@ -33,6 +33,11 @@ namespace Client.View.Operation._01File
         {
             InitializeComponent();
             openFileDialog.Filter = "Image files (*.jpg;*.bmp;*.png)|*.jpg;*.bmp;*.png";
+            SetupBinding();
+        }
+
+        private void SetupBinding()
+        {
             this.WhenActivated(d =>
             {
                 this.BindCommand(ViewModel, vm => vm.LoadImageCommand, v => v.btnLoadImage).DisposeWith(d);

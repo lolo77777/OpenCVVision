@@ -30,29 +30,34 @@ namespace Client.View.Operation
         public ThresholdView()
         {
             InitializeComponent();
+            SetupBinding();
+        }
+
+        private void SetupBinding()
+        {
             this.WhenActivated(d =>
-            {
-                barChart.XAxes.ElementAt(0).MinStep = 2;
-                barChart.XAxes.ElementAt(0).MaxLimit = 256;
-                sliderMaxval.Value = 255;
-                barChart.YAxes.ElementAt(0).MinStep = 2;
-                this.OneWayBind(ViewModel, vm => vm.Series, v => v.barChart.Series).DisposeWith(d);
-                this.OneWayBind(ViewModel, vm => vm.ThreshouldModes, v => v.cbxThreshouldType.ItemsSource).DisposeWith(d);
-                this.OneWayBind(ViewModel, vm => vm.Channels, v => v.cbxChannels.ItemsSource).DisposeWith(d);
-                this.Bind(ViewModel, vm => vm.ChanelSelectIndex, v => v.cbxChannels.SelectedIndex).DisposeWith(d);
-                this.WhenAnyValue(x => x.cbxThreshouldType.SelectedValue)
-                    .WhereNotNull()
-                    .BindTo(ViewModel, x => x.ThresholdSelectValue)
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.sliderThresh.Value)
-                    .WhereNotNull()
-                    .BindTo(ViewModel, x => x.Thresh)
-                    .DisposeWith(d);
-                this.WhenAnyValue(x => x.sliderMaxval.Value)
-                    .WhereNotNull()
-                    .BindTo(ViewModel, x => x.Maxval)
-                    .DisposeWith(d);
-            });
+           {
+               barChart.XAxes.ElementAt(0).MinStep = 2;
+               barChart.XAxes.ElementAt(0).MaxLimit = 256;
+               sliderMaxval.Value = 255;
+               barChart.YAxes.ElementAt(0).MinStep = 2;
+               this.OneWayBind(ViewModel, vm => vm.Series, v => v.barChart.Series).DisposeWith(d);
+               this.OneWayBind(ViewModel, vm => vm.ThreshouldModes, v => v.cbxThreshouldType.ItemsSource).DisposeWith(d);
+               this.OneWayBind(ViewModel, vm => vm.Channels, v => v.cbxChannels.ItemsSource).DisposeWith(d);
+               this.Bind(ViewModel, vm => vm.ChanelSelectIndex, v => v.cbxChannels.SelectedIndex).DisposeWith(d);
+               this.WhenAnyValue(x => x.cbxThreshouldType.SelectedValue)
+                   .WhereNotNull()
+                   .BindTo(ViewModel, x => x.ThresholdSelectValue)
+                   .DisposeWith(d);
+               this.WhenAnyValue(x => x.sliderThresh.Value)
+                   .WhereNotNull()
+                   .BindTo(ViewModel, x => x.Thresh)
+                   .DisposeWith(d);
+               this.WhenAnyValue(x => x.sliderMaxval.Value)
+                   .WhereNotNull()
+                   .BindTo(ViewModel, x => x.Maxval)
+                   .DisposeWith(d);
+           });
         }
     }
 }

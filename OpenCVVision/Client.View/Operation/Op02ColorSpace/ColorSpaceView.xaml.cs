@@ -28,6 +28,11 @@ namespace Client.View.Operation.Op02ColorSpace
         public ColorSpaceView()
         {
             InitializeComponent();
+            SetupBinding();
+        }
+
+        private void SetupBinding()
+        {
             this.WhenActivated(d =>
             {
                 this.OneWayBind(ViewModel, vm => vm.ColorModes, v => v.ColorModesCbx.ItemsSource).DisposeWith(d);

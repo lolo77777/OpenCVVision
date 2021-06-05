@@ -36,9 +36,43 @@ namespace Client.ViewModel.Operation.Op03PreProcessing
 
         public FilterViewModel()
         {
+        }
+
+        private void UpdateUi(int filterModeSelectIndex, int kernelSizeX, int kernelSizeY, double sigmaX, double sigmaY, int kernelDiam, double sigmaColor, double sigmaSpace)
+        {
+            SendTime(() =>
+            {
+                if (filterModeSelectIndex > 2)
+                {
+                    Mat dst = _rt.NewMat();
+                    dst = _src.BilateralFilter(kernelDiam, sigmaColor, sigmaSpace);
+                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+                }
+                else
+                {
+                    Mat dst = _rt.NewMat();
+                    dst = filterModeSelectIndex switch
+                    {
+                        0 => _src.Blur(new Size(kernelSizeX, kernelSizeY)),
+                        1 => _src.GaussianBlur(new Size(kernelSizeX, kernelSizeY), sigmaX, sigmaY),
+                        2 => _src.MedianBlur(kernelSizeX),
+                        _ => _src.Clone()
+                    };
+                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+                }
+            });
+        }
+
+        protected override void SetupStart()
+        {
+            base.SetupStart();
             CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
             FilterModes = new ReadOnlyCollection<string>(new[] { "Blur", "Gaussian", "Median", "BilateralFilter" });
+        }
 
+        protected override void SetupSubscriptions()
+        {
+            base.SetupSubscriptions();
             this.WhenActivated(d =>
             {
                 this.WhenAnyValue(x => x.FilterModeSelectIndex)
@@ -81,31 +115,6 @@ namespace Client.ViewModel.Operation.Op03PreProcessing
                     .Subscribe()
                     .DisposeWith(d);
                 _imageDataManager.RaiseCurrent();
-            });
-        }
-
-        private void UpdateUi(int filterModeSelectIndex, int kernelSizeX, int kernelSizeY, double sigmaX, double sigmaY, int kernelDiam, double sigmaColor, double sigmaSpace)
-        {
-            SendTime(() =>
-            {
-                if (filterModeSelectIndex > 2)
-                {
-                    Mat dst = _rt.NewMat();
-                    dst = _src.BilateralFilter(kernelDiam, sigmaColor, sigmaSpace);
-                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-                }
-                else
-                {
-                    Mat dst = _rt.NewMat();
-                    dst = filterModeSelectIndex switch
-                    {
-                        0 => _src.Blur(new Size(kernelSizeX, kernelSizeY)),
-                        1 => _src.GaussianBlur(new Size(kernelSizeX, kernelSizeY), sigmaX, sigmaY),
-                        2 => _src.MedianBlur(kernelSizeX),
-                        _ => _src.Clone()
-                    };
-                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-                }
             });
         }
     }

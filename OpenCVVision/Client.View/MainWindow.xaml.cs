@@ -33,12 +33,14 @@ namespace Client
         private IReadonlyDependencyResolver _resolver = Locator.Current;
         private ITheme _theme;
 
+        #region ViewModel
+
         public static readonly DependencyProperty ViewModelProperty =
-           DependencyProperty.Register(
-               "ViewModel",
-               typeof(MainViewModel),
-               typeof(ReactiveWindow<MainViewModel>),
-               new PropertyMetadata(null));
+                  DependencyProperty.Register(
+                      "ViewModel",
+                      typeof(MainViewModel),
+                      typeof(ReactiveWindow<MainViewModel>),
+                      new PropertyMetadata(null));
 
         public MainViewModel ViewModel
         {
@@ -52,21 +54,28 @@ namespace Client
             set => ViewModel = (MainViewModel)value;
         }
 
+        #endregion ViewModel
+
         public MainWindow(MainViewModel mainViewModel = null)
         {
             InitializeComponent();
             ViewModel = mainViewModel ?? _resolver.GetService<MainViewModel>();
+            SetupBinding();
+        }
+
+        private void OpenGitSite_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", "https://gitee.com/lolo77/OpenCVVision");
+        }
+
+        private void SetupBinding()
+        {
             this.WhenActivated(d =>
             {
                 this.OneWayBind(ViewModel, vm => vm.NavigationViewModelSam, v => v.Nagivate.ViewModel).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.ImageVMSam, v => v.ImgViewer.ViewModel).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.Router, v => v.OperaPanel.Router).DisposeWith(d);
             });
-        }
-
-        private void OpenGitSite_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("explorer.exe", "https://gitee.com/lolo77/OpenCVVision");
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)

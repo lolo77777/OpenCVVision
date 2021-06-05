@@ -32,8 +32,40 @@ namespace Client.ViewModel.Operation.Op02ColorSpace
 
         public ColorSpaceViewModel()
         {
+        }
+
+        private void UpdateOutput(int colorModeInd, int channel)
+        {
+            SendTime(() =>
+            {
+                if (!_src.Channels().Equals(1))
+                {
+                    var dst = _rt.NewMat();
+                    dst = colorModeInd switch
+                    {
+                        0 => _src.CvtColor(ColorConversionCodes.BGR2GRAY),
+                        1 => channel.Equals(0) ? _src : _src.Split()[channel - 1],
+                        2 => channel.Equals(0) ? _src : _src.CvtColor(ColorConversionCodes.BGR2HSV).Split()[channel - 1],
+                        3 => channel.Equals(0) ? _src : _src.CvtColor(ColorConversionCodes.BGR2HLS).Split()[channel - 1],
+                        _ => _src.Clone()
+                    };
+
+                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+                    _rt.Dispose();
+                }
+            });
+        }
+
+        protected override void SetupStart()
+        {
+            base.SetupStart();
             CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
             ColorModes = new ReadOnlyCollection<string>(new[] { "Gray", "BGR", "HSV", "HLS" });
+        }
+
+        protected override void SetupSubscriptions()
+        {
+            base.SetupSubscriptions();
             this.WhenActivated(d =>
             {
                 this.WhenAnyValue(x => x.ColorModeSelectInd)
@@ -64,28 +96,6 @@ namespace Client.ViewModel.Operation.Op02ColorSpace
                     .BindTo(this, x => x.CanOperat)
                     .DisposeWith(d);
                 _imageDataManager.RaiseCurrent();
-            });
-        }
-
-        private void UpdateOutput(int colorModeInd, int channel)
-        {
-            SendTime(() =>
-            {
-                if (!_src.Channels().Equals(1))
-                {
-                    var dst = _rt.NewMat();
-                    dst = colorModeInd switch
-                    {
-                        0 => _src.CvtColor(ColorConversionCodes.BGR2GRAY),
-                        1 => channel.Equals(0) ? _src : _src.Split()[channel - 1],
-                        2 => channel.Equals(0) ? _src : _src.CvtColor(ColorConversionCodes.BGR2HSV).Split()[channel - 1],
-                        3 => channel.Equals(0) ? _src : _src.CvtColor(ColorConversionCodes.BGR2HLS).Split()[channel - 1],
-                        _ => _src.Clone()
-                    };
-
-                    _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-                    _rt.Dispose();
-                }
             });
         }
     }

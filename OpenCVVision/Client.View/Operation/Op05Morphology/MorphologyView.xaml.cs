@@ -29,6 +29,11 @@ namespace Client.View.Operation
         public MorphologyView()
         {
             InitializeComponent();
+            SetupBinding();
+        }
+
+        private void SetupBinding()
+        {
             this.WhenActivated(d =>
             {
                 this.OneWayBind(ViewModel, vm => vm.MorphShapesItems, v => v.cbxMorphShapes.ItemsSource).DisposeWith(d);
