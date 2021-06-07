@@ -15,7 +15,7 @@ using ReactiveUI.Fody.Helpers;
 
 namespace Client.ViewModel.Operation
 {
-    [OperationInfo("ROI")]
+    [OperationInfo("ROI", MaterialDesignThemes.Wpf.PackIconKind.RectangleOutline)]
     public class RoiViewModel : OperaViewModelBase
     {
         [Reactive] public int Height { get; private set; }

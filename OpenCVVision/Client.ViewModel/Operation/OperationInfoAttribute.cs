@@ -4,15 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Common
+using MaterialDesignThemes.Wpf;
+
+namespace Client.ViewModel
 {
     public class OperationInfoAttribute : Attribute
     {
+        public PackIconKind Icon { get; private set; }
         public string Info { get; private set; }
 
-        public OperationInfoAttribute(string info)
+        public OperationInfoAttribute(string info, PackIconKind icon)
         {
-            this.Info = info;
+            Info = info;
+            Icon = icon;
         }
     }
 }

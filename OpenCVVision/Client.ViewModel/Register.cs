@@ -20,12 +20,12 @@ namespace Client.ViewModel
     {
         private void RegistLazySingletonOpVM<T>() where T : IOperationViewModel, new()
         {
-            _mutable.Register<IOperationViewModel>(() => new T(), StaticMethod.GetInfo<T>());
+            _mutable.Register<IOperationViewModel>(() => new T(), OpStaticMethod.GetOpInfo<T>().info);
         }
 
         public static T ResolveVM<T>() where T : IOperationViewModel, new()
         {
-            return (T)Locator.Current.GetService<IOperationViewModel>(StaticMethod.GetInfo<T>());
+            return (T)Locator.Current.GetService<IOperationViewModel>(OpStaticMethod.GetOpInfo<T>().info);
         }
 
         public override void ConfigService()

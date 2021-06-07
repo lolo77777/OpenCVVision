@@ -14,7 +14,7 @@ using System.Reactive.Disposables;
 
 namespace Client.ViewModel.Operation
 {
-    [OperationInfo("形态学1")]
+    [OperationInfo("形态学1", MaterialDesignThemes.Wpf.PackIconKind.MortarPestle)]
     public class MorphologyViewModel : OperaViewModelBase
     {
         [Reactive] public string MorphShapeSelectValue { get; private set; }

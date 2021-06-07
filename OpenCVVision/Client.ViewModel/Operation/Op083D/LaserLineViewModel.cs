@@ -11,7 +11,7 @@ using OpenCvSharp;
 
 namespace Client.ViewModel.Operation
 {
-    [OperationInfo("线激光中心")]
+    [OperationInfo("线激光中心", MaterialDesignThemes.Wpf.PackIconKind.LaserPointer)]
     public class LaserLineViewModel : OperaViewModelBase
     {
         public LaserLineViewModel()

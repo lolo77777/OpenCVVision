@@ -22,7 +22,7 @@ using Splat;
 
 namespace Client.ViewModel.Operation.Op02ColorSpace
 {
-    [OperationInfo("色彩空间")]
+    [OperationInfo("色彩空间", MaterialDesignThemes.Wpf.PackIconKind.Color)]
     public class ColorSpaceViewModel : OperaViewModelBase
     {
         [ObservableAsProperty] public IEnumerable<int> Channels { get; set; }

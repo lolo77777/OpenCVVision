@@ -32,17 +32,23 @@ namespace Client.ViewModel
             SetupSubscriptions();
         }
 
+        private NaviItem GetNaviItem<T>()
+        {
+            var info = OpStaticMethod.GetOpInfo<T>();
+            return new NaviItem { OperaPanelInfo = info.info, Icon = info.icon };
+        }
+
         private IEnumerable<NaviItem> SetItems()
         {
             List<NaviItem> listtmp = new();
-            listtmp.Add(new NaviItem { Icon = PackIconKind.File, OperaPanelInfo = StaticMethod.GetInfo<LoadFileViewModel>() });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.RectangleOutline, OperaPanelInfo = StaticMethod.GetInfo<RoiViewModel>() });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.Color, OperaPanelInfo = StaticMethod.GetInfo<ColorSpaceViewModel>() });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.Filter, OperaPanelInfo = StaticMethod.GetInfo<FilterViewModel>() });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.NumericZero, OperaPanelInfo = StaticMethod.GetInfo<ThreshouldViewModel>() });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.MortarPestle, OperaPanelInfo = StaticMethod.GetInfo<MorphologyViewModel>() });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.Connection, OperaPanelInfo = StaticMethod.GetInfo<ConnectedComponentsViewModel>() });
-            listtmp.Add(new NaviItem { Icon = PackIconKind.Circle, OperaPanelInfo = StaticMethod.GetInfo<ContoursViewModel>() });
+            listtmp.Add(GetNaviItem<LoadFileViewModel>());
+            listtmp.Add(GetNaviItem<RoiViewModel>());
+            listtmp.Add(GetNaviItem<ColorSpaceViewModel>());
+            listtmp.Add(GetNaviItem<FilterViewModel>());
+            listtmp.Add(GetNaviItem<ThreshouldViewModel>());
+            listtmp.Add(GetNaviItem<MorphologyViewModel>());
+            listtmp.Add(GetNaviItem<ConnectedComponentsViewModel>());
+            listtmp.Add(GetNaviItem<ContoursViewModel>());
             return listtmp;
         }
 
