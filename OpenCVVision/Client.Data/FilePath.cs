@@ -8,6 +8,7 @@ namespace Client.Data
         {
             public const string LaserLineBoardFolder = @"Data\Image\LaserLine\Board\";
             public const string LaserLineLightFolder = @"Data\Image\LaserLine\Light\";
+            public const string LaserLineTestFolder = @"Data\Image\LaserLine\Test\";
         }
 
         public static class Image

@@ -11,16 +11,16 @@ namespace Client.Model.Service.ImageProcess
 {
     internal class CalibrateCameraHelp
     {
-        private Size boardSize;
-        private int displayWidth;
-        private string folderPath;
-        private float gap;
-        private int imageCount;
-        private Size srcSize;
+        private Size _boardSize;
+        private int _displayWidth;
+        private string _folderPath;
+        private float _gap;
+        private int _imageCount;
+        private Size _srcSize;
         public double[,] CameraMatrix = new double[3, 3];
-        public List<Point2f[]> cornersList = new List<Point2f[]>();
+        public List<Point2f[]> cornersList = new();
         public double[] DistCoeffs = new double[5];
-        public List<Point3f[]> objectspointList = new List<Point3f[]>();
+        public List<Point3f[]> objectspointList = new();
         public Mat CameraMatrixMat { set; get; }
         public Mat DiscoeffsMat { set; get; }
         public List<(string name, Mat src)> FileMats { set; get; } = new List<(string name, Mat src)>();
@@ -39,13 +39,13 @@ namespace Client.Model.Service.ImageProcess
         /// <param name="displayWidth">标定过程中显示窗口宽度</param>
         public CalibrateCameraHelp(string folderPath, Size boardSize, float gap, int displayWidth)
         {
-            this.folderPath = folderPath;
-            this.displayWidth = displayWidth;
-            this.boardSize = boardSize;
-            Rvecs = new Vec3d[imageCount];
-            Tvecs = new Vec3d[imageCount];
-            this.gap = gap;
-            init();
+            this._folderPath = folderPath;
+            this._displayWidth = displayWidth;
+            this._boardSize = boardSize;
+            Rvecs = new Vec3d[_imageCount];
+            Tvecs = new Vec3d[_imageCount];
+            this._gap = gap;
+            Init();
         }
 
         /// <summary>
@@ -57,12 +57,12 @@ namespace Client.Model.Service.ImageProcess
         /// <param name="displayWidth">标定过程中显示窗口宽度</param>
         public CalibrateCameraHelp(Size boardSize, float gap, int imgcount)
         {
-            imageCount = imgcount;
-            this.boardSize = boardSize;
-            Rvecs = new Vec3d[imageCount];
-            Tvecs = new Vec3d[imageCount];
-            this.gap = gap;
-            init();
+            _imageCount = imgcount;
+            this._boardSize = boardSize;
+            Rvecs = new Vec3d[_imageCount];
+            Tvecs = new Vec3d[_imageCount];
+            this._gap = gap;
+            Init();
         }
 
         /// <summary>
@@ -86,23 +86,23 @@ namespace Client.Model.Service.ImageProcess
         /// <summary>
         /// 初始化
         /// </summary>
-        private void init()
+        private void Init()
         {
-            if (!string.IsNullOrWhiteSpace(folderPath))
+            if (!string.IsNullOrWhiteSpace(_folderPath))
             {
-                FilesPahtList = Directory.EnumerateFiles(folderPath).ToList();
-                imageCount = FilesPahtList.Count;
-                FilesPahtList.ForEach(p => FileMats.Add((p.Replace(folderPath, ""), Cv2.ImRead(p))));
+                FilesPahtList = Directory.EnumerateFiles(_folderPath).ToList();
+                _imageCount = FilesPahtList.Count;
+                FilesPahtList.ForEach(p => FileMats.Add((p.Replace(_folderPath, ""), Cv2.ImRead(p))));
             }
 
-            for (int i = 0; i < imageCount; i++)
+            for (int i = 0; i < _imageCount; i++)
             {
-                var objectpoints = new Point3f[boardSize.Width * boardSize.Height];
-                for (int j = 0; j < boardSize.Height; j++)
+                var objectpoints = new Point3f[_boardSize.Width * _boardSize.Height];
+                for (int j = 0; j < _boardSize.Height; j++)
                 {
-                    for (int m = 0; m < boardSize.Width; m++)
+                    for (int m = 0; m < _boardSize.Width; m++)
                     {
-                        objectpoints[j * boardSize.Width + m] = new Point3f(m * gap, j * gap, 0);
+                        objectpoints[j * _boardSize.Width + m] = new Point3f(m * _gap, j * _gap, 0);
                     }
                 }
                 objectspointList.Add(objectpoints);
@@ -131,17 +131,21 @@ namespace Client.Model.Service.ImageProcess
                     gray = src.Clone();
                 }
 
-                srcSize = src.Size();
-                var imagepoints = new Point2f[boardSize.Width * boardSize.Height];
+                _srcSize = src.Size();
+                var imagepoints = new Point2f[_boardSize.Width * _boardSize.Height];
 
-                if (Cv2.FindChessboardCorners(gray, boardSize, out imagepoints))
+                if (Cv2.FindChessboardCorners(gray, _boardSize, out imagepoints))
                 {
                     Cv2.Find4QuadCornerSubpix(gray, imagepoints, new Size(5, 5));
 
                     cornersList.Add(imagepoints);
                     var cornerSrc = src.Clone();
-                    Cv2.DrawChessboardCorners(cornerSrc, boardSize, imagepoints, true);
+                    Cv2.DrawChessboardCorners(cornerSrc, _boardSize, imagepoints, true);
                     dsts.Add((orginMats.ElementAt(i).name, cornerSrc));
+                    Cv2.NamedWindow(orginMats.ElementAt(i).name, WindowFlags.FreeRatio);
+                    Cv2.ImShow(orginMats.ElementAt(i).name, cornerSrc);
+                    Cv2.WaitKey(500);
+                    Cv2.DestroyAllWindows();
                 }
                 else
                 {
@@ -150,19 +154,20 @@ namespace Client.Model.Service.ImageProcess
 
                 gray.Dispose();
             }
+
             if (cornersList.Count > 0)
             {
-                Vec3d[] rvecs = new Vec3d[imageCount];
-                Vec3d[] tvecs = new Vec3d[imageCount];
+                Vec3d[] rvecs = new Vec3d[_imageCount];
+                Vec3d[] tvecs = new Vec3d[_imageCount];
 
-                Cv2.CalibrateCamera(objectspointList, cornersList, srcSize,
+                Cv2.CalibrateCamera(objectspointList, cornersList, _srcSize,
                     CameraMatrix, DistCoeffs, out rvecs, out tvecs);
                 Rvecs = rvecs;
                 Tvecs = tvecs;
                 CameraMatrixMat = new Mat(3, 3, MatType.CV_64FC1, CameraMatrix);
                 DiscoeffsMat = new Mat(1, 5, MatType.CV_64FC1, DistCoeffs);
 
-                Cv2.InitUndistortRectifyMap(CameraMatrixMat, DiscoeffsMat, new Mat(), new Mat(), srcSize, MatType.CV_32FC1, Map1, Map2);
+                Cv2.InitUndistortRectifyMap(CameraMatrixMat, DiscoeffsMat, new Mat(), new Mat(), _srcSize, MatType.CV_32FC1, Map1, Map2);
             }
 
             return dsts;
@@ -175,16 +180,16 @@ namespace Client.Model.Service.ImageProcess
         /// <param name="autoCloseTime">图像显示的时间，单位ms</param>
         public void CalibrateOffline(bool display, int autoCloseTime = 10)
         {
-            for (int i = 0; i < imageCount; i++)
+            for (int i = 0; i < _imageCount; i++)
             {
                 var path1 = FilesPahtList[i];
                 var src = Cv2.ImRead(path1);
                 var gray = src.EmptyClone();
                 Cv2.CvtColor(src, gray, ColorConversionCodes.BGR2GRAY);
-                srcSize = src.Size();
-                var imagepoints = new Point2f[boardSize.Width * boardSize.Height];
+                _srcSize = src.Size();
+                var imagepoints = new Point2f[_boardSize.Width * _boardSize.Height];
 
-                if (Cv2.FindChessboardCorners(gray, boardSize, out imagepoints))
+                if (Cv2.FindChessboardCorners(gray, _boardSize, out imagepoints))
                 {
                     Cv2.Find4QuadCornerSubpix(gray, imagepoints, new Size(11, 11));
 
@@ -193,12 +198,12 @@ namespace Client.Model.Service.ImageProcess
                     {
                         Cv2.NamedWindow("src", WindowFlags.FreeRatio);
                         Cv2.NamedWindow("Corner", WindowFlags.FreeRatio);
-                        Cv2.ResizeWindow("src", new Size(displayWidth, displayWidth));
-                        Cv2.ResizeWindow("Corner", new Size(displayWidth, displayWidth));
+                        Cv2.ResizeWindow("src", new Size(_displayWidth, _displayWidth));
+                        Cv2.ResizeWindow("Corner", new Size(_displayWidth, _displayWidth));
                         Cv2.MoveWindow("src", 50, 50);
-                        Cv2.MoveWindow("Corner", displayWidth + 100, 50);
+                        Cv2.MoveWindow("Corner", _displayWidth + 100, 50);
                         var cornerSrc = src.Clone();
-                        Cv2.DrawChessboardCorners(cornerSrc, boardSize, imagepoints, true);
+                        Cv2.DrawChessboardCorners(cornerSrc, _boardSize, imagepoints, true);
                         Cv2.ImShow("src", src);
                         Cv2.ImShow("Corner", cornerSrc);
 
@@ -216,9 +221,9 @@ namespace Client.Model.Service.ImageProcess
                 gray.Dispose();
             }
             Cv2.DestroyAllWindows();
-            Vec3d[] rvecs = new Vec3d[imageCount];
-            Vec3d[] tvecs = new Vec3d[imageCount];
-            Cv2.CalibrateCamera(objectspointList, cornersList, srcSize,
+            Vec3d[] rvecs = new Vec3d[_imageCount];
+            Vec3d[] tvecs = new Vec3d[_imageCount];
+            Cv2.CalibrateCamera(objectspointList, cornersList, _srcSize,
                 CameraMatrix, DistCoeffs, out rvecs, out tvecs);
 
             Rvecs = rvecs;
@@ -230,7 +235,7 @@ namespace Client.Model.Service.ImageProcess
         /// <summary> 显示畸变矫正之后的图像 </summary> <param name="time">图像显示时间(ms)param>
         public void DisplayRemap(int time)
         {
-            for (int i = 0; i < imageCount; i++)
+            for (int i = 0; i < _imageCount; i++)
             {
                 var path1 = FilesPahtList[i];
                 var src = Cv2.ImRead(path1);
@@ -242,12 +247,12 @@ namespace Client.Model.Service.ImageProcess
                 Cv2.NamedWindow("src", WindowFlags.FreeRatio);
                 Cv2.NamedWindow("dst", WindowFlags.FreeRatio);
                 //Cv2.NamedWindow("dst2",WindowMode.FreeRatio);
-                Cv2.ResizeWindow("src", new Size(displayWidth, displayWidth));
-                Cv2.ResizeWindow("dst", new Size(displayWidth, displayWidth));
+                Cv2.ResizeWindow("src", new Size(_displayWidth, _displayWidth));
+                Cv2.ResizeWindow("dst", new Size(_displayWidth, _displayWidth));
                 //Cv2.ResizeWindow("dst2",new Size(400,400));
 
                 Cv2.MoveWindow("src", 50, 50);
-                Cv2.MoveWindow("dst", displayWidth + 100, 50);
+                Cv2.MoveWindow("dst", _displayWidth + 100, 50);
                 //Cv2.MoveWindow("dst2",900,0);
                 Cv2.ImShow("src", src);
                 Cv2.ImShow("dst", dst);
@@ -265,20 +270,20 @@ namespace Client.Model.Service.ImageProcess
         public void EvaluateCalibrateResult()
         {
             double errsum = 0.0;
-            for (int i = 0; i < imageCount; i++)
+            for (int i = 0; i < _imageCount; i++)
             {
-                var imagepoint2 = new Point2f[boardSize.Width * boardSize.Height];
+                var imagepoint2 = new Point2f[_boardSize.Width * _boardSize.Height];
                 //var jacobian = new double[11 * 8,10];
-                Cv2.ProjectPoints(objectspointList[i], vec3d2doubleArray(Rvecs[i]), vec3d2doubleArray(Tvecs[i])
+                Cv2.ProjectPoints(objectspointList[i], Vec3d2doubleArray(Rvecs[i]), Vec3d2doubleArray(Tvecs[i])
                     , CameraMatrix, DistCoeffs, out imagepoint2, out _);
-                var src1 = new Mat(boardSize.Width, boardSize.Height, MatType.CV_64FC1, imagepoint2);
-                var src2 = new Mat(boardSize.Width, boardSize.Height, MatType.CV_64FC1, cornersList[i]);
+                var src1 = new Mat(_boardSize.Width, _boardSize.Height, MatType.CV_64FC1, imagepoint2);
+                var src2 = new Mat(_boardSize.Width, _boardSize.Height, MatType.CV_64FC1, cornersList[i]);
                 var err1 = Cv2.Norm(src1, src2);
                 var err = GetErr(imagepoint2, cornersList[i]);
                 errsum += err;
                 Console.WriteLine($"第{i + 1}幅图像误差为{err}个像素");
             }
-            Console.WriteLine($"平均误差为{errsum / imageCount}个像素");
+            Console.WriteLine($"平均误差为{errsum / _imageCount}个像素");
         }
 
         /// <summary>
@@ -362,7 +367,7 @@ namespace Client.Model.Service.ImageProcess
             File.WriteAllLines(name + ".txt", datas);
         }
 
-        public double[] vec3d2doubleArray(Vec3d vec)
+        public double[] Vec3d2doubleArray(Vec3d vec)
         {
             return new double[3] { vec.Item0, vec.Item1, vec.Item2 };
         }

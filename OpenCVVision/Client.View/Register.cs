@@ -46,6 +46,7 @@ namespace Client.View
             RegisterVLazySingleton<ConnectedComponentsViewModel, ConnectedComponentsView>();
             RegisterVLazySingleton<ContoursViewModel, ContoursView>();
             RegisterVLazySingleton<RoiViewModel, RoiView>();
+            RegisterVLazySingleton<LaserLineViewModel, LaserLineView>();
         }
     }
 }

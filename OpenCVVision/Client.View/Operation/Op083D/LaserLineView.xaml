@@ -4,12 +4,65 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Client.View.Operation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
     xmlns:rxui="http://reactiveui.net"
     d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignWidth="300"
     x:TypeArguments="operation:LaserLineViewModel"
     mc:Ignorable="d">
-    <Grid />
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="Title"
+                Margin="{StaticResource marginOdd}"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="LaserLight" />
+            <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
+                <TextBlock Margin="{StaticResource marginOdd}" TextWrapping="Wrap">
+                    线激光配合相机通过激光三角法实现高度数据的捕获，
+                    结合一个伺服轴，即可实现三维点云数据的获取，系统
+                    主要有线激光、工业相机等组成；
+                    系统标定主要是相机标定、光平面标定；本程序使用棋盘格
+                    来配合实现；\Data\Image\LaserLine目录下为图像数据；
+                    标定结果为Data\Yaml\LaserLine\LightLaserCali.yaml
+                </TextBlock>
+
+                <Button
+                    x:Name="btnCalibrateTest"
+                    Grid.Column="1"
+                    Width="36"
+                    Height="36"
+                    Margin="{StaticResource marginEven}"
+                    HorizontalAlignment="Right"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="标定测试">
+                    <materialDesign:PackIcon Kind="LaserPointer" />
+                </Button>
+                <Button
+                    x:Name="btnLaserLightCal"
+                    Grid.Column="1"
+                    Width="36"
+                    Height="36"
+                    Margin="{StaticResource marginOdd}"
+                    HorizontalAlignment="Right"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="实时求解测试">
+                    <materialDesign:PackIcon Kind="VectorPolyline" />
+                </Button>
+            </StackPanel>
+        </Grid>
+    </materialDesign:Card>
 </rxui:ReactiveUserControl>

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Client.Data;
+
 using OpenCvSharp;
 
 namespace Client.Model.Service.ImageProcess
@@ -12,8 +14,69 @@ namespace Client.Model.Service.ImageProcess
     public class LightPlaneCalibrate
     {
         private Size boardSize = new Size(11, 8);
-        private string datapath = @"LightLaserCali.yaml";
+        private string datapath = FilePath.Yaml.LaserLineCaliYaml;
         private float gap = 10f;
+
+        /// <summary>
+        /// 灰度质心提取光条中心
+        /// </summary>
+        /// <param name="roi">光条所在区域</param>
+        /// <param name="rowstart">起始行数</param>
+        /// <param name="display">是否使用CV窗口显示</param>
+        /// <returns></returns>
+        private static (Point2d[] laserPoint2f, Point[] laserPoint, Mat mat) GetLineGray(Mat roi, int rowstart, bool display = false)
+        {
+            Point2d[] relist2F = new Point2d[roi.Width];
+            Point[] relist = new Point[roi.Width];
+            Mat.UnsafeIndexer<byte> roiindex = roi.GetUnsafeGenericIndexer<byte>();
+
+            for (int x = 0; x < roi.Cols; x++)
+            {
+                roi.Col(x).MinMaxLoc(out _, out double maxx, out _, out Point maxloc);
+                float u = 0, g = 0;
+                float location;
+                if (maxx > 200)
+                {
+                    int ymin = maxloc.Y - 20 > 0 ? maxloc.Y - 20 : 0;
+                    int ymax = maxloc.Y + 20 > roi.Height ? roi.Height : maxloc.Y + 20;
+                    for (int y = ymin; y < ymax; y++)
+                    {
+                        if (roiindex[y, x] > maxx - 30)
+                        {
+                            u += roiindex[y, x];
+                            g += roiindex[y, x] * y;
+                        }
+                    }
+                    location = g / u;
+                }
+                else
+                {
+                    location = -1;
+                }
+
+                relist2F[x] = new Point2d(x, rowstart + location);
+                relist[x] = new Point(x, rowstart + Math.Round(location, 0));
+            }
+
+            Mat remat = roi.CvtColor(ColorConversionCodes.GRAY2BGR);
+            Vec3b color = new Vec3b(0, 0, 250);
+
+            foreach (Point p in relist)
+            {
+                if (p.Y > rowstart)
+                {
+                    remat.At<Vec3b>(p.Y - rowstart, p.X) = color;
+                }
+            }
+            if (display)
+            {
+                Cv2.NamedWindow("src", WindowFlags.FreeRatio);
+                Cv2.ImShow("src", remat);
+                Cv2.WaitKey();
+            }
+
+            return (relist2F, relist, remat);
+        }
 
         private void display(Dictionary<string, Mat> mats)
         {
@@ -26,7 +89,8 @@ namespace Client.Model.Service.ImageProcess
                 i++;
             }
 
-            Cv2.WaitKey();
+            Cv2.WaitKey(500);
+            Cv2.DestroyAllWindows();
         }
 
         private bool fitPlane(List<Point3f> input, out Mat coeffient)
@@ -170,32 +234,24 @@ namespace Client.Model.Service.ImageProcess
             return (relist2f, relist, remat);
         }
 
-        private (Mat mat, Point2f[] laserPointFilter) getLineFilter(Mat src, int rowstart, bool display = false)
-        {
-            var result = GetLine(src, rowstart, display);
-            return (result.mat, result.laserPoint2f);
-        }
-
         private (Mat src, Point2f[] laserpoint, Point2f[] laserPointSubmix) getlineWithRec(Mat src, Rect rec, Mat mat = null, bool dis = false)
         {
             var dic = new Dictionary<string, Mat>();
-            mat?.Rectangle(rec, new Scalar(255), 4);
-            dic["src"] = src;
+            var dst = new Mat();
 
-            var tmpm = src[rec].Clone();
+            var mask1 = Mat.Zeros(src.Size(), MatType.CV_8UC1).ToMat();
+            mask1[rec].SetTo(255);
+            src.CopyTo(dst, mask1);
 
-            dic["tmp"] = tmpm;
-            var dst = src.EmptyClone();
-            dst[rec] = tmpm;
-            dic["dst"] = dst;
-
-            var result = getLineFilter(dst, 0, true);
-            var pts = (from p in result.laserPointFilter
+            var result = GetLineGray(dst, 0, false);
+            var pts = (from p in result.laserPoint2f
                        where p.Y > 0
-                       select p).ToArray();
+                       select new Point2f((float)p.X, (float)p.Y)).ToArray();
+
             if (dis)
             {
-                //dic["src"] = mat;
+                dic["dst"] = result.mat;
+                mat?.Rectangle(rec, new Scalar(255), 4);
                 display(dic);
             }
             return (result.mat, pts, null);
@@ -215,18 +271,11 @@ namespace Client.Model.Service.ImageProcess
                     src.Rectangle(rec, new Scalar(255), 2);
                     Cv2.NamedWindow("rec", WindowFlags.FreeRatio);
                     Cv2.ImShow("rec", src);
-                    Cv2.WaitKey();
+                    Cv2.WaitKey(500);
+                    Cv2.DestroyAllWindows();
                 }
             }
-            foreach (var pts in point2Fs)
-            {
-            }
-            //var mask = Cv2.BoundingRect(corTmp);
-            //var dic = new Dictionary<string,Mat>();
-            //Cv2.Rectangle(cali.FileMats.Last().src,mask,new Scalar(255,0,0));
-            //dic["1"] = cali.FileMats.Last().src;
 
-            //vecc1.GetArray<double>(out var vs);
             return reRects;
         }
 
@@ -248,9 +297,9 @@ namespace Client.Model.Service.ImageProcess
         public void Calibrate()
         {
             //标定的使用的图片路径
-            var folderboard = @"E:\Pictures\项目图片\lightplane\laser3";
+            var folderboard = FilePath.Folder.LaserLineBoardFolder;
 
-            var folderlaser = @"E:\Pictures\项目图片\lightplane\light3";
+            var folderlaser = FilePath.Folder.LaserLineLightFolder;
 
             var laserMP = new List<(Mat, Point[], Point2f[])>();
             var mats = ReadFormFolder(folderlaser).ToList();
@@ -264,11 +313,12 @@ namespace Client.Model.Service.ImageProcess
             var newcornersList = new List<Point2f[]>();
 
             newcornersList = cali.cornersList.GetRange(cali.cornersList.Count - lightplaneimgcount, lightplaneimgcount);
+            var matsTmp1 = cali.FileMats.Skip(cali.cornersList.Count - lightplaneimgcount).Take(lightplaneimgcount).Select(t => t.src);
             //圈出角点在图像中的外接矩形区域，只在此区域提取光条中心点
 
-            var rects = getOutRecBoard(newcornersList).ToList();
+            var rects = getOutRecBoard(newcornersList, matsTmp1, true).ToList();
             var res = (from i in Enumerable.Range(0, mats.Count())
-                       select getlineWithRec(mats[i], rects[i])).ToList();
+                       select getlineWithRec(mats[i], rects[i], matsTmp1.ElementAt(i), true)).ToList();
 
             //将光条中心点转化进相机坐标系
             var RvList = cali.Rvecs.AsSpan().Slice(cali.cornersList.Count - lightplaneimgcount, lightplaneimgcount);

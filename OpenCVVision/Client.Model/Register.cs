@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Client.Common;
 using Client.Model.Service;
+using Client.Model.Service.ImageProcess;
 
 using Splat;
 
@@ -16,6 +17,8 @@ namespace Client.Model
         public override void ConfigService()
         {
             _mutable.RegisterLazySingleton<IImageDataManager>(() => new ImageDataMemery());
+            _mutable.RegisterLazySingleton(() => new LightPlaneCalibrate());
+            _mutable.RegisterLazySingleton(() => new LightPlaneCal());
         }
     }
 }

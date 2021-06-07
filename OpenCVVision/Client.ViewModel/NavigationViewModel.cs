@@ -49,6 +49,7 @@ namespace Client.ViewModel
             listtmp.Add(GetNaviItem<MorphologyViewModel>());
             listtmp.Add(GetNaviItem<ConnectedComponentsViewModel>());
             listtmp.Add(GetNaviItem<ContoursViewModel>());
+            listtmp.Add(GetNaviItem<LaserLineViewModel>());
             return listtmp;
         }
 

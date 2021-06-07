@@ -23,7 +23,7 @@ namespace Client.ViewModel
             _mutable.Register<IOperationViewModel>(() => new T(), OpStaticMethod.GetOpInfo<T>().info);
         }
 
-        public static T ResolveVM<T>() where T : IOperationViewModel, new()
+        public static T ResolveVM<T>() where T : IOperationViewModel
         {
             return (T)Locator.Current.GetService<IOperationViewModel>(OpStaticMethod.GetOpInfo<T>().info);
         }
@@ -43,6 +43,7 @@ namespace Client.ViewModel
             RegistLazySingletonOpVM<ConnectedComponentsViewModel>();
             RegistLazySingletonOpVM<ContoursViewModel>();
             RegistLazySingletonOpVM<RoiViewModel>();
+            RegistLazySingletonOpVM<LaserLineViewModel>();
         }
     }
 }

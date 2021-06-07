@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -34,6 +35,8 @@ namespace Client.View.Operation
         {
             this.WhenActivated(d =>
             {
+                this.BindCommand(ViewModel, vm => vm.CalibrateTestCommand, v => v.btnCalibrateTest).DisposeWith(d);
+                this.BindCommand(ViewModel, vm => vm.LaserLigthCalCommand, v => v.btnLaserLightCal).DisposeWith(d);
             });
         }
     }

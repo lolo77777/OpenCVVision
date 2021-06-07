@@ -51,7 +51,7 @@ namespace Client.ViewModel.Operation
                         break;
 
                     case "Mask2":
-                        var mask1 = _rt.T((Mat.Zeros(_src.Size(), MatType.CV_8UC1)).ToMat());
+                        var mask1 = _rt.T(Mat.Zeros(_src.Size(), MatType.CV_8UC1).ToMat());
                         mask1[rect].SetTo(255);
                         _src.CopyTo(dst);
                         dst.SetTo(0, mask1);
