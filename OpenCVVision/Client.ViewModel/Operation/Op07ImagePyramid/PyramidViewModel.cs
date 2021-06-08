@@ -22,6 +22,7 @@ namespace Client.ViewModel.Operation
         [Reactive] public int DownNum { get; set; }
         [Reactive] public int LaplaceNum { get; set; }
         [Reactive] public int UpNum { get; set; }
+        [Reactive] public int UpNumMax { get; set; }
 
         protected override void SetupCommands(CompositeDisposable d)
         {
@@ -50,6 +51,12 @@ namespace Client.ViewModel.Operation
                 .Where(i => CanOperat)
                 .Do(i => DoLapaceNum(i))
                 .Subscribe()
+                .DisposeWith(d);
+            _imageDataManager.InputMatGuidSubject
+                .Where(guid => CanOperat)
+                .Select(guid => _imageDataManager.GetCurrentMat().Size())
+                .Select(size => GetUpnum(size))
+                .BindTo(this, x => x.UpNumMax)
                 .DisposeWith(d);
         }
 
@@ -99,6 +106,16 @@ namespace Client.ViewModel.Operation
             return dst;
         }
 
+        private int GetUpnum(Size size)
+        {
+            var tmp = Math.Log2(8);
+            var m1 = (int)Math.Log2((1048576 / size.Width));
+            var m2 = (int)Math.Log2(1048576 / size.Height);
+            var m3 = (int)Math.Log2(33554432 / size.Width / size.Height);
+
+            return new[] { m1, m2, m3 }.Min();
+        }
+
         private void UpdateOutput(bool isDown, int num)
         {
             SendTime(() =>
@@ -121,7 +138,7 @@ namespace Client.ViewModel.Operation
             var dst = _rt.T(src.Clone());
             for (int i = 0; i < num; i++)
             {
-                dst = dst.PyrUp().Clone();
+                dst = dst.PyrUp();
             }
             return dst;
         }

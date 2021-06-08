@@ -35,6 +35,7 @@ namespace Client.View.Operation
         {
             this.WhenActivated(d =>
             {
+                this.Bind(ViewModel, vm => vm.UpNumMax, v => v.sliderPyrup.Maximum).DisposeWith(d);
                 this.BindCommand(ViewModel, vm => vm.LaplaceCommand, v => v.btnLaplace).DisposeWith(d);
                 this.WhenAnyValue(x => x.sliderLaplace.Value)
                     .BindTo(ViewModel, x => x.LaplaceNum)
