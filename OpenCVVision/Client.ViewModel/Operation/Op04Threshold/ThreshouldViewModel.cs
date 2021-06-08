@@ -35,10 +35,6 @@ namespace Client.ViewModel.Operation
         [Reactive] public string ThresholdSelectValue { get; private set; }
         public ReadOnlyCollection<string> ThreshouldModes { get; private set; }
 
-        public ThreshouldViewModel()
-        {
-        }
-
         private void UpdateBar(int channel)
         {
             SendTime(() =>
@@ -153,7 +149,7 @@ namespace Client.ViewModel.Operation
                 .Do(vs => ChanelSelectIndex = 0)
                 .ToPropertyEx(this, x => x.Channels)
                 .DisposeWith(d);
-            _imageDataManager.RaiseCurrent();
+            //_imageDataManager.RaiseCurrent();
         }
     }
 }

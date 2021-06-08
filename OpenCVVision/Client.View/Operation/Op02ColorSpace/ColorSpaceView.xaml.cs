@@ -14,11 +14,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Client.ViewModel.Operation.Op02ColorSpace;
+using Client.ViewModel.Operation;
 
 using ReactiveUI;
 
-namespace Client.View.Operation.Op02ColorSpace
+namespace Client.View.Operation
 {
     /// <summary>
     /// ColorSpaceView.xaml 的交互逻辑

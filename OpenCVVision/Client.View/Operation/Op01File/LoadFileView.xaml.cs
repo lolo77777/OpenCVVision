@@ -16,11 +16,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Client.ViewModel.Operation.Op01File;
+using Client.ViewModel.Operation;
 
 using ReactiveUI;
 
-namespace Client.View.Operation._01File
+namespace Client.View.Operation
 {
     /// <summary>
     /// LoadFileView.xaml 的交互逻辑

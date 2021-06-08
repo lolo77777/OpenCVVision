@@ -189,7 +189,7 @@ namespace Client.ViewModel.Operation
                 .Subscribe(vt => UpdateSelectContour(_contours, vt.Item1, vt.Item2))
                 .DisposeWith(d);
 
-            _imageDataManager.RaiseCurrent();
+            //_imageDataManager.RaiseCurrent();
         }
     }
 }

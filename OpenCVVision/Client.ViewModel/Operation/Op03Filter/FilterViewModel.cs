@@ -15,7 +15,7 @@ using OpenCvSharp;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
-namespace Client.ViewModel.Operation.Op03PreProcessing
+namespace Client.ViewModel.Operation
 {
     [OperationInfo(3, "滤波", MaterialDesignThemes.Wpf.PackIconKind.Filter)]
     public class FilterViewModel : OperaViewModelBase
@@ -33,10 +33,6 @@ namespace Client.ViewModel.Operation.Op03PreProcessing
         [Reactive] public double SigmaY { get; set; }
         [Reactive] public int SizeX { get; private set; } = 3;
         [Reactive] public int SizeY { get; private set; } = 3;
-
-        public FilterViewModel()
-        {
-        }
 
         private void UpdateUi(int filterModeSelectIndex, int kernelSizeX, int kernelSizeY, double sigmaX, double sigmaY, int kernelDiam, double sigmaColor, double sigmaSpace)
         {
@@ -113,7 +109,7 @@ namespace Client.ViewModel.Operation.Op03PreProcessing
                 .Do(guid => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
                 .Subscribe()
                 .DisposeWith(d);
-            _imageDataManager.RaiseCurrent();
+            //_imageDataManager.RaiseCurrent();
         }
     }
 }

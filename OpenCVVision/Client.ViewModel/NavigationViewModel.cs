@@ -12,9 +12,6 @@ using System.Threading.Tasks;
 
 using Client.Common;
 using Client.ViewModel.Operation;
-using Client.ViewModel.Operation.Op01File;
-using Client.ViewModel.Operation.Op02ColorSpace;
-using Client.ViewModel.Operation.Op03PreProcessing;
 
 using DynamicData;
 
@@ -33,17 +30,9 @@ namespace Client.ViewModel
 
         public NavigationViewModel()
         {
-            //NaviItems = SetItems();
-
             SetupSubscriptions();
             SetupStart();
         }
-
-        //private NaviItem GetNaviItem<T>()
-        //{
-        //    var info = OpStaticMethod.GetOpInfo<T>();
-        //    return new NaviItem { Id = info.id, OperaPanelInfo = info.info, Icon = info.icon };
-        //}
 
         private NaviItem GetNaviItem(Type type)
         {
@@ -72,10 +61,6 @@ namespace Client.ViewModel
                 .Do(ind => MessageBus.Current.SendMessage(NaviItems.ElementAt(ind)))
                 .Subscribe();
 
-            //Observable
-            //    .Start(() => SetItems())
-
-            // .ObserveOn(RxApp.MainThreadScheduler) .BindTo(this, x => x.NaviItems);
             MessageBus.Current.Listen<IEnumerable<Type>>()
                 .WhereNotNull()
                 .Select(vs => SetItems(vs))

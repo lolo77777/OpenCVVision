@@ -32,22 +32,25 @@ namespace Client.ViewModel.Operation
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             base.SetupSubscriptions(d);
+
             this.WhenAnyValue(x => x.DownNum)
                 .Throttle(TimeSpan.FromMilliseconds(200))
                 .Where(i => CanOperat)
                 .Do(i => UpdateOutput(true, i))
-                .Subscribe();
+                .Subscribe()
+                .DisposeWith(d);
             this.WhenAnyValue(x => x.UpNum)
                 .Throttle(TimeSpan.FromMilliseconds(200))
                 .Where(i => CanOperat)
                 .Do(i => UpdateOutput(false, i))
-                .Subscribe();
+                .Subscribe()
+                .DisposeWith(d);
             this.WhenAnyValue(x => x.LaplaceNum)
                 .Throttle(TimeSpan.FromMilliseconds(200))
                 .Where(i => CanOperat)
                 .Do(i => DoLapaceNum(i))
-                .Subscribe();
-            _imageDataManager.RaiseCurrent();
+                .Subscribe()
+                .DisposeWith(d);
         }
 
         #region PrivateFunction

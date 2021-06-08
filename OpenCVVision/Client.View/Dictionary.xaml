@@ -16,7 +16,9 @@
         <Setter Property="DisplayMemberPath" Value="." />
         <Setter Property="materialDesign:ComboBoxAssist.ClassicMode" Value="True" />
     </Style>
-    <Style BasedOn="{StaticResource MaterialDesignDiscreteSlider}" TargetType="Slider" />
+    <Style BasedOn="{StaticResource MaterialDesignDiscreteSlider}" TargetType="Slider">
+        <Setter Property="materialDesign:SliderAssist.OnlyShowFocusVisualWhileDragging" Value="True" />
+    </Style>
     <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="TextBox" />
     <Style TargetType="UserControl">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />

@@ -17,7 +17,7 @@ using ReactiveUI.Fody.Helpers;
 
 using Splat;
 
-namespace Client.ViewModel.Operation.Op01File
+namespace Client.ViewModel.Operation
 {
     [OperationInfo(1, "加载图片", MaterialDesignThemes.Wpf.PackIconKind.File)]
     public class LoadFileViewModel : OperaViewModelBase

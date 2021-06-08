@@ -14,11 +14,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Client.ViewModel.Operation.Op03PreProcessing;
+using Client.ViewModel.Operation;
 
 using ReactiveUI;
 
-namespace Client.View.Operation.Op03PreProcessing
+namespace Client.View.Operation
 {
     /// <summary>
     /// FilterView.xaml 的交互逻辑

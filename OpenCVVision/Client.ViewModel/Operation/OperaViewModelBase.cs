@@ -56,6 +56,7 @@ namespace Client.ViewModel
                 SetupStart(d);
                 SetupCommands(d);
                 SetupSubscriptions(d);
+                _imageDataManager.RaiseCurrent();
             });
         }
 

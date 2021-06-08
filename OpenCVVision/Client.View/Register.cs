@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 using Client.Common;
 using Client.View.Operation;
-using Client.View.Operation._01File;
-using Client.View.Operation.Op02ColorSpace;
-using Client.View.Operation.Op03PreProcessing;
+
 using Client.ViewModel;
 using Client.ViewModel.Operation;
-using Client.ViewModel.Operation.Op01File;
-using Client.ViewModel.Operation.Op02ColorSpace;
-using Client.ViewModel.Operation.Op03PreProcessing;
 
 using ReactiveUI;
 
@@ -48,6 +43,7 @@ namespace Client.View
             RegisterVLazySingleton<RoiViewModel, RoiView>();
             RegisterVLazySingleton<LaserLineViewModel, LaserLineView>();
             RegisterVLazySingleton<PyramidViewModel, PyramidView>();
+            RegisterVLazySingleton<EdgeDetectViewModel, EdgeDetectView>();
         }
     }
 }

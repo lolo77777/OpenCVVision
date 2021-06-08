@@ -26,10 +26,6 @@ namespace Client.ViewModel.Operation
         [Reactive] public int Width { get; private set; }
         [ObservableAsProperty] public int WidthLimit { get; }
 
-        public RoiViewModel()
-        {
-        }
-
         private void UpdateOutput(Rect rect, string roiMode)
         {
             SendTime(() =>
@@ -94,7 +90,6 @@ namespace Client.ViewModel.Operation
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(vt => UpdateOutput(new Rect(vt.Item1, vt.Item2, vt.Item3, vt.Item4), vt.Item5))
                 .DisposeWith(d);
-            _imageDataManager.RaiseCurrent();
         }
     }
 }

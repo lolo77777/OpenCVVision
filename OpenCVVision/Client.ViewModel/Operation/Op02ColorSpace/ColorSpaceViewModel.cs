@@ -20,7 +20,7 @@ using ReactiveUI.Fody.Helpers;
 
 using Splat;
 
-namespace Client.ViewModel.Operation.Op02ColorSpace
+namespace Client.ViewModel.Operation
 {
     [OperationInfo(2, "色彩空间", MaterialDesignThemes.Wpf.PackIconKind.Color)]
     public class ColorSpaceViewModel : OperaViewModelBase
@@ -94,7 +94,6 @@ namespace Client.ViewModel.Operation.Op02ColorSpace
                 .Select(guid => _imageDataManager.GetCurrentMat().Channels() > 1)
                 .BindTo(this, x => x.CanOperat)
                 .DisposeWith(d);
-            _imageDataManager.RaiseCurrent();
         }
     }
 }

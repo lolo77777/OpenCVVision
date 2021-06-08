@@ -9,9 +9,7 @@ using Client.Common;
 using Splat;
 
 using Client.ViewModel;
-using Client.ViewModel.Operation.Op01File;
-using Client.ViewModel.Operation.Op02ColorSpace;
-using Client.ViewModel.Operation.Op03PreProcessing;
+
 using Client.ViewModel.Operation;
 
 namespace Client.ViewModel
@@ -45,6 +43,7 @@ namespace Client.ViewModel
             RegistLazySingletonOpVM<RoiViewModel>();
             RegistLazySingletonOpVM<LaserLineViewModel>();
             RegistLazySingletonOpVM<PyramidViewModel>();
+            RegistLazySingletonOpVM<EdgeDetectViewModel>();
         }
     }
 }

@@ -175,7 +175,7 @@ namespace Client.ViewModel.Operation
                 .Do(b => UpdateOutput(Filters))
                 .Subscribe()
                 .DisposeWith(d);
-            _imageDataManager.RaiseCurrent();
+            // _imageDataManager.RaiseCurrent();
         }
     }
 }
