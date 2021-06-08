@@ -17,7 +17,7 @@ using ReactiveUI.Fody.Helpers;
 
 namespace Client.ViewModel.Operation.Op03PreProcessing
 {
-    [OperationInfo("滤波", MaterialDesignThemes.Wpf.PackIconKind.Filter)]
+    [OperationInfo(3, "滤波", MaterialDesignThemes.Wpf.PackIconKind.Filter)]
     public class FilterViewModel : OperaViewModelBase
     {
         [ObservableAsProperty] public bool BolSigmaColorAndSpace { get; set; }

@@ -18,7 +18,7 @@ using Splat;
 
 namespace Client.ViewModel.Operation
 {
-    [OperationInfo("线激光中心", MaterialDesignThemes.Wpf.PackIconKind.LaserPointer)]
+    [OperationInfo(8.1, "线激光中心", MaterialDesignThemes.Wpf.PackIconKind.LaserPointer)]
     public class LaserLineViewModel : OperaViewModelBase
     {
         private LightPlaneCal _lightPlaneCal;

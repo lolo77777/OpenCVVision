@@ -1,9 +1,12 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Net;
 using System.Reactive.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +15,8 @@ using Client.ViewModel.Operation;
 using Client.ViewModel.Operation.Op01File;
 using Client.ViewModel.Operation.Op02ColorSpace;
 using Client.ViewModel.Operation.Op03PreProcessing;
+
+using DynamicData;
 
 using MaterialDesignThemes.Wpf;
 
@@ -22,6 +27,7 @@ namespace Client.ViewModel
 {
     public class NavigationViewModel : ReactiveObject
     {
+        private SourceList<Type> OpVMTypes = new SourceList<Type>();
         [Reactive] public IEnumerable<NaviItem> NaviItems { get; private set; } = new List<NaviItem>();
         [Reactive] public int NaviSelectItemIndex { get; private set; }
 
@@ -30,27 +36,32 @@ namespace Client.ViewModel
             //NaviItems = SetItems();
 
             SetupSubscriptions();
+            SetupStart();
         }
 
-        private NaviItem GetNaviItem<T>()
+        //private NaviItem GetNaviItem<T>()
+        //{
+        //    var info = OpStaticMethod.GetOpInfo<T>();
+        //    return new NaviItem { Id = info.id, OperaPanelInfo = info.info, Icon = info.icon };
+        //}
+
+        private NaviItem GetNaviItem(Type type)
         {
-            var info = OpStaticMethod.GetOpInfo<T>();
-            return new NaviItem { OperaPanelInfo = info.info, Icon = info.icon };
+            var info = OpStaticMethod.GetOpInfo(type);
+            return new NaviItem { Id = info.id, OperaPanelInfo = info.info, Icon = info.icon };
         }
 
-        private IEnumerable<NaviItem> SetItems()
+        private IEnumerable<NaviItem> SetItems(IEnumerable<Type> types)
         {
-            List<NaviItem> listtmp = new();
-            listtmp.Add(GetNaviItem<LoadFileViewModel>());
-            listtmp.Add(GetNaviItem<RoiViewModel>());
-            listtmp.Add(GetNaviItem<ColorSpaceViewModel>());
-            listtmp.Add(GetNaviItem<FilterViewModel>());
-            listtmp.Add(GetNaviItem<ThreshouldViewModel>());
-            listtmp.Add(GetNaviItem<MorphologyViewModel>());
-            listtmp.Add(GetNaviItem<ConnectedComponentsViewModel>());
-            listtmp.Add(GetNaviItem<ContoursViewModel>());
-            listtmp.Add(GetNaviItem<LaserLineViewModel>());
-            return listtmp;
+            return types.ToList().Select(t => GetNaviItem(t)).OrderBy(nit => nit.Id);
+        }
+
+        private void SetupStart()
+        {
+            var pathbase = AppDomain.CurrentDomain.BaseDirectory;
+            var dllpath = $@"{pathbase}\Client.ViewModel.dll";
+            var types = Assembly.LoadFrom(dllpath).GetTypes().Where(t => t.IsSubclassOf(typeof(OperaViewModelBase)));
+            MessageBus.Current.SendMessage(types);
         }
 
         private void SetupSubscriptions()
@@ -61,10 +72,13 @@ namespace Client.ViewModel
                 .Do(ind => MessageBus.Current.SendMessage(NaviItems.ElementAt(ind)))
                 .Subscribe();
 
-            Observable
-                .Start(() => SetItems())
+            //Observable
+            //    .Start(() => SetItems())
 
-                .ObserveOn(RxApp.MainThreadScheduler)
+            // .ObserveOn(RxApp.MainThreadScheduler) .BindTo(this, x => x.NaviItems);
+            MessageBus.Current.Listen<IEnumerable<Type>>()
+                .WhereNotNull()
+                .Select(vs => SetItems(vs))
                 .BindTo(this, x => x.NaviItems);
         }
     }
@@ -72,6 +86,7 @@ namespace Client.ViewModel
     public class NaviItem
     {
         public PackIconKind Icon { get; set; }
+        public double Id { get; set; }
         public string OperaPanelInfo { get; set; }
     }
 }

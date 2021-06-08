@@ -18,7 +18,7 @@ using ReactiveUI.Fody.Helpers;
 
 namespace Client.ViewModel.Operation
 {
-    [OperationInfo("连通域", MaterialDesignThemes.Wpf.PackIconKind.Connection)]
+    [OperationInfo(5.1, "连通域", MaterialDesignThemes.Wpf.PackIconKind.Connection)]
     public class ConnectedComponentsViewModel : OperaViewModelBase
     {
         [ObservableAsProperty] public int AreaLimit { get; private set; }

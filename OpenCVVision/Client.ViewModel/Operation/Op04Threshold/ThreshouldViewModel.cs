@@ -23,7 +23,7 @@ using ReactiveUI.Fody.Helpers;
 
 namespace Client.ViewModel.Operation
 {
-    [OperationInfo("二值化", MaterialDesignThemes.Wpf.PackIconKind.HomeFloorZero)]
+    [OperationInfo(4, "二值化", MaterialDesignThemes.Wpf.PackIconKind.HomeFloorZero)]
     public class ThreshouldViewModel : OperaViewModelBase
     {
         private ObservableCollection<ObservablePoint> _observablePoints = new ObservableCollection<ObservablePoint>();

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 
 using Client.Common;
+using Client.ViewModel;
 
 using Splat;
 
@@ -30,6 +31,10 @@ namespace Client
                 var tmp = (from t in Assembly.LoadFrom(dll).GetTypes()
                            where t.IsSubclassOf(typeof(RegisterBase))
                            select Activator.CreateInstance(t)).ToList();
+                var tmp1 = (from t in Assembly.LoadFrom(dll).GetTypes()
+                            where t.IsSubclassOf(typeof(OperaViewModelBase))
+                            select t).ToList();
+
                 tmp.Clear();
             }
         }
