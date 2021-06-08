@@ -47,6 +47,7 @@ namespace Client.View
             RegisterVLazySingleton<ContoursViewModel, ContoursView>();
             RegisterVLazySingleton<RoiViewModel, RoiView>();
             RegisterVLazySingleton<LaserLineViewModel, LaserLineView>();
+            RegisterVLazySingleton<PyramidViewModel, PyramidView>();
         }
     }
 }

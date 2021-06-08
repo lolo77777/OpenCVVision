@@ -44,6 +44,7 @@ namespace Client.ViewModel
             RegistLazySingletonOpVM<ContoursViewModel>();
             RegistLazySingletonOpVM<RoiViewModel>();
             RegistLazySingletonOpVM<LaserLineViewModel>();
+            RegistLazySingletonOpVM<PyramidViewModel>();
         }
     }
 }

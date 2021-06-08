@@ -34,7 +34,10 @@
     <Compile Update="Operation\Op06TargetDetection\ContoursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Operation\Op07Roi\RoiView.xaml.cs">
+    <Compile Update="Operation\Op01File\RoiView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Operation\Op07ImagePyramid\PyramidView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Operation\Op083D\LaserLineView.xaml.cs">
@@ -75,7 +78,10 @@
     <Page Update="Operation\Op06TargetDetection\ContoursView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Operation\Op07Roi\RoiView.xaml">
+    <Page Update="Operation\Op01File\RoiView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op07ImagePyramid\PyramidView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op083D\LaserLineView.xaml">

@@ -1,0 +1,97 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="Client.View.Operation.PyramidView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Client.View.Operation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
+    xmlns:rxui="http://reactiveui.net"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    x:TypeArguments="operation:PyramidViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="Title"
+                Margin="{StaticResource marginOdd}"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="图像金字塔" />
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <Grid Margin="8,32,8,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        x:Name="lb1"
+                        Margin="0,0,8,0"
+                        Content="PyrDown" />
+                    <Slider
+                        x:Name="sliderPyrDown"
+                        Grid.Column="1"
+                        Maximum="6"
+                        Minimum="1"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        ToolTip="对图像下采样"
+                        Value="3" />
+                </Grid>
+                <Button
+                    x:Name="btnLaplace"
+                    Margin="{StaticResource marginOdd}"
+                    Content="多次下采样0层拉普拉斯图像"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="按照下采样层数创建尺寸不变的拉普拉斯图像" />
+                <Grid Margin="{StaticResource marginOdd}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Width="{Binding ElementName=lb1, Path=ActualWidth}"
+                        Margin="0,0,8,0"
+                        Content="Pyrup" />
+                    <Slider
+                        x:Name="sliderPyrup"
+                        Grid.Column="1"
+                        Maximum="6"
+                        Minimum="1"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        ToolTip="对图像上采样"
+                        Value="3" />
+                </Grid>
+                <Grid Margin="{StaticResource marginOdd}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Width="{Binding ElementName=lb1, Path=ActualWidth}"
+                        Margin="0,0,8,0"
+                        Content="Laplace" />
+                    <Slider
+                        x:Name="sliderLaplace"
+                        Grid.Column="1"
+                        Maximum="5"
+                        Minimum="0"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        ToolTip="拉普拉斯图像"
+                        Value="3" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>
