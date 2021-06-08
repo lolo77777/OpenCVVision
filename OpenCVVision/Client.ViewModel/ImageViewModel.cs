@@ -41,8 +41,10 @@ namespace Client.ViewModel
         public ReadOnlyObservableCollection<HistoryItem> HistoryItems => _historyItems;
         [Reactive] public int HistoryItemSelectInd { get; set; }
         public WriteableBitmap InputImg { [ObservableAsProperty] get; }
+        [ObservableAsProperty] public string InputImgInfo { get; }
         [Reactive] public string OutputImageMarkTxt { get; set; }
         public WriteableBitmap OutputImg { [ObservableAsProperty]get; }
+        [ObservableAsProperty] public String OutputImgInfo { get; }
         public ReactiveCommand<Unit, bool> RemoveImgFromImgManagerCommand { get; set; }
         [Reactive] public string Time { get; private set; }
 
@@ -60,8 +62,9 @@ namespace Client.ViewModel
             return new HistoryItem { HistoryItemId = imageData.ImageId, HistoryItemTxtMark = imageData.TxtMarker, HistoryItemImg = wtBitmap };
         }
 
-        private void Init()
+        private string GetImgInfo(Mat mat)
         {
+            return $"Chanels:{mat.Channels()}, Width:{mat.Width}, Heigh:{mat.Height}, Mattype:{mat.Type().ToString()}";
         }
 
         private WriteableBitmap MatResizeWt(Mat mat)
@@ -97,15 +100,31 @@ namespace Client.ViewModel
                 .Do(guid => _imageDataManager.InputMatGuidSubject.OnNext(guid))
                 .Subscribe();
             _imageDataManager.InputMatGuidSubject
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .WhereNotNull()
                 .Select(guid => _imageDataManager.GetImage(guid).ImageMat.ToWriteableBitmap())
                 .ToPropertyEx(this, x => x.InputImg);
+            _imageDataManager.InputMatGuidSubject
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .WhereNotNull()
+                .Select(guid => _imageDataManager.GetCurrentMat())
+                .Select(mat => GetImgInfo(mat))
+                .ToPropertyEx(this, x => x.InputImgInfo);
 
             _imageDataManager.OutputMatSubject
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .WhereNotNull()
                 .Select(mat => mat.ToWriteableBitmap())
                 .ToPropertyEx(this, x => x.OutputImg);
+            _imageDataManager.OutputMatSubject
+                 .WhereNotNull()
+                 .ObserveOn(RxApp.MainThreadScheduler)
+                 .Select(mat => GetImgInfo(mat))
+                 .Do(mat =>
+                 {
+                     var a = mat;
+                 })
+                 .ToPropertyEx(this, x => x.OutputImgInfo);
             MessageBus.Current.Listen<double>("Time")
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Select(d => $"{d}ms")

@@ -108,7 +108,6 @@ namespace Client.ViewModel.Operation
 
         private int GetUpnum(Size size)
         {
-            var tmp = Math.Log2(8);
             var m1 = (int)Math.Log2((1048576 / size.Width));
             var m2 = (int)Math.Log2(1048576 / size.Height);
             var m3 = (int)Math.Log2(33554432 / size.Width / size.Height);

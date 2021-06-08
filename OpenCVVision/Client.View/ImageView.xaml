@@ -28,6 +28,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Grid Height="{Binding ElementName=TitleBar, Path=ActualHeight}" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
@@ -67,6 +68,11 @@
                         <Image x:Name="InputImg" Stretch="Uniform" />
                     </paz:ZoomBorder>
                 </materialDesign:Card>
+                <TextBlock
+                    x:Name="txtInputImgInfo"
+                    Grid.Row="3"
+                    FontStyle="Italic"
+                    Text="Info:" />
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card Grid.Column="1" Margin="4,8,2,8">
@@ -75,6 +81,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
                 <Grid x:Name="TitleBar" Margin="0,5,0,0">
@@ -132,6 +139,11 @@
                         <Image x:Name="OutputImg" Stretch="Uniform" />
                     </paz:ZoomBorder>
                 </materialDesign:Card>
+                <TextBlock
+                    x:Name="txtOutputImgInfo"
+                    Grid.Row="3"
+                    FontStyle="Italic"
+                    Text="Info:" />
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card
