@@ -29,6 +29,8 @@ namespace Client.Model.Service
 
         ImageData GetImage(Guid? guid);
 
+        bool IsExsitByMark(string markTxt);
+
         public void RaiseCurrent();
 
         bool RemoveCurrentImage();

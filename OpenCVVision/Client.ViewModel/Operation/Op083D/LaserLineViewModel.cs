@@ -62,7 +62,7 @@ namespace Client.ViewModel.Operation
         {
             SendTime(() =>
             {
-                using var fr = new FileStorage(FilePath.Yaml.LaserLineCaliYaml, FileStorage.Modes.Read);
+                using var fr = new FileStorage(FilePath.File.LaserLineCaliYaml, FileStorage.Modes.Read);
                 var _cameraMatrixMat = fr["CameraMatrixMat"].ReadMat();
 
                 var _lightPlaneCoeffient = fr["LightPlaneCoeffient"].ReadMat();

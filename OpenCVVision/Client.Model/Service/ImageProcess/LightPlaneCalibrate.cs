@@ -14,7 +14,7 @@ namespace Client.Model.Service.ImageProcess
     public class LightPlaneCalibrate
     {
         private Size boardSize = new Size(11, 8);
-        private string datapath = FilePath.Yaml.LaserLineCaliYaml;
+        private string datapath = FilePath.File.LaserLineCaliYaml;
         private float gap = 10f;
 
         /// <summary>

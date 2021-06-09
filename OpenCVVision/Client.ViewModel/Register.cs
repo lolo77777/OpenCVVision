@@ -44,6 +44,7 @@ namespace Client.ViewModel
             RegistLazySingletonOpVM<LaserLineViewModel>();
             RegistLazySingletonOpVM<PyramidViewModel>();
             RegistLazySingletonOpVM<EdgeDetectViewModel>();
+            RegistLazySingletonOpVM<YoloV3ViewModel>();
         }
     }
 }

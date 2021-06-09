@@ -92,6 +92,11 @@ namespace Client.Model.Service
             }
         }
 
+        public bool IsExsitByMark(string markTxt)
+        {
+            return SourceCacheImageData.Items.Any(it => it.TxtMarker.Contains(markTxt));
+        }
+
         public void RaiseCurrent()
         {
             InputMatGuidSubject.OnNext(CurrentId);

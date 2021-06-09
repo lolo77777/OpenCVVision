@@ -46,6 +46,9 @@
     <Compile Update="Operation\Op083D\LaserLineView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op12DeepLearning\YoloV3View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Dictionary.xaml">
@@ -91,6 +94,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op083D\LaserLineView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op12DeepLearning\YoloV3View.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

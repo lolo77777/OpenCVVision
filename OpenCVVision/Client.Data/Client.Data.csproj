@@ -5,6 +5,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Data\File\YoloV3\object_detection_classes_yolov3.txt" />
+		<None Remove="Data\File\YoloV3\yolov3.cfg" />
+		<None Remove="Data\File\YoloV3\yolov3.weights" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.bmp" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144000_0921_0004.bmp" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144007_0492_0002.bmp" />
@@ -30,10 +33,27 @@
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165624_0297_0003.bmp" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.bmp" />
 		<None Remove="Data\Image\ta.bmp" />
-		<None Remove="Data\Yaml\LaserLine\LightLaserCali.yaml" />
+		<None Remove="Data\File\LaserLine\LightLaserCali.yaml" />
+		<None Remove="Data\Image\YoloV3\bali-crop.jpg" />
+		<None Remove="Data\Image\YoloV3\dog.jpg" />
+		<None Remove="Data\Image\YoloV3\horses.jpg" />
+		<None Remove="Data\Image\YoloV3\Kamikochi.jpeg" />
+		<None Remove="Data\Image\YoloV3\kite.jpg" />
+		<None Remove="Data\Image\YoloV3\OIP.xI9MTXkpsp09YrwHKEVZ1gHaE8.jpg" />
+		<None Remove="Data\Image\YoloV3\Rebun.jpeg" />
+		<None Remove="Data\Image\YoloV3\Shinjuku.jpeg" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Content Include="Data\File\YoloV3\object_detection_classes_yolov3.txt">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\YoloV3\yolov3.cfg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\YoloV3\yolov3.weights">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.bmp">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -109,7 +129,31 @@
 		<Content Include="Data\Image\ta.bmp">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Yaml\LaserLine\LightLaserCali.yaml">
+		<Content Include="Data\File\LaserLine\LightLaserCali.yaml">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\YoloV3\bali-crop.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\YoloV3\dog.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\YoloV3\horses.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\YoloV3\Kamikochi.jpeg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\YoloV3\kite.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\YoloV3\OIP.xI9MTXkpsp09YrwHKEVZ1gHaE8.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\YoloV3\Rebun.jpeg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\YoloV3\Shinjuku.jpeg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
