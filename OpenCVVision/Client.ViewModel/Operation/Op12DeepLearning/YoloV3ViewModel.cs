@@ -15,6 +15,7 @@ using OpenCvSharp;
 using OpenCvSharp.Dnn;
 
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace Client.ViewModel.Operation
 {
@@ -22,9 +23,42 @@ namespace Client.ViewModel.Operation
     public class YoloV3ViewModel : OperaViewModelBase
     {
         private readonly Scalar[] _colors = Enumerable.Repeat(false, 80).Select(x => Scalar.RandomColor()).ToArray();
+        private bool _isInit;
         private string[] _labels;
-        private Net net;
-        private List<Mat> srcs;
+        private Interaction<Unit, string> _loadFileConfirm = new();
+        private Net _net;
+        private List<Mat> _srcs;
+        public Interaction<Unit, string> LoadFileConfirm => _loadFileConfirm;
+        public ReactiveCommand<Unit, Unit> LoadImageCommand { get; set; }
+        [Reactive] public string TxtImageFilePath { get; set; }
+
+        protected override void SetupCommands(CompositeDisposable d)
+        {
+            base.SetupCommands(d);
+            LoadImageCommand = ReactiveCommand.Create(LoadFile);
+        }
+
+        protected override void SetupStart(CompositeDisposable d)
+        {
+            base.SetupStart(d);
+        }
+
+        protected override void SetupSubscriptions(CompositeDisposable d)
+        {
+            base.SetupSubscriptions(d);
+            _imageDataManager.InputMatGuidSubject
+                .Where(guid => CanOperat && _isInit)
+                .Do(guid => UpdateOutput())
+                .Subscribe()
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.TxtImageFilePath)
+                .Where(str => !string.IsNullOrWhiteSpace(str))
+
+                .Subscribe(filepath => InitNet(filepath))
+                .DisposeWith(d);
+        }
+
+        #region PrivateFunction
 
         /// <summary>
         /// Draw result to image
@@ -131,46 +165,44 @@ namespace Client.ViewModel.Operation
             }
         }
 
+        private void InitNet(string filepath)
+        {
+            _net = CvDnn.ReadNetFromDarknet(FilePath.File.YoloV3Cfg, filepath);
+            _labels = File.ReadAllLines(FilePath.File.ObjectNames).ToArray();
+            _net.SetPreferableBackend(Backend.OPENCV);
+            _net.SetPreferableTarget(Target.CPU);
+            _srcs = Directory.GetFiles(FilePath.Folder.YoloV3TestImage).Select(str => Cv2.ImRead(str)).ToList();
+            for (int i = 0; i < _srcs.Count; i++)
+            {
+                var txtMark = $"YoloV3Test{i}";
+                if (!_imageDataManager.IsExsitByMark(txtMark))
+                {
+                    _imageDataManager.AddImage($"YoloV3Test{i}", _srcs[i]);
+                }
+            }
+            _isInit = true;
+        }
+
+        private void LoadFile()
+        {
+            _loadFileConfirm.Handle(Unit.Default)
+               .Subscribe(str => TxtImageFilePath = str);
+        }
+
         private void UpdateOutput()
         {
             SendTime(() =>
             {
                 var blogimg = CvDnn.BlobFromImage(_src, 1 / 255.0, new Size(416, 416), new Scalar(), true, false);
-                net.SetInput(blogimg);
-                var names = net.GetUnconnectedOutLayersNames();
+                _net.SetInput(blogimg);
+                var names = _net.GetUnconnectedOutLayersNames();
                 var outputMats = names.Select(_ => new Mat()).ToArray();
-                net.Forward(outputMats, names);
+                _net.Forward(outputMats, names);
                 GetResult(outputMats, _src, 0.5f, 0.1f, true);
                 _imageDataManager.OutputMatSubject.OnNext(_src.Clone());
             });
         }
 
-        protected override void SetupStart(CompositeDisposable d)
-        {
-            base.SetupStart(d);
-            net = CvDnn.ReadNetFromDarknet(FilePath.File.YoloV3Cfg, FilePath.File.YoloV3Weights);
-            _labels = File.ReadAllLines(FilePath.File.ObjectNames).ToArray();
-            net.SetPreferableBackend(Backend.OPENCV);
-            net.SetPreferableTarget(Target.CPU);
-            srcs = Directory.GetFiles(FilePath.Folder.YoloV3TestImage).Select(str => Cv2.ImRead(str)).ToList();
-            for (int i = 0; i < srcs.Count; i++)
-            {
-                var txtMark = $"YoloV3Test{i}";
-                if (!_imageDataManager.IsExsitByMark(txtMark))
-                {
-                    _imageDataManager.AddImage($"YoloV3Test{i}", srcs[i]);
-                }
-            }
-        }
-
-        protected override void SetupSubscriptions(CompositeDisposable d)
-        {
-            base.SetupSubscriptions(d);
-            _imageDataManager.InputMatGuidSubject
-                .Where(guid => CanOperat)
-                .Do(guid => UpdateOutput())
-                .Subscribe()
-                .DisposeWith(d);
-        }
+        #endregion PrivateFunction
     }
 }

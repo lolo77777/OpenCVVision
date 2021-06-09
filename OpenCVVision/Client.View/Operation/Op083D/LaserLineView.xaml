@@ -29,7 +29,11 @@
                 FontWeight="UltraBlack"
                 Text="LaserLight" />
             <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
-                <TextBlock Margin="{StaticResource marginOdd}" TextWrapping="Wrap">
+                <TextBlock
+                    Margin="{StaticResource marginOdd}"
+                    FontSize="16"
+                    LineHeight="30"
+                    TextWrapping="Wrap">
                     线激光配合相机通过激光三角法实现高度数据的捕获，
                     结合一个伺服轴，即可实现三维点云数据的获取，系统
                     主要有线激光、工业相机等组成；

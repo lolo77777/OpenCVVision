@@ -28,14 +28,61 @@
                 FontWeight="UltraBlack"
                 Text="YoloV3Tiny" />
             <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
-                <TextBlock Margin="{StaticResource marginOdd}" TextWrapping="Wrap">
-                    使用CvDnn.ReadNetFromDarknet读取模型文件，进行图像的识别，此示例使用Tiny版模型文件，体积小速度快但识别效果差；可以使用其它版本模型测试；下载后替换Data\File\YoloV3\目录下文件；注意文件名称或修改程序内路径变量
+                <TextBlock
+                    Margin="{StaticResource marginOdd}"
+                    FontSize="16"
+                    LineHeight="30"
+                    TextWrapping="Wrap">
+                    使用CvDnn.ReadNetFromDarknet读取模型文件，进行图像的识别；weight文件体积较大，需要单独下载，下载后加载使用
                 </TextBlock>
                 <Label>
-                    <Hyperlink Click="Hyperlink_Click" NavigateUri="https://pjreddie.com/darknet/yolo/">
-                        其它文件下载地址
+                    <Hyperlink
+                        Click="Hyperlink_Click"
+                        FontSize="16"
+                        NavigateUri="https://pjreddie.com/media/files/yolov3.weights">
+                        weight文件下载地址
                     </Hyperlink>
                 </Label>
+                <Grid Margin="{StaticResource marginOdd}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="AUto" />
+                    </Grid.RowDefinitions>
+                    <materialDesign:Card>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Margin="{StaticResource marginOdd}"
+                                FontSize="18"
+                                Text="加载weight文件" />
+                            <Grid Grid.Row="1" Margin="{StaticResource marginEven}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox
+                                    x:Name="FilePathTextBox"
+                                    materialDesign:HintAssist.Hint="FilePath"
+                                    Cursor="IBeam"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+                                <Button
+                                    x:Name="btnLoadImage"
+                                    Grid.Column="1"
+                                    Width="36"
+                                    Height="36"
+                                    Margin="8,0,0,0"
+                                    HorizontalAlignment="Right"
+                                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                                    Style="{StaticResource MaterialDesignIconButton}"
+                                    ToolTip="加载图片">
+                                    <materialDesign:PackIcon Kind="File" />
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Card>
+                </Grid>
             </StackPanel>
         </Grid>
     </materialDesign:Card>
