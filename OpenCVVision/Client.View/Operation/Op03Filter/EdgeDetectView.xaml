@@ -72,7 +72,7 @@
                     <Slider
                         x:Name="sliderCannyDiam"
                         Grid.Column="1"
-                        Maximum="11"
+                        Maximum="7"
                         Minimum="3"
                         TickFrequency="2"
                         TickPlacement="BottomRight"
