@@ -26,11 +26,16 @@
                 Margin="{StaticResource marginOdd}"
                 FontSize="22"
                 FontWeight="UltraBlack"
-                Text="YoloV3" />
+                Text="YoloV3Tiny" />
             <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
                 <TextBlock Margin="{StaticResource marginOdd}" TextWrapping="Wrap">
-                    使用CvDnn.ReadNetFromDarknet读取模型文件，进行图像的识别
+                    使用CvDnn.ReadNetFromDarknet读取模型文件，进行图像的识别，此示例使用Tiny版模型文件，体积小速度快但识别效果差；可以使用其它版本模型测试；下载后替换Data\File\YoloV3\目录下文件；注意文件名称或修改程序内路径变量
                 </TextBlock>
+                <Label>
+                    <Hyperlink Click="Hyperlink_Click" NavigateUri="https://pjreddie.com/darknet/yolo/">
+                        其它文件下载地址
+                    </Hyperlink>
+                </Label>
             </StackPanel>
         </Grid>
     </materialDesign:Card>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Text;
@@ -29,6 +30,11 @@ namespace Client.View.Operation
         {
             InitializeComponent();
             SetupBinding();
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", "https://pjreddie.com/darknet/yolo/");
         }
 
         private void SetupBinding()

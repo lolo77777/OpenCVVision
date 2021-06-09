@@ -5,7 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Data\File\YoloV3\coco.names" />
 		<None Remove="Data\File\YoloV3\object_detection_classes_yolov3.txt" />
+		<None Remove="Data\File\YoloV3\yolov3-tiny.cfg" />
+		<None Remove="Data\File\YoloV3\yolov3-tiny.weights" />
 		<None Remove="Data\File\YoloV3\yolov3.cfg" />
 		<None Remove="Data\File\YoloV3\yolov3.weights" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.bmp" />
@@ -45,13 +48,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Data\File\YoloV3\object_detection_classes_yolov3.txt">
+		<Content Include="Data\File\YoloV3\coco.names">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\File\YoloV3\yolov3.cfg">
+		<Content Include="Data\File\YoloV3\yolov3-tiny.cfg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\File\YoloV3\yolov3.weights">
+		<Content Include="Data\File\YoloV3\yolov3-tiny.weights">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.bmp">
