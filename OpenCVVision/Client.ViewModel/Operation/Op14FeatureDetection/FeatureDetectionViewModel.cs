@@ -22,76 +22,81 @@ using System.Threading.Tasks;
 
 namespace Client.ViewModel.Operation
 {
-    [OperationInfo(14.1,"特征点检测",MaterialDesignThemes.Wpf.PackIconKind.FeatureHighlight)]
+    [OperationInfo(14.1, "特征点检测", MaterialDesignThemes.Wpf.PackIconKind.FeatureHighlight)]
     public class FeatureDetectionViewModel : OperaViewModelBase
     {
         private ReadOnlyObservableCollection<string> _imageItems;
         public IEnumerable<string> FeatureDetectMethodItems { get; private set; }
-        public IEnumerable<string> MatchMethodItems { get;private set; }
+        public IEnumerable<string> MatchMethodItems { get; private set; }
         [Reactive] public string FeatureDetectMethodSelectValue { get; private set; }
         public ReadOnlyObservableCollection<string> ImageItems => _imageItems;
-        public ReactiveCommand<Unit,Unit> MatchCommand { get;private set; }
-        [Reactive]public string FirstImageSelectValue { get;private set; }
-        [Reactive] public string SecondImageSelectValue { get;private set; }
-        [Reactive]public string MatchMethod { get;private set; }
+        public ReactiveCommand<Unit, Unit> MatchCommand { get; private set; }
+        [Reactive] public string FirstImageSelectValue { get; private set; }
+        [Reactive] public string SecondImageSelectValue { get; private set; }
+        [Reactive] public string MatchMethod { get; private set; }
         [Reactive] public bool IsEnableMinDis { get; set; }
         [Reactive] public bool IsEnableRANSAC { get; set; }
+        [Reactive] public bool IsEnableKnnMatch { get; set; }
 
         protected override void SetupStart(CompositeDisposable d)
         {
             base.SetupStart(d);
             FeatureDetectMethodItems = new[] { "Sift", "Surf", "Brisk", "Orb" };
             MatchMethodItems = new[] { "BfMatcher", "FlannMatcher" };
-
         }
+
         protected override void SetupCommands(CompositeDisposable d)
         {
             base.SetupCommands(d);
-            var matchCanExe = this.WhenAnyValue(x => x.FirstImageSelectValue, x => x.SecondImageSelectValue,x=>x.FeatureDetectMethodSelectValue,x=>x.MatchMethod
-                    , (fir, sec,feature,match) => fir != null && sec != null &&feature!=null &&match!=null && fir != sec);
+            var matchCanExe = this.WhenAnyValue(x => x.FirstImageSelectValue, x => x.SecondImageSelectValue, x => x.FeatureDetectMethodSelectValue, x => x.MatchMethod
+                    , (fir, sec, feature, match) => fir != null && sec != null && feature != null && match != null && fir != sec);
             MatchCommand = ReactiveCommand.Create(Match, matchCanExe);
-
         }
+
         private void UpdateOutput(string featureDetectMethod)
         {
             SendTime(() =>
             {
                 Mat dst = _rt.NewMat();
                 Mat descriptors = _rt.NewMat();
-                KeyPoint[] kps=null;
+                KeyPoint[] kps = null;
                 switch (featureDetectMethod)
                 {
                     case "Sift":
                         SIFT siftSam = SIFT.Create(500);
                         siftSam.DetectAndCompute(_src, null, out kps, descriptors);
                         break;
+
                     case "Surf":
                         SURF surfSam = SURF.Create(500);
                         surfSam.DetectAndCompute(_src, null, out kps, descriptors);
-                       
+
                         break;
+
                     case "Brisk":
                         BRISK briskSam = BRISK.Create();
                         briskSam.DetectAndCompute(_src, null, out kps, descriptors);
                         break;
+
                     case "Orb":
                         ORB orgSam = ORB.Create();
-                        orgSam.DetectAndCompute(_src, null, out  kps, descriptors);
-                        
+                        orgSam.DetectAndCompute(_src, null, out kps, descriptors);
+
                         break;
+
                     default:
                         break;
                 }
                 Cv2.DrawKeypoints(_src, kps, dst);
                 _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-               
             });
         }
+
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             base.SetupSubscriptions(d);
             _imageDataManager.InputMatGuidSubject
-                .Where(guid => CanOperat&&!string.IsNullOrWhiteSpace(FeatureDetectMethodSelectValue))
+                .Where(guid => CanOperat && !string.IsNullOrWhiteSpace(FeatureDetectMethodSelectValue))
                 .Subscribe(guid => UpdateOutput(FeatureDetectMethodSelectValue))
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.FeatureDetectMethodSelectValue)
@@ -101,15 +106,14 @@ namespace Client.ViewModel.Operation
             _imageDataManager.SourceCacheImageData
                    .Connect()
                    .Transform(t => t.TxtMarker)
-                   .Where(vs=>vs.Count>=2)
+                   .Where(vs => vs.Count >= 2)
                    .Bind(out _imageItems)
                    .Subscribe()
                    .DisposeWith(d);
-            
-                
         }
 
         #region PrivateFunction
+
         private void Match()
         {
             SendTime(() =>
@@ -129,25 +133,29 @@ namespace Client.ViewModel.Operation
                         siftSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         siftSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
+
                     case "Surf":
                         SURF surfSam = SURF.Create(500);
                         surfSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         surfSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
+
                     case "Brisk":
                         BRISK briskSam = BRISK.Create();
                         briskSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         briskSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
+
                     case "Orb":
                         ORB orgSam = ORB.Create();
                         orgSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         orgSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
+
                     default:
                         break;
                 }
-                var type = FeatureDetectMethodSelectValue.Equals("Sift") || FeatureDetectMethodSelectValue.Equals("Surf") ?
+                NormTypes type = FeatureDetectMethodSelectValue.Equals("Sift") || FeatureDetectMethodSelectValue.Equals("Surf") ?
                           NormTypes.L2 : NormTypes.Hamming;
                 DMatch[] matches = null;
 
@@ -155,66 +163,81 @@ namespace Client.ViewModel.Operation
                 {
                     case "BfMatcher":
                         BFMatcher bfmatcher = new BFMatcher(type);
-                        matches = bfmatcher.Match(descriptors1, descriptors2);
-                       
-                       
-                        
+
+                        if (IsEnableKnnMatch)
+                        {
+                            DMatch[][] matchesKnn = bfmatcher.KnnMatch(descriptors1, descriptors2, 2);
+
+                            matches = matchesKnn.Where(mt => mt[0].Distance < 0.7 * mt[1].Distance).Select(mt => mt[0]).ToArray();
+                        }
+                        else
+                        {
+                            matches = bfmatcher.Match(descriptors1, descriptors2);
+                        }
+
                         break;
+
                     case "FlannMatcher":
                         FlannBasedMatcher flannBasedMatcher = new FlannBasedMatcher();
-                        if (descriptors1.Type()!=MatType.CV_32F&&descriptors2.Type()!=MatType.CV_32F)
+
+                        if (descriptors1.Type() != MatType.CV_32F && descriptors2.Type() != MatType.CV_32F)
                         {
                             descriptors1.ConvertTo(descriptors1, MatType.CV_32F);
                             descriptors2.ConvertTo(descriptors2, MatType.CV_32F);
                         }
-                      
-                        matches = flannBasedMatcher.Match(descriptors1, descriptors2);
-                        
+                        if (IsEnableKnnMatch)
+                        {
+                            DMatch[][] matchesKnn2 = flannBasedMatcher.KnnMatch(descriptors1, descriptors2, 2);
+                            matches = matchesKnn2.Where(mt => mt[0].Distance < 0.7 * mt[1].Distance).Select(mt => mt[0]).ToArray();
+                        }
+                        else
+                        {
+                            matches = flannBasedMatcher.Match(descriptors1, descriptors2);
+                        }
+
                         break;
+
                     default:
                         break;
                 }
-                DMatch[] goodMin = null;
+                DMatch[] dMatchesFilter = null;
                 if (IsEnableMinDis)
                 {
-                    goodMin = Match_min(matches).ToArray();
+                    dMatchesFilter = Match_min(matches).ToArray();
                 }
                 else
                 {
-                    goodMin = matches;
+                    dMatchesFilter = matches;
                 }
 
-                if (goodMin.Length >= 4 && IsEnableRANSAC)
+                if (dMatchesFilter.Length >= 4 && IsEnableRANSAC)
                 {
-                    (List<DMatch>, List<Point2d>, List<Point2d>) goodRansac = Ransac(goodMin, kps1, kps2);
+                    (List<DMatch>, List<Point2d>, List<Point2d>) goodRansac = Ransac(dMatchesFilter, kps1, kps2);
                     Cv2.DrawMatches(dst1, kps1, dst2, kps2, goodRansac.Item1, reMat);
-                    var ptf1 = goodRansac.Item2.Select(p => new Point2f((float)p.X, (float)p.Y));
-                    var ptf2 = goodRansac.Item3.Select(p => new Point2f((float)p.X, (float)p.Y));
+                    IEnumerable<Point2f> ptf1 = goodRansac.Item2.Select(p => new Point2f((float)p.X, (float)p.Y));
+                    IEnumerable<Point2f> ptf2 = goodRansac.Item3.Select(p => new Point2f((float)p.X, (float)p.Y));
                     var wh = Cv2.GetAffineTransform(ptf2, ptf1);
-                    var rematW = new Mat();
+                    Mat rematW = _rt.NewMat();
 
                     Cv2.WarpAffine(dst2, rematW, wh, dst1.Size());
                     _imageDataManager.AddImage("矫正后图像", rematW.Clone());
-
                 }
-
                 else
                 {
-                    
-                    Cv2.DrawMatches(dst1, kps1, dst2, kps2, goodMin, reMat);
-                    var ptf1 = kps1.Select(p => new Point2f(p.Pt.X, p.Pt.Y));
-                    var ptf2 = kps2.Select(p => new Point2f(p.Pt.X, p.Pt.Y));
-                    var wh = Cv2.GetAffineTransform(ptf2, ptf1);
-                    var rematW = new Mat();
+                    Cv2.DrawMatches(dst1, kps1, dst2, kps2, dMatchesFilter, reMat);
+                    IEnumerable<Point2f> ptf1 = dMatchesFilter.Select(t => kps1[t.QueryIdx].Pt);
+                    IEnumerable<Point2f> ptf2 = dMatchesFilter.Select(t => kps2[t.TrainIdx].Pt);
+                    Mat wh = Cv2.GetAffineTransform(ptf2, ptf1);
+                    Mat rematW = _rt.NewMat();
 
                     Cv2.WarpAffine(dst2, rematW, wh, dst1.Size());
                     _imageDataManager.AddImage("矫正后图像", rematW.Clone());
                 }
-                
+
                 _imageDataManager.OutputMatSubject.OnNext(reMat.Clone());
             });
+        }
 
-          }
         /// <summary>
         /// 通过最小距离阈值来过滤部分匹配
         /// </summary>
@@ -233,13 +256,14 @@ namespace Client.ViewModel.Operation
             }
             for (int i = 0; i < matches.Length; i++)
             {
-                if (matches[i].Distance <= Math.Max(2 * minDist, 20f))
+                if (matches[i].Distance <= Math.Max(2 * minDist, 40f))
                 {
                     reList.Add(matches[i]);
                 }
             }
             return reList;
         }
+
         /// <summary>
         /// 随机抽取4个点计算单应性矩阵并重投影，比较坐标，记录正确点数量；多次重复，将正确点数量最多的当做正确匹配
         /// </summary>
@@ -274,6 +298,7 @@ namespace Client.ViewModel.Operation
             }
             return (reList, src1Pts, dst1Pts);
         }
-        #endregion
+
+        #endregion PrivateFunction
     }
 }

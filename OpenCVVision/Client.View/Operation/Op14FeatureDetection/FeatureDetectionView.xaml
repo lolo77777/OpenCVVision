@@ -76,12 +76,20 @@
                                 x:Name="cbxImageItems2"
                                 Margin="{StaticResource marginEven}"
                                 materialDesign:HintAssist.Hint="SecondImage" />
-                            <StackPanel Margin="{StaticResource marginOdd}" Orientation="Horizontal">
-                                <CheckBox x:Name="cbIsEnableMinDis" Content="MinDisFilter" />
+                            <StackPanel Margin="{StaticResource marginOdd}" Orientation="Vertical">
                                 <CheckBox
+                                    Margin="{StaticResource marginEven}"
+                                    x:Name="cbIsEnableKnnMatch"
+                                    Content="KnnMatch"
+                                    IsChecked="False" />
+                                <CheckBox Margin="{StaticResource marginOdd}" x:Name="cbIsEnableMinDis" Content="MinDisFilter" />
+                                <CheckBox
+                                    Margin="{StaticResource marginEven}"
                                     x:Name="cbIsEnableRANSAC"
                                     Content="RANSACFilter"
                                     IsChecked="True" />
+
+
 
                             </StackPanel>
                             <Button

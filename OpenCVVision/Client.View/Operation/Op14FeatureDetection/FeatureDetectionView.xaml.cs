@@ -63,6 +63,9 @@ namespace Client.View.Operation
                 this.WhenAnyValue(x => x.cbIsEnableRANSAC.IsChecked)
                     .BindTo(ViewModel, vm => vm.IsEnableRANSAC)
                     .DisposeWith(d);
+                this.WhenAnyValue(x => x.cbIsEnableKnnMatch.IsChecked)
+                    .BindTo(ViewModel, vm => vm.IsEnableKnnMatch)
+                    .DisposeWith(d);
                 
             });
         }
