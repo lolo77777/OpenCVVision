@@ -49,6 +49,9 @@
     <Compile Update="Operation\Op12DeepLearning\YoloV3View.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op14FeatureDetection\FeatureDetectionView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Dictionary.xaml">
@@ -97,6 +100,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op12DeepLearning\YoloV3View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op14FeatureDetection\FeatureDetectionView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

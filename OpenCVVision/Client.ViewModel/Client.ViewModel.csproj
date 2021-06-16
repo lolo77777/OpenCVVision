@@ -23,5 +23,6 @@
 	  <Folder Include="Operation\Op09AbbRobot\" />
 	  <Folder Include="Operation\Op10Camera\" />
 	  <Folder Include="Operation\Op11MachineLearning\" />
+	  <Folder Include="Operation\Op13ImageSegmentation\" />
 	</ItemGroup>
 </Project>

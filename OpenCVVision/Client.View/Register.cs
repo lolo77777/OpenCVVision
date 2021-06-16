@@ -45,6 +45,7 @@ namespace Client.View
             RegisterVLazySingleton<PyramidViewModel, PyramidView>();
             RegisterVLazySingleton<EdgeDetectViewModel, EdgeDetectView>();
             RegisterVLazySingleton<YoloV3ViewModel, YoloV3View>();
+            RegisterVLazySingleton<FeatureDetectionViewModel, FeatureDetectionView>();
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Client.Model.Service
         Mat GetCurrentMat();
 
         ImageData GetImage(Guid? guid);
+        ImageData GetImage(string markTxt);
 
         bool IsExsitByMark(string markTxt);
 

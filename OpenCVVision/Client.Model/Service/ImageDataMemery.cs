@@ -162,5 +162,10 @@ namespace Client.Model.Service
                 return false;
             }
         }
+
+        public ImageData GetImage(string markTxt)
+        {
+           return    SourceCacheImageData.Items.Where(it => it.TxtMarker.Equals(markTxt)).FirstOrDefault();
+        }
     }
 }
