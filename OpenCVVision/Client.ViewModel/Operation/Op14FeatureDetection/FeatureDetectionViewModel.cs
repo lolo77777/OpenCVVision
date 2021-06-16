@@ -41,7 +41,7 @@ namespace Client.ViewModel.Operation
         protected override void SetupStart(CompositeDisposable d)
         {
             base.SetupStart(d);
-            FeatureDetectMethodItems = new[] { "Sift", "Surf", "Brisk", "Orb" };
+            FeatureDetectMethodItems = new[] { "AKAZE", "Sift", "Surf", "Brisk", "Orb" };
             MatchMethodItems = new[] { "BfMatcher", "FlannMatcher" };
         }
 
@@ -62,6 +62,12 @@ namespace Client.ViewModel.Operation
                 KeyPoint[] kps = null;
                 switch (featureDetectMethod)
                 {
+                    case "AKAZE":
+                        AKAZE aKAZE = AKAZE.Create();
+                        aKAZE.DetectAndCompute(_src, null, out kps, descriptors);
+
+                        break;
+
                     case "Sift":
                         SIFT siftSam = SIFT.Create(500);
                         siftSam.DetectAndCompute(_src, null, out kps, descriptors);
@@ -128,6 +134,12 @@ namespace Client.ViewModel.Operation
                 KeyPoint[] kps2 = null;
                 switch (FeatureDetectMethodSelectValue)
                 {
+                    case "AKAZE":
+                        AKAZE aKAZE = AKAZE.Create();
+                        aKAZE.DetectAndCompute(dst1, null, out kps1, descriptors1);
+                        aKAZE.DetectAndCompute(dst2, null, out kps2, descriptors2);
+                        break;
+
                     case "Sift":
                         SIFT siftSam = SIFT.Create();
                         siftSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
@@ -256,7 +268,7 @@ namespace Client.ViewModel.Operation
             }
             for (int i = 0; i < matches.Length; i++)
             {
-                if (matches[i].Distance <= Math.Max(2 * minDist, 40f))
+                if (matches[i].Distance <= Math.Max(2 * minDist, 20f))
                 {
                     reList.Add(matches[i]);
                 }
