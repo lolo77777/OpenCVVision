@@ -7,8 +7,7 @@ namespace Client.Data
         public static class File
         {
             public const string LaserLineCaliYaml = @"Data\File\LaserLine\LightLaserCali.yaml";
-            public const string ObjectNames = @"Data\File\YoloV3\coco.names";
-            public const string YoloV3Cfg = @"Data\File\YoloV3\yolov3.cfg";
+            public const string ObjectNames = @"Data\File\Yolo\coco.names";
         }
 
         public static class Folder

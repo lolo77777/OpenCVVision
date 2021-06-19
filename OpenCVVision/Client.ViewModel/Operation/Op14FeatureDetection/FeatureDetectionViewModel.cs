@@ -53,6 +53,28 @@ namespace Client.ViewModel.Operation
             MatchCommand = ReactiveCommand.Create(Match, matchCanExe);
         }
 
+        protected override void SetupSubscriptions(CompositeDisposable d)
+        {
+            base.SetupSubscriptions(d);
+            _imageDataManager.InputMatGuidSubject
+                .Where(guid => CanOperat && !string.IsNullOrWhiteSpace(FeatureDetectMethodSelectValue))
+                .Subscribe(guid => UpdateOutput(FeatureDetectMethodSelectValue))
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.FeatureDetectMethodSelectValue)
+                .WhereNotNull()
+                .Subscribe(str => UpdateOutput(str))
+                .DisposeWith(d);
+            _imageDataManager.SourceCacheImageData
+                   .Connect()
+                   .Transform(t => t.TxtMarker)
+                   .Where(vs => vs.Count >= 2)
+                   .Bind(out _imageItems)
+                   .Subscribe()
+                   .DisposeWith(d);
+        }
+
+        #region PrivateFunction
+
         private void UpdateOutput(string featureDetectMethod)
         {
             SendTime(() =>
@@ -69,7 +91,7 @@ namespace Client.ViewModel.Operation
                         break;
 
                     case "Sift":
-                        SIFT siftSam = SIFT.Create(500);
+                        SIFT siftSam = SIFT.Create();
                         siftSam.DetectAndCompute(_src, null, out kps, descriptors);
                         break;
 
@@ -97,28 +119,6 @@ namespace Client.ViewModel.Operation
                 _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
             });
         }
-
-        protected override void SetupSubscriptions(CompositeDisposable d)
-        {
-            base.SetupSubscriptions(d);
-            _imageDataManager.InputMatGuidSubject
-                .Where(guid => CanOperat && !string.IsNullOrWhiteSpace(FeatureDetectMethodSelectValue))
-                .Subscribe(guid => UpdateOutput(FeatureDetectMethodSelectValue))
-                .DisposeWith(d);
-            this.WhenAnyValue(x => x.FeatureDetectMethodSelectValue)
-                .WhereNotNull()
-                .Subscribe(str => UpdateOutput(str))
-                .DisposeWith(d);
-            _imageDataManager.SourceCacheImageData
-                   .Connect()
-                   .Transform(t => t.TxtMarker)
-                   .Where(vs => vs.Count >= 2)
-                   .Bind(out _imageItems)
-                   .Subscribe()
-                   .DisposeWith(d);
-        }
-
-        #region PrivateFunction
 
         private void Match()
         {

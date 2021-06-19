@@ -35,7 +35,7 @@ namespace Client.ViewModel
         /// <summary>
         /// 标记操作进行状态
         /// </summary>
-        protected bool IsRun = false;
+        [Reactive] protected bool IsRun { set; get; } = false;
 
         public ViewModelActivator Activator { get; }
 

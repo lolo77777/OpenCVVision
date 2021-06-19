@@ -1,0 +1,95 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="Client.View.Operation.MatchTemplateView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Client.View.Operation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
+    xmlns:rxui="http://reactiveui.net"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    x:TypeArguments="operation:MatchTemplateViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="Title"
+                Margin="{StaticResource marginOdd}"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="MatchTemplate" />
+            <Grid Grid.Row="1" Margin="{StaticResource marginEven}">
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="AUto" />
+                </Grid.RowDefinitions>
+
+                <materialDesign:Card>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
+
+                            <ComboBox
+                                x:Name="cbxMatchMethod"
+                                Margin="{StaticResource marginEven}"
+                                materialDesign:HintAssist.Hint="MatchMethod" />
+                            <ComboBox
+                                x:Name="cbxImageItems1"
+                                Margin="{StaticResource marginOdd}"
+                                materialDesign:HintAssist.Hint="Src" />
+                            <ComboBox
+                                x:Name="cbxImageItems2"
+                                Margin="{StaticResource marginEven}"
+                                materialDesign:HintAssist.Hint="Template" />
+                            <Grid Margin="{StaticResource marginOdd}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Margin="-4,0,8,0" Content="Thresh(%)" />
+                                <Slider
+                                    x:Name="sliderThresh"
+                                    Grid.Column="1"
+                                    Maximum="100"
+                                    Minimum="60"
+                                    TickFrequency="1"
+                                    TickPlacement="BottomRight"
+                                    ToolTip="KernelSize"
+                                    Value="90" />
+                            </Grid>
+                            <StackPanel Margin="{StaticResource marginEven}" Orientation="Horizontal">
+                                <CheckBox
+                                    x:Name="cbIsEnableAngle"
+                                    Content="WithAngle"
+                                    IsChecked="False" />
+                                <TextBox
+                                    x:Name="txtMatchThre"
+                                    Margin="15,0,0,5"
+                                    materialDesign:HintAssist.Hint="AngleStep(°)"
+                                    IsEnabled="{Binding ElementName=cbIsEnableAngle, Path=IsChecked}"
+                                    Text="2" />
+                            </StackPanel>
+                            <Button
+                                x:Name="btnImage"
+                                Margin="{StaticResource marginOdd}"
+                                Content="执行匹配" />
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+        </Grid>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>

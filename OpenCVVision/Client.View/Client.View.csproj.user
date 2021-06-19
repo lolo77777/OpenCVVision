@@ -46,7 +46,10 @@
     <Compile Update="Operation\Op083D\LaserLineView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Operation\Op12DeepLearning\YoloV3View.xaml.cs">
+    <Compile Update="Operation\Op09MatchTemplate\MatchTemplateView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Operation\Op12DeepLearning\YoloView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Operation\Op14FeatureDetection\FeatureDetectionView.xaml.cs">
@@ -99,7 +102,10 @@
     <Page Update="Operation\Op083D\LaserLineView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Operation\Op12DeepLearning\YoloV3View.xaml">
+    <Page Update="Operation\Op09MatchTemplate\MatchTemplateView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op12DeepLearning\YoloView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op14FeatureDetection\FeatureDetectionView.xaml">

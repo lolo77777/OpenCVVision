@@ -22,8 +22,8 @@ namespace Client.ViewModel.Operation
     /// <summary>
     /// 参考引用了以下项目、资料 https://github.com/died/YOLO3-With-OpenCvSharp4 https://pjreddie.com/darknet/yolo/
     /// </summary>
-    [OperationInfo(12.1, "YoloV3", MaterialDesignThemes.Wpf.PackIconKind.Yoga)]
-    public class YoloV3ViewModel : OperaViewModelBase
+    [OperationInfo(12.1, "YoloV4", MaterialDesignThemes.Wpf.PackIconKind.Yoga)]
+    public class YoloViewModel : OperaViewModelBase
     {
         private readonly Scalar[] _colors = Enumerable.Repeat(false, 80).Select(x => Scalar.RandomColor()).ToArray();
         private bool _isInit;
@@ -32,13 +32,18 @@ namespace Client.ViewModel.Operation
         private Net _net;
         private List<Mat> _srcs;
         public Interaction<Unit, string> LoadFileConfirm => _loadFileConfirm;
-        public ReactiveCommand<Unit, Unit> LoadImageCommand { get; set; }
+        public ReactiveCommand<string, Unit> LoadImageCommand { get; set; }
+
+        // public ReactiveCommand<Unit, Unit> LoadCfgCommand { get; set; }
         [Reactive] public string TxtImageFilePath { get; set; }
+
+        [Reactive] public string TxtCfgFilePath { get; set; }
 
         protected override void SetupCommands(CompositeDisposable d)
         {
             base.SetupCommands(d);
-            LoadImageCommand = ReactiveCommand.Create(LoadFile);
+            LoadImageCommand = ReactiveCommand.Create<string>(LoadFile);
+            // LoadCfgCommand = ReactiveCommand.Create(LoadFile);
         }
 
         protected override void SetupStart(CompositeDisposable d)
@@ -54,10 +59,10 @@ namespace Client.ViewModel.Operation
                 .Do(guid => UpdateOutput())
                 .Subscribe()
                 .DisposeWith(d);
-            this.WhenAnyValue(x => x.TxtImageFilePath)
-                .Where(str => !string.IsNullOrWhiteSpace(str))
+            this.WhenAnyValue(x => x.TxtImageFilePath, x => x.TxtCfgFilePath)
+                .Where(vt => !string.IsNullOrWhiteSpace(vt.Item1) && !string.IsNullOrWhiteSpace(vt.Item2))
 
-                .Subscribe(filepath => InitNet(filepath))
+                .Subscribe(vt => InitNet(vt.Item1, vt.Item2))
                 .DisposeWith(d);
         }
 
@@ -168,9 +173,9 @@ namespace Client.ViewModel.Operation
             }
         }
 
-        private void InitNet(string filepath)
+        private void InitNet(string filepath, string cfgFilePath)
         {
-            _net = CvDnn.ReadNetFromDarknet(FilePath.File.YoloV3Cfg, filepath);
+            _net = CvDnn.ReadNetFromDarknet(cfgFilePath, filepath);
             _labels = File.ReadAllLines(FilePath.File.ObjectNames).ToArray();
             _net.SetPreferableBackend(Backend.OPENCV);
             _net.SetPreferableTarget(Target.CPU);
@@ -186,10 +191,22 @@ namespace Client.ViewModel.Operation
             _isInit = true;
         }
 
-        private void LoadFile()
+        private void LoadFile(string name)
         {
             _loadFileConfirm.Handle(Unit.Default)
-               .Subscribe(str => TxtImageFilePath = str);
+                .Where(str => str.Contains(".cfg") || str.Contains(".weight"))
+               .Subscribe(str =>
+               {
+                   if (name.Equals("weight"))
+                   {
+                       TxtImageFilePath = str;
+                   }
+                   else
+                   {
+                       TxtCfgFilePath = str;
+                   }
+               }
+               );
         }
 
         private void UpdateOutput()
