@@ -47,6 +47,8 @@ namespace Client.ViewModel
             RegistLazySingletonOpVM<YoloViewModel>();
             RegistLazySingletonOpVM<FeatureDetectionViewModel>();
             //RegistLazySingletonOpVM<MatchTemplateViewModel>();
+            RegistLazySingletonOpVM<GrayCodeViewModel>();
+            _mutable.Register(() => new View3DViewModel());
         }
     }
 }

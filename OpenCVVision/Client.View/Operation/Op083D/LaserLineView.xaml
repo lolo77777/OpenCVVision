@@ -41,31 +41,32 @@
                     来配合实现；\Data\Image\LaserLine目录下为图像数据；
                     标定结果为Data\Yaml\LaserLine\LightLaserCali.yaml
                 </TextBlock>
-
-                <Button
-                    x:Name="btnCalibrateTest"
-                    Grid.Column="1"
-                    Width="36"
-                    Height="36"
-                    Margin="{StaticResource marginEven}"
-                    HorizontalAlignment="Right"
-                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                    Style="{StaticResource MaterialDesignIconButton}"
-                    ToolTip="标定测试">
-                    <materialDesign:PackIcon Kind="LaserPointer" />
-                </Button>
-                <Button
-                    x:Name="btnLaserLightCal"
-                    Grid.Column="1"
-                    Width="36"
-                    Height="36"
-                    Margin="{StaticResource marginOdd}"
-                    HorizontalAlignment="Right"
-                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                    Style="{StaticResource MaterialDesignIconButton}"
-                    ToolTip="实时求解测试">
-                    <materialDesign:PackIcon Kind="VectorPolyline" />
-                </Button>
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        x:Name="btnCalibrateTest"
+                        Grid.Column="1"
+                        Width="36"
+                        Height="36"
+                        Margin="{StaticResource marginEven}"
+                        HorizontalAlignment="Right"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="标定测试">
+                        <materialDesign:PackIcon Kind="LaserPointer" />
+                    </Button>
+                    <Button
+                        x:Name="btnLaserLightCal"
+                        Grid.Column="1"
+                        Width="36"
+                        Height="36"
+                        Margin="{StaticResource marginOdd}"
+                        HorizontalAlignment="Right"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="实时求解测试">
+                        <materialDesign:PackIcon Kind="VectorPolyline" />
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </materialDesign:Card>

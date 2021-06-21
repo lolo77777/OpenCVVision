@@ -47,6 +47,8 @@ namespace Client.View
             RegisterVLazySingleton<YoloViewModel, YoloView>();
             RegisterVLazySingleton<FeatureDetectionViewModel, FeatureDetectionView>();
             //RegisterVLazySingleton<MatchTemplateViewModel, MatchTemplateView>();
+            RegisterVLazySingleton<GrayCodeViewModel, GrayCodeView>();
+            _mutable.Register<View3DView>(() => new View3DView());
         }
     }
 }

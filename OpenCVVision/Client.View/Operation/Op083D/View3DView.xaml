@@ -1,0 +1,82 @@
+﻿<rxui:ReactiveWindow
+    x:Class="Client.View.Operation.View3DView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
+    xmlns:local="clr-namespace:Client.View.Operation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
+    xmlns:rxui="http://reactiveui.net"
+    Title="View3DView"
+    Width="800"
+    Height="450"
+    x:TypeArguments="operation:View3DViewModel"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <hx:Viewport3DX
+            x:Name="viewPort"
+            Grid.Row="0"
+            BackgroundColor="White"
+            CameraMode="Inspect"
+            EnableSwapChainRendering="True"
+            FXAALevel="Low"
+            RotateAroundMouseDownPoint="True"
+            ShowCameraInfo="True"
+            ShowCameraTarget="True"
+            ShowCoordinateSystem="True"
+            ShowFrameRate="True"
+            ShowViewCube="True"
+            ZoomAroundMouseDownPoint="True">
+
+            <hx:Viewport3DX.InputBindings>
+                <KeyBinding Key="B" Command="hx:ViewportCommands.BackView" />
+                <KeyBinding Key="F" Command="hx:ViewportCommands.FrontView" />
+                <KeyBinding Key="U" Command="hx:ViewportCommands.TopView" />
+                <KeyBinding Key="D" Command="hx:ViewportCommands.BottomView" />
+                <KeyBinding Key="L" Command="hx:ViewportCommands.LeftView" />
+                <KeyBinding Key="R" Command="hx:ViewportCommands.RightView" />
+                <KeyBinding Command="hx:ViewportCommands.ZoomExtents" Gesture="Control+E" />
+                <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
+                <MouseBinding Command="hx:ViewportCommands.Zoom" Gesture="MiddleClick" />
+                <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="LeftClick" />
+            </hx:Viewport3DX.InputBindings>
+            <hx:AmbientLight3D Color="AliceBlue" />
+            <hx:DirectionalLight3D x:Name="light" Color="#D6D6D6" />
+
+            <hx:PointGeometryModel3D
+                x:Name="geometryModel3D"
+                Geometry="{Binding PointGeometry}"
+                Size="1,1"
+                Transform="{Binding ModelTransform}" />
+        </hx:Viewport3DX>
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Label
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="左键平移，右键旋转,滚轮缩放;   图像文件位于程序目录下Data\Image\GrayCode中"
+                FontSize="14" />
+            <ComboBox
+                x:Name="cbxTestSample"
+                Margin="{StaticResource marginEven}"
+                HorizontalAlignment="Right"
+                materialDesign:HintAssist.Hint="Sample" />
+            <Button
+                x:Name="btnDisplay"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Content="Display" />
+        </StackPanel>
+    </Grid>
+</rxui:ReactiveWindow>
