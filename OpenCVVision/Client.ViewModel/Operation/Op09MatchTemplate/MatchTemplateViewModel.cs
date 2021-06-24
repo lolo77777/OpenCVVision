@@ -1,7 +1,5 @@
 ﻿using DynamicData;
 
-using LiveChartsCore;
-
 using OpenCvSharp;
 
 using ReactiveUI;
@@ -15,7 +13,6 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Client.ViewModel.Operation
@@ -52,12 +49,12 @@ namespace Client.ViewModel.Operation
         {
             base.SetupSubscriptions(d);
             _imageDataManager.SourceCacheImageData
-                   .Connect()
-                   .Transform(t => t.TxtMarker)
-                   .Where(vs => vs.Count >= 2)
-                   .Bind(out _imageItems)
-                   .Subscribe()
-                   .DisposeWith(d);
+                .Connect()
+                .Transform(t => t.TxtMarker)
+                .Where(vs => vs.Count >= 2)
+                .Bind(out _imageItems)
+                .Subscribe()
+                .DisposeWith(d);
         }
 
         #region PrivateFunction

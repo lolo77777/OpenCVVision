@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.Design.Serialization;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Common;
-using Client.Model.Service;
-
-using DynamicData;
-
-using OpenCvSharp;
+﻿using OpenCvSharp;
 
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
-using Splat;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace Client.ViewModel.Operation
 {

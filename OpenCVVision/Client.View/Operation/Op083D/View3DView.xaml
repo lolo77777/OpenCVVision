@@ -65,7 +65,7 @@
             <Label
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Content="左键平移，右键旋转,滚轮缩放;   图像文件位于程序目录下Data\Image\GrayCode中"
+                Content="左键平移，右键旋转，滚轮缩放;   图像文件位于程序目录下Data\Image\GrayCode中"
                 FontSize="14" />
             <ComboBox
                 x:Name="cbxTestSample"
