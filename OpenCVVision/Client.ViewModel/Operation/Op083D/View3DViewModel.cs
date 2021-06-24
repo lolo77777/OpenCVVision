@@ -1,7 +1,6 @@
 ﻿using Client.Model.Service.ImageProcess;
 
 using HelixToolkit.SharpDX.Core;
-using HelixToolkit.Wpf.SharpDX;
 
 using OpenCvSharp;
 
@@ -10,49 +9,58 @@ using ReactiveUI.Fody.Helpers;
 
 using SharpDX;
 
+using Splat;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
-
-using UnmanageUtility;
 
 using Camera = HelixToolkit.Wpf.SharpDX.Camera;
 using PerspectiveCamera = HelixToolkit.Wpf.SharpDX.PerspectiveCamera;
 
 namespace Client.ViewModel.Operation
 {
-    public class View3DViewModel : ReactiveObject
+    public class View3DViewModel : ReactiveObject, IRoutableViewModel
     {
         private GrayCodeProcess _grayCodeProcess;
-
+        private Mat CameraMatrixMat;
+        private Mat ProjecterMat;
+        private Mat RMat1;
+        private Mat TMat1;
+        private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
+        private ResourcesTracker _rt;
+        private static readonly AxisAngleRotation3D axisAngleRotation3D = new(
+                        new Vector3D(1, 0, 0), -90);
         #region BindProperty
 
         public IEnumerable<int> SampleItems { get; } = new[] { 1, 2, 3, 4 };
         [Reactive] public int SampleSelectIndex { get; set; }
         [Reactive] public Camera CamDx { get; set; }
-        [Reactive] public EffectsManager EffectsManager { get; set; } = new DefaultEffectsManager();
+        [Reactive] public EffectsManager EffectsManager { get; set; }
 
         public Transform3D ModelTransform { get; set; } =
             new RotateTransform3D()
             {
-                Rotation = new System.Windows.Media.Media3D.AxisAngleRotation3D(
-                new Vector3D(1, 0, 0), -90)
+                Rotation = axisAngleRotation3D
             };
 
-        [Reactive] public PointGeometry3D PointGeometry { set; get; } = new PointGeometry3D();
+        [Reactive] public PointGeometry3D PointGeometry { set; get; }
         public ReactiveCommand<Unit, Unit> DisplayCommand { get; set; }
+        public ReactiveCommand<Unit, Unit> NaviBackCommand { get; set; }
+        public string UrlPathSegment { get; }
+        public IScreen HostScreen { get; }
 
         #endregion BindProperty
 
         public View3DViewModel()
         {
-            SetupStart();
+            HostScreen = _resolver.GetService<IScreen>("MainHost");
+            this.WhenNavigatedTo(() => SetupStart());
             SetupCommand();
         }
 
@@ -60,10 +68,15 @@ namespace Client.ViewModel.Operation
         {
             var displayCanExecute = this.WhenAnyValue(x => x.SampleSelectIndex, i => i >= 0);
             DisplayCommand = ReactiveCommand.Create(Display, displayCanExecute);
+            var mainScreen = _resolver.GetService<IScreen>("MainHost");
+            NaviBackCommand = mainScreen.Router.NavigateBack;
         }
 
-        private void SetupStart()
+        private IDisposable SetupStart()
         {
+            _rt = new();
+            EffectsManager = new DefaultEffectsManager();
+            PointGeometry = new PointGeometry3D();
             CamDx = new PerspectiveCamera()
             {
                 LookDirection = new Vector3D(0, 0, -500),
@@ -71,14 +84,26 @@ namespace Client.ViewModel.Operation
                 UpDirection = new Vector3D(0, 1, 0),
                 FarPlaneDistance = 3000
             };
-            var datapath = Data.FilePath.File.PatternCalibrateYaml;
-            using var fr = new FileStorage(datapath, FileStorage.Modes.Read);
-            var CameraMatrixMat = fr["CameraMatrixMat"].ReadMat();
-            var ProjecterMat = fr["ProjecterMatrix"].ReadMat();
 
-            var RMat1 = fr["RMat"].ReadMat();
-            var TMat1 = fr["TMat"].ReadMat();
+            using var fr = new FileStorage(Data.FilePath.File.PatternCalibrateYaml, FileStorage.Modes.Read);
+            CameraMatrixMat = _rt.T(fr["CameraMatrixMat"].ReadMat());
+            ProjecterMat = _rt.T(fr["ProjecterMatrix"].ReadMat());
+
+            RMat1 = _rt.T(fr["RMat"].ReadMat());
+            TMat1 = _rt.T(fr["TMat"].ReadMat());
             _grayCodeProcess = new GrayCodeProcess(RMat1, TMat1, CameraMatrixMat, ProjecterMat);
+            return Disposable.Create(() => SetupExit());
+        }
+
+        private void SetupExit()
+        {
+            CamDx = null;
+            _rt.Dispose();
+            _grayCodeProcess = null;
+            PointGeometry.ClearAllGeometryData();
+            EffectsManager.DisposeAndClear();
+            PointGeometry = null;
+            GC.Collect();
         }
 
         public void Display()

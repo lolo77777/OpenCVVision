@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Common;
+﻿using Client.Common;
+using Client.ViewModel.Operation;
 
 using Splat;
-
-using Client.ViewModel;
-
-using Client.ViewModel.Operation;
 
 namespace Client.ViewModel
 {
@@ -28,10 +19,9 @@ namespace Client.ViewModel
 
         public override void ConfigService()
         {
-            _mutable.RegisterLazySingleton(() => new MainViewModel());
+            _mutable.RegisterLazySingleton(() => new ShellViewModel());
             _mutable.RegisterLazySingleton(() => new NavigationViewModel());
             _mutable.RegisterLazySingleton(() => new ImageViewModel());
-
             RegistLazySingletonOpVM<LoadFileViewModel>();
             RegistLazySingletonOpVM<ColorSpaceViewModel>();
             RegistLazySingletonOpVM<FilterViewModel>();

@@ -1,11 +1,4 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Common;
+﻿using Client.Common;
 using Client.View.Operation;
 
 using Client.ViewModel;
@@ -26,12 +19,10 @@ namespace Client.View
 
         public override void ConfigService()
         {
-            _mutable.RegisterLazySingleton(() => new MainWindow());
+            _mutable.RegisterLazySingleton<IViewFor<ShellViewModel>>(() => new ShellView());
             _mutable.RegisterLazySingleton<IViewFor<NavigationViewModel>>(() => new Navigation());
             _mutable.RegisterLazySingleton<IViewFor<ImageViewModel>>(() => new ImageView());
-            //_mutable.RegisterLazySingleton<IViewFor<LoadFileViewModel>>(() => new LoadFileView());
-            //_mutable.RegisterLazySingleton<IViewFor<ColorSpaceViewModel>>(() => new ColorSpaceView());
-            //_mutable.RegisterLazySingleton<IViewFor<FilterViewModel>>(() => new FilterView());
+
             RegisterVLazySingleton<LoadFileViewModel, LoadFileView>();
             RegisterVLazySingleton<ColorSpaceViewModel, ColorSpaceView>();
             RegisterVLazySingleton<FilterViewModel, FilterView>();
@@ -48,7 +39,7 @@ namespace Client.View
             RegisterVLazySingleton<FeatureDetectionViewModel, FeatureDetectionView>();
             //RegisterVLazySingleton<MatchTemplateViewModel, MatchTemplateView>();
             RegisterVLazySingleton<GrayCodeViewModel, GrayCodeView>();
-            _mutable.Register<View3DView>(() => new View3DView());
+            _mutable.Register<IViewFor<View3DViewModel>>(() => new View3DView());
         }
     }
 }

@@ -61,6 +61,9 @@
     <Compile Update="Operation\Op14FeatureDetection\FeatureDetectionView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ShellView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Dictionary.xaml">
@@ -121,6 +124,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op14FeatureDetection\FeatureDetectionView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ShellView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

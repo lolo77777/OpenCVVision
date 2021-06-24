@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Model.Service;
+﻿using Client.Model.Service;
 
 using OpenCvSharp;
 
@@ -16,6 +6,11 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 using Splat;
+
+using System;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace Client.ViewModel
 {
@@ -46,10 +41,13 @@ namespace Client.ViewModel
 
         public IScreen HostScreen { get; }
         public string UrlPathSegment { get; }
+        public RoutingState Router { get; }
 
-        public OperaViewModelBase(IImageDataManager imageDataManager = null)
+        public OperaViewModelBase(IImageDataManager imageDataManager = null, IScreen screen = null)
         {
+            HostScreen = screen ?? _resolver.GetService<IScreen>("OperationHost");
             Activator = new ViewModelActivator();
+
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
             this.WhenActivated(d =>
             {

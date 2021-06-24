@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows;
-
-using Client.Common;
+﻿using Client.Common;
 using Client.ViewModel;
 
 using Splat;
+
+using System;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Windows;
 
 namespace Client
 {
@@ -21,24 +17,6 @@ namespace Client
     /// </summary>
     public partial class App : Application
     {
-        private void Init()
-        {
-            var starupPath = Environment.CurrentDirectory;
-
-            var dlls = Directory.GetFiles(starupPath).Where(f => f.Contains(".dll")).Select(f => f.Replace(starupPath + @"\", "")).Where(n => n.Contains("Client")).ToList();
-            foreach (var dll in dlls)
-            {
-                var tmp = (from t in Assembly.LoadFrom(dll).GetTypes()
-                           where t.IsSubclassOf(typeof(RegisterBase))
-                           select Activator.CreateInstance(t)).ToList();
-                var tmp1 = (from t in Assembly.LoadFrom(dll).GetTypes()
-                            where t.IsSubclassOf(typeof(OperaViewModelBase))
-                            select t).ToList();
-
-                tmp.Clear();
-            }
-        }
-
         protected override void OnStartup(StartupEventArgs e)
         {
             SplashScreen s = new SplashScreen("Vison.ico");
@@ -46,8 +24,6 @@ namespace Client
             s.Show(false);
             s.Close(TimeSpan.FromMilliseconds(100));
             base.OnStartup(e);
-            Init();
-            Locator.Current.GetService<MainWindow>().Show();
         }
     }
 }
