@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reactive;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Data;
+﻿using Client.Data;
 
 using OpenCvSharp;
 using OpenCvSharp.Dnn;
 
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace Client.ViewModel.Operation
 {
@@ -28,27 +25,20 @@ namespace Client.ViewModel.Operation
         private readonly Scalar[] _colors = Enumerable.Repeat(false, 80).Select(x => Scalar.RandomColor()).ToArray();
         private bool _isInit;
         private string[] _labels;
-        private Interaction<Unit, string> _loadFileConfirm = new();
+        private readonly Interaction<Unit, string> _loadFileConfirm = new();
         private Net _net;
         private List<Mat> _srcs;
         public Interaction<Unit, string> LoadFileConfirm => _loadFileConfirm;
         public ReactiveCommand<string, Unit> LoadImageCommand { get; set; }
 
-        // public ReactiveCommand<Unit, Unit> LoadCfgCommand { get; set; }
         [Reactive] public string TxtImageFilePath { get; set; }
 
         [Reactive] public string TxtCfgFilePath { get; set; }
 
-        protected override void SetupCommands(CompositeDisposable d)
+        protected override void SetupCommands()
         {
-            base.SetupCommands(d);
+            base.SetupCommands();
             LoadImageCommand = ReactiveCommand.Create<string>(LoadFile);
-            // LoadCfgCommand = ReactiveCommand.Create(LoadFile);
-        }
-
-        protected override void SetupStart(CompositeDisposable d)
-        {
-            base.SetupStart(d);
         }
 
         protected override void SetupSubscriptions(CompositeDisposable d)
@@ -195,18 +185,17 @@ namespace Client.ViewModel.Operation
         {
             _loadFileConfirm.Handle(Unit.Default)
                 .Where(str => str.Contains(".cfg") || str.Contains(".weight"))
-               .Subscribe(str =>
-               {
-                   if (name.Equals("weight"))
-                   {
-                       TxtImageFilePath = str;
-                   }
-                   else
-                   {
-                       TxtCfgFilePath = str;
-                   }
-               }
-               );
+                .Subscribe(str =>
+                {
+                    if (name.Equals("weight"))
+                    {
+                        TxtImageFilePath = str;
+                    }
+                    else
+                    {
+                        TxtCfgFilePath = str;
+                    }
+                });
         }
 
         private void UpdateOutput()

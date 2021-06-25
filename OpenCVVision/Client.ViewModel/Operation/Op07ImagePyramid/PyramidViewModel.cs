@@ -24,9 +24,9 @@ namespace Client.ViewModel.Operation
         [Reactive] public int UpNum { get; set; }
         [Reactive] public int UpNumMax { get; set; }
 
-        protected override void SetupCommands(CompositeDisposable d)
+        protected override void SetupCommands()
         {
-            base.SetupCommands(d);
+            base.SetupCommands();
             LaplaceCommand = ReactiveCommand.Create(DoLapace);
         }
 

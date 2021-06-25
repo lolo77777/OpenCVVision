@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reactive;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-
-using Client.Data;
+﻿using Client.Data;
 using Client.Model.Service.ImageProcess;
 
 using OpenCvSharp;
@@ -15,6 +6,12 @@ using OpenCvSharp;
 using ReactiveUI;
 
 using Splat;
+
+using System;
+using System.IO;
+using System.Linq;
+using System.Reactive;
+using System.Reactive.Linq;
 
 namespace Client.ViewModel.Operation
 {
@@ -26,31 +23,25 @@ namespace Client.ViewModel.Operation
         public ReactiveCommand<Unit, Unit> CalibrateTestCommand { get; set; }
         public ReactiveCommand<Unit, Unit> LaserLigthCalCommand { get; set; }
 
-        public LaserLineViewModel()
+        protected override void SetupStart()
         {
+            base.SetupStart();
             _lightPlaneCalibrate = _resolver.GetService<LightPlaneCalibrate>();
             _lightPlaneCal = _resolver.GetService<LightPlaneCal>();
         }
 
-        private void UpdateOutput()
+        protected override void SetupCommands()
         {
-            SendTime(() =>
-            {
-            });
-        }
-
-        protected override void SetupCommands(CompositeDisposable d)
-        {
-            base.SetupCommands(d);
+            base.SetupCommands();
             CalibrateTestCommand = ReactiveCommand.Create(CalibrateTest);
             LaserLigthCalCommand = ReactiveCommand.Create(CalTest);
         }
-
-        protected override void SetupSubscriptions(CompositeDisposable d)
+        protected override void SetupDeactivate()
         {
-            base.SetupSubscriptions(d);
+            base.SetupDeactivate();
+            _lightPlaneCal = null;
+            _lightPlaneCalibrate = null;
         }
-
         #region PrivateFunction
 
         private void CalibrateTest()
@@ -71,15 +62,15 @@ namespace Client.ViewModel.Operation
                 var files = Directory.GetFiles(FilePath.Folder.LaserLineTestFolder).Select(str => Cv2.ImRead(str, ImreadModes.Grayscale));
                 var num = 0;
                 Observable.Timer(TimeSpan.Zero, TimeSpan.FromMilliseconds(1000))
-                          .Take(files.Count())
-                          .Select(i => files.ElementAt(num))
-                          .Do(mat =>
-                          {
-                              num++;
-                              var re = _lightPlaneCal.GetResultGray(mat, _templete, _cameraToLightPlaneMat, _cameraMatrixMat, _lightPlaneCoeffient);
-                              _imageDataManager.OutputMatSubject.OnNext(re.thinMat);
-                          })
-                          .Subscribe();
+                    .Take(files.Count())
+                    .Select(i => files.ElementAt(num))
+                    .Do(mat =>
+                    {
+                        num++;
+                        var re = _lightPlaneCal.GetResultGray(mat, _templete, _cameraToLightPlaneMat, _cameraMatrixMat, _lightPlaneCoeffient);
+                        _imageDataManager.OutputMatSubject.OnNext(re.thinMat);
+                    })
+                    .Subscribe();
             });
         }
 

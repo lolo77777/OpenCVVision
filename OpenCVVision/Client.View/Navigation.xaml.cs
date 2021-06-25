@@ -1,26 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using Client.ViewModel;
-
-using MaterialDesignThemes.Wpf;
+﻿using Client.ViewModel;
 
 using ReactiveUI;
+
+using System;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Windows.Media.Animation;
 
 namespace Client.View
 {
@@ -29,8 +14,8 @@ namespace Client.View
     /// </summary>
     public partial class Navigation : ReactiveUserControl<NavigationViewModel>
     {
-        private DoubleAnimation withAnimation1 = new();
-        private DoubleAnimation withAnimation2 = new();
+        private readonly DoubleAnimation withAnimation1 = new();
+        private readonly DoubleAnimation withAnimation2 = new();
 
         public Navigation()
         {
@@ -53,26 +38,27 @@ namespace Client.View
         private void SetupBinding()
         {
             this.WhenActivated(d =>
-             {
-                 this.OneWayBind(ViewModel, vm => vm.NaviItems, v => v.NavigationTab.ItemsSource).DisposeWith(d);
-                 this.WhenAnyValue(x => x.NavigationTab.SelectedIndex)
-                     .BindTo(ViewModel, x => x.NaviSelectItemIndex)
-                     .DisposeWith(d);
-                 this.WhenAnyValue(x => x.HumToggle.IsChecked)
-                     .WhereNotNull()
-                     .Do(b =>
-                     {
-                         if (!b.Value)
-                         {
-                             GridMain.BeginAnimation(WidthProperty, withAnimation1);
-                         }
-                         else
-                         {
-                             GridMain.BeginAnimation(WidthProperty, withAnimation2);
-                         }
-                     })
-                     .Subscribe();
-             });
+            {
+                this.OneWayBind(ViewModel, vm => vm.NaviItems, v => v.NavigationTab.ItemsSource).DisposeWith(d);
+                this.WhenAnyValue(x => x.NavigationTab.SelectedIndex)
+                    .BindTo(ViewModel, x => x.NaviSelectItemIndex)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.HumToggle.IsChecked)
+                    .WhereNotNull()
+                    .Do(b =>
+                    {
+                        if (!b.Value)
+                        {
+                            GridMain.BeginAnimation(WidthProperty, withAnimation1);
+                        }
+                        else
+                        {
+                            GridMain.BeginAnimation(WidthProperty, withAnimation2);
+                        }
+                    })
+                    .Subscribe()
+                    .DisposeWith(d);
+            });
         }
     }
 }

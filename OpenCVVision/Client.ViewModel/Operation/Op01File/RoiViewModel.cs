@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Common;
-
-using OpenCvSharp;
+﻿using OpenCvSharp;
 
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+
+using System;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace Client.ViewModel.Operation
 {
@@ -66,7 +61,6 @@ namespace Client.ViewModel.Operation
             base.SetupSubscriptions(d);
 
             var currentMatOb = _imageDataManager.InputMatGuidSubject
-
                 .ObserveOn(RxApp.MainThreadScheduler);
             currentMatOb
                 .Select(guid => _imageDataManager.GetCurrentMat())

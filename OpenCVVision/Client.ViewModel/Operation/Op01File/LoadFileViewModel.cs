@@ -1,40 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Common;
-using Client.Model.Service;
-
-using OpenCvSharp;
+﻿using OpenCvSharp;
 
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
-using Splat;
+using System;
+using System.Linq;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace Client.ViewModel.Operation
 {
     [OperationInfo(1, "加载图片", MaterialDesignThemes.Wpf.PackIconKind.File)]
     public class LoadFileViewModel : OperaViewModelBase
     {
-        private Interaction<Unit, string> _loadFileConfirm = new();
+        private readonly Interaction<Unit, string> _loadFileConfirm = new();
         public Interaction<Unit, string> LoadFileConfirm => _loadFileConfirm;
         public ReactiveCommand<Unit, Unit> LoadImageCommand { get; private set; }
 
         [Reactive] public string TxtImageFilePath { get; set; }
 
-        public LoadFileViewModel()
+        protected override void SetupCommands()
         {
-        }
-
-        protected override void SetupCommands(CompositeDisposable d)
-        {
-            base.SetupCommands(d);
+            base.SetupCommands();
             LoadImageCommand = ReactiveCommand.Create(LoadFile);
         }
 
@@ -48,15 +36,20 @@ namespace Client.ViewModel.Operation
                 .Select(str => Cv2.ImRead(str))
                 .Do(mat => _imageDataManager.AddImage("Src", mat))
                 .Do(mat => _imageDataManager.OutputMatSubject.OnNext(mat))
-                .Subscribe();
+                .Subscribe()
+                .DisposeWith(d);
         }
-
+        protected override void SetupDeactivate()
+        {
+            base.SetupDeactivate();
+        }
         #region PrivateFunction
 
         private void LoadFile()
         {
-            _loadFileConfirm.Handle(Unit.Default)
-               .Subscribe(str => TxtImageFilePath = str);
+            _loadFileConfirm
+                .Handle(Unit.Default)
+                .Subscribe(str => TxtImageFilePath = str);
         }
 
         #endregion PrivateFunction

@@ -7,7 +7,7 @@ namespace Client.ViewModel
 {
     internal class Register : RegisterBase
     {
-        private void RegistLazySingletonOpVM<T>() where T : IOperationViewModel, new()
+        private void RegistOperationViewModel<T>() where T : IOperationViewModel, new()
         {
             _mutable.Register<IOperationViewModel>(() => new T(), OpStaticMethod.GetOpInfo<T>().info);
         }
@@ -22,22 +22,22 @@ namespace Client.ViewModel
             _mutable.RegisterLazySingleton(() => new ShellViewModel());
             _mutable.RegisterLazySingleton(() => new NavigationViewModel());
             _mutable.RegisterLazySingleton(() => new ImageViewModel());
-            RegistLazySingletonOpVM<LoadFileViewModel>();
-            RegistLazySingletonOpVM<ColorSpaceViewModel>();
-            RegistLazySingletonOpVM<FilterViewModel>();
+            RegistOperationViewModel<LoadFileViewModel>();
+            RegistOperationViewModel<ColorSpaceViewModel>();
+            RegistOperationViewModel<FilterViewModel>();
 
-            RegistLazySingletonOpVM<ThreshouldViewModel>();
-            RegistLazySingletonOpVM<MorphologyViewModel>();
-            RegistLazySingletonOpVM<ConnectedComponentsViewModel>();
-            RegistLazySingletonOpVM<ContoursViewModel>();
-            RegistLazySingletonOpVM<RoiViewModel>();
-            RegistLazySingletonOpVM<LaserLineViewModel>();
-            RegistLazySingletonOpVM<PyramidViewModel>();
-            RegistLazySingletonOpVM<EdgeDetectViewModel>();
-            RegistLazySingletonOpVM<YoloViewModel>();
-            RegistLazySingletonOpVM<FeatureDetectionViewModel>();
+            RegistOperationViewModel<ThreshouldViewModel>();
+            RegistOperationViewModel<MorphologyViewModel>();
+            RegistOperationViewModel<ConnectedComponentsViewModel>();
+            RegistOperationViewModel<ContoursViewModel>();
+            RegistOperationViewModel<RoiViewModel>();
+            RegistOperationViewModel<LaserLineViewModel>();
+            RegistOperationViewModel<PyramidViewModel>();
+            RegistOperationViewModel<EdgeDetectViewModel>();
+            RegistOperationViewModel<YoloViewModel>();
+            RegistOperationViewModel<FeatureDetectionViewModel>();
             //RegistLazySingletonOpVM<MatchTemplateViewModel>();
-            RegistLazySingletonOpVM<GrayCodeViewModel>();
+            RegistOperationViewModel<GrayCodeViewModel>();
             _mutable.Register(() => new View3DViewModel());
         }
     }

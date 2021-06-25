@@ -31,17 +31,17 @@ namespace Client.ViewModel.Operation
         [Reactive] public double MatchThreshold { get; private set; }
         [Reactive] public int AngleStep { get; private set; }
 
-        protected override void SetupCommands(CompositeDisposable d)
+        protected override void SetupCommands()
         {
-            base.SetupCommands(d);
+            base.SetupCommands();
             IObservable<bool> matchCanExecute = this.WhenAnyValue(x => x.SrcImageMarkTxt, x => x.TemplateImageMarkTxt, x => x.IsRun,
                 (srcStr, TemStr, isrun) => !string.IsNullOrWhiteSpace(srcStr) && !string.IsNullOrWhiteSpace(TemStr) && srcStr != TemStr && !isrun);
             MatchCommand = ReactiveCommand.Create(Match, matchCanExecute);
         }
 
-        protected override void SetupStart(CompositeDisposable d)
+        protected override void SetupStart()
         {
-            base.SetupStart(d);
+            base.SetupStart();
             MatchMethodItems = Enum.GetNames<TemplateMatchModes>().Where(name => name.Contains("Normed"));
         }
 

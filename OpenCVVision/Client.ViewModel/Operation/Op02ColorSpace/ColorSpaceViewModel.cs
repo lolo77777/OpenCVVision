@@ -20,10 +20,6 @@ namespace Client.ViewModel.Operation
         public ReadOnlyCollection<string> ColorModes { get; private set; }
         [Reactive] public int ColorModeSelectInd { get; set; }
 
-        public ColorSpaceViewModel()
-        {
-        }
-
         private void UpdateOutput(int colorModeInd, int channel)
         {
             SendTime(() =>
@@ -41,14 +37,13 @@ namespace Client.ViewModel.Operation
                     };
 
                     _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-                    _rt.Dispose();
                 }
             });
         }
 
-        protected override void SetupStart(CompositeDisposable d)
+        protected override void SetupStart()
         {
-            base.SetupStart(d);
+            base.SetupStart();
             CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
             ColorModes = new ReadOnlyCollection<string>(new[] { "Gray", "BGR", "HSV", "HLS" });
         }

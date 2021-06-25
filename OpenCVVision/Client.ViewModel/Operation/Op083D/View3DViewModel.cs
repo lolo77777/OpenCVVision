@@ -16,7 +16,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reactive;
-using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Windows.Media.Media3D;
 
@@ -25,7 +24,7 @@ using PerspectiveCamera = HelixToolkit.Wpf.SharpDX.PerspectiveCamera;
 
 namespace Client.ViewModel.Operation
 {
-    public class View3DViewModel : ReactiveObject, IRoutableViewModel
+    public class View3DViewModel : ViewModelBase, IRoutableViewModel
     {
         private GrayCodeProcess _grayCodeProcess;
         private Mat CameraMatrixMat;
@@ -34,8 +33,9 @@ namespace Client.ViewModel.Operation
         private Mat TMat1;
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
         private ResourcesTracker _rt;
-        private static readonly AxisAngleRotation3D axisAngleRotation3D = new(
-                        new Vector3D(1, 0, 0), -90);
+
+        private static readonly AxisAngleRotation3D axisAngleRotation3D = new(new Vector3D(1, 0, 0), -90);
+
         #region BindProperty
 
         public IEnumerable<int> SampleItems { get; } = new[] { 1, 2, 3, 4 };
@@ -60,20 +60,30 @@ namespace Client.ViewModel.Operation
         public View3DViewModel()
         {
             HostScreen = _resolver.GetService<IScreen>("MainHost");
-            this.WhenNavigatedTo(() => SetupStart());
-            SetupCommand();
         }
-
-        private void SetupCommand()
+        protected override void SetupCommands()
         {
+            base.SetupCommands();
             var displayCanExecute = this.WhenAnyValue(x => x.SampleSelectIndex, i => i >= 0);
             DisplayCommand = ReactiveCommand.Create(Display, displayCanExecute);
             var mainScreen = _resolver.GetService<IScreen>("MainHost");
-            NaviBackCommand = mainScreen.Router.NavigateBack;
+            NaviBackCommand = ReactiveCommand.CreateFromObservable(() => mainScreen.Router.Navigate.Execute(_resolver.GetService<ShellViewModel>()).Select(_ => Unit.Default));
         }
 
-        private IDisposable SetupStart()
+        protected override void SetupDeactivate()
         {
+            base.SetupDeactivate();
+            CamDx = null;
+            _rt.Dispose();
+            _grayCodeProcess = null;
+            PointGeometry.ClearAllGeometryData();
+            EffectsManager.DisposeAndClear();
+            PointGeometry = null;
+            GC.Collect();
+        }
+        protected override void SetupStart()
+        {
+            base.SetupStart();
             _rt = new();
             EffectsManager = new DefaultEffectsManager();
             PointGeometry = new PointGeometry3D();
@@ -92,21 +102,9 @@ namespace Client.ViewModel.Operation
             RMat1 = _rt.T(fr["RMat"].ReadMat());
             TMat1 = _rt.T(fr["TMat"].ReadMat());
             _grayCodeProcess = new GrayCodeProcess(RMat1, TMat1, CameraMatrixMat, ProjecterMat);
-            return Disposable.Create(() => SetupExit());
         }
-
-        private void SetupExit()
-        {
-            CamDx = null;
-            _rt.Dispose();
-            _grayCodeProcess = null;
-            PointGeometry.ClearAllGeometryData();
-            EffectsManager.DisposeAndClear();
-            PointGeometry = null;
-            GC.Collect();
-        }
-
-        public void Display()
+        #region PrivateFunction
+        private void Display()
         {
             var path = Data.FilePath.Folder.PatternFolder + (SampleSelectIndex + 1);
             var mats = Directory.GetFiles(path).Skip(20).Take(20).Select(f => Cv2.ImRead(f, ImreadModes.Grayscale)).ToList();
@@ -140,5 +138,6 @@ namespace Client.ViewModel.Operation
 
             return (vec3sCollec, color4sCollec, ids);
         }
+        #endregion
     }
 }

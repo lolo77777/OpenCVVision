@@ -1,7 +1,5 @@
 ﻿using DynamicData;
 
-using MaterialDesignThemes.Wpf.Converters;
-
 using OpenCvSharp;
 using OpenCvSharp.Features2D;
 using OpenCvSharp.XFeatures2D;
@@ -12,13 +10,10 @@ using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Common;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.ViewModel.Operation
 {
@@ -38,16 +33,16 @@ namespace Client.ViewModel.Operation
         [Reactive] public bool IsEnableRANSAC { get; set; }
         [Reactive] public bool IsEnableKnnMatch { get; set; }
 
-        protected override void SetupStart(CompositeDisposable d)
+        protected override void SetupStart()
         {
-            base.SetupStart(d);
+            base.SetupStart();
             FeatureDetectMethodItems = new[] { "AKAZE", "Sift", "Surf", "Brisk", "Orb" };
             MatchMethodItems = new[] { "BfMatcher", "FlannMatcher" };
         }
 
-        protected override void SetupCommands(CompositeDisposable d)
+        protected override void SetupCommands()
         {
-            base.SetupCommands(d);
+            base.SetupCommands();
             var matchCanExe = this.WhenAnyValue(x => x.FirstImageSelectValue, x => x.SecondImageSelectValue, x => x.FeatureDetectMethodSelectValue, x => x.MatchMethod
                     , (fir, sec, feature, match) => fir != null && sec != null && feature != null && match != null && fir != sec);
             MatchCommand = ReactiveCommand.Create(Match, matchCanExe);
@@ -65,12 +60,12 @@ namespace Client.ViewModel.Operation
                 .Subscribe(str => UpdateOutput(str))
                 .DisposeWith(d);
             _imageDataManager.SourceCacheImageData
-                   .Connect()
-                   .Transform(t => t.TxtMarker)
-                   .Where(vs => vs.Count >= 2)
-                   .Bind(out _imageItems)
-                   .Subscribe()
-                   .DisposeWith(d);
+                .Connect()
+                .Transform(t => t.TxtMarker)
+                .Where(vs => vs.Count >= 2)
+                .Bind(out _imageItems)
+                .Subscribe()
+                .DisposeWith(d);
         }
 
         #region PrivateFunction

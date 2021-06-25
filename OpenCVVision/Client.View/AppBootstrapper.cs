@@ -29,14 +29,17 @@ namespace Client.ViewModel
             var dlls = Directory.GetFiles(starupPath).Where(f => f.Contains(".dll")).Select(f => f.Replace(starupPath + @"\", "")).Where(n => n.Contains("Client")).ToList();
             foreach (var dll in dlls)
             {
-                var tmp = (from t in Assembly.LoadFrom(dll).GetTypes()
-                           where t.IsSubclassOf(typeof(RegisterBase))
-                           select Activator.CreateInstance(t)).ToList();
-                var tmp1 = (from t in Assembly.LoadFrom(dll).GetTypes()
-                            where t.IsSubclassOf(typeof(OperaViewModelBase))
-                            select t).ToList();
+                var tmp = (
+                    from t in Assembly.LoadFrom(dll).GetTypes()
+                    where t.IsSubclassOf(typeof(RegisterBase))
+                    select Activator.CreateInstance(t)).ToList();
+                var tmp1 = (
+                    from t in Assembly.LoadFrom(dll).GetTypes()
+                    where t.IsSubclassOf(typeof(OperaViewModelBase))
+                    select t).ToList();
 
                 tmp.Clear();
+                tmp1.Clear();
             }
         }
     }

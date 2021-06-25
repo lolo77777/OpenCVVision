@@ -2,21 +2,7 @@
 
 using ReactiveUI;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Disposables;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Client.View.Operation
 {
@@ -29,7 +15,6 @@ namespace Client.View.Operation
         {
             InitializeComponent();
             SetupBinding();
-            
         }
 
         private void SetupBinding()
@@ -66,7 +51,6 @@ namespace Client.View.Operation
                 this.WhenAnyValue(x => x.cbIsEnableKnnMatch.IsChecked)
                     .BindTo(ViewModel, vm => vm.IsEnableKnnMatch)
                     .DisposeWith(d);
-                
             });
         }
     }

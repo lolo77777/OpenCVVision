@@ -14,7 +14,7 @@ using System.Reactive.Linq;
 
 namespace Client.ViewModel
 {
-    public class OperaViewModelBase : ReactiveObject, IOperationViewModel, IActivatableViewModel
+    public class OperaViewModelBase : ViewModelBase, IOperationViewModel
     {
         protected IImageDataManager _imageDataManager;
         protected IReadonlyDependencyResolver _resolver = Locator.Current;
@@ -22,7 +22,7 @@ namespace Client.ViewModel
         /// <summary>
         /// mat标记，方便释放
         /// </summary>
-        protected ResourcesTracker _rt = new ResourcesTracker();
+        protected ResourcesTracker _rt = new();
 
         protected Mat _sigleSrc;
         protected Mat _src;
@@ -31,8 +31,6 @@ namespace Client.ViewModel
         /// 标记操作进行状态
         /// </summary>
         [Reactive] protected bool IsRun { set; get; } = false;
-
-        public ViewModelActivator Activator { get; }
 
         /// <summary>
         /// 标记能否进行操作
@@ -43,19 +41,9 @@ namespace Client.ViewModel
         public string UrlPathSegment { get; }
         public RoutingState Router { get; }
 
-        public OperaViewModelBase(IImageDataManager imageDataManager = null, IScreen screen = null)
+        public OperaViewModelBase(IImageDataManager imageDataManager = null) : base()
         {
-            HostScreen = screen ?? _resolver.GetService<IScreen>("OperationHost");
-            Activator = new ViewModelActivator();
-
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
-            this.WhenActivated(d =>
-            {
-                SetupStart(d);
-                SetupCommands(d);
-                SetupSubscriptions(d);
-                _imageDataManager.RaiseCurrent();
-            });
         }
 
         /// <summary>
@@ -67,41 +55,41 @@ namespace Client.ViewModel
             if (!IsRun)
             {
                 IsRun = true;
-                var t1 = Cv2.GetTickCount();
+                long t1 = Cv2.GetTickCount();
                 _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
                 _sigleSrc = _rt.T(_src.Channels() > 1 ? _src.CvtColor(ColorConversionCodes.BGR2GRAY) : _src);
                 action.Invoke();
                 _rt.Dispose();
-                var t2 = Cv2.GetTickCount();
-                var t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
+                long t2 = Cv2.GetTickCount();
+                double t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
                 MessageBus.Current.SendMessage(t, "Time");
                 IsRun = false;
             }
         }
 
         /// <summary>
-        /// 设置命令
-        /// </summary>
-        protected virtual void SetupCommands(CompositeDisposable d)
-        {
-        }
-
-        /// <summary>
         /// 设置启动时加载
         /// </summary>
-        protected virtual void SetupStart(CompositeDisposable d)
+        protected override void SetupStart()
         {
+            base.SetupStart();
+            _imageDataManager.RaiseCurrent();
         }
 
         /// <summary>
         /// 设置流订阅
         /// </summary>
-        protected virtual void SetupSubscriptions(CompositeDisposable d)
+        protected override void SetupSubscriptions(CompositeDisposable d)
         {
             _imageDataManager.InputMatGuidSubject
               .Select(guid => guid != null)
               .BindTo(this, x => x.CanOperat)
               .DisposeWith(d);
+        }
+        protected override void SetupDeactivate()
+        {
+            base.SetupDeactivate();
+            _rt.Dispose();
         }
     }
 }

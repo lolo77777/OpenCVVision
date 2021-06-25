@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Common;
-
-using LiveChartsCore.Kernel;
-
-using OpenCvSharp;
+﻿using OpenCvSharp;
 
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace Client.ViewModel.Operation
 {
@@ -116,10 +109,6 @@ namespace Client.ViewModel.Operation
             });
         }
 
-        private void UpdateSelectItem()
-        {
-        }
-
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             base.SetupSubscriptions(d);
@@ -175,7 +164,6 @@ namespace Client.ViewModel.Operation
                 .Do(b => UpdateOutput(Filters))
                 .Subscribe()
                 .DisposeWith(d);
-            // _imageDataManager.RaiseCurrent();
         }
     }
 }

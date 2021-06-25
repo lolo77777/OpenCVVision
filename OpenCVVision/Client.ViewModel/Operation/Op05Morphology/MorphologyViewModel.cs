@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OpenCvSharp;
+
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
+
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenCvSharp;
-using Client.Common;
-using ReactiveUI.Fody.Helpers;
-using System.Reflection.Metadata.Ecma335;
-using ReactiveUI;
-using System.Reactive.Linq;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace Client.ViewModel.Operation
 {
@@ -25,10 +22,6 @@ namespace Client.ViewModel.Operation
         [Reactive] public int SizeX { get; private set; }
         [Reactive] public int SizeY { get; private set; }
 
-        public MorphologyViewModel()
-        {
-        }
-
         private void UpdataOutput(int sizex, int sizey, MorphShapes morphShapes, MorphTypes morphTypes)
         {
             SendTime(() =>
@@ -42,9 +35,9 @@ namespace Client.ViewModel.Operation
             });
         }
 
-        protected override void SetupStart(CompositeDisposable d)
+        protected override void SetupStart()
         {
-            base.SetupStart(d);
+            base.SetupStart();
             MorphTypesItems = new ReadOnlyCollection<string>(Enum.GetNames(typeof(MorphTypes)));
             MorphShapesItems = new ReadOnlyCollection<string>(Enum.GetNames(typeof(MorphShapes)));
         }
@@ -66,7 +59,6 @@ namespace Client.ViewModel.Operation
                 .Do(guid => UpdataOutput(SizeX, SizeY, (MorphShapes)Enum.Parse(typeof(MorphShapes), MorphShapeSelectValue), (MorphTypes)Enum.Parse(typeof(MorphTypes), MorphTypeSelectValue)))
                 .Subscribe()
                 .DisposeWith(d);
-            //_imageDataManager.RaiseCurrent();
         }
     }
 }

@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-using Client.Common;
-
-using DynamicData;
-
-using LiveChartsCore;
+﻿using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
 
@@ -21,12 +7,19 @@ using OpenCvSharp;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+
 namespace Client.ViewModel.Operation
 {
     [OperationInfo(4, "二值化", MaterialDesignThemes.Wpf.PackIconKind.HomeFloorZero)]
     public class ThreshouldViewModel : OperaViewModelBase
     {
-        private ObservableCollection<ObservablePoint> _observablePoints = new ObservableCollection<ObservablePoint>();
+        private readonly ObservableCollection<ObservablePoint> _observablePoints = new ObservableCollection<ObservablePoint>();
         [Reactive] public int ChanelSelectIndex { get; private set; }
         [ObservableAsProperty] public IEnumerable<int> Channels { get; set; }
         [Reactive] public int Maxval { get; set; }
@@ -100,9 +93,9 @@ namespace Client.ViewModel.Operation
             });
         }
 
-        protected override void SetupStart(CompositeDisposable d)
+        protected override void SetupStart()
         {
-            base.SetupStart(d);
+            base.SetupStart();
             ThreshouldModes = new ReadOnlyCollection<string>(Enum.GetNames(typeof(ThresholdTypes)));
         }
 
@@ -149,7 +142,6 @@ namespace Client.ViewModel.Operation
                 .Do(vs => ChanelSelectIndex = 0)
                 .ToPropertyEx(this, x => x.Channels)
                 .DisposeWith(d);
-            //_imageDataManager.RaiseCurrent();
         }
     }
 }

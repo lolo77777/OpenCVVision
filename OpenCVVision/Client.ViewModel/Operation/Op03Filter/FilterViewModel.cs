@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OpenCvSharp;
+
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
+
+using System;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Common;
-
-using OpenCvSharp;
-
-using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 
 namespace Client.ViewModel.Operation
 {
@@ -59,9 +54,9 @@ namespace Client.ViewModel.Operation
             });
         }
 
-        protected override void SetupStart(CompositeDisposable d)
+        protected override void SetupStart()
         {
-            base.SetupStart(d);
+            base.SetupStart();
             CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
             FilterModes = new ReadOnlyCollection<string>(new[] { "Blur", "Gaussian", "Median", "BilateralFilter" });
         }
@@ -109,7 +104,6 @@ namespace Client.ViewModel.Operation
                 .Do(guid => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
                 .Subscribe()
                 .DisposeWith(d);
-            //_imageDataManager.RaiseCurrent();
         }
     }
 }

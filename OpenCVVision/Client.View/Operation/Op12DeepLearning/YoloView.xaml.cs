@@ -1,25 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using Client.ViewModel.Operation;
+﻿using Client.ViewModel.Operation;
 
 using ReactiveUI;
+
+using System;
+using System.Diagnostics;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace Client.View.Operation
 {
@@ -28,7 +16,7 @@ namespace Client.View.Operation
     /// </summary>
     public partial class YoloView : ReactiveUserControl<YoloViewModel>
     {
-        private OpenFileDialog openFileDialog = new();
+        private readonly OpenFileDialog openFileDialog = new();
 
         public YoloView()
         {
@@ -52,20 +40,19 @@ namespace Client.View.Operation
                 this.BindCommand(ViewModel, vm => vm.LoadImageCommand, v => v.btnLoadCfg, Observable.Return("cfg")).DisposeWith(d);
 
                 this.BindInteraction(ViewModel, vm => vm.LoadFileConfirm,
-                   context => Observable.Return(openFileDialog.ShowDialog())
-                   .Do(result =>
-                   {
-                       if (result.Equals(DialogResult.OK))
-                       {
-                           context.SetOutput(openFileDialog.FileName);
-                       }
-                       else
-                       {
-                           context.SetOutput(string.Empty);
-                       }
-                   }
-
-               )).DisposeWith(d);
+                context => Observable.Return(openFileDialog.ShowDialog())
+                    .Do(result =>
+                    {
+                        if (result.Equals(DialogResult.OK))
+                        {
+                            context.SetOutput(openFileDialog.FileName);
+                        }
+                        else
+                        {
+                            context.SetOutput(string.Empty);
+                        }
+                    }))
+                .DisposeWith(d);
             });
         }
     }
