@@ -17,12 +17,6 @@ namespace Client.ViewModel
         [Reactive] public IEnumerable<NaviItem> NaviItems { get; private set; } = new List<NaviItem>();
         [Reactive] public int NaviSelectItemIndex { get; private set; }
 
-        public NavigationViewModel()
-        {
-            //SetupSubscriptions();
-            //SetupStart();
-        }
-
         private NaviItem GetNaviItem(Type type)
         {
             var info = OpStaticMethod.GetOpInfo(type);

@@ -80,6 +80,8 @@ namespace Client.ViewModel.Operation
             EffectsManager.DisposeAndClear();
             PointGeometry = null;
             GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
         }
         protected override void SetupStart()
         {
