@@ -2,8 +2,10 @@
 
 using ReactiveUI;
 
+using System;
 using System.Linq;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace Client.View.Operation
 {
@@ -41,6 +43,20 @@ namespace Client.View.Operation
                 this.WhenAnyValue(x => x.sliderMaxval.Value)
                     .WhereNotNull()
                     .BindTo(ViewModel, x => x.Maxval)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderThresh1.Value)
+                    .WhereNotNull()
+                    .BindTo(ViewModel, x => x.Thresh1)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderThresh2.Value)
+                    .WhereNotNull()
+                    .BindTo(ViewModel, x => x.Thresh2)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.sliderThresh1.Value, x => x.sliderThresh2.Value)
+                    .Throttle(TimeSpan.FromMilliseconds(200))
+                    .Where(vt => vt.Item2 < vt.Item1)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Subscribe(vt => sliderThresh2.Value = sliderThresh1.Value + 1)
                     .DisposeWith(d);
             });
         }

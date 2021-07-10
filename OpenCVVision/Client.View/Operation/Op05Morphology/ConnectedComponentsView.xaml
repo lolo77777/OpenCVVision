@@ -45,9 +45,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Label Margin="0,0,8,0" Content="AreaMin " />
                     <Slider
+                        Margin="2,0"
                         x:Name="sliderAreaMin"
                         Grid.Column="1"
                         Maximum="100"
@@ -56,11 +58,13 @@
                         TickPlacement="BottomRight"
                         ToolTip="AreaMin"
                         Value="3" />
+                    <TextBox Style="{StaticResource MaterialDesignTextBox}" Grid.Column="2"   Text="{Binding ElementName=sliderAreaMin,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
                 <Grid Margin="8,8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Label Margin="0,0,8,0" Content="AreaMax " />
                     <Slider
@@ -72,6 +76,7 @@
                         TickPlacement="BottomRight"
                         ToolTip="AreaMax"
                         Value="3" />
+                    <TextBox Style="{StaticResource MaterialDesignTextBox}" Grid.Column="2"   Text="{Binding ElementName=sliderAreaMax,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
                 <Grid Margin="8,8">
                     <Grid.ColumnDefinitions>

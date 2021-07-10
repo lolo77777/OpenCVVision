@@ -21,10 +21,12 @@ namespace Client.ViewModel.Operation
     {
         private readonly ObservableCollection<ObservablePoint> _observablePoints = new ObservableCollection<ObservablePoint>();
         [Reactive] public int ChanelSelectIndex { get; private set; }
-        [ObservableAsProperty] public IEnumerable<int> Channels { get; set; }
-        [Reactive] public int Maxval { get; set; }
-        [Reactive] public ObservableCollection<ISeries> Series { get; set; }
-        [Reactive] public int Thresh { get; set; }
+        [ObservableAsProperty] public IEnumerable<int> Channels { get; private set; }
+        [Reactive] public int Maxval { get; private set; }
+        [Reactive] public ObservableCollection<ISeries> Series { get; private set; }
+        [Reactive] public int Thresh { get; private set; }
+        [Reactive] public int Thresh1 { get; private set; }
+        [Reactive] public int Thresh2 { get; private set; }
         [Reactive] public string ThresholdSelectValue { get; private set; }
         public ReadOnlyCollection<string> ThreshouldModes { get; private set; }
 
@@ -92,7 +94,26 @@ namespace Client.ViewModel.Operation
                 _imageDataManager.OutputMatSubject.OnNext(tmpmat.Clone());
             });
         }
-
+        private void UpdateOutputFilter(double thresh1, double thresh2, int channel)
+        {
+            SendTime(() =>
+            {
+                Mat tmpmat = _rt.NewMat();
+                Mat grayMat = _src.Channels() > 0 ? _rt.T(_src.Split()[channel].Clone()) : _rt.T(_src.Clone());
+                tmpmat = grayMat.EmptyClone();
+                Mat.UnsafeIndexer<byte> grayMatInd = grayMat.GetUnsafeGenericIndexer<byte>();
+                Mat.UnsafeIndexer<byte> tmpmatInd = tmpmat.GetUnsafeGenericIndexer<byte>();
+                for (int y = 0; y < grayMat.Rows; y++)
+                {
+                    for (int x = 0; x < grayMat.Cols; x++)
+                    {
+                        byte tmpValue = grayMatInd[y, x];
+                        tmpmatInd[y, x] = tmpValue > thresh1 && tmpValue < thresh2 ? (byte)255 : (byte)0;
+                    }
+                }
+                _imageDataManager.OutputMatSubject.OnNext(tmpmat);
+            });
+        }
         protected override void SetupStart()
         {
             base.SetupStart();
@@ -141,6 +162,12 @@ namespace Client.ViewModel.Operation
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Do(vs => ChanelSelectIndex = 0)
                 .ToPropertyEx(this, x => x.Channels)
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.Thresh1, x => x.Thresh2)
+                .Throttle(TimeSpan.FromMilliseconds(300))
+                .Where(vt => vt.Item1 >= 0 && vt.Item2 > vt.Item1)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(vt => UpdateOutputFilter(vt.Item1, vt.Item2, ChanelSelectIndex))
                 .DisposeWith(d);
         }
     }

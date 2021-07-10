@@ -15,7 +15,7 @@
     <UserControl.Resources>
         <ResourceDictionary Source="\Dictionary.xaml" />
     </UserControl.Resources>
-    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
+    <materialDesign:Card  Margin="{StaticResource marginOp}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -30,8 +30,9 @@
             <Grid Grid.Row="1" Margin="{StaticResource marginEven}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="AUto" />
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <materialDesign:Card>
+                <materialDesign:Card x:Name="cardMain">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -51,10 +52,15 @@
                                 x:Name="ChanelCbx"
                                 Margin="{StaticResource marginOdd}"
                                 materialDesign:HintAssist.Hint="Channel" />
+
                         </StackPanel>
                     </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Row="1">
+                    <CheckBox x:Name="isEnableInverse" Content="图像反色" Margin="8,8,8,12"/>
                 </materialDesign:Card>
             </Grid>
         </Grid>
     </materialDesign:Card>
+
 </rxui:ReactiveUserControl>

@@ -21,7 +21,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBlock
                 x:Name="Title"
@@ -80,6 +82,47 @@
                         TickPlacement="BottomRight"
                         ToolTip="KernelSize"
                         Value="3" />
+                </Grid>
+            </StackPanel>
+            <TextBlock
+                Grid.Row="3"
+                x:Name="Title1"
+                Margin="{StaticResource marginOdd}"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="阈值筛选" />
+            <StackPanel Grid.Row="4" Margin="{StaticResource marginEven}">
+                <Grid Margin="{StaticResource marginOdd}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="Thresh1" />
+                    <Slider
+            x:Name="sliderThresh1"
+            Grid.Column="1"
+            Maximum="255"
+            Minimum="0"
+            TickFrequency="1"
+            TickPlacement="BottomRight"
+            ToolTip="Thresh1"
+            Value="3" />
+                </Grid>
+                <Grid Margin="{StaticResource marginOdd}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0,0,8,0" Content="Thresh2" />
+                    <Slider
+            x:Name="sliderThresh2"
+            Grid.Column="1"
+            Maximum="255"
+            Minimum="0"
+            TickFrequency="1"
+            TickPlacement="BottomRight"
+            ToolTip="Thresh2"
+            Value="3" />
                 </Grid>
             </StackPanel>
         </Grid>

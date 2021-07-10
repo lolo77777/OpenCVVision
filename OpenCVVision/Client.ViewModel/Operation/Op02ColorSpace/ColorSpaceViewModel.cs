@@ -19,14 +19,14 @@ namespace Client.ViewModel.Operation
         [Reactive] public int ChannelSelectInd { get; set; }
         public ReadOnlyCollection<string> ColorModes { get; private set; }
         [Reactive] public int ColorModeSelectInd { get; set; }
-
+        [Reactive] public bool IsEnableInverse { get; set; }
         private void UpdateOutput(int colorModeInd, int channel)
         {
             SendTime(() =>
             {
                 if (!_src.Channels().Equals(1))
                 {
-                    var dst = _rt.NewMat();
+                    Mat dst = _rt.NewMat();
                     dst = colorModeInd switch
                     {
                         0 => _src.CvtColor(ColorConversionCodes.BGR2GRAY),
@@ -40,7 +40,19 @@ namespace Client.ViewModel.Operation
                 }
             });
         }
-
+        private void UpdateOutputInv(bool isInv)
+        {
+            SendTime(() =>
+            {
+                var dst = _rt.NewMat();
+                dst = _src;
+                if (isInv)
+                {
+                    Cv2.BitwiseNot(_sigleSrc, dst);
+                }
+                _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
+            });
+        }
         protected override void SetupStart()
         {
             base.SetupStart();
@@ -78,6 +90,10 @@ namespace Client.ViewModel.Operation
                 .WhereNotNull()
                 .Select(guid => _imageDataManager.GetCurrentMat().Channels() > 1)
                 .BindTo(this, x => x.CanOperat)
+                .DisposeWith(d);
+            this.WhenAnyValue(x => x.IsEnableInverse)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(bol => UpdateOutputInv(bol))
                 .DisposeWith(d);
         }
     }
