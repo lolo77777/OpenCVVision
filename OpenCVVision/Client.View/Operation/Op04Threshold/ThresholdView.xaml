@@ -101,7 +101,7 @@
                     <Slider
             x:Name="sliderThresh1"
             Grid.Column="1"
-            Maximum="255"
+            Maximum="254"
             Minimum="0"
             TickFrequency="1"
             TickPlacement="BottomRight"
