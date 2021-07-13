@@ -11,8 +11,8 @@
 		<PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
 		<PackageReference Include="OpenCvSharp4.Windows" Version="4.5.2.20210404" />
 		<PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.5.2.20210404" />
-		<PackageReference Include="ReactiveUI" Version="13.3.2" />
-		<PackageReference Include="ReactiveUI.Fody" Version="13.3.2" />
+		<PackageReference Include="ReactiveUI" Version="14.1.1" />
+		<PackageReference Include="ReactiveUI.Fody" Version="14.1.1" />
 		<PackageReference Include="UnmanagedArray" Version="2.1.3" />
 	</ItemGroup>
 
