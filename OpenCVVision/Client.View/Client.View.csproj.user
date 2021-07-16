@@ -51,6 +51,9 @@
     <Compile Update="Operation\Op083D\LaserLineView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op083D\PhotometricStereoView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Operation\Op083D\View3DView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -114,6 +117,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op083D\LaserLineView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op083D\PhotometricStereoView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op083D\View3DView.xaml">

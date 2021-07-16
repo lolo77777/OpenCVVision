@@ -29,7 +29,7 @@ namespace Client.View.Operation
                 this.WhenAnyValue(x => x.isEnableInverse.IsChecked)
                     .BindTo(ViewModel, x => x.IsEnableInverse)
                     .DisposeWith(d);
-                Application
+
             });
         }
     }

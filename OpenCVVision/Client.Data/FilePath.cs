@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Client.Data
+﻿namespace Client.Data
 {
     public static class FilePath
     {
@@ -18,6 +16,7 @@ namespace Client.Data
             public const string LaserLineTestFolder = @"Data\Image\LaserLine\Test\";
             public const string YoloV3TestImage = @"Data\Image\YoloV3\";
             public const string PatternFolder = @"Data\Image\GrayCode\";
+            public const string PhotometricStereoFolder = @"Data\Image\PhotometricStereo\";
         }
 
         public static class Image

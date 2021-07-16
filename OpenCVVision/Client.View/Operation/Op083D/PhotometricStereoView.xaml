@@ -1,0 +1,66 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="Client.View.Operation.PhotometricStereoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    x:TypeArguments="operation:PhotometricStereoViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="Title"
+                Margin="{StaticResource marginOdd}"
+                FontSize="22"
+                FontWeight="UltraBlack"
+                Text="PhotemetricStereo" />
+            <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
+                <TextBlock
+                    Margin="{StaticResource marginOdd}"
+                    FontSize="16"
+                    LineHeight="30"
+                    Text="示例为光度立体法；通过使用铬金属球在多角度光源下做图像标定光源向量，在同等条件下拍摄物体，计算物体表面法向量与高度信息；"
+                    TextWrapping="Wrap" />
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        x:Name="btnDeCode"
+                        Grid.Column="1"
+                        Width="36"
+                        Height="36"
+                        Margin="{StaticResource marginEven}"
+                        HorizontalAlignment="Right"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        IsEnabled="False"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="标定测试">
+                        <materialDesign:PackIcon Kind="Decagram" />
+                    </Button>
+                    <Button
+                        x:Name="btnView3d"
+                        Grid.Column="1"
+                        Width="36"
+                        Height="36"
+                        Margin="{StaticResource marginOdd}"
+                        HorizontalAlignment="Right"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="点云求解示例">
+                        <materialDesign:PackIcon Kind="Video3d" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>

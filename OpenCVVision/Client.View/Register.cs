@@ -40,6 +40,7 @@ namespace Client.View
             //RegisterVLazySingleton<MatchTemplateViewModel, MatchTemplateView>();
             RegisterOperationView<GrayCodeViewModel, GrayCodeView>();
             _mutable.Register<IViewFor<View3DViewModel>>(() => new View3DView());
+            RegisterOperationView<PhotometricStereoViewModel, PhotometricStereoView>();
         }
     }
 }

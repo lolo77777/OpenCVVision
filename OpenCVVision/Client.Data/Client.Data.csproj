@@ -192,6 +192,97 @@
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165412_0255_0004.bmp" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165624_0297_0003.bmp" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.bmp" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.0.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.1.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.10.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.11.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.2.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.3.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.4.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.5.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.6.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.7.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.8.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.9.png" />
+		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.mask.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.0.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.1.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.10.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.11.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.2.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.3.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.4.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.5.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.6.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.7.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.8.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.9.png" />
+		<None Remove="Data\Image\PhotometricStereo\cat\cat.mask.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.0.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.1.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.10.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.11.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.2.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.3.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.4.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.5.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.6.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.7.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.8.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.9.png" />
+		<None Remove="Data\Image\PhotometricStereo\chrome\chrome.mask.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.0.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.1.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.10.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.11.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.2.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.3.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.4.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.5.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.6.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.7.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.8.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.9.png" />
+		<None Remove="Data\Image\PhotometricStereo\gray\gray.mask.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.0.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.1.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.10.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.11.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.2.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.3.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.4.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.5.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.6.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.7.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.8.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.9.png" />
+		<None Remove="Data\Image\PhotometricStereo\horse\horse.mask.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.0.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.1.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.10.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.11.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.2.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.3.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.4.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.5.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.6.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.7.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.8.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.9.png" />
+		<None Remove="Data\Image\PhotometricStereo\owl\owl.mask.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.0.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.1.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.10.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.11.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.2.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.3.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.4.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.5.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.6.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.7.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.8.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.9.png" />
+		<None Remove="Data\Image\PhotometricStereo\rock\rock.mask.png" />
 		<None Remove="Data\Image\ta.bmp" />
 		<None Remove="Data\File\LaserLine\LightLaserCali.yaml" />
 		<None Remove="Data\Image\YoloV3\bali-crop.jpg" />
@@ -761,6 +852,279 @@
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.bmp">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.0.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.1.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.10.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.11.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.2.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.3.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.4.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.5.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.6.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.7.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.8.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.9.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.mask.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.0.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.1.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.10.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.11.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.2.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.3.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.4.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.5.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.6.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.7.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.8.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.9.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\cat\cat.mask.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.0.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.1.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.10.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.11.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.2.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.3.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.4.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.5.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.6.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.7.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.8.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.9.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\chrome\chrome.mask.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.0.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.1.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.10.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.11.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.2.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.3.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.4.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.5.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.6.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.7.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.8.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.9.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\gray\gray.mask.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.0.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.1.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.10.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.11.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.2.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.3.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.4.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.5.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.6.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.7.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.8.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.9.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\horse\horse.mask.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.0.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.1.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.10.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.11.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.2.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.3.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.4.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.5.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.6.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.7.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.8.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.9.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\owl\owl.mask.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.0.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.1.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.10.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.11.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.2.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.3.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.4.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.5.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.6.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.7.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.8.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.9.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PhotometricStereo\rock\rock.mask.png">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Data\Image\ta.bmp">

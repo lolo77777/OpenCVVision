@@ -39,6 +39,7 @@ namespace Client.ViewModel
             //RegistLazySingletonOpVM<MatchTemplateViewModel>();
             RegistOperationViewModel<GrayCodeViewModel>();
             _mutable.Register(() => new View3DViewModel());
+            RegistOperationViewModel<PhotometricStereoViewModel>();
         }
     }
 }
