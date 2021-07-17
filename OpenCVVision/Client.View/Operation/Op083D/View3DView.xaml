@@ -8,8 +8,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
-
-
     x:TypeArguments="operation:View3DViewModel"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -21,12 +19,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <hx:Viewport3DX
-            HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Stretch"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
             x:Name="viewPort"
             Grid.Row="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
             BackgroundColor="White"
             CameraMode="Inspect"
             EnableSwapChainRendering="True"
@@ -62,13 +60,15 @@
         </hx:Viewport3DX>
         <StackPanel
             Grid.Row="1"
+            Margin="0,0,0,3"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Label
                 HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="左键平移，右键旋转，滚轮缩放;   图像文件位于程序目录下Data\Image\GrayCode中"
-                FontSize="14" />
+                VerticalAlignment="Bottom"
+                FontSize="14">
+                <Hyperlink Click="Hyperlink_Click">左键平移，右键旋转，滚轮缩放;点击打开拍摄图像文件目录</Hyperlink>
+            </Label>
             <ComboBox
                 x:Name="cbxTestSample"
                 Margin="{StaticResource marginEven}"
@@ -76,11 +76,13 @@
                 materialDesign:HintAssist.Hint="Sample" />
             <Button
                 x:Name="btnDisplay"
+                Margin="1"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Content="Display" />
             <Button
                 x:Name="btnNaviBack"
+                Margin="1"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Content="Back" />

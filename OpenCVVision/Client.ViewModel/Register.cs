@@ -40,6 +40,7 @@ namespace Client.ViewModel
             RegistOperationViewModel<GrayCodeViewModel>();
             _mutable.Register(() => new View3DViewModel());
             RegistOperationViewModel<PhotometricStereoViewModel>();
+            _mutable.Register(() => new ViewPhotometricViewModel());
         }
     }
 }

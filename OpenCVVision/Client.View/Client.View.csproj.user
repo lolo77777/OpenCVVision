@@ -57,6 +57,9 @@
     <Compile Update="Operation\Op083D\View3DView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op083D\ViewPhotoMetricView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Operation\Op09MatchTemplate\MatchTemplateView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -123,6 +126,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op083D\View3DView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op083D\ViewPhotometricView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op09MatchTemplate\MatchTemplateView.xaml">

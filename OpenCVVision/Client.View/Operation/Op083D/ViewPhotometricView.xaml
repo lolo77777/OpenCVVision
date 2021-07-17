@@ -1,0 +1,104 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="Client.View.Operation.ViewPhotometricView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
+    xmlns:paz="clr-namespace:Wpf.Controls.PanAndZoom;assembly=Wpf.Controls.PanAndZoom"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:TypeArguments="operation:ViewPhotometricViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="\Dictionary.xaml" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label
+            Margin="0,5,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="Normalmap"
+            FontSize="20"
+            FontStyle="Oblique" />
+        <Label
+            Grid.Column="1"
+            Margin="0,5,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="DepthMap"
+            FontSize="20"
+            FontStyle="Oblique" />
+        <Separator
+            Grid.Row="1"
+            Background="{StaticResource AccentBaseColorBrush}"
+            Style="{StaticResource MaterialDesignLightSeparator}" />
+        <Separator
+            Grid.Row="1"
+            Grid.Column="1"
+            Background="{StaticResource AccentBaseColorBrush}"
+            Style="{StaticResource MaterialDesignLightSeparator}" />
+        <materialDesign:Card
+            Grid.Row="2"
+            Margin="0,0,0,10"
+            materialDesign:ShadowAssist.ShadowDepth="Depth0">
+            <paz:ZoomBorder>
+                <Image x:Name="NormalmapImg" Stretch="Uniform" />
+            </paz:ZoomBorder>
+        </materialDesign:Card>
+        <materialDesign:Card
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="0,0,0,10"
+            materialDesign:ShadowAssist.ShadowDepth="Depth0">
+            <paz:ZoomBorder>
+                <Image x:Name="ZImg" Stretch="Uniform" />
+            </paz:ZoomBorder>
+        </materialDesign:Card>
+
+        <StackPanel
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="0,0,0,3"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Label
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                FontSize="14">
+                <Hyperlink Click="Hyperlink_Click">点击打开拍摄图像文件目录</Hyperlink>
+            </Label>
+            <ComboBox
+                x:Name="cbxTestSample"
+                Margin="{StaticResource marginEven}"
+                HorizontalAlignment="Right"
+                materialDesign:HintAssist.Hint="Sample" />
+            <Button
+                x:Name="btnDisplay"
+                Margin="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Content="Display" />
+            <Button
+                x:Name="btnNaviBack"
+                Margin="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Content="Back" />
+        </StackPanel>
+    </Grid>
+</rxui:ReactiveUserControl>

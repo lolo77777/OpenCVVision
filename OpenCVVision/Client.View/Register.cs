@@ -41,6 +41,7 @@ namespace Client.View
             RegisterOperationView<GrayCodeViewModel, GrayCodeView>();
             _mutable.Register<IViewFor<View3DViewModel>>(() => new View3DView());
             RegisterOperationView<PhotometricStereoViewModel, PhotometricStereoView>();
+            _mutable.Register<IViewFor<ViewPhotometricViewModel>>(() => new ViewPhotometricView());
         }
     }
 }

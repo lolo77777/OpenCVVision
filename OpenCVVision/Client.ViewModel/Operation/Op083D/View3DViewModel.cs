@@ -35,6 +35,7 @@ namespace Client.ViewModel.Operation
         private ResourcesTracker _rt;
 
         private static readonly AxisAngleRotation3D axisAngleRotation3D = new(new Vector3D(1, 0, 0), -90);
+        [Reactive] public bool IsRun { get; set; }
 
         #region BindProperty
 
@@ -61,10 +62,11 @@ namespace Client.ViewModel.Operation
         {
             HostScreen = _resolver.GetService<IScreen>("MainHost");
         }
+
         protected override void SetupCommands()
         {
             base.SetupCommands();
-            var displayCanExecute = this.WhenAnyValue(x => x.SampleSelectIndex, i => i >= 0);
+            var displayCanExecute = this.WhenAnyValue(x => x.SampleSelectIndex, x => x.IsRun, (i, bol) => i >= 0 && !bol);
             DisplayCommand = ReactiveCommand.Create(Display, displayCanExecute);
             var mainScreen = _resolver.GetService<IScreen>("MainHost");
             NaviBackCommand = ReactiveCommand.CreateFromObservable(() => mainScreen.Router.Navigate.Execute(_resolver.GetService<ShellViewModel>()).Select(_ => Unit.Default));
@@ -83,6 +85,7 @@ namespace Client.ViewModel.Operation
             GC.WaitForPendingFinalizers();
             GC.Collect();
         }
+
         protected override void SetupStart()
         {
             base.SetupStart();
@@ -105,18 +108,27 @@ namespace Client.ViewModel.Operation
             TMat1 = _rt.T(fr["TMat"].ReadMat());
             _grayCodeProcess = new GrayCodeProcess(RMat1, TMat1, CameraMatrixMat, ProjecterMat);
         }
+
         #region PrivateFunction
+
         private void Display()
         {
             var path = Data.FilePath.Folder.PatternFolder + (SampleSelectIndex + 1);
             var mats = Directory.GetFiles(path).Skip(20).Take(20).Select(f => Cv2.ImRead(f, ImreadModes.Grayscale)).ToList();
-
-            var pts = _grayCodeProcess.GetPointsAsync(mats);
-            var (v3s, c4s, ids) = updatePointAsync(pts.ToList());
-
-            PointGeometry.Positions = v3s;
-            PointGeometry.Colors = c4s;
-            PointGeometry.Indices = ids;
+            IsRun = true;
+            Observable.Start(() =>
+            {
+                var pts = _grayCodeProcess.GetPointsAsync(mats);
+                return updatePointAsync(pts.ToList());
+            })
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe(vt =>
+            {
+                PointGeometry.Positions = vt.Vector3Collection;
+                PointGeometry.Colors = vt.Color4Collection;
+                PointGeometry.Indices = vt.IntCollection;
+                IsRun = false;
+            });
         }
 
         private (Vector3Collection Vector3Collection, Color4Collection Color4Collection, IntCollection IntCollection) updatePointAsync(List<Point3f> point3Fs)
@@ -140,6 +152,7 @@ namespace Client.ViewModel.Operation
 
             return (vec3sCollec, color4sCollec, ids);
         }
-        #endregion
+
+        #endregion PrivateFunction
     }
 }

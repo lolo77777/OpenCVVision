@@ -34,21 +34,9 @@
                     Text="示例为光度立体法；通过使用铬金属球在多角度光源下做图像标定光源向量，在同等条件下拍摄物体，计算物体表面法向量与高度信息；"
                     TextWrapping="Wrap" />
                 <StackPanel Orientation="Horizontal">
+
                     <Button
-                        x:Name="btnDeCode"
-                        Grid.Column="1"
-                        Width="36"
-                        Height="36"
-                        Margin="{StaticResource marginEven}"
-                        HorizontalAlignment="Right"
-                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                        IsEnabled="False"
-                        Style="{StaticResource MaterialDesignIconButton}"
-                        ToolTip="标定测试">
-                        <materialDesign:PackIcon Kind="Decagram" />
-                    </Button>
-                    <Button
-                        x:Name="btnView3d"
+                        x:Name="btnGotoSample"
                         Grid.Column="1"
                         Width="36"
                         Height="36"
@@ -56,8 +44,8 @@
                         HorizontalAlignment="Right"
                         Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
                         Style="{StaticResource MaterialDesignIconButton}"
-                        ToolTip="点云求解示例">
-                        <materialDesign:PackIcon Kind="Video3d" />
+                        ToolTip="示例">
+                        <materialDesign:PackIcon Kind="Jump" />
                     </Button>
                 </StackPanel>
             </StackPanel>

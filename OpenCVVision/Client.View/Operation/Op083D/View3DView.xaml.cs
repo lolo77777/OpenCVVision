@@ -2,7 +2,9 @@
 
 using ReactiveUI;
 
+using System.Diagnostics;
 using System.Reactive.Disposables;
+using System.Windows.Documents;
 
 namespace Client.View.Operation
 {
@@ -32,6 +34,12 @@ namespace Client.View.Operation
                 this.OneWayBind(ViewModel, vm => vm.SampleItems, v => v.cbxTestSample.ItemsSource).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.SampleSelectIndex, v => v.cbxTestSample.SelectedIndex).DisposeWith(d);
             });
+        }
+
+        private void Hyperlink_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Hyperlink link = sender as Hyperlink;
+            Process.Start("explorer.exe", Data.FilePath.Folder.PatternFolder);
         }
     }
 }

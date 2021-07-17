@@ -2,6 +2,8 @@
 
 using ReactiveUI;
 
+using System.Reactive.Disposables;
+
 namespace Client.View.Operation
 {
     /// <summary>
@@ -12,6 +14,10 @@ namespace Client.View.Operation
         public PhotometricStereoView()
         {
             InitializeComponent();
+            this.WhenActivated(d =>
+            {
+                this.BindCommand(ViewModel, vm => vm.ViewPhotometricCommand, v => v.btnGotoSample).DisposeWith(d);
+            });
         }
     }
 }
