@@ -17,6 +17,7 @@ namespace Client.ViewModel.Operation
 {
     public class ViewPhotometricViewModel : ViewModelBase, IRoutableViewModel
     {
+        private ResourcesTracker _resourcesTracker = new();
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
         public string UrlPathSegment { get; }
         public IScreen HostScreen { get; }
@@ -68,18 +69,18 @@ namespace Client.ViewModel.Operation
 
             List<Mat> calibImages = new();
             List<Mat> modelImages = new();
-            Mat Lights = new Mat(nums, 3, MatType.CV_32F);
+            Mat Lights = _resourcesTracker.T(new Mat(nums, 3, MatType.CV_32F));
 
-            Mat Mask = Cv2.ImRead(CALIBRATION + "mask.png", ImreadModes.Grayscale);
-            Mat ModelMask = Cv2.ImRead(MODEL + "mask.png", ImreadModes.Grayscale);
+            Mat Mask = _resourcesTracker.T(Cv2.ImRead(CALIBRATION + "mask.png", ImreadModes.Grayscale));
+            Mat ModelMask = _resourcesTracker.T(Cv2.ImRead(MODEL + "mask.png", ImreadModes.Grayscale));
 
             Rect bb = GetBoundingBox(Mask);
             var LightsInd = Lights.GetUnsafeGenericIndexer<float>();
             for (int i = 0; i < nums; i++)
             {
-                Mat Calib = Cv2.ImRead(CALIBRATION + i + ".png", ImreadModes.Grayscale);
-                Mat tmp = Cv2.ImRead(MODEL + i + ".png", ImreadModes.Grayscale);
-                Mat Model = new();
+                Mat Calib = _resourcesTracker.T(Cv2.ImRead(CALIBRATION + i + ".png", ImreadModes.Grayscale));
+                Mat tmp = _resourcesTracker.T(Cv2.ImRead(MODEL + i + ".png", ImreadModes.Grayscale));
+                Mat Model = _resourcesTracker.NewMat();
                 tmp.CopyTo(Model, ModelMask);
                 Vec3f light = GetLightDirFromSphere(Calib, bb);
                 LightsInd[i, 0] = light[0];
@@ -92,12 +93,12 @@ namespace Client.ViewModel.Operation
             int height = calibImages[0].Rows;
             int width = calibImages[0].Cols;
             /* light directions, surface normals, p,q gradients */
-            Mat LightsInv = new();
+            Mat LightsInv = _resourcesTracker.NewMat();
             Cv2.Invert(Lights, LightsInv, DecompTypes.SVD);
 
-            Mat Normals = new(height, width, MatType.CV_32FC3, Scalar.All(0));
-            Mat Pgrads = new(height, width, MatType.CV_32FC1, Scalar.All(0));
-            Mat Qgrads = new(height, width, MatType.CV_32FC1, Scalar.All(0));
+            Mat Normals = _resourcesTracker.T(new Mat(height, width, MatType.CV_32FC3, Scalar.All(0)));
+            Mat Pgrads = _resourcesTracker.T(new Mat(height, width, MatType.CV_32FC1, Scalar.All(0)));
+            Mat Qgrads = _resourcesTracker.T(new Mat(height, width, MatType.CV_32FC1, Scalar.All(0)));
             var normalsIndexer = Normals.GetUnsafeGenericIndexer<Vec3f>();
             var pgradsIndexer = Pgrads.GetUnsafeGenericIndexer<float>();
             var qgradsIndexer = Qgrads.GetUnsafeGenericIndexer<float>();
@@ -106,17 +107,17 @@ namespace Client.ViewModel.Operation
             {
                 for (int y = 0; y < height; y++)
                 {
-                    Mat iMat = new(nums, 1, MatType.CV_32FC1);
+                    Mat iMat = _resourcesTracker.T(new Mat(nums, 1, MatType.CV_32FC1));
                     var IInd = iMat.GetUnsafeGenericIndexer<float>();
                     for (int i = 0; i < nums; i++)
                     {
                         IInd[i, 0] = modelImages[i].At<byte>(y, x);
                     }
 
-                    Mat n = LightsInv * iMat;
+                    Mat n = _resourcesTracker.T(LightsInv * iMat);
                     var nIndexer = n.GetUnsafeGenericIndexer<float>();
                     float p = (float)Math.Sqrt(n.Dot(n));
-                    if (p > 0) { n = n / p; }
+                    if (p > 0) { n /= p; }
                     if (nIndexer[2, 0] == 0) { nIndexer[2, 0] = 1.0f; }
                     int legit = 1;
                     /* avoid spikes ad edges */
@@ -151,26 +152,27 @@ namespace Client.ViewModel.Operation
                     }
                 }
             }
-            Mat Normalmap = new();
+            Mat Normalmap = _resourcesTracker.NewMat();
 
             Cv2.CvtColor(Normals, Normalmap, ColorConversionCodes.BGR2RGB);
             Normalmap = Normalmap.Normalize(255, 0, NormTypes.MinMax);
             Normalmap.ConvertTo(Normalmap, MatType.CV_8UC3);
 
             /* global integration of surface normals */
-            Mat Z = GlobalHeights(Pgrads, Qgrads);
+            Mat Z = _resourcesTracker.T(GlobalHeights(Pgrads, Qgrads));
 
-            Z = Z.Normalize(255, 0, NormTypes.MinMax);
-            Z.ConvertTo(Z, MatType.CV_8UC1);
-            Cv2.BitwiseNot(Z, Z);
-            return (Normalmap.Clone(), Z.Clone());
+            Mat ZTmp = _resourcesTracker.T(Z.Normalize(255, 0, NormTypes.MinMax));
+            Mat ZResult = _resourcesTracker.NewMat();
+            ZTmp.ConvertTo(ZResult, MatType.CV_8UC1);
+            Cv2.BitwiseNot(ZResult, ZResult);
+            return (Normalmap.Clone(), ZResult.Clone());
         }
 
         private Mat GlobalHeights(Mat Pgrads, Mat Qgrads)
         {
-            Mat P = new(Pgrads.Rows, Pgrads.Cols, MatType.CV_32FC2, Scalar.All(0));
-            Mat Q = new(Pgrads.Rows, Pgrads.Cols, MatType.CV_32FC2, Scalar.All(0));
-            Mat Z = new(Pgrads.Rows, Pgrads.Cols, MatType.CV_32FC2, Scalar.All(0));
+            Mat P = _resourcesTracker.T(new Mat(Pgrads.Rows, Pgrads.Cols, MatType.CV_32FC2, Scalar.All(0)));
+            Mat Q = _resourcesTracker.T(new Mat(Pgrads.Rows, Pgrads.Cols, MatType.CV_32FC2, Scalar.All(0)));
+            Mat Z = _resourcesTracker.T(new Mat(Pgrads.Rows, Pgrads.Cols, MatType.CV_32FC2, Scalar.All(0)));
 
             float lambda = 1.0f;
             float mu = 1.0f;
@@ -217,9 +219,9 @@ namespace Client.ViewModel.Operation
             int THRESH = 254;
             float radius = boundingbox.Width / 2.0f;
 
-            Mat Binary = new();
+            Mat Binary = _resourcesTracker.NewMat();
             Cv2.Threshold(Image, Binary, THRESH, 255, ThresholdTypes.Binary);
-            Mat SubImage = new(Binary, boundingbox);
+            Mat SubImage = _resourcesTracker.T(new Mat(Binary, boundingbox));
 
             //通过中心距计算亮斑质心
 
