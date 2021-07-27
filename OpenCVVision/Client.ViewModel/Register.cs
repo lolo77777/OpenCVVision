@@ -41,6 +41,7 @@ namespace Client.ViewModel
             _mutable.Register(() => new View3DViewModel());
             RegistOperationViewModel<PhotometricStereoViewModel>();
             _mutable.Register(() => new ViewPhotometricViewModel());
+            _mutable.Register(() => new ImageToolViewModel());
         }
     }
 }

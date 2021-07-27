@@ -36,14 +36,15 @@ namespace Client.ViewModel
         private readonly IImageDataManager _imageDataManager;
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
         private readonly ResourcesTracker _rt = new();
+
         public ReactiveCommand<Unit, Unit> AddOutputImgToImgManagerCommand { get; set; }
         public ReadOnlyObservableCollection<HistoryItem> HistoryItems => _historyItems;
+        [Reactive] public ImageToolViewModel InputImageVM { get; set; }
+        [Reactive] public ImageToolViewModel OutputImageVM { get; set; }
         [Reactive] public int HistoryItemSelectInd { get; set; }
-        public WriteableBitmap InputImg { [ObservableAsProperty] get; }
-        [ObservableAsProperty] public string InputImgInfo { get; }
+
         [Reactive] public string OutputImageMarkTxt { get; set; }
-        public WriteableBitmap OutputImg { [ObservableAsProperty]get; }
-        [ObservableAsProperty] public String OutputImgInfo { get; }
+
         public ReactiveCommand<Unit, bool> RemoveImgFromImgManagerCommand { get; set; }
         [Reactive] public string Time { get; private set; }
 
@@ -51,7 +52,9 @@ namespace Client.ViewModel
         {
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
         }
+
         #region PrivateFunction
+
         private HistoryItem ConvertData(ImageData imageData)
         {
             var wtBitmap = MatResizeWt(imageData.ImageMat);
@@ -70,6 +73,7 @@ namespace Client.ViewModel
             var dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
             return dst.ToWriteableBitmap();
         }
+
         private void UpdateHistoryItems(IChangeSet<HistoryItem, Guid> changes)
         {
             var items = changes.Select(t => t.Current).ToList();
@@ -82,7 +86,15 @@ namespace Client.ViewModel
                 _historyItemsTmp.Remove(items);
             }
         }
-        #endregion
+
+        #endregion PrivateFunction
+
+        protected override void SetupStart()
+        {
+            base.SetupStart();
+            InputImageVM = _resolver.GetService<ImageToolViewModel>();
+            OutputImageVM = _resolver.GetService<ImageToolViewModel>();
+        }
 
         protected override void SetupCommands()
         {
@@ -90,6 +102,7 @@ namespace Client.ViewModel
             AddOutputImgToImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.AddOutputImage(OutputImageMarkTxt));
             RemoveImgFromImgManagerCommand = ReactiveCommand.Create(() => _imageDataManager.RemoveCurrentImage());
         }
+
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             _imageDataManager.SourceCacheImageData
@@ -113,33 +126,16 @@ namespace Client.ViewModel
             _imageDataManager.InputMatGuidSubject
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .WhereNotNull()
-                .Select(guid => _imageDataManager.GetImage(guid).ImageMat.ToWriteableBitmap())
-                .ToPropertyEx(this, x => x.InputImg)
-                .DisposeWith(d);
-            _imageDataManager.InputMatGuidSubject
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .WhereNotNull()
-                .Select(guid => _imageDataManager.GetCurrentMat())
-                .Select(mat => GetImgInfo(mat))
-                .ToPropertyEx(this, x => x.InputImgInfo)
+                .Select(guid => _imageDataManager.GetImage(guid).ImageMat)
+                .Subscribe(mat => InputImageVM.DisplayMat = mat.Clone())
                 .DisposeWith(d);
 
             _imageDataManager.OutputMatSubject
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .WhereNotNull()
-                .Select(mat => mat.ToWriteableBitmap())
-                .ToPropertyEx(this, x => x.OutputImg)
+                .Subscribe(mat => OutputImageVM.DisplayMat = mat.Clone())
                 .DisposeWith(d);
-            _imageDataManager.OutputMatSubject
-                .WhereNotNull()
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Select(mat => GetImgInfo(mat))
-                .Do(mat =>
-                {
-                    var a = mat;
-                })
-                .ToPropertyEx(this, x => x.OutputImgInfo)
-                .DisposeWith(d);
+
             MessageBus.Current.Listen<double>("Time")
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Select(d => $"{d}ms")

@@ -1,10 +1,12 @@
 ﻿using ReactiveUI;
 
+using Splat;
+
 using System.Reactive.Disposables;
 
 namespace Client.ViewModel
 {
-    public class ViewModelBase : ReactiveObject, IActivatableViewModel
+    public class ViewModelBase : ReactiveObject, IActivatableViewModel, IEnableLogger
     {
         public ViewModelActivator Activator { get; }
 
@@ -42,6 +44,7 @@ namespace Client.ViewModel
         protected virtual void SetupSubscriptions(CompositeDisposable d)
         {
         }
+
         /// <summary>
         /// 设置视图切换离开时需要清理的内容
         /// </summary>

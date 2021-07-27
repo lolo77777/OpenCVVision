@@ -42,6 +42,7 @@ namespace Client.View
             _mutable.Register<IViewFor<View3DViewModel>>(() => new View3DView());
             RegisterOperationView<PhotometricStereoViewModel, PhotometricStereoView>();
             _mutable.Register<IViewFor<ViewPhotometricViewModel>>(() => new ViewPhotometricView());
+            _mutable.Register<IViewFor<ImageToolViewModel>>(() => new ImageToolView());
         }
     }
 }

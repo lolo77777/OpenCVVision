@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using Client.ViewModel;
+﻿using Client.ViewModel;
 
 using ReactiveUI;
+
+using System.Reactive.Disposables;
 
 namespace Client.View
 {
@@ -36,15 +22,14 @@ namespace Client.View
             this.WhenActivated(d =>
             {
                 this.OneWayBind(ViewModel, vm => vm.HistoryItems, v => v.HistoryImg.ItemsSource).DisposeWith(d);
-                this.OneWayBind(ViewModel, vm => vm.InputImg, v => v.InputImg.Source).DisposeWith(d);
-                this.OneWayBind(ViewModel, vm => vm.OutputImg, v => v.OutputImg.Source).DisposeWith(d);
+
+                this.OneWayBind(ViewModel, vm => vm.InputImageVM, v => v.InPutImgVM.ViewModel).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.OutputImageVM, v => v.OutPutImgVM.ViewModel).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.HistoryItemSelectInd, v => v.HistoryImg.SelectedIndex).DisposeWith(d);
                 this.BindCommand(ViewModel, vm => vm.AddOutputImgToImgManagerCommand, v => v.btnAddOutputImage).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.OutputImageMarkTxt, v => v.OutputMarkTxtBox.Text).DisposeWith(d);
                 this.BindCommand(ViewModel, vm => vm.RemoveImgFromImgManagerCommand, v => v.btnRemoveImage).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.Time, v => v.lblTime.Text).DisposeWith(d);
-                this.OneWayBind(ViewModel, vm => vm.InputImgInfo, v => v.txtInputImgInfo.Text).DisposeWith(d);
-                this.OneWayBind(ViewModel, vm => vm.OutputImgInfo, v => v.txtOutputImgInfo.Text).DisposeWith(d);
             });
         }
     }

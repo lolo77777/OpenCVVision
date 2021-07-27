@@ -18,6 +18,7 @@
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.7" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
     <PackageReference Include="ReactiveUI" Version="14.1.1" />
     <PackageReference Include="ReactiveUI.Events.WPF" Version="14.1.1" />
     <PackageReference Include="ReactiveUI.WPF" Version="14.1.1" />
