@@ -69,14 +69,14 @@
                     <Image x:Name="imgWb" Stretch="Uniform">
 
                         <Behaviors:Interaction.Triggers>
-                            <Behaviors:EventTrigger EventName="PreviewMouseMove" SourceObject="{Binding ElementName=Img}">
+                            <Behaviors:EventTrigger EventName="PreviewMouseMove" SourceObject="{Binding ElementName=imgWb}">
                                 <Behaviors:InvokeCommandAction x:Name="MouseMoveTrigger" PassEventArgsToCommand="True" />
                             </Behaviors:EventTrigger>
 
-                            <Behaviors:EventTrigger EventName="PreviewMouseLeftButtonDown" SourceObject="{Binding ElementName=Img}">
+                            <Behaviors:EventTrigger EventName="PreviewMouseLeftButtonDown" SourceObject="{Binding ElementName=imgWb}">
                                 <Behaviors:InvokeCommandAction x:Name="MouseDownTrigger" PassEventArgsToCommand="True" />
                             </Behaviors:EventTrigger>
-                            <Behaviors:EventTrigger EventName="MouseWheel" SourceObject="{Binding ElementName=Img}">
+                            <Behaviors:EventTrigger EventName="MouseWheel" SourceObject="{Binding ElementName=imgWb}">
                                 <Behaviors:InvokeCommandAction x:Name="MouseWheelTrigger" PassEventArgsToCommand="True" />
                             </Behaviors:EventTrigger>
                         </Behaviors:Interaction.Triggers>
