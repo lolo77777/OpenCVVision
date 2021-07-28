@@ -71,7 +71,7 @@ namespace Client.ViewModel
                 .WhereNotNull()
                 .Where(mat => !mat.Empty())
                 .Select(mat => mat.ToWriteableBitmap())
-                .Log(this, "图像空间图像更新")
+
                 .ToPropertyEx(this, x => x.DisplayImg)
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.GeoSelectIndex)
@@ -202,7 +202,7 @@ namespace Client.ViewModel
             double x = position.X / scale;
             double y = position.Y / scale;
 
-            string posionStr = $"X:{x.ToString("F2")},Y:{y.ToString("F2")}";
+            string posionStr = $"X:{x:F2},Y:{y:F2}";
 
             if (mat.Channels() == 3)
             {

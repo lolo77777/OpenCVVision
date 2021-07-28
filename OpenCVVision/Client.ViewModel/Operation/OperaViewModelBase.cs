@@ -55,15 +55,21 @@ namespace Client.ViewModel
             if (!IsRun)
             {
                 IsRun = true;
+
                 long t1 = Cv2.GetTickCount();
                 _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
                 _sigleSrc = _rt.T(_src.Channels() > 1 ? _src.CvtColor(ColorConversionCodes.BGR2GRAY) : _src);
-                action.Invoke();
-                _rt.Dispose();
-                long t2 = Cv2.GetTickCount();
-                double t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
-                MessageBus.Current.SendMessage(t, "Time");
-                IsRun = false;
+                Observable.Start(action, RxApp.MainThreadScheduler)
+
+                    .Subscribe(_ =>
+                    {
+                        _rt.Dispose();
+                        long t2 = Cv2.GetTickCount();
+                        double t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
+                        MessageBus.Current.SendMessage(t, "Time");
+                        IsRun = false;
+                    });
+                //action.Invoke();
             }
         }
 
@@ -86,6 +92,7 @@ namespace Client.ViewModel
               .BindTo(this, x => x.CanOperat)
               .DisposeWith(d);
         }
+
         protected override void SetupDeactivate()
         {
             base.SetupDeactivate();

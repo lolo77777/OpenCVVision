@@ -57,7 +57,7 @@ namespace Client.ViewModel.Operation
         protected override void SetupStart()
         {
             base.SetupStart();
-            CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
+            //CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
             FilterModes = new ReadOnlyCollection<string>(new[] { "Blur", "Gaussian", "Median", "BilateralFilter" });
         }
 
@@ -84,7 +84,7 @@ namespace Client.ViewModel.Operation
             this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.SizeX, x => x.SizeY, x => x.SigmaX, x => x.SigmaY)
                 .Where(vt => CanOperat)
                 .Where(vt => vt.Item1 < 3)
-                .Throttle(TimeSpan.FromMilliseconds(200))
+
                 .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
                 .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
                 .Subscribe()
@@ -93,7 +93,7 @@ namespace Client.ViewModel.Operation
             this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.KernelDiam, x => x.SigmaColor, x => x.SigmaSpace)
                 .Where(vt => CanOperat)
                 .Where(vt => vt.Item1.Equals(3))
-                .Throttle(TimeSpan.FromMilliseconds(200))
+
                 .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
                 .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
                 .Subscribe()
@@ -101,6 +101,7 @@ namespace Client.ViewModel.Operation
             _imageDataManager.InputMatGuidSubject
                 .WhereNotNull()
                 .Where(guid => CanOperat)
+                .Log(this, "图像触发选择更新")
                 .Do(guid => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
                 .Subscribe()
                 .DisposeWith(d);

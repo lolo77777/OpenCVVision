@@ -30,7 +30,10 @@
     <Compile Update="Operation\Op03Filter\FilterView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Operation\Op04Threshold\ThresholdView.xaml.cs">
+    <Compile Update="Operation\Op04PixelOperations\ThresholdView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Operation\Op04PixelOperations\TwoMatOperationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Operation\Op05Morphology\ConnectedComponentsView.xaml.cs">
@@ -104,7 +107,10 @@
     <Page Update="Operation\Op03Filter\FilterView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Operation\Op04Threshold\ThresholdView.xaml">
+    <Page Update="Operation\Op04PixelOperations\ThresholdView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op04PixelOperations\TwoMatOperationView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op05Morphology\ConnectedComponentsView.xaml">
