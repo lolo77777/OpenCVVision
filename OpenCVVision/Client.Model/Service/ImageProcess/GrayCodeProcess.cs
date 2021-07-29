@@ -1,11 +1,7 @@
 ﻿using OpenCvSharp;
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 using UnmanageUtility;
 
@@ -13,7 +9,6 @@ namespace Client.Model.Service.ImageProcess
 {
     public class GrayCodeProcess
     {
-        private readonly Mat _rvmat;
         private readonly Mat _rmat;
         private readonly Mat _tmat;
         private readonly Mat _camMat;

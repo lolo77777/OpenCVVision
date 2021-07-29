@@ -12,7 +12,6 @@ using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -46,10 +45,10 @@ namespace Client.ViewModel
         [Reactive] public double ActualWidth { get; set; }
         [Reactive] public int GeoSelectIndex { get; set; }
 
-        public ReactiveCommand<MouseEventArgs, Unit> MouseMoveCommand { get; set; }
+        public ReactiveCommand<Point, Unit> MouseMoveCommand { get; set; }
 
-        public ReactiveCommand<MouseEventArgs, Unit> MouseDownCommand { get; set; }
-        public ReactiveCommand<MouseWheelEventArgs, Unit> MouseWheelCommand { get; set; }
+        public ReactiveCommand<Point, Unit> MouseDownCommand { get; set; }
+
         public ReactiveCommand<Unit, Unit> AddGeoCommand { get; set; }
         public ReactiveCommand<Unit, Unit> ClearGeoCommand { get; set; }
 
@@ -97,8 +96,8 @@ namespace Client.ViewModel
         protected override void SetupCommands()
         {
             base.SetupCommands();
-            MouseMoveCommand = ReactiveCommand.Create<MouseEventArgs, Unit>(MouseMove);
-            MouseDownCommand = ReactiveCommand.Create<MouseEventArgs, Unit>(MouseDown);
+            MouseMoveCommand = ReactiveCommand.Create<Point, Unit>(MouseMove);
+            MouseDownCommand = ReactiveCommand.Create<Point, Unit>(MouseDown);
             AddGeoCommand = ReactiveCommand.Create(AddGeometry);
             ClearGeoCommand = ReactiveCommand.Create(ClearGeometry);
         }
@@ -146,12 +145,10 @@ namespace Client.ViewModel
 
         #region PrivateFunction
 
-        private Unit MouseDown(MouseEventArgs arg)
+        private Unit MouseDown(Point point)
         {
             this.Log().Debug("触发鼠标Down");
             _isMouseLeftPress = true;
-            Image ctl = arg.Source as Image;
-            Point point = arg.GetPosition(ctl);
             _startPoint = new Point(point.X, point.Y);
             if (IsDrawing)
             {
@@ -162,12 +159,9 @@ namespace Client.ViewModel
             return Unit.Default;
         }
 
-        private Unit MouseMove(MouseEventArgs arg)
+        private Unit MouseMove(/*MouseEventArgs arg*/Point point)
         {
-            Image ctl = arg.Source as Image;
-            Point point = arg.GetPosition(ctl);
             // this.Log().Debug($"X:{point.X},Y:{point.Y}");
-
             if (_isMouseLeftPress && IsDrawing)
             {
                 _endPoint = new Point(point.X, point.Y);
@@ -201,9 +195,7 @@ namespace Client.ViewModel
             double scale = ActualWidth / mat.Width;
             double x = position.X / scale;
             double y = position.Y / scale;
-
             string posionStr = $"X:{x:F2},Y:{y:F2}";
-
             if (mat.Channels() == 3)
             {
                 Mat.UnsafeIndexer<Vec3b> matInd = mat.GetUnsafeGenericIndexer<Vec3b>();
@@ -216,7 +208,6 @@ namespace Client.ViewModel
                 byte value = matInd[(int)y, (int)x];
                 colorValueStr = $"Gray:{value}";
             }
-
             return (posionStr, colorValueStr);
         }
 

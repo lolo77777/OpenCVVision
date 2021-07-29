@@ -132,6 +132,7 @@ namespace Client.ViewModel
 
             _imageDataManager.OutputMatSubject
                 .ObserveOn(RxApp.MainThreadScheduler)
+                
                 .WhereNotNull()
                 .Subscribe(mat => OutputImageVM.DisplayMat = mat.Clone())
                 .DisposeWith(d);

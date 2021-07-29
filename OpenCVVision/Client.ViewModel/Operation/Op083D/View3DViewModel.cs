@@ -136,8 +136,6 @@ namespace Client.ViewModel.Operation
             var vector3s = new List<Vector3>();
             var color4s = new List<Color4>();
             var ints = new List<int>();
-            var gap = 1;
-
             for (int i = 0; i < point3Fs.Count; i++)
             {
                 var p = point3Fs[i];

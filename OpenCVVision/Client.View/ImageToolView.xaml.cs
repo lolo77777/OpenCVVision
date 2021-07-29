@@ -4,6 +4,7 @@ using ReactiveUI;
 
 using System;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -35,9 +36,7 @@ namespace Client.View
                 this.Bind(ViewModel, vm => vm.IsDrawing, v => v.cbxDrawing.IsChecked).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.GeoSelectIndex, v => v.listBoxDrawGeo.SelectedIndex).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.IsControlEnable, v => v.sPanelControl.IsEnabled).DisposeWith(d);
-                this.BindCommand(ViewModel, vm => vm.MouseWheelCommand, v => v.MouseWheelTrigger).DisposeWith(d);
-                this.BindCommand(ViewModel, vm => vm.MouseDownCommand, v => v.MouseDownTrigger).DisposeWith(d);
-                this.BindCommand(ViewModel, vm => vm.MouseMoveCommand, v => v.MouseMoveTrigger).DisposeWith(d);
+
                 this.BindCommand(ViewModel, vm => vm.AddGeoCommand, v => v.btnAddGeo).DisposeWith(d);
                 this.BindCommand(ViewModel, vm => vm.ClearGeoCommand, v => v.btnClearGeo).DisposeWith(d);
                 this.WhenAnyValue(x => x.imgWb.ActualWidth)
@@ -59,6 +58,14 @@ namespace Client.View
                         sTran.ScaleX += val;
                         sTran.ScaleY += val;
                     }).DisposeWith(d);
+                imgWb.Events().PreviewMouseDown
+                    .Select(args => args.GetPosition(imgWb))
+                    .InvokeCommand(this, x => x.ViewModel.MouseDownCommand)
+                    .DisposeWith(d);
+                imgWb.Events().PreviewMouseMove
+                    .Select(args => args.GetPosition(imgWb))
+                    .InvokeCommand(this, x => x.ViewModel.MouseMoveCommand)
+                    .DisposeWith(d);
             });
         }
     }
