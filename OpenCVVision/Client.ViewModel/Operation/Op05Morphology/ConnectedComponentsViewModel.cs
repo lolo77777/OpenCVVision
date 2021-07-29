@@ -119,7 +119,7 @@ namespace Client.ViewModel.Operation
                 .ObserveOn(RxApp.MainThreadScheduler);
 
             currentMatOb
-                .Do(g => UpdateOutput(Filters))
+                .Do(g => UpdateOutput(Filters?.ToList()))
                 .Subscribe()
                 .DisposeWith(d);
 
@@ -160,8 +160,8 @@ namespace Client.ViewModel.Operation
                 .Where(b => CanOperat)
                 .Throttle(TimeSpan.FromMilliseconds(200))
                 .ObserveOn(RxApp.MainThreadScheduler)
-                .SubscribeOn(RxApp.TaskpoolScheduler)
-                .Do(b => UpdateOutput(Filters))
+
+                .Do(b => UpdateOutput(Filters?.ToList()))
                 .Subscribe()
                 .DisposeWith(d);
         }

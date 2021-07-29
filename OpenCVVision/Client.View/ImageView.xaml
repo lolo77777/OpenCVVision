@@ -97,6 +97,7 @@
                     <TextBlock
                         x:Name="lblTime"
                         Grid.Column="1"
+                        MinWidth="100"
                         Margin="10,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"

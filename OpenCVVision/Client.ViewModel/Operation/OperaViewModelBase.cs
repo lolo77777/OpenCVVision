@@ -8,7 +8,6 @@ using ReactiveUI.Fody.Helpers;
 using Splat;
 
 using System;
-using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
@@ -59,14 +58,14 @@ namespace Client.ViewModel
                 long t1 = Cv2.GetTickCount();
                 _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
                 _sigleSrc = _rt.T(_src.Channels() > 1 ? _src.CvtColor(ColorConversionCodes.BGR2GRAY) : _src);
-                Observable.Start(action, RxApp.MainThreadScheduler)
-
+                MessageBus.Current.SendMessage("Wati...", "Time");
+                Observable.Start(action, RxApp.TaskpoolScheduler)
                     .Subscribe(_ =>
                     {
                         _rt.Dispose();
                         long t2 = Cv2.GetTickCount();
                         double t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
-                        MessageBus.Current.SendMessage(t, "Time");
+                        MessageBus.Current.SendMessage(t.ToString(), "Time");
                         IsRun = false;
                     });
                 //action.Invoke();

@@ -136,7 +136,7 @@ namespace Client.ViewModel
                 .Subscribe(mat => OutputImageVM.DisplayMat = mat.Clone())
                 .DisposeWith(d);
 
-            MessageBus.Current.Listen<double>("Time")
+            MessageBus.Current.Listen<string>("Time")
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Select(d => $"{d}ms")
                 .BindTo(this, x => x.Time)

@@ -48,10 +48,14 @@ namespace Client.ViewModel.Operation
                 var dst2 = _rt.NewMat();
                 dst1.ConvertTo(dst2, MatType.CV_8UC1);
                 dst2.GetArray<byte>(out var vs);
-                _observablePoints.Clear();
-                int i = -1;
-                vs.ToList().ForEach(b => { i++; _observablePoints.Add(new ObservablePoint(i, b)); });
-                _imageDataManager.OutputMatSubject.OnNext(grayMat.Clone());
+                Observable.Start(() =>
+                {
+                    _observablePoints.Clear();
+                    int i = -1;
+                    vs.ToList().ForEach(b => { i++; _observablePoints.Add(new ObservablePoint(i, b)); });
+                    _imageDataManager.OutputMatSubject.OnNext(grayMat.Clone());
+                }, RxApp.MainThreadScheduler)
+                .Wait();
             });
         }
 

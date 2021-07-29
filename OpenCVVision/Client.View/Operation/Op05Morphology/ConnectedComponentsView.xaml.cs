@@ -36,8 +36,10 @@ namespace Client.View.Operation
                 this.OneWayBind(ViewModel, vm => vm.WidthLimit, v => v.sliderLeftMax.Maximum).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.WidthLimit, v => v.sliderLeftMin.Maximum).DisposeWith(d);
                 this.WhenAnyValue(x => x.FilterList.SelectedItems)
+                    .ObserveOn(RxApp.MainThreadScheduler)
                     .Select(t => (IEnumerable<object>)t)
                     .Where(listtmp => listtmp.Count() > 0)
+
                     .Select(listtmp => listtmp.Select(t => ((ListBoxItem)t).Content.ToString()))
                     .BindTo(ViewModel, x => x.Filters)
                     .DisposeWith(d);
