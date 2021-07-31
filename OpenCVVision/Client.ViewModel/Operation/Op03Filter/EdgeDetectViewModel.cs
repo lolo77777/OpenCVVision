@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OpenCvSharp;
+
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
+
+using System;
 using System.Data;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using OpenCvSharp;
-
-using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 
 namespace Client.ViewModel.Operation
 {
@@ -26,7 +23,7 @@ namespace Client.ViewModel.Operation
         {
             SendTime(() =>
             {
-                var dst = _rt.NewMat();
+                Mat dst = _rt.NewMat();
                 Cv2.Canny(_src, dst, thre1, thre2, diam, isL2);
                 _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
             });

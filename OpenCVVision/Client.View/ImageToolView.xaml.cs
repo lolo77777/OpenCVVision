@@ -57,7 +57,8 @@ namespace Client.View
 
                         sTran.ScaleX += val;
                         sTran.ScaleY += val;
-                    }).DisposeWith(d);
+                    })
+                    .DisposeWith(d);
                 imgWb.Events().PreviewMouseDown
                     .Select(args => args.GetPosition(imgWb))
                     .InvokeCommand(this, x => x.ViewModel.MouseDownCommand)

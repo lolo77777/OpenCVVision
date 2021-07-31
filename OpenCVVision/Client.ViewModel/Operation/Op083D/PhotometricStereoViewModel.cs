@@ -21,7 +21,7 @@ namespace Client.ViewModel.Operation
         protected override void SetupCommands()
         {
             base.SetupCommands();
-            var MainScreen = _resolver.GetService<IScreen>("MainHost");
+            IScreen MainScreen = _resolver.GetService<IScreen>("MainHost");
             ViewPhotometricCommand = ReactiveCommand.CreateFromObservable(() =>
             MainScreen.Router.Navigate.Execute(_resolver.GetService<ViewPhotometricViewModel>())
             .Select(_ => Unit.Default));

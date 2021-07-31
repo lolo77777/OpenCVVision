@@ -26,10 +26,10 @@ namespace Client.ViewModel
         private bool _isMouseLeftPress;
 
         private Point _startPoint;
-        private LineGeometry _line = new LineGeometry();
-        private RectangleGeometry _rect = new RectangleGeometry();
+        private readonly LineGeometry _line = new();
+        private readonly RectangleGeometry _rect = new();
         private Point _endPoint;
-        private IImageDataManager _imageDataManager;
+        private readonly IImageDataManager _imageDataManager;
 
         public WriteableBitmap DisplayImg { [ObservableAsProperty] get; }
         public bool IsControlEnable { [ObservableAsProperty]  get; }
@@ -70,22 +70,11 @@ namespace Client.ViewModel
                 .WhereNotNull()
                 .Where(mat => !mat.Empty())
                 .Select(mat => mat.ToWriteableBitmap())
-
                 .ToPropertyEx(this, x => x.DisplayImg)
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.GeoSelectIndex)
                 .Where(ind => ind >= 0)
-                .Subscribe(ind =>
-                {
-                    if (ind == 0)
-                    {
-                        PathData = _line;
-                    }
-                    else
-                    {
-                        PathData = _rect;
-                    }
-                })
+                .Subscribe(ind => PathData = ind == 0 ? _line : _rect)
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.DisplayMat)
                 .Select(mat => mat != null && !mat.Empty())
@@ -111,13 +100,13 @@ namespace Client.ViewModel
 
         private void AddGeometry()
         {
-            var scale = ActualWidth / DisplayMat.Width;
-            var xS = (int)(_startPoint.X / scale);
-            var yS = (int)(_startPoint.Y / scale);
-            var xE = (int)(_endPoint.X / scale);
-            var yE = (int)(_endPoint.Y / scale);
-            var point = new OpenCvSharp.Point(Math.Min(xS, xE), Math.Min(yS, yE));
-            var size = new Size(Math.Abs(xE - xS), Math.Abs(yE - yS));
+            double scale = ActualWidth / DisplayMat.Width;
+            int xS = (int)(_startPoint.X / scale);
+            int yS = (int)(_startPoint.Y / scale);
+            int xE = (int)(_endPoint.X / scale);
+            int yE = (int)(_endPoint.Y / scale);
+            OpenCvSharp.Point point = new(Math.Min(xS, xE), Math.Min(yS, yE));
+            Size size = new(Math.Abs(xE - xS), Math.Abs(yE - yS));
 
             if (GeoSelectIndex == 1)
             {
@@ -137,7 +126,9 @@ namespace Client.ViewModel
 
         public void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
+#if DEBUG
             this.Log().Debug("触发鼠标UP");
+#endif
             _isMouseLeftPress = false;
         }
 
@@ -147,7 +138,9 @@ namespace Client.ViewModel
 
         private Unit MouseDown(Point point)
         {
+#if DEBUG
             this.Log().Debug("触发鼠标Down");
+#endif
             _isMouseLeftPress = true;
             _startPoint = new Point(point.X, point.Y);
             if (IsDrawing)
@@ -159,9 +152,11 @@ namespace Client.ViewModel
             return Unit.Default;
         }
 
-        private Unit MouseMove(/*MouseEventArgs arg*/Point point)
+        private Unit MouseMove(Point point)
         {
-            // this.Log().Debug($"X:{point.X},Y:{point.Y}");
+#if DEBUG
+            this.Log().Debug($"X:{point.X},Y:{point.Y}");
+#endif
             if (_isMouseLeftPress && IsDrawing)
             {
                 _endPoint = new Point(point.X, point.Y);
@@ -174,17 +169,14 @@ namespace Client.ViewModel
                 TranslateTranY += point.Y - _startPoint.Y;
             }
             MatInfo = $"{GetImgInfo(DisplayMat)}";
-            (string posion, string colorValue) valueT = GetInforMation(DisplayMat, point);
-            ColorValue = $"{valueT.posion}:{valueT.colorValue}";
+            (string posion, string colorValue) = GetInforMation(DisplayMat, point);
+
+            string colorValueStr = $"{posion}    {colorValue}";
+            ColorValue = colorValueStr;
             return Unit.Default;
         }
 
         private string GetImgInfo(Mat mat)
-        {
-            return $"Chanels:{mat.Channels()}, Width:{mat.Width}, Heigh:{mat.Height}, Mattype:{mat.Type().ToString()}";
-        }
-
-        private string GetImgInfo(Mat mat, Point posion)
         {
             return $"Chanels:{mat.Channels()}, Width:{mat.Width}, Heigh:{mat.Height}, Mattype:{mat.Type().ToString()}";
         }

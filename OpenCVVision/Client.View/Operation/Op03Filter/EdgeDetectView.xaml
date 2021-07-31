@@ -1,92 +1,84 @@
 ﻿<rxui:ReactiveUserControl
     x:Class="Client.View.Operation.EdgeDetectView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Client.View.Operation"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
-    xmlns:rxui="http://reactiveui.net"
     d:DesignHeight="450"
     d:DesignWidth="300"
     x:TypeArguments="operation:EdgeDetectViewModel"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary Source="\Dictionary.xaml" />
-    </UserControl.Resources>
+
     <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock
-                x:Name="Title"
+        <StackPanel Orientation="Vertical">
+            <Label
                 Margin="8"
+                Content="EdgeDetect"
                 FontSize="22"
-                FontWeight="UltraBlack"
-                Text="EdgeDetect" />
-            <StackPanel
-                Grid.Row="1"
-                Margin="{StaticResource marginOdd}"
-                Orientation="Vertical">
-                <Grid Margin="{StaticResource marginOdd}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Margin="0,0,8,0" Content="CannyThre1" />
-                    <Slider
-                        x:Name="sliderCannyThre1"
-                        Grid.Column="1"
-                        Maximum="255"
-                        Minimum="0"
-                        TickFrequency="1"
-                        TickPlacement="BottomRight"
-                        ToolTip="CannyThre1"
-                        Value="3" />
-                </Grid>
-                <Grid Margin="{StaticResource marginOdd}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Margin="0,0,8,0" Content="CannyThre2" />
-                    <Slider
-                        x:Name="sliderCannyThre2"
-                        Grid.Column="1"
-                        Maximum="255"
-                        Minimum="0"
-                        TickFrequency="1"
-                        TickPlacement="BottomRight"
-                        ToolTip="CannyThre2"
-                        Value="3" />
-                </Grid>
-                <Grid Margin="{StaticResource marginOdd}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Margin="0,0,8,0" Content="CannyDiam" />
-                    <Slider
-                        x:Name="sliderCannyDiam"
-                        Grid.Column="1"
-                        Maximum="7"
-                        Minimum="3"
-                        TickFrequency="2"
-                        TickPlacement="BottomRight"
-                        ToolTip="CannyDiam"
-                        Value="3" />
-                </Grid>
-                <CheckBox
-                    x:Name="cbxIsL2gradient"
-                    Margin="{StaticResource marginOdd}"
-                    HorizontalAlignment="Right"
-                    materialDesign:CheckBoxAssist.CheckBoxSize="30"
-                    Content="IsL2gradient"
-                    Style="{StaticResource MaterialDesignCheckBox}" />
-            </StackPanel>
-        </Grid>
+                FontWeight="UltraBlack" />
+            <materialDesign:Card>
+
+                <StackPanel Margin="{StaticResource marginEven}" Orientation="Vertical">
+                    <Grid Margin="{StaticResource marginOdd}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Margin="0,0,8,0" Content="CannyThre1" />
+                        <Slider
+                            x:Name="sliderCannyThre1"
+                            Grid.Column="1"
+                            Maximum="255"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="CannyThre1"
+                            Value="3" />
+                    </Grid>
+                    <Grid Margin="{StaticResource marginOdd}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Margin="0,0,8,0" Content="CannyThre2" />
+                        <Slider
+                            x:Name="sliderCannyThre2"
+                            Grid.Column="1"
+                            Maximum="255"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="CannyThre2"
+                            Value="3" />
+                    </Grid>
+                    <Grid Margin="{StaticResource marginOdd}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Margin="0,0,8,0" Content="CannyDiam" />
+                        <Slider
+                            x:Name="sliderCannyDiam"
+                            Grid.Column="1"
+                            Maximum="7"
+                            Minimum="3"
+                            TickFrequency="2"
+                            TickPlacement="BottomRight"
+                            ToolTip="CannyDiam"
+                            Value="3" />
+                    </Grid>
+                    <CheckBox
+                        x:Name="cbxIsL2gradient"
+                        Margin="{StaticResource marginOdd}"
+                        HorizontalAlignment="Right"
+                        materialDesign:CheckBoxAssist.CheckBoxSize="30"
+                        Content="IsL2gradient"
+                        Style="{StaticResource MaterialDesignCheckBox}" />
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
     </materialDesign:Card>
 </rxui:ReactiveUserControl>

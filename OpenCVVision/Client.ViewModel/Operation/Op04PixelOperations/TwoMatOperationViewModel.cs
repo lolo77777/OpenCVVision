@@ -18,7 +18,7 @@ namespace Client.ViewModel.Operation
     {
         private ReadOnlyObservableCollection<string> _imageItems;
         public ReadOnlyObservableCollection<string> ImageItems => _imageItems;
-        public IEnumerable<string> OperaMethodItems { get; private set; }
+        public IList<string> OperaMethodItems { get; private set; }
         [Reactive] public string FirstImageSelectValue { get; private set; }
         [Reactive] public string SecondImageSelectValue { get; private set; }
         [Reactive] public string OperaMethod { get; private set; }

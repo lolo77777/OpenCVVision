@@ -26,21 +26,22 @@
             Grid.RowSpan="2"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch" />
-        <Grid Grid.Column="1">
-            <rxui:ViewModelViewHost
-                x:Name="ImgViewer"
-                HorizontalContentAlignment="Stretch"
-                VerticalContentAlignment="Stretch" />
-        </Grid>
+
+        <rxui:ViewModelViewHost
+            x:Name="ImgViewer"
+            Grid.Column="1"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch" />
+
         <GridSplitter
             Grid.Column="2"
             Margin="0,8"
             HorizontalAlignment="Stretch" />
-        <Grid Grid.Column="3">
-            <rxui:RoutedViewHost
-                x:Name="OperaPanel"
-                HorizontalContentAlignment="Stretch"
-                VerticalContentAlignment="Stretch" />
-        </Grid>
+
+        <rxui:RoutedViewHost
+            x:Name="OperaPanel"
+            Grid.Column="3"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch" />
     </Grid>
 </rxui:ReactiveUserControl>

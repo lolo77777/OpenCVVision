@@ -33,13 +33,12 @@ namespace Client.ViewModel.Operation
         private Mat TMat1;
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
         private ResourcesTracker _rt;
-
         private static readonly AxisAngleRotation3D axisAngleRotation3D = new(new Vector3D(1, 0, 0), -90);
         [Reactive] public bool IsRun { get; set; }
 
         #region BindProperty
 
-        public IEnumerable<int> SampleItems { get; } = new[] { 1, 2, 3, 4 };
+        public IList<int> SampleItems { get; } = new[] { 1, 2, 3, 4 };
         [Reactive] public int SampleSelectIndex { get; set; }
         [Reactive] public Camera CamDx { get; set; }
         [Reactive] public EffectsManager EffectsManager { get; set; }
@@ -66,24 +65,20 @@ namespace Client.ViewModel.Operation
         protected override void SetupCommands()
         {
             base.SetupCommands();
-            var displayCanExecute = this.WhenAnyValue(x => x.SampleSelectIndex, x => x.IsRun, (i, bol) => i >= 0 && !bol);
+            IObservable<bool> displayCanExecute = this.WhenAnyValue(x => x.SampleSelectIndex, x => x.IsRun, (i, bol) => i >= 0 && !bol);
             DisplayCommand = ReactiveCommand.Create(Display, displayCanExecute);
-            var mainScreen = _resolver.GetService<IScreen>("MainHost");
+            IScreen mainScreen = _resolver.GetService<IScreen>("MainHost");
             NaviBackCommand = ReactiveCommand.CreateFromObservable(() => mainScreen.Router.Navigate.Execute(_resolver.GetService<ShellViewModel>()).Select(_ => Unit.Default));
         }
 
         protected override void SetupDeactivate()
         {
             base.SetupDeactivate();
-            CamDx = null;
             _rt.Dispose();
-            _grayCodeProcess = null;
+            _grayCodeProcess.Dispose();
             PointGeometry.ClearAllGeometryData();
             EffectsManager.DisposeAndClear();
-            PointGeometry = null;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
+            PointGeometry.ClearOctree();
         }
 
         protected override void SetupStart()
@@ -100,10 +95,9 @@ namespace Client.ViewModel.Operation
                 FarPlaneDistance = 3000
             };
 
-            using var fr = new FileStorage(Data.FilePath.File.PatternCalibrateYaml, FileStorage.Modes.Read);
+            using FileStorage fr = new(Data.FilePath.File.PatternCalibrateYaml, FileStorage.Modes.Read);
             CameraMatrixMat = _rt.T(fr["CameraMatrixMat"].ReadMat());
             ProjecterMat = _rt.T(fr["ProjecterMatrix"].ReadMat());
-
             RMat1 = _rt.T(fr["RMat"].ReadMat());
             TMat1 = _rt.T(fr["TMat"].ReadMat());
             _grayCodeProcess = new GrayCodeProcess(RMat1, TMat1, CameraMatrixMat, ProjecterMat);
@@ -113,12 +107,12 @@ namespace Client.ViewModel.Operation
 
         private void Display()
         {
-            var path = Data.FilePath.Folder.PatternFolder + (SampleSelectIndex + 1);
-            var mats = Directory.GetFiles(path).Skip(20).Take(20).Select(f => Cv2.ImRead(f, ImreadModes.Grayscale)).ToList();
+            string path = $"{Data.FilePath.Folder.PatternFolder}{SampleSelectIndex + 1}";
+            List<Mat> mats = Directory.GetFiles(path).Skip(20).Take(20).Select(f => Cv2.ImRead(f, ImreadModes.Grayscale)).ToList();
             IsRun = true;
             Observable.Start(() =>
             {
-                var pts = _grayCodeProcess.GetPointsAsync(mats);
+                UnmanageUtility.UnmanagedArray<Point3f> pts = _grayCodeProcess.GetPointsAsync(mats);
                 return updatePointAsync(pts.ToList());
             })
             .ObserveOn(RxApp.MainThreadScheduler)
@@ -133,24 +127,20 @@ namespace Client.ViewModel.Operation
 
         private (Vector3Collection Vector3Collection, Color4Collection Color4Collection, IntCollection IntCollection) updatePointAsync(List<Point3f> point3Fs)
         {
-            var vector3s = new List<Vector3>();
-            var color4s = new List<Color4>();
-            var ints = new List<int>();
+            List<Vector3> vector3s = new();
+            List<Color4> color4s = new();
+            List<int> ints = new();
             for (int i = 0; i < point3Fs.Count; i++)
             {
-                var p = point3Fs[i];
-
+                Point3f p = point3Fs[i];
                 vector3s.Add(new Vector3(p.X, p.Z - 700, p.Y));
                 color4s.Add(new Color4(new Vector3(120, 100, 20), 0.8f));
             }
-
-            var vec3sCollec = new Vector3Collection(vector3s);
-            var color4sCollec = new Color4Collection(color4s);
-            var ids = new IntCollection(ints);
-
+            Vector3Collection vec3sCollec = new Vector3Collection(vector3s);
+            Color4Collection color4sCollec = new Color4Collection(color4s);
+            IntCollection ids = new IntCollection(ints);
             return (vec3sCollec, color4sCollec, ids);
         }
-
         #endregion PrivateFunction
     }
 }

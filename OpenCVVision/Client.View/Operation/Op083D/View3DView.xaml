@@ -10,9 +10,7 @@
     xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
     x:TypeArguments="operation:View3DViewModel"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary Source="\Dictionary.xaml" />
-    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

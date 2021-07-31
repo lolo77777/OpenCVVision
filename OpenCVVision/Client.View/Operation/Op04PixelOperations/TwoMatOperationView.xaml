@@ -11,44 +11,31 @@
     d:DesignWidth="300"
     x:TypeArguments="operation:TwoMatOperationViewModel"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary Source="\Dictionary.xaml" />
-    </UserControl.Resources>
-    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <TextBlock
-                x:Name="Title"
-                Margin="{StaticResource marginOdd}"
-                FontSize="22"
-                FontWeight="UltraBlack"
-                Text="图像计算" />
 
-            <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
-                <ComboBox
-                    x:Name="cbxImageItems1"
-                    Margin="{StaticResource marginOdd}"
-                    materialDesign:HintAssist.Hint="FirstImage" />
-                <ComboBox
-                    x:Name="cbxImageItems2"
-                    Margin="{StaticResource marginEven}"
-                    materialDesign:HintAssist.Hint="SecondImage" />
-            </StackPanel>
-            <StackPanel
-                Name="sPanel"
-                Grid.Row="2"
-                Margin="{StaticResource marginOdd}">
-                <ComboBox
-                    x:Name="cbxOperaMethod"
-                    Margin="{StaticResource marginEven}"
-                    materialDesign:HintAssist.Hint="OperaMethod" />
-            </StackPanel>
-        </Grid>
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
+        <StackPanel>
+            <Label
+                Margin="{StaticResource marginOdd}"
+                Content="图像计算"
+                FontSize="22"
+                FontWeight="UltraBlack" />
+            <materialDesign:Card>
+                <StackPanel Margin="{StaticResource marginOdd}">
+                    <ComboBox
+                        x:Name="cbxImageItems1"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="FirstImage" />
+                    <ComboBox
+                        x:Name="cbxImageItems2"
+                        Margin="{StaticResource marginOdd}"
+                        materialDesign:HintAssist.Hint="SecondImage" />
+
+                    <ComboBox
+                        x:Name="cbxOperaMethod"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="OperaMethod" />
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
     </materialDesign:Card>
 </rxui:ReactiveUserControl>

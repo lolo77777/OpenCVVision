@@ -1,15 +1,14 @@
-﻿using System;
+﻿using OpenCvSharp;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using OpenCvSharp;
 
 namespace Client.Model.Service.ImageProcess
 {
-    public class LightPlaneCal
+    public class LightPlaneCal : IDisposable
     {
+        private ResourcesTracker _resourcesTracker = new();
         /// <summary>
         /// 通过光平面系数将像素坐标转换为深度坐标
         /// </summary>
@@ -17,26 +16,24 @@ namespace Client.Model.Service.ImageProcess
         /// <param name="src"></param>
         /// <param name="lightPlaneCoefficient"></param>
         /// <returns></returns>
-        private IEnumerable<Point3d> CalFrameToCameraWithLightPlane(IEnumerable<Point2d> point2Ds, Mat src, Mat lightPlaneCoefficient)
+        private IList<Point3d> CalFrameToCameraWithLightPlane(IEnumerable<Point2d> point2Ds, Mat src, Mat lightPlaneCoefficient)
         {
             List<Point3d> rePt3Fs = new();
-            using Mat camMatInv = src.Inv().ToMat();
+            Mat camMatInv = _resourcesTracker.T(src.Inv().ToMat());
             camMatInv.GetArray<double>(out var camMatrixInv);
             lightPlaneCoefficient.GetArray<float>(out var coefficient);
             float a = coefficient[0]; float b = coefficient[1]; float c = coefficient[2];
             foreach (Point2d pt2d in point2Ds)
             {
                 Point3d pt3FTmp = new((camMatrixInv[0] * pt2d.X) + camMatrixInv[2], (camMatrixInv[4] * pt2d.Y) + camMatrixInv[5], 1);
-
                 double xpp = pt3FTmp.X;
                 double ypp = pt3FTmp.Y;
                 double x = c * xpp / (1 - (a * xpp) - (b * ypp));
                 double y = c * ypp / (1 - (a * xpp) - (b * ypp));
                 double z = (a * x) + (b * y) + c;
-                Point3d pt3F = new Point3d(x, y, z);
+                Point3d pt3F = new(x, y, z);
                 rePt3Fs.Add(pt3F);
             }
-
             return rePt3Fs;
         }
 
@@ -81,9 +78,8 @@ namespace Client.Model.Service.ImageProcess
                 relist[x] = new Point(x, rowstart + Math.Round(location, 0));
             }
 
-            Mat remat = roi.CvtColor(ColorConversionCodes.GRAY2BGR);
-            Vec3b color = new Vec3b(0, 0, 250);
-
+            Mat remat = _resourcesTracker.T(roi.CvtColor(ColorConversionCodes.GRAY2BGR));
+            Vec3b color = new(0, 0, 250);
             foreach (Point p in relist)
             {
                 if (p.Y > rowstart)
@@ -97,7 +93,6 @@ namespace Client.Model.Service.ImageProcess
                 Cv2.ImShow("src", remat);
                 Cv2.WaitKey();
             }
-
             return (relist2F, relist, remat);
         }
 
@@ -120,14 +115,17 @@ namespace Client.Model.Service.ImageProcess
             for (int i = 0; i < pt3Fs.Count; i++)
             {
                 Point3d ptmp = pt3Fs[i];
-                MatExpr mtmp = rvMat * new Mat(3, 1, MatType.CV_64FC1, new double[3] { ptmp.X, ptmp.Y, ptmp.Z });
+                MatExpr mtmp = _resourcesTracker.T(rvMat * new Mat(3, 1, MatType.CV_64FC1, new double[3] { ptmp.X, ptmp.Y, ptmp.Z }));
                 mtmp.ToMat().GetArray<double>(out var vs1);
-
                 pt2Fs[i] = new Point2d(vs1[0], vs1[2]);
             }
-
             pt3Fs.Clear();
             return (pt2Fs, mat);
+        }
+
+        public void Dispose()
+        {
+            _resourcesTracker.Dispose();
         }
     }
 }

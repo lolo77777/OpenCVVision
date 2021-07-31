@@ -15,7 +15,7 @@ namespace Client.ViewModel.Operation
         protected override void SetupCommands()
         {
             base.SetupCommands();
-            var MainScreen = _resolver.GetService<IScreen>("MainHost");
+            IScreen MainScreen = _resolver.GetService<IScreen>("MainHost");
             View3dCommand = ReactiveCommand.CreateFromObservable(() => MainScreen.Router.Navigate.Execute(_resolver.GetService<View3DViewModel>()).Select(_ => Unit.Default));
         }
     }

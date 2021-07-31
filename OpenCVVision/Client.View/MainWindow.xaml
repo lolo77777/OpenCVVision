@@ -51,10 +51,9 @@
             </ToggleButton>
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
-    <Grid>
-        <rxui:RoutedViewHost
-            HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Stretch"
-            Router="{Binding Router}" />
-    </Grid>
+
+    <rxui:RoutedViewHost
+        HorizontalContentAlignment="Stretch"
+        VerticalContentAlignment="Stretch"
+        Router="{Binding Router}" />
 </mah:MetroWindow>

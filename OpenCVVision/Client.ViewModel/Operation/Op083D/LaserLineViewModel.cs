@@ -8,6 +8,7 @@ using ReactiveUI;
 using Splat;
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reactive;
@@ -18,6 +19,7 @@ namespace Client.ViewModel.Operation
     [OperationInfo(8.1, "线激光中心", MaterialDesignThemes.Wpf.PackIconKind.LaserPointer)]
     public class LaserLineViewModel : OperaViewModelBase
     {
+        private ResourcesTracker _resourcesTracker = new();
         private LightPlaneCal _lightPlaneCal;
         private LightPlaneCalibrate _lightPlaneCalibrate;
         public ReactiveCommand<Unit, Unit> CalibrateTestCommand { get; set; }
@@ -39,8 +41,10 @@ namespace Client.ViewModel.Operation
         protected override void SetupDeactivate()
         {
             base.SetupDeactivate();
-            _lightPlaneCal = null;
-            _lightPlaneCalibrate = null;
+            _resourcesTracker.Dispose();
+            _lightPlaneCal.Dispose();
+            _lightPlaneCalibrate.Dispose();
+
         }
         #region PrivateFunction
 
@@ -53,22 +57,21 @@ namespace Client.ViewModel.Operation
         {
             SendTime(() =>
             {
-                using var fr = new FileStorage(FilePath.File.LaserLineCaliYaml, FileStorage.Modes.Read);
-                var _cameraMatrixMat = fr["CameraMatrixMat"].ReadMat();
-
-                var _lightPlaneCoeffient = fr["LightPlaneCoeffient"].ReadMat();
-                var _cameraToLightPlaneMat = fr["CameraToLightPlaneMat"].ReadMat();
-                var _templete = Cv2.ImRead(FilePath.Image.LaserLineLightTemplate, ImreadModes.Grayscale).PyrDown().PyrDown().PyrDown().PyrDown().GaussianBlur(new Size(3, 3), 0.24);
-                var files = Directory.GetFiles(FilePath.Folder.LaserLineTestFolder).Select(str => Cv2.ImRead(str, ImreadModes.Grayscale));
-                var num = 0;
+                using FileStorage fr = new(FilePath.File.LaserLineCaliYaml, FileStorage.Modes.Read);
+                Mat _cameraMatrixMat = _resourcesTracker.T(fr["CameraMatrixMat"].ReadMat());
+                Mat _lightPlaneCoeffient = _resourcesTracker.T(fr["LightPlaneCoeffient"].ReadMat());
+                Mat _cameraToLightPlaneMat = _resourcesTracker.T(fr["CameraToLightPlaneMat"].ReadMat());
+                Mat _templete = _resourcesTracker.T(Cv2.ImRead(FilePath.Image.LaserLineLightTemplate, ImreadModes.Grayscale).PyrDown().PyrDown().PyrDown().PyrDown().GaussianBlur(new Size(3, 3), 0.24));
+                IList<Mat> files = Directory.GetFiles(FilePath.Folder.LaserLineTestFolder).Select(str => _resourcesTracker.T(Cv2.ImRead(str, ImreadModes.Grayscale))).ToList();
+                int num = 0;
                 Observable.Timer(TimeSpan.Zero, TimeSpan.FromMilliseconds(1000))
                     .Take(files.Count())
                     .Select(i => files.ElementAt(num))
                     .Do(mat =>
                     {
                         num++;
-                        var re = _lightPlaneCal.GetResultGray(mat, _templete, _cameraToLightPlaneMat, _cameraMatrixMat, _lightPlaneCoeffient);
-                        _imageDataManager.OutputMatSubject.OnNext(re.thinMat);
+                        (Point2d[] pt2fs, Mat thinMat) = _lightPlaneCal.GetResultGray(mat, _templete, _cameraToLightPlaneMat, _cameraMatrixMat, _lightPlaneCoeffient);
+                        _imageDataManager.OutputMatSubject.OnNext(thinMat);
                     })
                     .Subscribe();
             });

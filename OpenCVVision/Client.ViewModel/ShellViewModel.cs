@@ -1,5 +1,4 @@
 ﻿using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 
 using Splat;
 
@@ -15,13 +14,12 @@ namespace Client.ViewModel
         public ImageViewModel ImageVMSam { get; private set; }
         public NavigationViewModel NavigationViewModelSam { get; private set; }
         public RoutingState Router { get; } = new RoutingState();
-        [Reactive] public string TxtUi { get; set; } = "hello";
-        public string UrlPathSegment { get; } = "ShellView";
+        public string UrlPathSegment { get; }
         public IScreen HostScreen { get; }
 
         public ShellViewModel(NavigationViewModel navigationViewModel = null, ImageViewModel imageViewModel = null, IScreen screen = null) : base()
         {
-            HostScreen = screen ?? _resolver.GetService<IScreen>("MainHost");
+            //HostScreen = screen ?? _resolver.GetService<IScreen>("MainHost");
             Locator.CurrentMutable.RegisterConstant<IScreen>(this, "OperationHost");
             NavigationViewModelSam = navigationViewModel ?? _resolver.GetService<NavigationViewModel>();
             ImageVMSam = imageViewModel ?? _resolver.GetService<ImageViewModel>();
@@ -33,14 +31,12 @@ namespace Client.ViewModel
             MessageBus.Current.Listen<NaviItem>()
                 .Select(it => _resolver.GetService<IOperationViewModel>(it.OperaPanelInfo))
                 .WhereNotNull()
-                .Do(vm =>
+                .Subscribe(vm =>
                 {
                     Router.Navigate.Execute(vm);
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
-                    GC.Collect();
                 })
-                .Subscribe()
                 .DisposeWith(d);
         }
     }

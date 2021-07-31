@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OpenCvSharp;
+
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
+
+using System;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
-
-using OpenCvSharp;
-
-using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 
 namespace Client.ViewModel.Operation
 {
@@ -23,7 +19,6 @@ namespace Client.ViewModel.Operation
         [Reactive] public int LaplaceNum { get; set; }
         [Reactive] public int UpNum { get; set; }
         [Reactive] public int UpNumMax { get; set; }
-
         protected override void SetupCommands()
         {
             base.SetupCommands();
@@ -33,7 +28,6 @@ namespace Client.ViewModel.Operation
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             base.SetupSubscriptions(d);
-
             this.WhenAnyValue(x => x.DownNum)
                 .Throttle(TimeSpan.FromMilliseconds(200))
                 .Where(i => CanOperat)
@@ -66,14 +60,12 @@ namespace Client.ViewModel.Operation
         {
             SendTime(() =>
             {
-                var dstDown = _rt.NewMat();
-
+                Mat dstDown = _rt.NewMat();
                 dstDown = DownMat(_src.Clone(), DownNum);
-
-                var dstUp = _rt.NewMat();
+                Mat dstUp = _rt.NewMat();
                 dstUp = UpMat(dstDown.Clone(), DownNum);
-                var dst = _rt.NewMat();
-                var srcNew = dstDown.Resize(dstUp.Size());
+                Mat dst = _rt.NewMat();
+                Mat srcNew = dstDown.Resize(dstUp.Size());
                 dst = srcNew - dstUp;
                 _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
             });

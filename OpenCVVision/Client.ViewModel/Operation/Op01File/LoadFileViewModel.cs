@@ -30,8 +30,7 @@ namespace Client.ViewModel.Operation
         {
             base.SetupSubscriptions(d);
             this.WhenAnyValue(x => x.TxtImageFilePath)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .SubscribeOn(RxApp.TaskpoolScheduler)
+                .ObserveOn(RxApp.TaskpoolScheduler)
                 .Where(str => !string.IsNullOrWhiteSpace(str))
                 .Select(str => Cv2.ImRead(str))
                 .Do(mat => _imageDataManager.AddImage("Src", mat))

@@ -28,6 +28,7 @@ namespace Client.ViewModel.Operation
         private readonly Interaction<Unit, string> _loadFileConfirm = new();
         private Net _net;
         private List<Mat> _srcs;
+        private ResourcesTracker _resourcesTracker = new();
         public Interaction<Unit, string> LoadFileConfirm => _loadFileConfirm;
         public ReactiveCommand<string, Unit> LoadImageCommand { get; set; }
 
@@ -40,18 +41,22 @@ namespace Client.ViewModel.Operation
             base.SetupCommands();
             LoadImageCommand = ReactiveCommand.Create<string>(LoadFile);
         }
+        protected override void SetupDeactivate()
+        {
+            base.SetupDeactivate();
+            _net.Dispose();
+            _resourcesTracker.Dispose();
 
+        }
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             base.SetupSubscriptions(d);
             _imageDataManager.InputMatGuidSubject
                 .Where(guid => CanOperat && _isInit)
-                .Do(guid => UpdateOutput())
-                .Subscribe()
+                .Subscribe(guid => UpdateOutput())
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.TxtImageFilePath, x => x.TxtCfgFilePath)
                 .Where(vt => !string.IsNullOrWhiteSpace(vt.Item1) && !string.IsNullOrWhiteSpace(vt.Item2))
-
                 .Subscribe(vt => InitNet(vt.Item1, vt.Item2))
                 .DisposeWith(d);
         }
@@ -72,15 +77,15 @@ namespace Client.ViewModel.Operation
         private void Draw(Mat image, int classes, float confidence, float probability, double centerX, double centerY, double width, double height)
         {
             //label formating
-            var label = $"{_labels[classes]} {probability * 100:0.00}%";
+            string label = $"{_labels[classes]} {probability * 100:0.00}%";
             //Console.WriteLine($"confidence {confidence * 100:0.00}% {label}");
-            var x1 = (centerX - width / 2) < 0 ? 0 : centerX - width / 2; //avoid left side over edge
+            double x1 = (centerX - width / 2) < 0 ? 0 : centerX - width / 2; //avoid left side over edge
             //draw result
             image.Rectangle(new Point(x1, centerY - height / 2), new Point(centerX + width / 2, centerY + height / 2), _colors[classes], 2);
-            var textSize = Cv2.GetTextSize(label, HersheyFonts.HersheyTriplex, 0.5, 1, out var baseline);
+            Size textSize = Cv2.GetTextSize(label, HersheyFonts.HersheyTriplex, 0.5, 1, out var baseline);
             Cv2.Rectangle(image, new Rect(new Point(x1, centerY - height / 2 - textSize.Height - baseline),
                 new Size(textSize.Width, textSize.Height + baseline)), _colors[classes], Cv2.FILLED);
-            var textColor = Cv2.Mean(_colors[classes]).Val0 < 70 ? Scalar.White : Scalar.Black;
+            Scalar textColor = Cv2.Mean(_colors[classes]).Val0 < 70 ? Scalar.White : Scalar.Black;
             Cv2.PutText(image, label, new Point(x1, centerY - height / 2 - baseline), HersheyFonts.HersheyTriplex, 0.5, textColor);
         }
 
@@ -95,13 +100,13 @@ namespace Client.ViewModel.Operation
         private void GetResult(IEnumerable<Mat> output, Mat image, float threshold, float nmsThreshold, bool nms = true)
         {
             //for nms
-            var classIds = new List<int>();
-            var confidences = new List<float>();
-            var probabilities = new List<float>();
-            var boxes = new List<Rect2d>();
+            List<int> classIds = new();
+            List<float> confidences = new();
+            List<float> probabilities = new();
+            List<Rect2d> boxes = new();
 
-            var w = image.Width;
-            var h = image.Height;
+            int w = image.Width;
+            int h = image.Height;
             /*
              YOLO3 COCO trainval output
              0 1 : center                    2 3 : w/h
@@ -109,28 +114,28 @@ namespace Client.ViewModel.Operation
             */
             const int prefix = 5;   //skip 0~4
 
-            foreach (var prob in output)
+            foreach (Mat prob in output)
             {
-                var probindx = prob.GetUnsafeGenericIndexer<float>();
+                Mat.UnsafeIndexer<float> probindx = prob.GetUnsafeGenericIndexer<float>();
 
-                for (var y = 0; y < prob.Rows; y++)
+                for (int y = 0; y < prob.Rows; y++)
                 {
-                    var confidence = probindx[y, 4];
+                    float confidence = probindx[y, 4];
                     if (confidence > threshold)
                     {
                         //get classes probability
 
                         Cv2.MinMaxLoc(prob.Row(y).ColRange(prefix, prob.Cols), out _, out Point max);
-                        var classes = max.X;
-                        var probability = probindx[y, classes + prefix];
+                        int classes = max.X;
+                        float probability = probindx[y, classes + prefix];
 
                         if (probability > threshold) //more accuracy, you can cancel it
                         {
                             //get center and width/height
-                            var centerX = probindx[y, 0] * w;
-                            var centerY = probindx[y, 1] * h;
-                            var width = probindx[y, 2] * w;
-                            var height = probindx[y, 3] * h;
+                            float centerX = probindx[y, 0] * w;
+                            float centerY = probindx[y, 1] * h;
+                            float width = probindx[y, 2] * w;
+                            float height = probindx[y, 3] * h;
 
                             if (!nms)
                             {
@@ -149,16 +154,16 @@ namespace Client.ViewModel.Operation
                 }
             }
 
-            if (!nms) return;
+            if (!nms)
+            {
+                return;
+            }
 
             //using non-maximum suppression to reduce overlapping low confidence box
             CvDnn.NMSBoxes(boxes, confidences, threshold, nmsThreshold, out int[] indices);
-
-            //Console.WriteLine($"NMSBoxes drop {confidences.Count - indices.Length} overlapping result.");
-
-            foreach (var i in indices)
+            foreach (int i in indices)
             {
-                var box = boxes[i];
+                Rect2d box = boxes[i];
                 Draw(image, classIds[i], confidences[i], probabilities[i], box.X, box.Y, box.Width, box.Height);
             }
         }
@@ -169,10 +174,10 @@ namespace Client.ViewModel.Operation
             _labels = File.ReadAllLines(FilePath.File.ObjectNames).ToArray();
             _net.SetPreferableBackend(Backend.OPENCV);
             _net.SetPreferableTarget(Target.CPU);
-            _srcs = Directory.GetFiles(FilePath.Folder.YoloV3TestImage).Select(str => Cv2.ImRead(str)).ToList();
+            _srcs = Directory.GetFiles(FilePath.Folder.YoloV3TestImage).Select(str => _resourcesTracker.T(Cv2.ImRead(str))).ToList();
             for (int i = 0; i < _srcs.Count; i++)
             {
-                var txtMark = $"YoloV3Test{i}";
+                string txtMark = $"YoloV3Test{i}";
                 if (!_imageDataManager.IsExsitByMark(txtMark))
                 {
                     _imageDataManager.AddImage($"YoloV3Test{i}", _srcs[i]);
@@ -202,10 +207,10 @@ namespace Client.ViewModel.Operation
         {
             SendTime(() =>
             {
-                var blogimg = CvDnn.BlobFromImage(_src, 1 / 255.0, new Size(416, 416), new Scalar(), true, false);
+                Mat blogimg = _resourcesTracker.T(CvDnn.BlobFromImage(_src, 1 / 255.0, new Size(416, 416), new Scalar(), true, false));
                 _net.SetInput(blogimg);
-                var names = _net.GetUnconnectedOutLayersNames();
-                var outputMats = names.Select(_ => new Mat()).ToArray();
+                string[] names = _net.GetUnconnectedOutLayersNames();
+                Mat[] outputMats = names.Select(_ => _resourcesTracker.NewMat()).ToArray();
                 _net.Forward(outputMats, names);
                 GetResult(outputMats, _src, 0.5f, 0.1f, true);
                 _imageDataManager.OutputMatSubject.OnNext(_src.Clone());

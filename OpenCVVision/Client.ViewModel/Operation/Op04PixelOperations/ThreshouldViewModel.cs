@@ -19,7 +19,7 @@ namespace Client.ViewModel.Operation
     [OperationInfo(4, "二值化", MaterialDesignThemes.Wpf.PackIconKind.HomeFloorZero)]
     public class ThreshouldViewModel : OperaViewModelBase
     {
-        private readonly ObservableCollection<ObservablePoint> _observablePoints = new ObservableCollection<ObservablePoint>();
+        private readonly ObservableCollection<ObservablePoint> _observablePoints = new();
         [Reactive] public int ChanelSelectIndex { get; private set; }
         [ObservableAsProperty] public IEnumerable<int> Channels { get; private set; }
         [Reactive] public int Maxval { get; private set; }
@@ -29,23 +29,23 @@ namespace Client.ViewModel.Operation
         [Reactive] public int Thresh2 { get; private set; }
         [Reactive] public string ThresholdSelectValue { get; private set; }
         [Reactive] public bool IsEnableEqualizeHist { get; set; }
-        public ReadOnlyCollection<string> ThreshouldModes { get; private set; }
+        public IList<string> ThreshouldModes { get; private set; }
 
         private void UpdateBar(int channel)
         {
             SendTime(() =>
             {
                 Mat reMat = _rt.NewMat();
-                var inRanges = new float[2] { 0, 255 };
-                var grayMat = _src.Channels() > 0 ? _rt.T(_src.Split()[channel].Clone()) : _rt.T(_src.Clone());
+                float[] inRanges = new float[2] { 0, 255 };
+                Mat grayMat = _src.Channels() > 0 ? _rt.T(_src.Split()[channel].Clone()) : _rt.T(_src.Clone());
                 if (IsEnableEqualizeHist)
                 {
                     Cv2.EqualizeHist(grayMat, grayMat);
                 }
 
                 Cv2.CalcHist(new[] { grayMat }, new[] { 0 }, null, reMat, 1, new[] { 256 }, new[] { inRanges });
-                var dst1 = _rt.T(reMat.Normalize(0, 255, NormTypes.MinMax));
-                var dst2 = _rt.NewMat();
+                Mat dst1 = _rt.T(reMat.Normalize(0, 255, NormTypes.MinMax));
+                Mat dst2 = _rt.NewMat();
                 dst1.ConvertTo(dst2, MatType.CV_8UC1);
                 dst2.GetArray<byte>(out var vs);
                 Observable.Start(() =>
@@ -63,8 +63,8 @@ namespace Client.ViewModel.Operation
         {
             SendTime(() =>
             {
-                var tmpmat = _rt.NewMat();
-                var grayMat = _src.Channels() > 0 ? _rt.T(_src.Split()[channel].Clone()) : _rt.T(_src.Clone());
+                Mat tmpmat = _rt.NewMat();
+                Mat grayMat = _src.Channels() > 0 ? _rt.T(_src.Split()[channel].Clone()) : _rt.T(_src.Clone());
                 switch (thresholdmethod)
                 {
                     case ThresholdTypes.Binary:
@@ -130,56 +130,42 @@ namespace Client.ViewModel.Operation
         protected override void SetupStart()
         {
             base.SetupStart();
-            ThreshouldModes = new ReadOnlyCollection<string>(Enum.GetNames(typeof(ThresholdTypes)));
+            ThreshouldModes = Enum.GetNames(typeof(ThresholdTypes));
         }
 
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             base.SetupSubscriptions(d);
-
             Series = new ObservableCollection<ISeries> { new ColumnSeries<ObservablePoint> { Values = _observablePoints } };
-
             _imageDataManager.InputMatGuidSubject
-                .Throttle(TimeSpan.FromMilliseconds(100))
                 .WhereNotNull()
                 .Where(guid => CanOperat && ChanelSelectIndex >= 0)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Do(guid => UpdateBar(ChanelSelectIndex))
-                .Subscribe()
+                .Subscribe(guid => UpdateBar(ChanelSelectIndex))
                 .DisposeWith(d);
             _imageDataManager.InputMatGuidSubject
                 .WhereNotNull()
                 .Where(guid => CanOperat && ChanelSelectIndex >= 0 && ThresholdSelectValue != null)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Do(guid => UpdateOutput(Thresh, Maxval, (ThresholdTypes)Enum.Parse(typeof(ThresholdTypes), ThresholdSelectValue), ChanelSelectIndex))
-                .Subscribe()
+                .Subscribe(guid => UpdateOutput(Thresh, Maxval, (ThresholdTypes)Enum.Parse(typeof(ThresholdTypes), ThresholdSelectValue), ChanelSelectIndex))
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.ThresholdSelectValue, x => x.Thresh, x => x.Maxval, x => x.ChanelSelectIndex)
-                .Throttle(TimeSpan.FromMilliseconds(100))
-                .ObserveOn(RxApp.MainThreadScheduler)
                 .Where(str => CanOperat && ThresholdSelectValue != null && ChanelSelectIndex >= 0)
-                .Do(str => UpdateOutput(Thresh, Maxval, (ThresholdTypes)Enum.Parse(typeof(ThresholdTypes), ThresholdSelectValue), ChanelSelectIndex))
-                .Subscribe()
+                .Subscribe(str => UpdateOutput(Thresh, Maxval, (ThresholdTypes)Enum.Parse(typeof(ThresholdTypes), ThresholdSelectValue), ChanelSelectIndex))
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.ChanelSelectIndex, x => x.IsEnableEqualizeHist)
                 .Where(vt => vt.Item1 >= 0 && CanOperat)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Do(i => UpdateBar(ChanelSelectIndex))
-                .Subscribe()
+                .Subscribe(i => UpdateBar(ChanelSelectIndex))
                 .DisposeWith(d);
             _imageDataManager.InputMatGuidSubject
                 .WhereNotNull()
                 .Select(src => _imageDataManager.GetCurrentMat())
                 .Select(src => Enumerable.Range(0, src.Channels()))
                 .Where(vs => vs.Count() > 0)
-                .ObserveOn(RxApp.MainThreadScheduler)
                 .Do(vs => ChanelSelectIndex = 0)
                 .ToPropertyEx(this, x => x.Channels)
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.Thresh1, x => x.Thresh2)
                 .Throttle(TimeSpan.FromMilliseconds(300))
                 .Where(vt => vt.Item1 >= 0 && vt.Item2 > vt.Item1)
-                .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(vt => UpdateOutputFilter(vt.Item1, vt.Item2, ChanelSelectIndex))
                 .DisposeWith(d);
         }

@@ -4,7 +4,7 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reactive.Disposables;
@@ -19,7 +19,7 @@ namespace Client.ViewModel.Operation
         [ObservableAsProperty] public bool BolSigmaIsEnable { get; set; }
         [ObservableAsProperty] public bool BolSizeIsEnable { get; set; }
         [ObservableAsProperty] public bool BolSizeYIsEnable { get; set; }
-        public ReadOnlyCollection<string> FilterModes { get; private set; }
+        public IList<string> FilterModes { get; private set; }
         [Reactive] public int FilterModeSelectIndex { get; set; }
         [Reactive] public int KernelDiam { get; set; }
         [Reactive] public double SigmaColor { get; set; }
@@ -57,53 +57,42 @@ namespace Client.ViewModel.Operation
         protected override void SetupStart()
         {
             base.SetupStart();
-            //CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
-            FilterModes = new ReadOnlyCollection<string>(new[] { "Blur", "Gaussian", "Median", "BilateralFilter" });
+            FilterModes = new[] { "Blur", "Gaussian", "Median", "BilateralFilter" };
         }
 
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             base.SetupSubscriptions(d);
-
             this.WhenAnyValue(x => x.FilterModeSelectIndex)
                 .Select(i => i.Equals(1))
-                .ToPropertyEx(this, x => x.BolSigmaIsEnable, deferSubscription: true)
+                .ToPropertyEx(this, x => x.BolSigmaIsEnable)
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.FilterModeSelectIndex)
                 .Select(i => !i.Equals(2))
-                .ToPropertyEx(this, x => x.BolSizeYIsEnable, deferSubscription: true)
+                .ToPropertyEx(this, x => x.BolSizeYIsEnable)
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.FilterModeSelectIndex)
                 .Select(i => i.Equals(3))
-                .ToPropertyEx(this, x => x.BolSigmaColorAndSpace, deferSubscription: true)
+                .ToPropertyEx(this, x => x.BolSigmaColorAndSpace)
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.FilterModeSelectIndex)
                 .Select(i => !i.Equals(3))
-                .ToPropertyEx(this, x => x.BolSizeIsEnable, deferSubscription: true)
+                .ToPropertyEx(this, x => x.BolSizeIsEnable)
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.SizeX, x => x.SizeY, x => x.SigmaX, x => x.SigmaY)
-                .Where(vt => CanOperat)
-                .Where(vt => vt.Item1 < 3)
-
-                .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
-                .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
-                .Subscribe()
+                .Where(vt => CanOperat && vt.Item1 < 3 && vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
+                .Subscribe(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
                 .DisposeWith(d);
 
             this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.KernelDiam, x => x.SigmaColor, x => x.SigmaSpace)
-                .Where(vt => CanOperat)
-                .Where(vt => vt.Item1.Equals(3))
-
-                .Where(vt => vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
-                .Do(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
-                .Subscribe()
+                .Where(vt => CanOperat && vt.Item1.Equals(3) && vt.Item2 > 0 && vt.Item3 > 0)
+                .Subscribe(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
                 .DisposeWith(d);
             _imageDataManager.InputMatGuidSubject
                 .WhereNotNull()
                 .Where(guid => CanOperat)
                 .Log(this, "图像触发选择更新")
-                .Do(guid => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
-                .Subscribe()
+                .Subscribe(guid => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
                 .DisposeWith(d);
         }
     }

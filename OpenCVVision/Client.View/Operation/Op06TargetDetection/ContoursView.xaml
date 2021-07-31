@@ -11,58 +11,40 @@
     d:DesignWidth="300"
     x:TypeArguments="operation:ContoursViewModel"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary Source="\Dictionary.xaml" />
-    </UserControl.Resources>
+
     <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <TextBlock
-                x:Name="Title"
+        <StackPanel>
+            <Label
                 Margin="{StaticResource marginOdd}"
+                Content="轮廓"
                 FontSize="22"
-                FontWeight="UltraBlack"
-                Text="轮廓" />
-
-            <StackPanel Grid.Row="2" Margin="8,0">
-                <ComboBox
-                    x:Name="cbxRetrievalModes"
-                    Margin="{StaticResource marginOdd}"
-                    materialDesign:HintAssist.Hint="RetrievalModes" />
-                <ComboBox
-                    x:Name="cbxContourApproximationModes"
-                    Margin="{StaticResource marginEven}"
-                    materialDesign:HintAssist.Hint="ContourApproximationModes" />
-                <ComboBox
-                    x:Name="cbxContourIdItems"
-                    Margin="{StaticResource marginOdd}"
-                    materialDesign:HintAssist.Hint="ContourIdItems">
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
-                </ComboBox>
-            </StackPanel>
-            <TextBlock
-                Grid.Row="3"
-                Margin="{StaticResource marginOdd}"
-                FontSize="22"
-                FontWeight="UltraBlack"
-                Text="外接形状" />
-            <StackPanel Grid.Row="4" Margin="8,0">
-                <ComboBox
-                    x:Name="cbxBoundingShapes"
-                    Margin="{StaticResource marginOdd}"
-                    materialDesign:HintAssist.Hint="BoundingShapes" />
-            </StackPanel>
-        </Grid>
+                FontWeight="UltraBlack" />
+            <materialDesign:Card>
+                <StackPanel Grid.Row="2" Margin="{StaticResource marginEven}">
+                    <ComboBox
+                        x:Name="cbxRetrievalModes"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="RetrievalModes" />
+                    <ComboBox
+                        x:Name="cbxContourApproximationModes"
+                        Margin="{StaticResource marginOdd}"
+                        materialDesign:HintAssist.Hint="ContourApproximationModes" />
+                    <ComboBox
+                        x:Name="cbxContourIdItems"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="ContourIdItems">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <ComboBox
+                        x:Name="cbxBoundingShapes"
+                        Margin="{StaticResource marginOdd}"
+                        materialDesign:HintAssist.Hint="BoundingShapes" />
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
     </materialDesign:Card>
 </rxui:ReactiveUserControl>

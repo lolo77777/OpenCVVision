@@ -18,7 +18,7 @@ namespace Client.View.Operation
             {
                 this.OneWayBind(ViewModel, vm => vm.ImageItems, v => v.cbxImageItems1.ItemsSource).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.ImageItems, v => v.cbxImageItems2.ItemsSource).DisposeWith(d);
-                this.OneWayBind(ViewModel, vm => vm.IsOperaEnable, v => v.sPanel.IsEnabled).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.IsOperaEnable, v => v.cbxOperaMethod.IsEnabled).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.OperaMethodItems, v => v.cbxOperaMethod.ItemsSource).DisposeWith(d);
                 this.WhenAnyValue(x => x.cbxImageItems1.SelectedValue)
                     .WhereNotNull()

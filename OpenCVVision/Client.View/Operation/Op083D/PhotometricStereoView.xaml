@@ -11,44 +11,40 @@
     d:DesignWidth="300"
     x:TypeArguments="operation:PhotometricStereoViewModel"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary Source="\Dictionary.xaml" />
-    </UserControl.Resources>
-    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock
-                x:Name="Title"
-                Margin="{StaticResource marginOdd}"
-                FontSize="22"
-                FontWeight="UltraBlack"
-                Text="PhotemetricStereo" />
-            <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
-                <TextBlock
-                    Margin="{StaticResource marginOdd}"
-                    FontSize="16"
-                    LineHeight="30"
-                    Text="示例为光度立体法；通过使用铬金属球在多角度光源下做图像标定光源向量，在同等条件下拍摄物体，计算物体表面法向量与高度信息；"
-                    TextWrapping="Wrap" />
-                <StackPanel Orientation="Horizontal">
 
-                    <Button
-                        x:Name="btnGotoSample"
-                        Grid.Column="1"
-                        Width="36"
-                        Height="36"
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
+        <StackPanel>
+
+            <Label
+                Margin="{StaticResource marginOdd}"
+                Content="PhotemetricStereo"
+                FontSize="22"
+                FontWeight="UltraBlack" />
+            <materialDesign:Card>
+                <StackPanel Margin="{StaticResource marginEven}">
+                    <TextBlock
                         Margin="{StaticResource marginOdd}"
-                        HorizontalAlignment="Right"
-                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                        Style="{StaticResource MaterialDesignIconButton}"
-                        ToolTip="示例">
-                        <materialDesign:PackIcon Kind="Jump" />
-                    </Button>
+                        FontSize="16"
+                        LineHeight="30"
+                        Text="示例为光度立体法；通过使用铬金属球在多角度光源下做图像标定光源向量，在同等条件下拍摄物体，计算物体表面法向量与高度信息；"
+                        TextWrapping="Wrap" />
+                    <StackPanel Orientation="Horizontal">
+
+                        <Button
+                            x:Name="btnGotoSample"
+                            Grid.Column="1"
+                            Width="36"
+                            Height="36"
+                            Margin="{StaticResource marginOdd}"
+                            HorizontalAlignment="Right"
+                            Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="示例">
+                            <materialDesign:PackIcon Kind="Jump" />
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Grid>
+            </materialDesign:Card>
+        </StackPanel>
     </materialDesign:Card>
 </rxui:ReactiveUserControl>

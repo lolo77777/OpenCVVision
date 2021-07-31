@@ -14,39 +14,37 @@ namespace Client.ViewModel
 {
     public class NavigationViewModel : ViewModelBase
     {
-        [Reactive] public IEnumerable<NaviItem> NaviItems { get; private set; } = new List<NaviItem>();
+        [Reactive] public IList<NaviItem> NaviItems { get; private set; } = new List<NaviItem>();
         [Reactive] public int NaviSelectItemIndex { get; private set; }
 
-        private NaviItem GetNaviItem(Type type)
+        private static NaviItem GetNaviItem(Type type)
         {
-            var info = OpStaticMethod.GetOpInfo(type);
+            (double id, PackIconKind icon, string info) info = OpStaticMethod.GetOpInfo(type);
             return new NaviItem { Id = info.id, OperaPanelInfo = info.info, Icon = info.icon };
         }
 
-        private IEnumerable<NaviItem> SetItems(IEnumerable<Type> types)
+        private static IList<NaviItem> SetItems(IList<Type> types)
         {
-            return types.ToList().Select(t => GetNaviItem(t)).OrderBy(nit => nit.Id);
+            return types.ToList().Select(t => GetNaviItem(t)).OrderBy(nit => nit.Id).ToList();
         }
 
         protected override void SetupStart()
         {
             base.SetupStart();
-            var pathbase = AppDomain.CurrentDomain.BaseDirectory;
-            var dllpath = $@"{pathbase}\Client.ViewModel.dll";
-            var types = Assembly.LoadFrom(dllpath).GetTypes().Where(t => t.IsSubclassOf(typeof(OperaViewModelBase)));
+            string pathbase = AppDomain.CurrentDomain.BaseDirectory;
+            string pathDll = $@"{pathbase}\Client.ViewModel.dll";
+            IList<Type> types = Assembly.LoadFrom(pathDll).GetTypes().Where(t => t.IsSubclassOf(typeof(OperaViewModelBase))).ToList();
             MessageBus.Current.SendMessage(types);
         }
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             base.SetupSubscriptions(d);
             this.WhenAnyValue(x => x.NaviSelectItemIndex)
-                .ObserveOn(RxApp.MainThreadScheduler)
                 .Where(ind => ind >= 0 && NaviItems.Count() > ind)
-                .Do(ind => MessageBus.Current.SendMessage(NaviItems.ElementAt(ind)))
-                .Subscribe()
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(ind => MessageBus.Current.SendMessage(NaviItems.ElementAt(ind)))
                 .DisposeWith(d);
-
-            MessageBus.Current.Listen<IEnumerable<Type>>()
+            MessageBus.Current.Listen<IList<Type>>()
                 .WhereNotNull()
                 .Select(vs => SetItems(vs))
                 .BindTo(this, x => x.NaviItems)

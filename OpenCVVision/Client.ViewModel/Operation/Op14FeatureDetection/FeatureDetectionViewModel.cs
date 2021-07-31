@@ -21,8 +21,8 @@ namespace Client.ViewModel.Operation
     public class FeatureDetectionViewModel : OperaViewModelBase
     {
         private ReadOnlyObservableCollection<string> _imageItems;
-        public IEnumerable<string> FeatureDetectMethodItems { get; private set; }
-        public IEnumerable<string> MatchMethodItems { get; private set; }
+        public IList<string> FeatureDetectMethodItems { get; private set; }
+        public IList<string> MatchMethodItems { get; private set; }
         [Reactive] public string FeatureDetectMethodSelectValue { get; private set; }
         public ReadOnlyObservableCollection<string> ImageItems => _imageItems;
         public ReactiveCommand<Unit, Unit> MatchCommand { get; private set; }
@@ -43,7 +43,7 @@ namespace Client.ViewModel.Operation
         protected override void SetupCommands()
         {
             base.SetupCommands();
-            var matchCanExe = this.WhenAnyValue(x => x.FirstImageSelectValue, x => x.SecondImageSelectValue, x => x.FeatureDetectMethodSelectValue, x => x.MatchMethod
+            IObservable<bool> matchCanExe = this.WhenAnyValue(x => x.FirstImageSelectValue, x => x.SecondImageSelectValue, x => x.FeatureDetectMethodSelectValue, x => x.MatchMethod
                     , (fir, sec, feature, match) => fir != null && sec != null && feature != null && match != null && fir != sec);
             MatchCommand = ReactiveCommand.Create(Match, matchCanExe);
         }
@@ -122,7 +122,6 @@ namespace Client.ViewModel.Operation
                 Mat dst2 = _rt.T(_imageDataManager.GetImage(SecondImageSelectValue).ImageMat.Clone());
                 Mat dst1 = _rt.T(_imageDataManager.GetImage(FirstImageSelectValue).ImageMat.Clone());
                 Mat reMat = _rt.NewMat();
-
                 Mat descriptors1 = _rt.NewMat();
                 Mat descriptors2 = _rt.NewMat();
                 KeyPoint[] kps1 = null;
@@ -134,59 +133,49 @@ namespace Client.ViewModel.Operation
                         aKAZE.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         aKAZE.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
-
                     case "Sift":
                         SIFT siftSam = SIFT.Create();
                         siftSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         siftSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
-
                     case "Surf":
                         SURF surfSam = SURF.Create(500);
                         surfSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         surfSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
-
                     case "Brisk":
                         BRISK briskSam = BRISK.Create();
                         briskSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         briskSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
-
                     case "Orb":
                         ORB orgSam = ORB.Create();
                         orgSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         orgSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
-
                     default:
                         break;
                 }
                 NormTypes type = FeatureDetectMethodSelectValue.Equals("Sift") || FeatureDetectMethodSelectValue.Equals("Surf") ?
                           NormTypes.L2 : NormTypes.Hamming;
                 DMatch[] matches = null;
-
                 switch (MatchMethod)
                 {
                     case "BfMatcher":
-                        BFMatcher bfmatcher = new BFMatcher(type);
-
+                        BFMatcher bfmatcher = new(type);
                         if (IsEnableKnnMatch)
                         {
                             DMatch[][] matchesKnn = bfmatcher.KnnMatch(descriptors1, descriptors2, 2);
-
                             matches = matchesKnn.Where(mt => mt[0].Distance < 0.7 * mt[1].Distance).Select(mt => mt[0]).ToArray();
                         }
                         else
                         {
                             matches = bfmatcher.Match(descriptors1, descriptors2);
                         }
-
                         break;
 
                     case "FlannMatcher":
                         FlannBasedMatcher flannBasedMatcher = new FlannBasedMatcher();
-
                         if (descriptors1.Type() != MatType.CV_32F && descriptors2.Type() != MatType.CV_32F)
                         {
                             descriptors1.ConvertTo(descriptors1, MatType.CV_32F);
@@ -201,31 +190,19 @@ namespace Client.ViewModel.Operation
                         {
                             matches = flannBasedMatcher.Match(descriptors1, descriptors2);
                         }
-
                         break;
-
                     default:
                         break;
                 }
-                DMatch[] dMatchesFilter = null;
-                if (IsEnableMinDis)
-                {
-                    dMatchesFilter = Match_min(matches).ToArray();
-                }
-                else
-                {
-                    dMatchesFilter = matches;
-                }
-
+                DMatch[] dMatchesFilter = IsEnableMinDis ? Match_min(matches).ToArray() : matches;
                 if (dMatchesFilter.Length >= 4 && IsEnableRANSAC)
                 {
                     (List<DMatch>, List<Point2d>, List<Point2d>) goodRansac = Ransac(dMatchesFilter, kps1, kps2);
                     Cv2.DrawMatches(dst1, kps1, dst2, kps2, goodRansac.Item1, reMat);
                     IEnumerable<Point2f> ptf1 = goodRansac.Item2.Select(p => new Point2f((float)p.X, (float)p.Y));
                     IEnumerable<Point2f> ptf2 = goodRansac.Item3.Select(p => new Point2f((float)p.X, (float)p.Y));
-                    var wh = Cv2.GetAffineTransform(ptf2, ptf1);
+                    Mat wh = Cv2.GetAffineTransform(ptf2, ptf1);
                     Mat rematW = _rt.NewMat();
-
                     Cv2.WarpAffine(dst2, rematW, wh, dst1.Size());
                     _imageDataManager.AddImage("矫正后图像", rematW.Clone());
                 }
@@ -234,9 +211,8 @@ namespace Client.ViewModel.Operation
                     Cv2.DrawMatches(dst1, kps1, dst2, kps2, dMatchesFilter, reMat);
                     IEnumerable<Point2f> ptf1 = dMatchesFilter.Select(t => kps1[t.QueryIdx].Pt);
                     IEnumerable<Point2f> ptf2 = dMatchesFilter.Select(t => kps2[t.TrainIdx].Pt);
-                    Mat wh = Cv2.GetAffineTransform(ptf2, ptf1);
+                    Mat wh = _rt.T(Cv2.GetAffineTransform(ptf2, ptf1));
                     Mat rematW = _rt.NewMat();
-
                     Cv2.WarpAffine(dst2, rematW, wh, dst1.Size());
                     _imageDataManager.AddImage("矫正后图像", rematW.Clone());
                 }
@@ -252,12 +228,12 @@ namespace Client.ViewModel.Operation
         /// <returns></returns>
         private static List<DMatch> Match_min(DMatch[] matches)
         {
-            var reList = new List<DMatch>();
-            var minDist = 10000f;
-            var maxDist = 0f;
+            List<DMatch> reList = new List<DMatch>();
+            float minDist = 10000f;
+            float maxDist = 0f;
             for (int i = 0; i < matches.Length; i++)
             {
-                var dist = matches[i].Distance;
+                float dist = matches[i].Distance;
                 minDist = dist < minDist ? dist : minDist;
                 maxDist = dist > maxDist ? dist : maxDist;
             }
@@ -278,7 +254,7 @@ namespace Client.ViewModel.Operation
         /// <param name="queryKeyPoints"></param>
         /// <param name="trainKeyPoint"></param>
         /// <returns></returns>
-        private static (List<DMatch>, List<Point2d>, List<Point2d>) Ransac(DMatch[] dMatches, KeyPoint[] queryKeyPoints, KeyPoint[] trainKeyPoint)
+        private (List<DMatch>, List<Point2d>, List<Point2d>) Ransac(DMatch[] dMatches, KeyPoint[] queryKeyPoints, KeyPoint[] trainKeyPoint)
         {
             List<DMatch> reList = new();
             List<Point2d> src1Pts = new();
@@ -291,7 +267,7 @@ namespace Client.ViewModel.Operation
                 srcPoints.Add(new Point2d(queryKeyPoints[dMatches[i].QueryIdx].Pt.X, queryKeyPoints[dMatches[i].QueryIdx].Pt.Y));
                 dstPoints.Add(new Point2d(trainKeyPoint[dMatches[i].TrainIdx].Pt.X, trainKeyPoint[dMatches[i].TrainIdx].Pt.Y));
             }
-            Mat inliersMask = new Mat();
+            Mat inliersMask = _rt.NewMat();
             Cv2.FindHomography(srcPoints, dstPoints, HomographyMethods.Ransac, 5, inliersMask);
             inliersMask.GetArray<byte>(out var inliersArray);
             for (int i = 0; i < inliersArray.Length; i++)

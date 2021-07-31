@@ -1,105 +1,92 @@
 ﻿<rxui:ReactiveUserControl
     x:Class="Client.View.Operation.FeatureDetectionView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Client.View.Operation"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
-    xmlns:rxui="http://reactiveui.net"
-    d:DesignHeight="450"
+    d:DesignHeight="550"
     d:DesignWidth="300"
     x:TypeArguments="operation:FeatureDetectionViewModel"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary Source="\Dictionary.xaml" />
-    </UserControl.Resources>
+
     <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock
-                x:Name="Title"
+        <StackPanel>
+
+            <Label
                 Margin="{StaticResource marginOdd}"
+                Content="FeatureDetection"
                 FontSize="22"
-                FontWeight="UltraBlack"
-                Text="FeatureDetection" />
-            <Grid Grid.Row="1" Margin="{StaticResource marginEven}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="AUto" />
-                    <RowDefinition Height="AUto" />
-                </Grid.RowDefinitions>
-                <materialDesign:Card>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock
+                FontWeight="UltraBlack" />
+
+            <materialDesign:Card>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Margin="{StaticResource marginEven}"
+                        Content="DetectMethod"
+                        FontSize="18" />
+                    <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
+
+                        <ComboBox
+                            x:Name="cbxFeatureDetectMethod"
                             Margin="{StaticResource marginEven}"
-                            FontSize="18"
-                            Text="DetectMethod" />
-                        <StackPanel Grid.Row="1" Margin="{StaticResource marginOdd}">
+                            materialDesign:HintAssist.Hint="FeatureDetectMethod" />
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Margin="{StaticResource marginOdd}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Margin="{StaticResource marginEven}"
+                        Content="PointMatching"
+                        FontSize="18" />
+                    <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
 
-                            <ComboBox
-                                x:Name="cbxFeatureDetectMethod"
-                                Margin="{StaticResource marginEven}"
-                                materialDesign:HintAssist.Hint="FeatureDetectMethod" />
-
-                        </StackPanel>
-                    </Grid>
-                </materialDesign:Card>
-                <materialDesign:Card Grid.Row="1">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock
+                        <ComboBox
+                            x:Name="cbxMatchMethod"
+                            Margin="{StaticResource marginEven}"
+                            materialDesign:HintAssist.Hint="MatchMethod" />
+                        <ComboBox
+                            x:Name="cbxImageItems1"
                             Margin="{StaticResource marginOdd}"
-                            FontSize="18"
-                            Text="PointMatching" />
-                        <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
-
-                            <ComboBox
-                                x:Name="cbxMatchMethod"
+                            materialDesign:HintAssist.Hint="FirstImage" />
+                        <ComboBox
+                            x:Name="cbxImageItems2"
+                            Margin="{StaticResource marginEven}"
+                            materialDesign:HintAssist.Hint="SecondImage" />
+                        <StackPanel Margin="{StaticResource marginOdd}" Orientation="Vertical">
+                            <CheckBox
+                                x:Name="cbIsEnableKnnMatch"
                                 Margin="{StaticResource marginEven}"
-                                materialDesign:HintAssist.Hint="MatchMethod" />
-                            <ComboBox
-                                x:Name="cbxImageItems1"
+                                Content="KnnMatch"
+                                IsChecked="False" />
+                            <CheckBox
+                                x:Name="cbIsEnableMinDis"
                                 Margin="{StaticResource marginOdd}"
-                                materialDesign:HintAssist.Hint="FirstImage" />
-                            <ComboBox
-                                x:Name="cbxImageItems2"
+                                Content="MinDisFilter" />
+                            <CheckBox
+                                x:Name="cbIsEnableRANSAC"
                                 Margin="{StaticResource marginEven}"
-                                materialDesign:HintAssist.Hint="SecondImage" />
-                            <StackPanel Margin="{StaticResource marginOdd}" Orientation="Vertical">
-                                <CheckBox
-                                    Margin="{StaticResource marginEven}"
-                                    x:Name="cbIsEnableKnnMatch"
-                                    Content="KnnMatch"
-                                    IsChecked="False" />
-                                <CheckBox Margin="{StaticResource marginOdd}" x:Name="cbIsEnableMinDis" Content="MinDisFilter" />
-                                <CheckBox
-                                    Margin="{StaticResource marginEven}"
-                                    x:Name="cbIsEnableRANSAC"
-                                    Content="RANSACFilter"
-                                    IsChecked="True" />
-
-
-
-                            </StackPanel>
-                            <Button
-                                x:Name="btnImage"
-                                Margin="{StaticResource marginOdd}"
-                                Content="执行匹配" />
+                                Content="RANSACFilter"
+                                IsChecked="True" />
                         </StackPanel>
-                    </Grid>
-                </materialDesign:Card>
-            </Grid>
-        </Grid>
+                        <Button
+                            x:Name="btnImage"
+                            Margin="{StaticResource marginOdd}"
+                            Content="执行匹配" />
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </StackPanel>
     </materialDesign:Card>
 </rxui:ReactiveUserControl>

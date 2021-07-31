@@ -25,24 +25,23 @@ namespace Client.ViewModel.Operation
         {
             SendTime(() =>
             {
-                var a = new[] { 1, 2, 3, 4, 5 };
+                int[] a = new[] { 1, 2, 3, 4, 5 };
 
-                var dst = _rt.NewMat();
+                Mat dst = _rt.NewMat();
                 switch (roiMode)
                 {
                     case "Roi":
-
                         dst = _src[rect].Clone();
                         break;
 
                     case "Mask1":
-                        var mask = _rt.T((Mat.Zeros(_src.Size(), MatType.CV_8UC1)).ToMat());
+                        Mat mask = _rt.T(Mat.Zeros(_src.Size(), MatType.CV_8UC1).ToMat());
                         mask[rect].SetTo(255);
                         _src.CopyTo(dst, mask);
                         break;
 
                     case "Mask2":
-                        var mask1 = _rt.T(Mat.Zeros(_src.Size(), MatType.CV_8UC1).ToMat());
+                        Mat mask1 = _rt.T(Mat.Zeros(_src.Size(), MatType.CV_8UC1).ToMat());
                         mask1[rect].SetTo(255);
                         _src.CopyTo(dst);
                         dst.SetTo(0, mask1);
@@ -60,7 +59,7 @@ namespace Client.ViewModel.Operation
         {
             base.SetupSubscriptions(d);
 
-            var currentMatOb = _imageDataManager.InputMatGuidSubject
+            IObservable<Guid?> currentMatOb = _imageDataManager.InputMatGuidSubject
                 .ObserveOn(RxApp.MainThreadScheduler);
             currentMatOb
                 .Select(guid => _imageDataManager.GetCurrentMat())

@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Reactive.Subjects;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Data;
+﻿using Client.Data;
 using Client.Model.Entity;
 
 using DynamicData;
 
 using OpenCvSharp;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Subjects;
+using System.Text;
 
 namespace Client.Model.Service
 {
@@ -34,18 +32,17 @@ namespace Client.Model.Service
         private void SampleData()
         {
             Mat mat = Cv2.ImRead(FilePath.Image.Ta);
-
             AddImage("Sam1", mat);
         }
 
         public bool AddImage(string imageMarkTxt, Mat mat)
         {
-            var itemCount = SourceCacheImageData.Items.Where(it => it.TxtMarker.Equals(imageMarkTxt)).Count();
+            int itemCount = SourceCacheImageData.Items.Count(it => it.TxtMarker.Equals(imageMarkTxt, StringComparison.Ordinal));
             if (itemCount.Equals(0))
             {
                 try
                 {
-                    var guid = Guid.NewGuid();
+                    Guid guid = Guid.NewGuid();
                     SourceCacheImageData.AddOrUpdate(new ImageData { ImageId = guid, TxtMarker = imageMarkTxt, ImageMat = mat });
                     InputMatGuidSubject.OnNext(guid);
                     return true;
@@ -57,39 +54,27 @@ namespace Client.Model.Service
             }
             else
             {
-                var imageMarkTxtNew = $"{imageMarkTxt}_{DateTime.Now.ToShortTimeString()}";
-                return AddImage(imageMarkTxtNew, mat);
+                StringBuilder strBuilderTxtNew = new();
+                strBuilderTxtNew.Append(imageMarkTxt);
+                strBuilderTxtNew.Append(DateTime.Now.ToLongTimeString());
+                return AddImage(strBuilderTxtNew.ToString(), mat);
             }
         }
 
         public void AddOutputImage(string outputImageMarkTxt)
         {
-            var str = string.IsNullOrWhiteSpace(outputImageMarkTxt) ? "dst" : outputImageMarkTxt;
+            string str = string.IsNullOrWhiteSpace(outputImageMarkTxt) ? "dst" : outputImageMarkTxt;
             AddImage(str, OutputMat);
         }
 
         public Mat GetCurrentMat()
         {
-            if (CurrentId.HasValue)
-            {
-                return GetImage(CurrentId).ImageMat;
-            }
-            else
-            {
-                return null;
-            }
+            return CurrentId.HasValue ? GetImage(CurrentId).ImageMat : null;
         }
 
         public ImageData GetImage(Guid? guid)
         {
-            if (guid.HasValue)
-            {
-                return SourceCacheImageData.Items.Single(t => t.ImageId.Equals(guid));
-            }
-            else
-            {
-                return null;
-            }
+            return guid.HasValue ? SourceCacheImageData.Items.Single(t => t.ImageId.Equals(guid)) : null;
         }
 
         public bool IsExsitByMark(string markTxt)
@@ -106,18 +91,11 @@ namespace Client.Model.Service
         {
             if (CurrentId.HasValue)
             {
-                var bol = RemoveImage(CurrentId);
+                bool bol = RemoveImage(CurrentId);
 
                 if (bol)
                 {
-                    if (SourceCacheImageData.Items.Count() > 0)
-                    {
-                        CurrentId = SourceCacheImageData.Items.LastOrDefault().ImageId;
-                    }
-                    else
-                    {
-                        CurrentId = null;
-                    }
+                    CurrentId = SourceCacheImageData.Items.Any() ? SourceCacheImageData.Items.LastOrDefault().ImageId : null;
                     InputMatGuidSubject.OnNext(CurrentId);
                     return true;
                 }
@@ -131,7 +109,7 @@ namespace Client.Model.Service
 
         public bool RemoveIamge(string imageMarkTxt)
         {
-            var itemTmp = SourceCacheImageData.Items.Where(it => it.TxtMarker.Equals(imageMarkTxt)).Select(t => t).FirstOrDefault();
+            ImageData itemTmp = SourceCacheImageData.Items.Where(it => it.TxtMarker.Equals(imageMarkTxt, StringComparison.Ordinal)).Select(t => t).FirstOrDefault();
             try
             {
                 if (itemTmp is not null)
@@ -165,7 +143,7 @@ namespace Client.Model.Service
 
         public ImageData GetImage(string markTxt)
         {
-           return    SourceCacheImageData.Items.Where(it => it.TxtMarker.Equals(markTxt)).FirstOrDefault();
+            return SourceCacheImageData.Items.FirstOrDefault(it => it.TxtMarker.Equals(markTxt, StringComparison.Ordinal));
         }
     }
 }

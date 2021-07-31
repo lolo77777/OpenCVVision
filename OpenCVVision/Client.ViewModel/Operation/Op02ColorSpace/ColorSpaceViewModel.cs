@@ -3,9 +3,10 @@
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
+using Splat;
+
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -15,16 +16,18 @@ namespace Client.ViewModel.Operation
     [OperationInfo(2, "色彩空间", MaterialDesignThemes.Wpf.PackIconKind.Color)]
     public class ColorSpaceViewModel : OperaViewModelBase
     {
-        [ObservableAsProperty] public IEnumerable<int> Channels { get; set; }
+        [ObservableAsProperty] public IList<int> Channels { get; set; }
         [Reactive] public int ChannelSelectInd { get; set; }
-        public ReadOnlyCollection<string> ColorModes { get; private set; }
+        public IList<string> ColorModes { get; private set; }
         [Reactive] public int ColorModeSelectInd { get; set; }
         [Reactive] public bool IsEnableInverse { get; set; }
 
         private void UpdateOutput(int colorModeInd, int channel)
         {
+            this.Log().Debug("色彩转换");
             SendTime(() =>
             {
+
                 if (!_src.Channels().Equals(1))
                 {
                     Mat dst = _rt.NewMat();
@@ -46,7 +49,7 @@ namespace Client.ViewModel.Operation
         {
             SendTime(() =>
             {
-                var dst = _rt.NewMat();
+                Mat dst = _rt.NewMat();
                 dst = _src;
                 if (isInv)
                 {
@@ -59,8 +62,7 @@ namespace Client.ViewModel.Operation
         protected override void SetupStart()
         {
             base.SetupStart();
-            //CanOperat = _imageDataManager.CurrentId.HasValue ? _imageDataManager.GetCurrentMat().Channels() > 1 : false;
-            ColorModes = new ReadOnlyCollection<string>(new[] { "Gray", "BGR", "HSV", "HLS" });
+            ColorModes = new[] { "Gray", "BGR", "HSV", "HLS" };
         }
 
         protected override void SetupSubscriptions(CompositeDisposable d)
@@ -69,25 +71,21 @@ namespace Client.ViewModel.Operation
 
             this.WhenAnyValue(x => x.ColorModeSelectInd)
                 .Where(i => i >= 0)
-                .Select(i => i.Equals(0) ? (new[] { 0 }).AsEnumerable() : Enumerable.Range(-1, 4))
-                .ToPropertyEx(this, x => x.Channels, deferSubscription: true)
+                .Select(i => i.Equals(0) ? (new[] { 0 }) : Enumerable.Range(-1, 4).ToArray())
+                .ToPropertyEx(this, x => x.Channels)
                 .DisposeWith(d);
 
             this.WhenAnyValue(x => x.ColorModeSelectInd, x => x.ChannelSelectInd)
+                .Throttle(TimeSpan.FromMilliseconds(70))
                 .Where(i => i.Item1 >= 0 && i.Item2 >= 0 && Channels != null && Channels.Any())
                 .Where(guid => CanOperat)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Do(i => UpdateOutput(i.Item1, i.Item2))
-                .Subscribe()
+                .Subscribe(i => UpdateOutput(i.Item1, i.Item2))
                 .DisposeWith(d);
 
             _imageDataManager.InputMatGuidSubject
                 .WhereNotNull()
-                .Log(this, CanOperat.ToString())
                 .Where(guid => CanOperat)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Do(guid => UpdateOutput(ColorModeSelectInd, ChannelSelectInd))
-                .Subscribe()
+                .Subscribe(guid => UpdateOutput(ColorModeSelectInd, ChannelSelectInd))
                 .DisposeWith(d);
 
             _imageDataManager.InputMatGuidSubject
@@ -96,10 +94,10 @@ namespace Client.ViewModel.Operation
                 .BindTo(this, x => x.CanOperat)
                 .DisposeWith(d);
             this.WhenAnyValue(x => x.IsEnableInverse)
-                .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(bol => UpdateOutputInv(bol))
                 .DisposeWith(d);
-            _imageDataManager.RaiseCurrent();
+            //_imageDataManager.RaiseCurrent();
+
         }
     }
 }

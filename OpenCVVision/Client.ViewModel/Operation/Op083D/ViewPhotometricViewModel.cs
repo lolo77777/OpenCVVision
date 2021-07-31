@@ -27,7 +27,7 @@ namespace Client.ViewModel.Operation
         public ReactiveCommand<Unit, Unit> DisplayCommand { get; set; }
         public ReactiveCommand<Unit, Unit> NaviBackCommand { get; set; }
         [Reactive] public int SampleSelectIndex { get; set; }
-        public IEnumerable<string> SampleItems { get; } = new[] { "buddha", "cat", "gray", "horse", "owl", "rock" };
+        public IList<string> SampleItems { get; } = new[] { "buddha", "cat", "gray", "horse", "owl", "rock" };
 
         public ViewPhotometricViewModel()
         {
@@ -45,7 +45,11 @@ namespace Client.ViewModel.Operation
                 mainScreen.Router.Navigate.Execute(_resolver.GetService<ShellViewModel>())
                 .Select(_ => Unit.Default));
         }
-
+        protected override void SetupDeactivate()
+        {
+            base.SetupDeactivate();
+            _resourcesTracker.Dispose();
+        }
         #region PrivateFunction
 
         private void Display()

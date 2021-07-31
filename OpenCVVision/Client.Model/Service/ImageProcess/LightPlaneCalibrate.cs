@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Client.Data;
+﻿using Client.Data;
 
 using OpenCvSharp;
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
 namespace Client.Model.Service.ImageProcess
 {
-    public class LightPlaneCalibrate
+    public class LightPlaneCalibrate : IDisposable
     {
+        private ResourcesTracker _resourcesTracker = new();
         private Size boardSize = new Size(11, 8);
         private string datapath = FilePath.File.LaserLineCaliYaml;
         private float gap = 10f;
@@ -24,7 +23,7 @@ namespace Client.Model.Service.ImageProcess
         /// <param name="rowstart">起始行数</param>
         /// <param name="display">是否使用CV窗口显示</param>
         /// <returns></returns>
-        private static (Point2d[] laserPoint2f, Point[] laserPoint, Mat mat) GetLineGray(Mat roi, int rowstart, bool display = false)
+        private (Point2d[] laserPoint2f, Point[] laserPoint, Mat mat) GetLineGray(Mat roi, int rowstart, bool display = false)
         {
             Point2d[] relist2F = new Point2d[roi.Width];
             Point[] relist = new Point[roi.Width];
@@ -58,8 +57,8 @@ namespace Client.Model.Service.ImageProcess
                 relist[x] = new Point(x, rowstart + Math.Round(location, 0));
             }
 
-            Mat remat = roi.CvtColor(ColorConversionCodes.GRAY2BGR);
-            Vec3b color = new Vec3b(0, 0, 250);
+            Mat remat = _resourcesTracker.T(roi.CvtColor(ColorConversionCodes.GRAY2BGR));
+            Vec3b color = new(0, 0, 250);
 
             foreach (Point p in relist)
             {
@@ -74,7 +73,6 @@ namespace Client.Model.Service.ImageProcess
                 Cv2.ImShow("src", remat);
                 Cv2.WaitKey();
             }
-
             return (relist2F, relist, remat);
         }
 
@@ -96,10 +94,10 @@ namespace Client.Model.Service.ImageProcess
         private bool fitPlane(List<Point3f> input, out Mat coeffient)
         {
             bool statu = true;
-            coeffient = new Mat();
-            Mat dst = new Mat(3, 3, MatType.CV_32F, new Scalar(0));//初始化系数矩阵A
-            Mat outM = new Mat(3, 1, MatType.CV_32F, new Scalar(0));//初始化矩阵b
-            for (int i = 0; i < input.Count(); i++)
+            coeffient = _resourcesTracker.NewMat();
+            Mat dst = _resourcesTracker.T(new Mat(3, 3, MatType.CV_32F, new Scalar(0)));//初始化系数矩阵A
+            Mat outM = _resourcesTracker.T(new Mat(3, 1, MatType.CV_32F, new Scalar(0)));//初始化矩阵b
+            for (int i = 0; i < input.Count; i++)
             {
                 //计算3*3的系数矩阵
                 dst.At<float>(0, 0) = dst.At<float>(0, 0) + (float)Math.Pow(input[i].X, 2);
@@ -126,10 +124,10 @@ namespace Client.Model.Service.ImageProcess
             }
             else
             {
-                var inv = dst.Inv();
+                MatExpr inv = _resourcesTracker.T(dst.Inv());
 
                 coeffient = (inv * outM).ToMat();//计算输出
-                coeffient.GetArray<float>(out var coeffienttmp);
+                //coeffient.GetArray<float>(out var coeffienttmp);
                 return true;
             }
         }
@@ -142,39 +140,40 @@ namespace Client.Model.Service.ImageProcess
         /// <param name="Tv"></param>
         /// <param name="cameraInMat"></param>
         /// <returns></returns>
-        private IEnumerable<Point3f> frameToCamera(IEnumerable<Point2f> framPoints, Vec3d Rv, Vec3d Tv, Mat cameraInMat)
+        private IList<Point3f> frameToCamera(IList<Point2f> framPoints, Vec3d Rv, Vec3d Tv, Mat cameraInMat)
         {
-            var rePts = new List<Point3f>();
+            List<Point3f> rePts = new();
 
-            var camInMatInv = cameraInMat.Inv();
-            var rvtmp = new double[] { Rv.Item0, Rv.Item1, Rv.Item2 };
+            MatExpr camInMatInv = _resourcesTracker.T(cameraInMat.Inv());
+            double[] rvtmp = new double[] { Rv.Item0, Rv.Item1, Rv.Item2 };
 
             Cv2.Rodrigues(rvtmp, out var RvMatrix, out _);
-            var RvMat = (new Mat(3, 3, MatType.CV_64FC1, RvMatrix));
-
-            var TvMatrix = new double[] { Tv.Item0, Tv.Item1, Tv.Item2 };
-
-            var RTDouble = new double[16]
+            Mat RvMat = _resourcesTracker.T(new Mat(3, 3, MatType.CV_64FC1, RvMatrix));
+            double[] TvMatrix = new double[] { Tv.Item0, Tv.Item1, Tv.Item2 };
+            double[] RTDouble = new double[16]
            {
                 RvMat.At<double>(0,0),RvMat.At<double>(0,1),RvMat.At<double>(0,2),TvMatrix[0],
                 RvMat.At<double>(1,0),RvMat.At<double>(1,1),RvMat.At<double>(1,2),TvMatrix[1],
                 RvMat.At<double>(2,0),RvMat.At<double>(2,1),RvMat.At<double>(2,2),TvMatrix[2],
                 0,0,0,1
            };
-            var RTMat = new Mat(4, 4, MatType.CV_64FC1, RTDouble);
-            var RTMatInv = RTMat.Inv().ToMat();
-            var ap = RTMatInv.At<double>(2, 0); var bp = RTMatInv.At<double>(2, 1); var cp = RTMatInv.At<double>(2, 2); var dp = RTMatInv.At<double>(2, 3);
-            var pointpps = new List<Point3d>();
-            foreach (var p in framPoints)
+            Mat RTMat = _resourcesTracker.T(new Mat(4, 4, MatType.CV_64FC1, RTDouble));
+            Mat RTMatInv = _resourcesTracker.T(RTMat.Inv().ToMat());
+            double ap = RTMatInv.At<double>(2, 0);
+            double bp = RTMatInv.At<double>(2, 1);
+            double cp = RTMatInv.At<double>(2, 2);
+            double dp = RTMatInv.At<double>(2, 3);
+            List<Point3d> pointpps = new();
+            foreach (Point2f p in framPoints)
             {
-                var pm = new Mat(3, 1, MatType.CV_64FC1, new double[] { p.X, p.Y, 1 });
+                Mat pm = _resourcesTracker.T(new Mat(3, 1, MatType.CV_64FC1, new double[] { p.X, p.Y, 1 }));
                 (camInMatInv * pm).ToMat().GetArray<double>(out var vstmp);
-                var pointpp = new Point3d(vstmp[0], vstmp[1], vstmp[2]);
+                Point3d pointpp = new(vstmp[0], vstmp[1], vstmp[2]);
                 pointpps.Add(pointpp);
-                var xc = (-dp * pointpp.X) / (ap * pointpp.X + bp * pointpp.Y + cp);
-                var yc = (-dp * pointpp.Y) / (ap * pointpp.X + bp * pointpp.Y + cp);
-                var zc = (-dp) / (ap * pointpp.X + bp * pointpp.Y + cp);
-                var pointc = new Point3f((float)xc, (float)yc, (float)zc);
+                double xc = -dp * pointpp.X / ((ap * pointpp.X) + (bp * pointpp.Y) + cp);
+                double yc = -dp * pointpp.Y / ((ap * pointpp.X) + (bp * pointpp.Y) + cp);
+                double zc = (-dp) / ((ap * pointpp.X) + (bp * pointpp.Y) + cp);
+                Point3f pointc = new((float)xc, (float)yc, (float)zc);
                 rePts.Add(pointc);
             }
 
@@ -236,38 +235,38 @@ namespace Client.Model.Service.ImageProcess
 
         private (Mat src, Point2f[] laserpoint, Point2f[] laserPointSubmix) getlineWithRec(Mat src, Rect rec, Mat mat = null, bool dis = false)
         {
-            var dic = new Dictionary<string, Mat>();
-            var dst = new Mat();
+            Dictionary<string, Mat> dic = new();
+            Mat dst = new Mat();
 
-            var mask1 = Mat.Zeros(src.Size(), MatType.CV_8UC1).ToMat();
+            Mat mask1 = _resourcesTracker.T(Mat.Zeros(src.Size(), MatType.CV_8UC1).ToMat());
             mask1[rec].SetTo(255);
             src.CopyTo(dst, mask1);
 
-            var result = GetLineGray(dst, 0, false);
-            var pts = (from p in result.laserPoint2f
-                       where p.Y > 0
-                       select new Point2f((float)p.X, (float)p.Y)).ToArray();
+            (Point2d[] laserPoint2f, Point[] laserPoint, Mat mat) result = GetLineGray(dst, 0, false);
+            Point2f[] pts = (from p in result.laserPoint2f
+                             where p.Y > 0
+                             select new Point2f((float)p.X, (float)p.Y)).ToArray();
 
             if (dis)
             {
-                dic["dst"] = result.mat;
+                dic["dst"] = _resourcesTracker.T(result.mat);
                 mat?.Rectangle(rec, new Scalar(255), 4);
                 display(dic);
             }
             return (result.mat, pts, null);
         }
 
-        private IEnumerable<Rect> getOutRecBoard(IEnumerable<Point2f[]> point2Fs, IEnumerable<Mat> mats = null, bool dis = false)
+        private IList<Rect> getOutRecBoard(IList<Point2f[]> point2Fs, IList<Mat> mats = null, bool dis = false)
         {
-            var reRects = new List<Rect>();
-            for (int i = 0; i < point2Fs.Count(); i++)
+            List<Rect> reRects = new();
+            for (int i = 0; i < point2Fs.Count; i++)
             {
-                var rec = Cv2.BoundingRect(point2Fs.ElementAt(i));
+                Rect rec = Cv2.BoundingRect(point2Fs.ElementAt(i));
                 reRects.Add(rec);
 
                 if (dis)
                 {
-                    var src = mats.ElementAt(i).Clone();
+                    Mat src = _resourcesTracker.T(mats.ElementAt(i).Clone());
                     src.Rectangle(rec, new Scalar(255), 2);
                     Cv2.NamedWindow("rec", WindowFlags.FreeRatio);
                     Cv2.ImShow("rec", src);
@@ -279,14 +278,14 @@ namespace Client.Model.Service.ImageProcess
             return reRects;
         }
 
-        private IEnumerable<Mat> ReadFormFolder(string folderPath)
+        private IList<Mat> ReadFormFolder(string folderPath)
         {
             if (!string.IsNullOrWhiteSpace(folderPath))
             {
-                var filelist = Directory.EnumerateFiles(folderPath);
+                IList<string> filelist = Directory.EnumerateFiles(folderPath).ToList();
 
-                return from file in filelist
-                       select Cv2.ImRead(file, ImreadModes.Grayscale);
+                return (from file in filelist
+                        select Cv2.ImRead(file, ImreadModes.Grayscale)).ToList();
             }
             else
             {
@@ -297,50 +296,50 @@ namespace Client.Model.Service.ImageProcess
         public void Calibrate()
         {
             //标定的使用的图片路径
-            var folderboard = FilePath.Folder.LaserLineBoardFolder;
+            string folderboard = FilePath.Folder.LaserLineBoardFolder;
 
-            var folderlaser = FilePath.Folder.LaserLineLightFolder;
+            string folderlaser = FilePath.Folder.LaserLineLightFolder;
 
-            var laserMP = new List<(Mat, Point[], Point2f[])>();
-            var mats = ReadFormFolder(folderlaser).ToList();
-            var lightplaneimgcount = mats.Count();
+            List<(Mat, Point[], Point2f[])> laserMP = new List<(Mat, Point[], Point2f[])>();
+            List<Mat> mats = ReadFormFolder(folderlaser).ToList();
+            int lightplaneimgcount = mats.Count;
 
             //实例化相机标定类
-            var cali = new CalibrateCameraHelp(folderboard, boardSize, gap, 800);
+            CalibrateCameraHelp cali = new(folderboard, boardSize, gap, 800);
             //进行相机标定参数的计算，内参，外参，矫正映射矩阵
-            var a = cali.Calibrate(cali.FileMats);
+            List<(string name, Mat src)> a = cali.Calibrate(cali.FileMats);
 
-            var newcornersList = new List<Point2f[]>();
+            List<Point2f[]> newcornersList = new List<Point2f[]>();
 
             newcornersList = cali.cornersList.GetRange(cali.cornersList.Count - lightplaneimgcount, lightplaneimgcount);
-            var matsTmp1 = cali.FileMats.Skip(cali.cornersList.Count - lightplaneimgcount).Take(lightplaneimgcount).Select(t => t.src);
+            IList<Mat> matsTmp1 = cali.FileMats.Skip(cali.cornersList.Count - lightplaneimgcount).Take(lightplaneimgcount).Select(t => t.src).ToList();
             //圈出角点在图像中的外接矩形区域，只在此区域提取光条中心点
 
-            var rects = getOutRecBoard(newcornersList, matsTmp1, true).ToList();
-            var res = (from i in Enumerable.Range(0, mats.Count())
-                       select getlineWithRec(mats[i], rects[i], matsTmp1.ElementAt(i), true)).ToList();
+            List<Rect> rects = getOutRecBoard(newcornersList, matsTmp1, true).ToList();
+            List<(Mat src, Point2f[] laserpoint, Point2f[] laserPointSubmix)> res = (from i in Enumerable.Range(0, mats.Count())
+                                                                                     select getlineWithRec(mats[i], rects[i], matsTmp1.ElementAt(i), true)).ToList();
 
             //将光条中心点转化进相机坐标系
-            var RvList = cali.Rvecs.AsSpan().Slice(cali.cornersList.Count - lightplaneimgcount, lightplaneimgcount);
-            var TvList = cali.Tvecs.AsSpan().Slice(cali.cornersList.Count - lightplaneimgcount, lightplaneimgcount);
-            var lightPlanePoint3ds = new List<Point3f>();
+            Span<Vec3d> RvList = cali.Rvecs.AsSpan().Slice(cali.cornersList.Count - lightplaneimgcount, lightplaneimgcount);
+            Span<Vec3d> TvList = cali.Tvecs.AsSpan().Slice(cali.cornersList.Count - lightplaneimgcount, lightplaneimgcount);
+            List<Point3f> lightPlanePoint3ds = new();
 
             for (int i = 0; i < lightplaneimgcount; i++)
             {
-                var laserpoint = res.ElementAt(i).laserpoint;
-                var camPoints = frameToCamera(laserpoint, RvList[i], TvList[i], cali.CameraMatrixMat);
+                Point2f[] laserpoint = res.ElementAt(i).laserpoint;
+                IList<Point3f> camPoints = frameToCamera(laserpoint, RvList[i], TvList[i], cali.CameraMatrixMat);
                 lightPlanePoint3ds.AddRange(camPoints);
             }
             //根据所有光条中心点拟合光平面ax+by+c=z
-            var statu = fitPlane(lightPlanePoint3ds, out var coeffient);
+            bool statu = fitPlane(lightPlanePoint3ds, out var coeffient);
 
             #region 求旋转矩阵
 
             coeffient.GetArray<float>(out var vs);
-            var vec1 = new double[3] { vs[0], vs[1], -1 };
-            var vec2 = new double[3] { 0, 1, 0 };
-            var r = CalculationRotationMatrix(vec1, vec2);
-            var rvMat = new Mat(3, 3, MatType.CV_64FC1, r);
+            double[] vec1 = new double[3] { vs[0], vs[1], -1 };
+            double[] vec2 = new double[3] { 0, 1, 0 };
+            double[,] r = CalculationRotationMatrix(vec1, vec2);
+            Mat rvMat = _resourcesTracker.T(new Mat(3, 3, MatType.CV_64FC1, r));
 
             #endregion 求旋转矩阵
 
@@ -355,7 +354,7 @@ namespace Client.Model.Service.ImageProcess
             //var RvMat = new Mat(3,3,MatType.CV_64FC1,RvMatrix);
             //var TvMat = new Mat(3,1,MatType.CV_64FC1,TvMatrix);
 
-            var fw = new FileStorage(datapath, FileStorage.Modes.Write);
+            FileStorage fw = new(datapath, FileStorage.Modes.Write);
             fw.Write("CameraMatrixMat", cali.CameraMatrixMat);
             fw.Write("DiscoeffsMat", cali.DiscoeffsMat);
 
@@ -430,6 +429,12 @@ namespace Client.Model.Service.ImageProcess
             rotatinMatrix[2, 2] = Math.Cos(angle) + u[2] * u[2] * (1 - Math.Cos(angle));
 
             return rotatinMatrix;
+        }
+
+        public void Dispose()
+        {
+            _resourcesTracker?.Dispose();
+
         }
 
         #endregion 求旋转矩阵

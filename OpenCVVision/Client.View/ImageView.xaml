@@ -152,7 +152,10 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label Content="操作缓存" />
-                <ListView x:Name="HistoryImg" Grid.Row="1">
+                <ListView
+                    x:Name="HistoryImg"
+                    Grid.Row="1"
+                    ScrollViewer.HorizontalScrollBarVisibility="Visible">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />

@@ -17,7 +17,7 @@ namespace Client.ViewModel.Operation
         [ObservableAsProperty] public int AreaLimit { get; private set; }
         [Reactive] public int AreaMax { get; set; }
         [Reactive] public int AreaMin { get; set; }
-        public IEnumerable<string> Filters { get; set; }
+        public IList<string> Filters { get; set; }
         [ObservableAsProperty] public int HeightLimit { get; set; }
         [Reactive] public int HeightMax { get; set; }
         [Reactive] public int HeightMin { get; set; }
@@ -32,13 +32,9 @@ namespace Client.ViewModel.Operation
         [Reactive] public int WidthMax { get; set; }
         [Reactive] public int WidthMin { get; set; }
 
-        public ConnectedComponentsViewModel()
+        private IList<ConnectedComponents.Blob> FilterBlob(IList<ConnectedComponents.Blob> blobs, string filterStr, Mat mat)
         {
-        }
-
-        private IEnumerable<ConnectedComponents.Blob> FilterBlob(IEnumerable<ConnectedComponents.Blob> blobs, string filterStr, Mat mat)
-        {
-            IEnumerable<ConnectedComponents.Blob> reBlobs = new List<ConnectedComponents.Blob>();
+            IList<ConnectedComponents.Blob> reBlobs = new List<ConnectedComponents.Blob>();
             switch (filterStr)
             {
                 case "Area":
@@ -50,7 +46,7 @@ namespace Client.ViewModel.Operation
                 //    break;
 
                 case "Height":
-                    reBlobs = blobs.Where(b => b.Height >= HeightMin && b.Height <= HeightMax);
+                    reBlobs = blobs.Where(b => b.Height >= HeightMin && b.Height <= HeightMax).ToList();
                     break;
 
                 //case "Label":
@@ -58,7 +54,7 @@ namespace Client.ViewModel.Operation
                 //    break;
 
                 case "Left":
-                    reBlobs = blobs.Where(b => b.Left >= LeftMin && b.Left <= LeftMax);
+                    reBlobs = blobs.Where(b => b.Left >= LeftMin && b.Left <= LeftMax).ToList();
                     break;
 
                 //case "Rect":
@@ -66,11 +62,11 @@ namespace Client.ViewModel.Operation
                 //    break;
 
                 case "Top":
-                    reBlobs = blobs.Where(b => b.Top >= TopMin && b.Top <= TopMax);
+                    reBlobs = blobs.Where(b => b.Top >= TopMin && b.Top <= TopMax).ToList();
                     break;
 
                 case "Width":
-                    reBlobs = blobs.Where(b => b.Width >= WidthMin && b.Width <= WidthMax);
+                    reBlobs = blobs.Where(b => b.Width >= WidthMin && b.Width <= WidthMax).ToList();
                     break;
 
                 default:
@@ -79,14 +75,14 @@ namespace Client.ViewModel.Operation
             return reBlobs;
         }
 
-        private void UpdateOutput(IEnumerable<string> filters = null)
+        private void UpdateOutput(IList<string> filters = null)
         {
             SendTime(() =>
             {
-                var connCom = _sigleSrc.ConnectedComponentsEx();
+                ConnectedComponents connCom = _sigleSrc.ConnectedComponentsEx();
 
-                IEnumerable<ConnectedComponents.Blob> tmpBlobs1 = connCom.Blobs.ToList();
-                IEnumerable<ConnectedComponents.Blob> tmpBlobs2;
+                IList<ConnectedComponents.Blob> tmpBlobs1 = connCom.Blobs.ToList();
+                IList<ConnectedComponents.Blob> tmpBlobs2;
                 if (filters != null)
                 {
                     foreach (string filter in filters)
@@ -95,7 +91,7 @@ namespace Client.ViewModel.Operation
                         tmpBlobs1 = new List<ConnectedComponents.Blob>(tmpBlobs2.ToList());
                     }
                 }
-                var dst = _rt.NewMat();
+                Mat dst = _rt.NewMat();
                 if (tmpBlobs1.Any())
                 {
                     connCom.FilterByBlobs(_sigleSrc, dst, tmpBlobs1);
@@ -113,7 +109,7 @@ namespace Client.ViewModel.Operation
         {
             base.SetupSubscriptions(d);
 
-            var currentMatOb = _imageDataManager.InputMatGuidSubject
+            IObservable<Guid?> currentMatOb = _imageDataManager.InputMatGuidSubject
                 .WhereNotNull()
                 .Where(g => CanOperat)
                 .ObserveOn(RxApp.MainThreadScheduler);
@@ -144,25 +140,23 @@ namespace Client.ViewModel.Operation
                 .ToPropertyEx(this, x => x.AreaLimit)
                 .DisposeWith(d);
 
-            var areaOb = this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
-                 .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Area")));
-            var heightOb = this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
-                 .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Height")));
-            var widthOb = this.WhenAnyValue(x => x.WidthMax, x => x.WidthMin)
-                 .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Width")));
-            var leftOb = this.WhenAnyValue(x => x.LeftMax, x => x.LeftMin)
-                .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Left")));
-            var topOb = this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
-                .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Top")));
+            IObservable<(int, int)> areaOb = this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
+                 .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Area", StringComparison.Ordinal)));
+            IObservable<(int, int)> heightOb = this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
+                 .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Height", StringComparison.Ordinal)));
+            IObservable<(int, int)> widthOb = this.WhenAnyValue(x => x.WidthMax, x => x.WidthMin)
+                 .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Width", StringComparison.Ordinal)));
+            IObservable<(int, int)> leftOb = this.WhenAnyValue(x => x.LeftMax, x => x.LeftMin)
+                .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Left", StringComparison.Ordinal)));
+            IObservable<(int, int)> topOb = this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
+                .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Top", StringComparison.Ordinal)));
 
-            var paraOb = Observable.Merge(new[] { areaOb, heightOb, widthOb, leftOb, topOb });
+            IObservable<(int, int)> paraOb = Observable.Merge(new[] { areaOb, heightOb, widthOb, leftOb, topOb });
             paraOb
                 .Where(b => CanOperat)
                 .Throttle(TimeSpan.FromMilliseconds(200))
-                .ObserveOn(RxApp.MainThreadScheduler)
-
-                .Do(b => UpdateOutput(Filters?.ToList()))
-                .Subscribe()
+                .SubscribeOn(RxApp.MainThreadScheduler)
+                .Subscribe(b => UpdateOutput(Filters?.ToList()))
                 .DisposeWith(d);
         }
     }

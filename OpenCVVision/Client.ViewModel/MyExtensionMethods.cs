@@ -1,14 +1,11 @@
-﻿using System;
+﻿using OpenCvSharp;
+using OpenCvSharp.Internal.Util;
+
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using System.Threading.Tasks;
-
-using OpenCvSharp;
-using OpenCvSharp.Internal.Util;
 
 namespace Client.ViewModel
 {
@@ -16,9 +13,9 @@ namespace Client.ViewModel
     {
         public static void RenderBlobs(this ConnectedComponents connec, Mat outputMat, IEnumerable<ConnectedComponents.Blob> blobs, ReadOnlyArray2D<int> labels, int blobsTotalCount)
         {
-            var img = outputMat;
-            var Blobs = blobs.ToList();
-            var Labels = labels;
+            Mat img = outputMat;
+            List<ConnectedComponents.Blob> Blobs = blobs.ToList();
+            ReadOnlyArray2D<int> Labels = labels;
 
             if (img == null)
             {
@@ -45,26 +42,24 @@ namespace Client.ViewModel
                 array[i] = Scalar.RandomColor();
             }
 
-            var rangesize = length / Environment.ProcessorCount;
-            using (Mat<Vec3b> mat = new Mat<Vec3b>(img))
-            {
-                MatIndexer<Vec3b> indexer = mat.GetIndexer();
+            int rangesize = length / Environment.ProcessorCount;
+            using Mat<Vec3b> mat = new(img);
+            MatIndexer<Vec3b> indexer = mat.GetIndexer();
 
-                Parallel.ForEach(Partitioner.Create(0, length, rangesize), l =>
-                 {
-                     for (int j = l.Item1; j < l.Item2; j++)
-                     {
-                         for (int k = 0; k < length2; k++)
-                         {
-                             int num = Labels[j, k];
-                             if (blobs.Any(b => b.Label.Equals(num)))
-                             {
-                                 indexer[j, k] = array[num].ToVec3b();
-                             }
-                         }
-                     }
-                 });
-            }
+            Parallel.ForEach(Partitioner.Create(0, length, rangesize), l =>
+            {
+                for (int j = l.Item1; j < l.Item2; j++)
+                {
+                    for (int k = 0; k < length2; k++)
+                    {
+                        int num = Labels[j, k];
+                        if (blobs.Any(b => b.Label.Equals(num)))
+                        {
+                            indexer[j, k] = array[num].ToVec3b();
+                        }
+                    }
+                }
+            });
         }
     }
 }

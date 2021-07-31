@@ -27,13 +27,20 @@
             </CheckBox>
             <ListBox
                 x:Name="listBoxDrawGeo"
+                Background="Transparent"
                 IsEnabled="{Binding ElementName=cbxDrawing, Path=IsChecked}"
                 Style="{StaticResource MaterialDesignToolToggleListBox}">
-                <ListBoxItem ToolTip="直线">
-                    <materialDesign:PackIcon Kind="Minus" />
+                <ListBoxItem Padding="7,0" ToolTip="直线">
+                    <materialDesign:PackIcon
+                        Width="20"
+                        Height="20"
+                        Kind="Minus" />
                 </ListBoxItem>
-                <ListBoxItem ToolTip="矩形">
-                    <materialDesign:PackIcon Kind="RectangleOutline" />
+                <ListBoxItem Padding="7,0" ToolTip="矩形">
+                    <materialDesign:PackIcon
+                        Width="20"
+                        Height="20"
+                        Kind="RectangleOutline" />
                 </ListBoxItem>
             </ListBox>
             <Button

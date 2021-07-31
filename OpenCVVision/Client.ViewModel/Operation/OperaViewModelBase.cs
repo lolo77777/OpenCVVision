@@ -15,16 +15,16 @@ namespace Client.ViewModel
 {
     public class OperaViewModelBase : ViewModelBase, IOperationViewModel
     {
-        protected IImageDataManager _imageDataManager;
-        protected IReadonlyDependencyResolver _resolver = Locator.Current;
+        internal IImageDataManager _imageDataManager;
+        internal IReadonlyDependencyResolver _resolver = Locator.Current;
 
         /// <summary>
         /// mat标记，方便释放
         /// </summary>
-        protected ResourcesTracker _rt = new();
+        internal ResourcesTracker _rt = new();
 
-        protected Mat _sigleSrc;
-        protected Mat _src;
+        internal Mat _sigleSrc;
+        internal Mat _src;
 
         /// <summary>
         /// 标记操作进行状态
@@ -54,11 +54,10 @@ namespace Client.ViewModel
             if (!IsRun)
             {
                 IsRun = true;
-
                 long t1 = Cv2.GetTickCount();
                 _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
                 _sigleSrc = _rt.T(_src.Channels() > 1 ? _src.CvtColor(ColorConversionCodes.BGR2GRAY) : _src);
-                MessageBus.Current.SendMessage("Wati...", "Time");
+                MessageBus.Current.SendMessage("Wait...", "Time");
                 Observable.Start(action, RxApp.TaskpoolScheduler)
                     .Subscribe(_ =>
                     {
@@ -68,7 +67,6 @@ namespace Client.ViewModel
                         MessageBus.Current.SendMessage(t.ToString(), "Time");
                         IsRun = false;
                     });
-                //action.Invoke();
             }
         }
 
@@ -87,9 +85,9 @@ namespace Client.ViewModel
         protected override void SetupSubscriptions(CompositeDisposable d)
         {
             _imageDataManager.InputMatGuidSubject
-              .Select(guid => guid != null)
-              .BindTo(this, x => x.CanOperat)
-              .DisposeWith(d);
+                .Select(guid => guid != null)
+                .BindTo(this, x => x.CanOperat)
+                .DisposeWith(d);
         }
 
         protected override void SetupDeactivate()

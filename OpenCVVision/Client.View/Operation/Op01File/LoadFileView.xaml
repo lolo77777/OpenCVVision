@@ -1,72 +1,57 @@
 ﻿<rxui:ReactiveUserControl
     x:Class="Client.View.Operation.LoadFileView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Client.View.Operation"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
-    xmlns:rxui="http://reactiveui.net"
     d:DesignHeight="450"
     d:DesignWidth="300"
     x:TypeArguments="operation:LoadFileViewModel"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary Source="\Dictionary.xaml" />
-    </UserControl.Resources>
+
     <materialDesign:Card Margin="{StaticResource marginOp}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock
-                x:Name="Title"
+        <StackPanel Orientation="Vertical">
+
+            <Label
                 Margin="8"
+                Content="LoadFile"
                 FontSize="22"
-                FontWeight="UltraBlack"
-                Text="LoadFile" />
-            <Grid Grid.Row="1" Margin="{StaticResource marginEven}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="AUto" />
-                </Grid.RowDefinitions>
-                <materialDesign:Card>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock
-                            Margin="{StaticResource marginOdd}"
-                            FontSize="18"
-                            Text="加载本地图片" />
-                        <Grid Grid.Row="1" Margin="{StaticResource marginEven}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBox
-                                x:Name="FilePathTextBox"
-                                materialDesign:HintAssist.HelperText="Helper text longer than error"
-                                materialDesign:HintAssist.Hint="FilePath"
-                                ScrollViewer.HorizontalScrollBarVisibility="Auto" />
-                            <Button
-                                x:Name="btnLoadImage"
-                                Grid.Column="1"
-                                Width="36"
-                                Height="36"
-                                Margin="8,0,0,0"
-                                HorizontalAlignment="Right"
-                                Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                                Style="{StaticResource MaterialDesignIconButton}"
-                                ToolTip="加载图片">
-                                <materialDesign:PackIcon Kind="File" />
-                            </Button>
-                        </Grid>
+                FontWeight="UltraBlack" />
+
+            <materialDesign:Card>
+                <StackPanel Orientation="Vertical">
+                    <Label
+                        Margin="{StaticResource marginEven}"
+                        Content="加载本地图片"
+                        FontSize="18" />
+                    <Grid Grid.Row="1" Margin="{StaticResource marginEven}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            x:Name="FilePathTextBox"
+                            materialDesign:HintAssist.Hint="FilePath"
+                            ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
+                        <Button
+                            x:Name="btnLoadImage"
+                            Grid.Column="1"
+                            Width="36"
+                            Height="36"
+                            Margin="8,0,0,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="加载图片">
+                            <materialDesign:PackIcon Kind="File" />
+                        </Button>
                     </Grid>
-                </materialDesign:Card>
-            </Grid>
-        </Grid>
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
     </materialDesign:Card>
 </rxui:ReactiveUserControl>
