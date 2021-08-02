@@ -19,13 +19,13 @@ namespace Client.ViewModel
 
         public override void ConfigService()
         {
-            _mutable.RegisterLazySingleton(() => new ShellViewModel());
+
             _mutable.RegisterLazySingleton(() => new NavigationViewModel());
             _mutable.RegisterLazySingleton(() => new ImageViewModel());
+            _mutable.RegisterLazySingleton(() => new ShellViewModel());
             RegistOperationViewModel<LoadFileViewModel>();
             RegistOperationViewModel<ColorSpaceViewModel>();
             RegistOperationViewModel<FilterViewModel>();
-
             RegistOperationViewModel<ThreshouldViewModel>();
             RegistOperationViewModel<MorphologyViewModel>();
             RegistOperationViewModel<ConnectedComponentsViewModel>();
@@ -42,6 +42,7 @@ namespace Client.ViewModel
             RegistOperationViewModel<PhotometricStereoViewModel>();
             _mutable.Register(() => new ViewPhotometricViewModel());
             _mutable.Register(() => new ImageToolViewModel());
+
             RegistOperationViewModel<TwoMatOperationViewModel>();
         }
     }

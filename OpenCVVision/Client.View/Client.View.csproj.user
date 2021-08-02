@@ -15,7 +15,7 @@
     <Compile Update="ImageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Navigation.xaml.cs">
+    <Compile Update="NavigationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Operation\Op01File\LoadFileView.xaml.cs">
@@ -92,7 +92,7 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Navigation.xaml">
+    <Page Update="NavigationView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op01File\LoadFileView.xaml">

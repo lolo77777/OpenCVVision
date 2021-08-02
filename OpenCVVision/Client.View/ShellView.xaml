@@ -38,10 +38,15 @@
             Margin="0,8"
             HorizontalAlignment="Stretch" />
 
-        <rxui:RoutedViewHost
+        <!--<rxui:RoutedViewHost
             x:Name="OperaPanel"
             Grid.Column="3"
             HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Stretch" />
+            VerticalContentAlignment="Stretch" />-->
+        <rxui:ViewModelViewHost
+            x:Name="OperaPanel"
+            Grid.Column="3"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"/>
     </Grid>
 </rxui:ReactiveUserControl>

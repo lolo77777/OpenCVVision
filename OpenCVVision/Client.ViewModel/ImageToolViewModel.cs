@@ -188,18 +188,22 @@ namespace Client.ViewModel
             double x = position.X / scale;
             double y = position.Y / scale;
             string posionStr = $"X:{x:F2},Y:{y:F2}";
-            if (mat.Channels() == 3)
+            if (y < mat.Height && x < mat.Width)
             {
-                Mat.UnsafeIndexer<Vec3b> matInd = mat.GetUnsafeGenericIndexer<Vec3b>();
-                Vec3b vec3 = matInd[(int)y, (int)x];
-                colorValueStr = $"B:{vec3.Item0};G:{vec3.Item1};R:{vec3.Item2}";
+                if (mat.Channels() == 3)
+                {
+                    Mat.UnsafeIndexer<Vec3b> matInd = mat.GetUnsafeGenericIndexer<Vec3b>();
+                    Vec3b vec3 = matInd[(int)y, (int)x];
+                    colorValueStr = $"B:{vec3.Item0};G:{vec3.Item1};R:{vec3.Item2}";
+                }
+                else if (mat.Channels() == 1)
+                {
+                    Mat.UnsafeIndexer<byte> matInd = mat.GetUnsafeGenericIndexer<byte>();
+                    byte value = matInd[(int)y, (int)x];
+                    colorValueStr = $"Gray:{value}";
+                }
             }
-            else if (mat.Channels() == 1)
-            {
-                Mat.UnsafeIndexer<byte> matInd = mat.GetUnsafeGenericIndexer<byte>();
-                byte value = matInd[(int)y, (int)x];
-                colorValueStr = $"Gray:{value}";
-            }
+
             return (posionStr, colorValueStr);
         }
 

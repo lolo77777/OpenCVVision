@@ -22,6 +22,8 @@ namespace Client
         {
             InitializeComponent();
             DataContext = new AppBootstrapper();
+
+
         }
 
         private void OpenGitSite_Click(object sender, RoutedEventArgs e)

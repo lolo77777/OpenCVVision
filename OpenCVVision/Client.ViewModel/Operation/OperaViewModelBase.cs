@@ -36,9 +36,8 @@ namespace Client.ViewModel
         /// </summary>
         [Reactive] public bool CanOperat { get; set; }
 
-        public IScreen HostScreen { get; }
-        public string UrlPathSegment { get; }
-        public RoutingState Router { get; }
+
+
 
         public OperaViewModelBase(IImageDataManager imageDataManager = null) : base()
         {

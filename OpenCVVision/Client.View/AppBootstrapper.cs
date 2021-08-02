@@ -15,6 +15,7 @@ namespace Client.ViewModel
     {
         public RoutingState Router { get; private set; } = new RoutingState();
 
+
         public AppBootstrapper()
         {
             LoadDlls();
@@ -33,13 +34,10 @@ namespace Client.ViewModel
                     from t in Assembly.LoadFrom(dll).GetTypes()
                     where t.IsSubclassOf(typeof(RegisterBase))
                     select Activator.CreateInstance(t)).ToList();
-                var tmp1 = (
-                    from t in Assembly.LoadFrom(dll).GetTypes()
-                    where t.IsSubclassOf(typeof(OperaViewModelBase))
-                    select t).ToList();
+
 
                 tmp.Clear();
-                tmp1.Clear();
+
             }
         }
     }

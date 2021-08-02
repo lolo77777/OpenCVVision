@@ -1,49 +1,50 @@
 ﻿using Client.Common;
-using Client.View.Operation;
-
-using Client.ViewModel;
-using Client.ViewModel.Operation;
 
 using ReactiveUI;
 
 using Splat;
 
+using System;
+
 namespace Client.View
 {
     internal class Register : RegisterBase
     {
-        private void RegisterOperationView<T1, T2>() where T1 : OperaViewModelBase where T2 : IViewFor<T1>, new()
-        {
-            _mutable.Register<IViewFor<T1>>(() => new T2());
-        }
+        //private void RegisterOperationView<T1, T2>() where T1 : OperaViewModelBase where T2 : IViewFor<T1>, new()
+        //{
+        //    _mutable.Register<IViewFor<T1>>(() => new T2());
+        //}
 
         public override void ConfigService()
         {
-            _mutable.RegisterLazySingleton<IViewFor<ShellViewModel>>(() => new ShellView());
-            _mutable.RegisterLazySingleton<IViewFor<NavigationViewModel>>(() => new Navigation());
-            _mutable.RegisterLazySingleton<IViewFor<ImageViewModel>>(() => new ImageView());
 
-            RegisterOperationView<LoadFileViewModel, LoadFileView>();
-            RegisterOperationView<ColorSpaceViewModel, ColorSpaceView>();
-            RegisterOperationView<FilterViewModel, FilterView>();
+            Locator.CurrentMutable.RegisterLazySingleton(() => new ConventionalViewLocator(), typeof(IViewLocator));
 
-            RegisterOperationView<ThreshouldViewModel, ThresholdView>();
-            RegisterOperationView<MorphologyViewModel, MorphologyView>();
-            RegisterOperationView<ConnectedComponentsViewModel, ConnectedComponentsView>();
-            RegisterOperationView<ContoursViewModel, ContoursView>();
-            RegisterOperationView<RoiViewModel, RoiView>();
-            RegisterOperationView<LaserLineViewModel, LaserLineView>();
-            RegisterOperationView<PyramidViewModel, PyramidView>();
-            RegisterOperationView<EdgeDetectViewModel, EdgeDetectView>();
-            RegisterOperationView<YoloViewModel, YoloView>();
-            RegisterOperationView<FeatureDetectionViewModel, FeatureDetectionView>();
-            //RegisterVLazySingleton<MatchTemplateViewModel, MatchTemplateView>();
-            RegisterOperationView<GrayCodeViewModel, GrayCodeView>();
-            _mutable.Register<IViewFor<View3DViewModel>>(() => new View3DView());
-            RegisterOperationView<PhotometricStereoViewModel, PhotometricStereoView>();
-            _mutable.Register<IViewFor<ViewPhotometricViewModel>>(() => new ViewPhotometricView());
-            _mutable.Register<IViewFor<ImageToolViewModel>>(() => new ImageToolView());
-            RegisterOperationView<TwoMatOperationViewModel, TwoMatOperationView>();
+        }
+        public class ConventionalViewLocator : IViewLocator
+        {
+            public IViewFor ResolveView<T>(T? viewModel, string contract = null)
+            {
+
+                string viewModelName = viewModel.GetType().FullName;
+                string viewTypeName = viewModelName.Replace("ViewModel", "View");
+
+                try
+                {
+                    Type viewType = Type.GetType(viewTypeName);
+                    if (viewType == null)
+                    {
+                        this.Log().Error($"找不到与{viewModelName}对应的{viewTypeName}.");
+                        return null;
+                    }
+                    return Activator.CreateInstance(viewType) as IViewFor;
+                }
+                catch (Exception)
+                {
+                    this.Log().Error($"无法实例化{viewTypeName}.");
+                    throw;
+                }
+            }
         }
     }
 }

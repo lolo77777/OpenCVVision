@@ -1,4 +1,5 @@
 ﻿using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 using Splat;
 
@@ -8,21 +9,23 @@ using System.Reactive.Linq;
 
 namespace Client.ViewModel
 {
-    public class ShellViewModel : ViewModelBase, IRoutableViewModel, IScreen
+    public class ShellViewModel : ViewModelBase, IRoutableViewModel
     {
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
         public ImageViewModel ImageVMSam { get; private set; }
         public NavigationViewModel NavigationViewModelSam { get; private set; }
-        public RoutingState Router { get; } = new RoutingState();
+
+
+        [Reactive] public IOperationViewModel OperaVM { get; set; }
         public string UrlPathSegment { get; }
         public IScreen HostScreen { get; }
 
-        public ShellViewModel(NavigationViewModel navigationViewModel = null, ImageViewModel imageViewModel = null, IScreen screen = null) : base()
+        public ShellViewModel(NavigationViewModel navigationViewModel = null, ImageViewModel imageViewModel = null) : base()
         {
-            //HostScreen = screen ?? _resolver.GetService<IScreen>("MainHost");
-            Locator.CurrentMutable.RegisterConstant<IScreen>(this, "OperationHost");
+
             NavigationViewModelSam = navigationViewModel ?? _resolver.GetService<NavigationViewModel>();
             ImageVMSam = imageViewModel ?? _resolver.GetService<ImageViewModel>();
+
         }
 
         protected override void SetupSubscriptions(CompositeDisposable d)
@@ -33,9 +36,11 @@ namespace Client.ViewModel
                 .WhereNotNull()
                 .Subscribe(vm =>
                 {
-                    Router.Navigate.Execute(vm);
+
+                    OperaVM = vm;
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
+                    GC.Collect();
                 })
                 .DisposeWith(d);
         }
