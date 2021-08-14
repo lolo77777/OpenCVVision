@@ -9,189 +9,372 @@
 		<None Remove="Data\File\Yolo\coco.names" />
 		<None Remove="Data\File\Yolo\object_detection_classes_yolov3.txt" />
 		<None Remove="Data\Image\GrayCode\1\637349141122531860.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141122531860.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141123507570.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141123507570.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141124543370.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141124543370.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141125501505.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141125501505.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141126510949.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141126510949.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141127507189.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141127507189.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141128503546.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141128503546.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141129510400.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141129510400.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141130505861.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141130505861.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141131503166.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141131503166.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141132511823.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141132511823.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141133507763.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141133507763.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141134507653.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141134507653.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141135502509.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141135502509.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141136500175.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141136500175.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141137498003.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141137498003.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141138514829.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141138514829.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141139521841.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141139521841.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141140509218.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141140509218.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141141509736.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141141509736.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141142514349.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141142514349.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141143501309.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141143501309.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141144497931.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141144497931.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141145505361.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141145505361.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141146514630.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141146514630.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141147524339.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141147524339.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141148507405.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141148507405.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141149516865.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141149516865.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141150514473.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141150514473.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141151513985.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141151513985.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141152506726.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141152506726.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141153537619.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141153537619.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141154518186.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141154518186.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141155525591.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141155525591.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141156519265.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141156519265.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141157512898.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141157512898.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141158510823.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141158510823.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141159509996.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141159509996.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141160528219.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141160528219.jpg" />
 		<None Remove="Data\Image\GrayCode\1\637349141161503197.bmp" />
+		<None Remove="Data\Image\GrayCode\1\637349141161503197.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141425256428.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141425256428.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141426232438.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141426232438.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141427226967.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141427226967.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141428209301.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141428209301.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141429217258.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141429217258.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141430266503.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141430266503.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141431213230.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141431213230.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141432218583.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141432218583.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141433220732.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141433220732.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141434214663.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141434214663.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141435215046.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141435215046.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141436219541.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141436219541.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141437216697.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141437216697.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141438212812.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141438212812.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141439210266.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141439210266.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141440208936.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141440208936.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141441225356.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141441225356.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141442222174.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141442222174.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141443218984.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141443218984.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141444229544.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141444229544.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141445215356.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141445215356.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141446291511.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141446291511.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141447235725.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141447235725.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141448224938.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141448224938.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141449213218.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141449213218.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141450212811.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141450212811.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141451219491.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141451219491.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141452216112.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141452216112.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141453223065.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141453223065.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141454211085.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141454211085.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141455227996.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141455227996.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141456214605.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141456214605.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141457213598.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141457213598.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141458228775.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141458228775.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141459233639.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141459233639.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141460224128.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141460224128.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141461231153.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141461231153.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141462218824.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141462218824.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141463218580.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141463218580.jpg" />
 		<None Remove="Data\Image\GrayCode\2\637349141464233052.bmp" />
+		<None Remove="Data\Image\GrayCode\2\637349141464233052.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141738672334.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141738672334.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141739641870.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141739641870.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141740634004.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141740634004.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141741678421.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141741678421.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141742639042.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141742639042.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141743638294.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141743638294.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141744647048.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141744647048.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141745631084.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141745631084.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141746644805.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141746644805.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141747650741.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141747650741.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141748645379.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141748645379.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141749632186.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141749632186.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141750650333.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141750650333.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141751646643.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141751646643.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141752636082.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141752636082.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141753630821.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141753630821.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141754627250.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141754627250.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141755630469.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141755630469.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141756631063.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141756631063.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141757638788.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141757638788.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141758646758.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141758646758.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141759642929.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141759642929.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141760721776.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141760721776.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141761641886.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141761641886.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141762646032.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141762646032.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141763642938.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141763642938.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141764644101.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141764644101.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141765630148.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141765630148.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141766646457.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141766646457.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141767638350.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141767638350.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141768640196.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141768640196.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141769638801.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141769638801.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141770640810.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141770640810.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141771630738.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141771630738.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141772650258.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141772650258.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141773635735.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141773635735.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141774632957.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141774632957.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141775642842.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141775642842.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141776652989.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141776652989.jpg" />
 		<None Remove="Data\Image\GrayCode\3\637349141777639192.bmp" />
+		<None Remove="Data\Image\GrayCode\3\637349141777639192.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142180012378.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142180012378.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142180977147.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142180977147.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142181978870.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142181978870.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142182981553.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142182981553.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142183982805.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142183982805.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142184979810.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142184979810.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142185973402.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142185973402.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142186980051.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142186980051.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142187966893.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142187966893.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142188981051.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142188981051.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142189988275.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142189988275.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142190969372.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142190969372.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142191972773.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142191972773.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142192983409.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142192983409.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142193984303.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142193984303.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142194980124.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142194980124.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142195987299.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142195987299.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142196974888.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142196974888.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142197971043.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142197971043.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142198980333.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142198980333.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142199987280.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142199987280.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142200972924.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142200972924.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142201972782.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142201972782.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142202977883.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142202977883.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142203980637.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142203980637.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142204986479.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142204986479.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142205981092.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142205981092.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142206976679.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142206976679.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142207976410.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142207976410.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142208973081.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142208973081.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142210001361.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142210001361.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142210996863.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142210996863.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142211983495.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142211983495.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142212980974.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142212980974.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142213981714.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142213981714.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142214985496.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142214985496.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142215977302.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142215977302.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142216992767.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142216992767.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142217977857.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142217977857.jpg" />
 		<None Remove="Data\Image\GrayCode\4\637349142218984760.bmp" />
+		<None Remove="Data\Image\GrayCode\4\637349142218984760.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144000_0921_0004.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144000_0921_0004.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144007_0492_0002.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144007_0492_0002.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144013_0364_0004.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144013_0364_0004.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144019_0087_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144019_0087_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144025_0200_0004.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144025_0200_0004.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144030_0430_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144030_0430_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144057_0342_0002.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144057_0342_0002.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144118_0108_0004.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144118_0108_0004.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144132_0144_0002.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144132_0144_0002.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144343_0257_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144343_0257_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144500_0527_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144500_0527_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144515_0193_0004.bmp" />
+		<None Remove="Data\Image\LaserLine\Board\0000_20201123_144515_0193_0004.jpg" />
 		<None Remove="Data\Image\LaserLine\Light\0000_20201123_144313_0403_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Light\0000_20201123_144313_0403_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Light\0000_20201123_144353_0461_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Light\0000_20201123_144353_0461_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Light\0000_20201123_144506_0173_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Light\0000_20201123_144506_0173_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Light\0000_20201123_144528_0227_0002.bmp" />
+		<None Remove="Data\Image\LaserLine\Light\0000_20201123_144528_0227_0002.jpg" />
 		<None Remove="Data\Image\LaserLine\Template.bmp" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201123_150510_0119_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Test\0000_20201123_150510_0119_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_161042_0304_0004.bmp" />
+		<None Remove="Data\Image\LaserLine\Test\0000_20201210_161042_0304_0004.jpg" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_164406_0245_0004.bmp" />
+		<None Remove="Data\Image\LaserLine\Test\0000_20201210_164406_0245_0004.jpg" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165412_0255_0004.bmp" />
+		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165412_0255_0004.jpg" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165624_0297_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165624_0297_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.bmp" />
+		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.jpg" />
 		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.0.png" />
 		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.1.png" />
 		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.10.png" />
@@ -302,556 +485,556 @@
 		<Content Include="Data\File\Yolo\coco.names">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141122531860.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141122531860.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141123507570.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141123507570.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141124543370.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141124543370.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141125501505.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141125501505.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141126510949.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141126510949.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141127507189.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141127507189.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141128503546.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141128503546.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141129510400.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141129510400.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141130505861.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141130505861.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141131503166.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141131503166.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141132511823.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141132511823.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141133507763.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141133507763.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141134507653.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141134507653.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141135502509.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141135502509.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141136500175.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141136500175.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141137498003.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141137498003.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141138514829.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141138514829.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141139521841.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141139521841.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141140509218.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141140509218.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141141509736.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141141509736.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141142514349.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141142514349.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141143501309.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141143501309.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141144497931.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141144497931.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141145505361.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141145505361.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141146514630.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141146514630.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141147524339.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141147524339.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141148507405.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141148507405.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141149516865.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141149516865.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141150514473.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141150514473.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141151513985.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141151513985.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141152506726.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141152506726.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141153537619.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141153537619.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141154518186.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141154518186.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141155525591.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141155525591.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141156519265.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141156519265.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141157512898.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141157512898.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141158510823.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141158510823.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141159509996.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141159509996.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141160528219.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141160528219.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\1\637349141161503197.bmp">
+		<Content Include="Data\Image\GrayCode\1\637349141161503197.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141425256428.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141425256428.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141426232438.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141426232438.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141427226967.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141427226967.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141428209301.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141428209301.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141429217258.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141429217258.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141430266503.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141430266503.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141431213230.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141431213230.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141432218583.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141432218583.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141433220732.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141433220732.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141434214663.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141434214663.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141435215046.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141435215046.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141436219541.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141436219541.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141437216697.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141437216697.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141438212812.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141438212812.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141439210266.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141439210266.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141440208936.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141440208936.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141441225356.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141441225356.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141442222174.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141442222174.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141443218984.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141443218984.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141444229544.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141444229544.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141445215356.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141445215356.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141446291511.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141446291511.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141447235725.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141447235725.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141448224938.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141448224938.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141449213218.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141449213218.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141450212811.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141450212811.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141451219491.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141451219491.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141452216112.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141452216112.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141453223065.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141453223065.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141454211085.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141454211085.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141455227996.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141455227996.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141456214605.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141456214605.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141457213598.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141457213598.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141458228775.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141458228775.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141459233639.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141459233639.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141460224128.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141460224128.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141461231153.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141461231153.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141462218824.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141462218824.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141463218580.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141463218580.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\2\637349141464233052.bmp">
+		<Content Include="Data\Image\GrayCode\2\637349141464233052.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141738672334.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141738672334.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141739641870.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141739641870.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141740634004.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141740634004.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141741678421.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141741678421.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141742639042.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141742639042.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141743638294.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141743638294.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141744647048.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141744647048.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141745631084.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141745631084.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141746644805.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141746644805.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141747650741.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141747650741.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141748645379.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141748645379.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141749632186.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141749632186.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141750650333.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141750650333.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141751646643.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141751646643.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141752636082.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141752636082.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141753630821.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141753630821.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141754627250.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141754627250.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141755630469.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141755630469.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141756631063.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141756631063.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141757638788.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141757638788.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141758646758.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141758646758.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141759642929.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141759642929.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141760721776.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141760721776.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141761641886.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141761641886.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141762646032.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141762646032.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141763642938.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141763642938.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141764644101.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141764644101.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141765630148.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141765630148.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141766646457.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141766646457.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141767638350.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141767638350.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141768640196.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141768640196.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141769638801.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141769638801.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141770640810.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141770640810.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141771630738.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141771630738.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141772650258.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141772650258.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141773635735.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141773635735.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141774632957.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141774632957.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141775642842.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141775642842.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141776652989.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141776652989.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\3\637349141777639192.bmp">
+		<Content Include="Data\Image\GrayCode\3\637349141777639192.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142180012378.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142180012378.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142180977147.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142180977147.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142181978870.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142181978870.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142182981553.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142182981553.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142183982805.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142183982805.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142184979810.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142184979810.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142185973402.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142185973402.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142186980051.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142186980051.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142187966893.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142187966893.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142188981051.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142188981051.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142189988275.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142189988275.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142190969372.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142190969372.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142191972773.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142191972773.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142192983409.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142192983409.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142193984303.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142193984303.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142194980124.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142194980124.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142195987299.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142195987299.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142196974888.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142196974888.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142197971043.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142197971043.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142198980333.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142198980333.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142199987280.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142199987280.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142200972924.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142200972924.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142201972782.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142201972782.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142202977883.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142202977883.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142203980637.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142203980637.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142204986479.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142204986479.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142205981092.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142205981092.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142206976679.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142206976679.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142207976410.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142207976410.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142208973081.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142208973081.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142210001361.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142210001361.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142210996863.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142210996863.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142211983495.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142211983495.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142212980974.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142212980974.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142213981714.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142213981714.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142214985496.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142214985496.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142215977302.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142215977302.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142216992767.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142216992767.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142217977857.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142217977857.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\GrayCode\4\637349142218984760.bmp">
+		<Content Include="Data\Image\GrayCode\4\637349142218984760.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_143650_0257_0003.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144000_0921_0004.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144000_0921_0004.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144007_0492_0002.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144007_0492_0002.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144013_0364_0004.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144013_0364_0004.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144019_0087_0003.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144019_0087_0003.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144025_0200_0004.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144025_0200_0004.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144030_0430_0003.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144030_0430_0003.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144057_0342_0002.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144057_0342_0002.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144118_0108_0004.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144118_0108_0004.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144132_0144_0002.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144132_0144_0002.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144343_0257_0003.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144343_0257_0003.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144500_0527_0003.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144500_0527_0003.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144515_0193_0004.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Board\0000_20201123_144515_0193_0004.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Light\0000_20201123_144313_0403_0003.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Light\0000_20201123_144313_0403_0003.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Light\0000_20201123_144353_0461_0003.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Light\0000_20201123_144353_0461_0003.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Light\0000_20201123_144506_0173_0003.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Light\0000_20201123_144506_0173_0003.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Light\0000_20201123_144528_0227_0002.bmp">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Content Include="Data\Image\LaserLine\Light\0000_20201123_144528_0227_0002.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Data\Image\LaserLine\Template.bmp">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Test\0000_20201123_150510_0119_0003.bmp">
+		<Content Include="Data\Image\LaserLine\Test\0000_20201123_150510_0119_0003.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Test\0000_20201210_161042_0304_0004.bmp">
+		<Content Include="Data\Image\LaserLine\Test\0000_20201210_161042_0304_0004.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Test\0000_20201210_164406_0245_0004.bmp">
+		<Content Include="Data\Image\LaserLine\Test\0000_20201210_164406_0245_0004.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Test\0000_20201210_165412_0255_0004.bmp">
+		<Content Include="Data\Image\LaserLine\Test\0000_20201210_165412_0255_0004.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Test\0000_20201210_165624_0297_0003.bmp">
+		<Content Include="Data\Image\LaserLine\Test\0000_20201210_165624_0297_0003.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.bmp">
+		<Content Include="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.0.png">

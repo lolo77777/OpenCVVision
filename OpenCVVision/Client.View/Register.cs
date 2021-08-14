@@ -5,6 +5,7 @@ using ReactiveUI;
 using Splat;
 
 using System;
+using System.Reflection;
 
 namespace Client.View
 {
@@ -18,8 +19,8 @@ namespace Client.View
         public override void ConfigService()
         {
 
-            Locator.CurrentMutable.RegisterLazySingleton(() => new ConventionalViewLocator(), typeof(IViewLocator));
-
+           // Locator.CurrentMutable.RegisterLazySingleton(() => new ConventionalViewLocator(), typeof(IViewLocator));
+            Locator.CurrentMutable.RegisterViewsForViewModels(Assembly.GetExecutingAssembly());
         }
         public class ConventionalViewLocator : IViewLocator
         {

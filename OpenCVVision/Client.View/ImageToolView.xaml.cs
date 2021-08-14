@@ -10,6 +10,7 @@ using System.Windows.Input;
 
 namespace Client.View
 {
+    
     /// <summary>
     /// ImageToolView.xaml 的交互逻辑
     /// </summary>

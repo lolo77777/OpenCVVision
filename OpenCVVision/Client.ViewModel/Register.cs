@@ -38,9 +38,9 @@ namespace Client.ViewModel
             RegistOperationViewModel<FeatureDetectionViewModel>();
             //RegistLazySingletonOpVM<MatchTemplateViewModel>();
             RegistOperationViewModel<GrayCodeViewModel>();
-            _mutable.Register(() => new View3DViewModel());
+            _mutable.RegisterLazySingleton(() => new View3DViewModel());
             RegistOperationViewModel<PhotometricStereoViewModel>();
-            _mutable.Register(() => new ViewPhotometricViewModel());
+            _mutable.RegisterLazySingleton(() => new ViewPhotometricViewModel());
             _mutable.Register(() => new ImageToolViewModel());
 
             RegistOperationViewModel<TwoMatOperationViewModel>();

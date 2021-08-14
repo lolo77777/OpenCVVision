@@ -9,6 +9,7 @@ using System.Windows.Media.Animation;
 
 namespace Client.View
 {
+    [SingleInstanceView]
     /// <summary>
     /// Navigation.xaml 的交互逻辑
     /// </summary>

@@ -79,6 +79,10 @@ namespace Client.ViewModel.Operation
             PointGeometry.ClearAllGeometryData();
             EffectsManager.DisposeAndClear();
             PointGeometry.ClearOctree();
+            PointGeometry = null;
+            EffectsManager = null;
+            CamDx = null;
+
         }
 
         protected override void SetupStart()

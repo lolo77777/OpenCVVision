@@ -2,10 +2,12 @@
 
 using ReactiveUI;
 
+using System.Diagnostics;
 using System.Reactive.Disposables;
 
 namespace Client.View
 {
+    [SingleInstanceView]
     /// <summary>
     /// Interaction logic for ShellView.xaml
     /// </summary>
@@ -24,6 +26,10 @@ namespace Client.View
                 this.OneWayBind(ViewModel, vm => vm.ImageVMSam, v => v.ImgViewer.ViewModel).DisposeWith(d);
                 //this.OneWayBind(ViewModel, vm => vm.Router, v => v.OperaPanel.Router).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.OperaVM, v => v.OperaPanel.ViewModel).DisposeWith(d);
+#if DEBUG
+                Debug.WriteLine($"ShellView的HashCode:{this.GetHashCode()}") ;
+#endif
+
             });
         }
     }

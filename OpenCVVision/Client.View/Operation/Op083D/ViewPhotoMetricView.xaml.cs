@@ -8,6 +8,7 @@ using System.Windows.Documents;
 
 namespace Client.View.Operation
 {
+    [SingleInstanceView]
     /// <summary>
     /// ViewPhoteMetricView.xaml 的交互逻辑
     /// </summary>

@@ -49,6 +49,8 @@ namespace Client.ViewModel.Operation
         {
             base.SetupDeactivate();
             _resourcesTracker.Dispose();
+            NormalmapWb = null;
+            ZWb = null;
         }
         #region PrivateFunction
 

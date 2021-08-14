@@ -30,17 +30,7 @@ namespace Client.View.Operation
                 this.OneWayBind(ViewModel, vm => vm.TxtImageFilePath, v => v.FilePathTextBox.Text).DisposeWith(d);
                 this.BindInteraction(ViewModel, vm => vm.LoadFileConfirm,
                     context => Observable.Return(openFileDialog.ShowDialog())
-                    .Do(result =>
-                    {
-                        if (result.Equals(DialogResult.OK))
-                        {
-                            context.SetOutput(openFileDialog.FileName);
-                        }
-                        else
-                        {
-                            context.SetOutput(string.Empty);
-                        }
-                    }
+                    .Do(result =>context.SetOutput(result.Equals(DialogResult.OK)?openFileDialog.FileName:string.Empty)
 
                 )).DisposeWith(d);
             });

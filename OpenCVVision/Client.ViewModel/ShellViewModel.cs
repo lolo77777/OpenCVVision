@@ -9,6 +9,7 @@ using System.Reactive.Linq;
 
 namespace Client.ViewModel
 {
+    [SingleInstanceView]
     public class ShellViewModel : ViewModelBase, IRoutableViewModel
     {
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;

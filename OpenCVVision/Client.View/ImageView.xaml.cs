@@ -6,6 +6,7 @@ using System.Reactive.Disposables;
 
 namespace Client.View
 {
+    [SingleInstanceView]
     /// <summary>
     /// ImageView.xaml 的交互逻辑
     /// </summary>

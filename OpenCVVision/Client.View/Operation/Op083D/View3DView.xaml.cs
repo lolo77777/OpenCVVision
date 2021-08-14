@@ -8,6 +8,7 @@ using System.Windows.Documents;
 
 namespace Client.View.Operation
 {
+
     /// <summary>
     /// View3DView.xaml 的交互逻辑
     /// </summary>
@@ -18,6 +19,7 @@ namespace Client.View.Operation
             InitializeComponent();
             //ViewModel = Locator.Current.GetService<View3DViewModel>();
             SetupBinding();
+
         }
 
         private void SetupBinding()
@@ -33,6 +35,11 @@ namespace Client.View.Operation
                 this.Bind(ViewModel, vm => vm.ModelTransform, v => v.geometryModel3D.Transform).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.SampleItems, v => v.cbxTestSample.ItemsSource).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.SampleSelectIndex, v => v.cbxTestSample.SelectedIndex).DisposeWith(d);
+                d.Add(viewPort);
+                d.Add(light);
+                d.Add(geometryModel3D);
+
+
             });
         }
 
