@@ -1,8 +1,11 @@
 ﻿using Client.Common;
 
+using NLog;
+
 using ReactiveUI;
 
 using Splat;
+using Splat.NLog;
 
 using System;
 using System.Collections.Generic;
@@ -20,6 +23,7 @@ namespace Client.ViewModel
         public AppBootstrapper()
         {
             LoadDlls();
+            ConfigLog();
             Locator.CurrentMutable.RegisterConstant<IScreen>(this, "MainHost");
             Router.Navigate.Execute(Locator.Current.GetService<ShellViewModel>());
         }
@@ -36,6 +40,12 @@ namespace Client.ViewModel
                     select Activator.CreateInstance(t)).ToList();
                 tmp.Clear();
             }
+        }
+        private void ConfigLog()
+        {
+            LogManager.GetCurrentClassLogger();
+            Locator.CurrentMutable.UseNLogWithWrappingFullLogger();
+            RxApp.SuppressViewCommandBindingMessage = true;
         }
     }
 }

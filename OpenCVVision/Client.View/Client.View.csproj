@@ -21,6 +21,7 @@
     <PackageReference Include="ReactiveUI" Version="14.1.1" />
     <PackageReference Include="ReactiveUI.Events.WPF" Version="14.1.1" />
     <PackageReference Include="ReactiveUI.WPF" Version="14.1.1" />
+    <PackageReference Include="Splat.NLog" Version="13.1.1" />
     <PackageReference Include="Wpf.Controls.PanAndZoom" Version="2.3.4" />
   </ItemGroup>
 
@@ -37,5 +38,11 @@
     <Folder Include="Operation\Op10Camera\" />
     <Folder Include="Operation\Op11MachineLearning\" />
     <Folder Include="Operation\Op13ImageSegmentation\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
