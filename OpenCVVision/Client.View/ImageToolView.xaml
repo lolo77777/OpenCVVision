@@ -17,8 +17,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="sPanelControl" Orientation="Horizontal">
@@ -53,42 +52,49 @@
                 <materialDesign:PackIcon Kind="ClearBoxOutline" />
             </Button>
         </StackPanel>
-
-        <Separator
+        <Grid Grid.Row="1" />
+        <!--<Separator
             Grid.Row="1"
             Background="{StaticResource AccentBaseColorBrush}"
-            Style="{StaticResource MaterialDesignLightSeparator}" />
-        <materialDesign:Card Grid.Row="2" materialDesign:ShadowAssist.ShadowDepth="Depth0">
-            <ScrollViewer x:Name="scrollViewer">
-                <Grid>
-                    <Grid.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform x:Name="sTran" />
-                            <TranslateTransform x:Name="tTran" />
-                        </TransformGroup>
-                    </Grid.RenderTransform>
-                    <Path
-                        x:Name="pathDraw"
-                        Panel.ZIndex="9999"
-                        Stroke="Red"
-                        StrokeThickness="1" />
-                    <Image x:Name="imgWb" Stretch="Uniform" />
-                </Grid>
-            </ScrollViewer>
-        </materialDesign:Card>
-        <Separator
+            Style="{StaticResource MaterialDesignLightSeparator}" />-->
+        <Grid Grid.Row="2">
+            <materialDesign:Card Padding="2" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform x:Name="sTran" />
+                                <TranslateTransform x:Name="tTran" />
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <Path
+                            x:Name="pathDraw"
+                            Panel.ZIndex="9999"
+                            Stroke="Red"
+                            StrokeThickness="1" />
+                        <Image x:Name="imgWb" Stretch="Uniform" />
+                    </Grid>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+
+        <Border Grid.Row="4" Margin="2,4">
+            <StackPanel VerticalAlignment="Bottom" Orientation="Vertical">
+                <TextBlock
+                    x:Name="txtColorValue"
+                    Grid.Row="4"
+                    FontStyle="Italic"
+                    Text="" />
+                <TextBlock
+                    x:Name="txtInputImgInfo"
+                    Grid.Row="5"
+                    FontStyle="Italic"
+                    Text="Info:" />
+            </StackPanel>
+        </Border>
+        <!--<Separator
             Grid.Row="3"
             Background="{StaticResource AccentBaseColorBrush}"
-            Style="{StaticResource MaterialDesignLightSeparator}" />
-        <TextBlock
-            x:Name="txtColorValue"
-            Grid.Row="4"
-            FontStyle="Italic"
-            Text="" />
-        <TextBlock
-            x:Name="txtInputImgInfo"
-            Grid.Row="5"
-            FontStyle="Italic"
-            Text="Info:" />
+            Style="{StaticResource MaterialDesignLightSeparator}" />-->
     </Grid>
 </rxui:ReactiveUserControl>

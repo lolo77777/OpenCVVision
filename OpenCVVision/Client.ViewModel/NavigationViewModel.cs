@@ -14,6 +14,8 @@ namespace Client.ViewModel
 {
     public class NavigationViewModel : ViewModelBase
     {
+        private IObservable<IList<Type>> _navigation;
+
         [Reactive] public IList<NaviItem> NaviItems { get; private set; } = new List<NaviItem>();
         [Reactive] public int NaviSelectItemIndex { get; private set; }
 
@@ -50,6 +52,7 @@ namespace Client.ViewModel
                 .BindTo(this, x => x.NaviItems)
                 .DisposeWith(d);
         }
+
     }
 
     public class NaviItem

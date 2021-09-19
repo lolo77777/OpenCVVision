@@ -94,7 +94,7 @@ namespace Client.ViewModel.Operation
                 Mat dst = _rt.NewMat();
                 if (tmpBlobs1.Any())
                 {
-                    connCom.FilterByBlobs(_sigleSrc, dst, tmpBlobs1);
+                    //connCom.FilterByBlobs(_sigleSrc, dst, tmpBlobs1);
                     connCom.RenderBlobs(dst, tmpBlobs1, connCom.Labels, connCom.Blobs.Count);
                     _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
                 }

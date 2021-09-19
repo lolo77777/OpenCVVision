@@ -1,4 +1,5 @@
-﻿using Client.Model.Service.ImageProcess;
+﻿
+using Client.Model.Service.ImageProcess;
 
 using HelixToolkit.SharpDX.Core;
 
@@ -21,6 +22,7 @@ using System.Windows.Media.Media3D;
 
 using Camera = HelixToolkit.Wpf.SharpDX.Camera;
 using PerspectiveCamera = HelixToolkit.Wpf.SharpDX.PerspectiveCamera;
+using Vector3 = SharpDX.Vector3;
 
 namespace Client.ViewModel.Operation
 {
@@ -34,6 +36,13 @@ namespace Client.ViewModel.Operation
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
         private ResourcesTracker _rt;
         private static readonly AxisAngleRotation3D axisAngleRotation3D = new(new Vector3D(1, 0, 0), -90);
+        private UnmanageUtility.UnmanagedArray<Point3f> _pts;
+        private List<Vector3> _vector3s = new();
+        private List<Color4> _color4s = new();
+        private List<int> _ints = new();
+        private Vector3Collection _vec3sCollec;
+        private Color4Collection _color4sCollec;
+        private IntCollection _ids;
         [Reactive] public bool IsRun { get; set; }
 
         #region BindProperty
@@ -82,6 +91,17 @@ namespace Client.ViewModel.Operation
             PointGeometry = null;
             EffectsManager = null;
             CamDx = null;
+            _pts.Dispose();
+            _vector3s.Clear();
+
+            _color4s.Clear();
+
+            _vec3sCollec.Clear();
+            _color4sCollec.Clear();
+            _ids.Clear();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
 
         }
 
@@ -112,12 +132,12 @@ namespace Client.ViewModel.Operation
         private void Display()
         {
             string path = $"{Data.FilePath.Folder.PatternFolder}{SampleSelectIndex + 1}";
-            List<Mat> mats = Directory.GetFiles(path).Skip(20).Take(20).Select(f => Cv2.ImRead(f, ImreadModes.Grayscale)).ToList();
+            List<Mat> mats = Directory.GetFiles(path).Skip(20).Take(20).Select(f => _rt.T(Cv2.ImRead(f, ImreadModes.Grayscale))).ToList();
             IsRun = true;
             Observable.Start(() =>
             {
-                UnmanageUtility.UnmanagedArray<Point3f> pts = _grayCodeProcess.GetPointsAsync(mats);
-                return updatePointAsync(pts.ToList());
+                _pts = _grayCodeProcess.GetPointsAsync(mats);
+                return updatePointAsync(_pts.ToList());
             })
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(vt =>
@@ -131,19 +151,19 @@ namespace Client.ViewModel.Operation
 
         private (Vector3Collection Vector3Collection, Color4Collection Color4Collection, IntCollection IntCollection) updatePointAsync(List<Point3f> point3Fs)
         {
-            List<Vector3> vector3s = new();
-            List<Color4> color4s = new();
-            List<int> ints = new();
+            _vector3s.Clear();
+            _color4s.Clear();
+            _ints.Clear();
             for (int i = 0; i < point3Fs.Count; i++)
             {
                 Point3f p = point3Fs[i];
-                vector3s.Add(new Vector3(p.X, p.Z - 700, p.Y));
-                color4s.Add(new Color4(new Vector3(120, 100, 20), 0.8f));
+                _vector3s.Add(new Vector3(p.X, p.Z - 700, p.Y));
+                _color4s.Add(new Color4(new Vector3(120, 100, 20), 0.8f));
             }
-            Vector3Collection vec3sCollec = new Vector3Collection(vector3s);
-            Color4Collection color4sCollec = new Color4Collection(color4s);
-            IntCollection ids = new IntCollection(ints);
-            return (vec3sCollec, color4sCollec, ids);
+            _vec3sCollec = new Vector3Collection(_vector3s);
+            _color4sCollec = new Color4Collection(_color4s);
+            _ids = new IntCollection(_ints);
+            return (_vec3sCollec, _color4sCollec, _ids);
         }
         #endregion PrivateFunction
     }

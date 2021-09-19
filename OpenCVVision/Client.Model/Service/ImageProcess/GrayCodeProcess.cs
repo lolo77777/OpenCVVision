@@ -18,7 +18,7 @@ namespace Client.Model.Service.ImageProcess
         private double[] _camMatrixInv;//相机内参矩阵的inv
         private double[] _projectorMatrixInv;//投影仪内参矩阵的inv
         private ResourcesTracker _resourcesTracker = new();
-
+        UnmanagedArray<Point3f> _repts;
         public GrayCodeProcess(Mat rmat, Mat tmat, Mat camMat, Mat projectorMat)
         {
             _rmat = rmat;
@@ -31,6 +31,8 @@ namespace Client.Model.Service.ImageProcess
         public void Dispose()
         {
             _resourcesTracker.Dispose();
+            _repts.Dispose();
+
         }
 
         public UnmanagedArray<Point3f> GetPointsAsync(List<Mat> mats, bool display = false)
@@ -43,14 +45,14 @@ namespace Client.Model.Service.ImageProcess
         private UnmanagedArray<Point3f> get3d(Mat matH)
 
         {
-            UnmanagedArray<Point3f> repts = new(matH.Rows * matH.Cols);
+            _repts = new(matH.Rows * matH.Cols);
 
             Point3f rept = new();
             //var matHInd = matH.GetUnsafeGenericIndexer<short>();
 
             unsafe
             {
-                Point3f* startPtr = (Point3f*)repts.Ptr;
+                Point3f* startPtr = (Point3f*)_repts.Ptr;
                 short* matStartPtr = (short*)matH.DataStart;
 
                 for (int y = 0; y < matH.Rows - 1; y++)
@@ -117,7 +119,7 @@ namespace Client.Model.Service.ImageProcess
                 }
             }
 
-            return repts;
+            return _repts;
         }
 
         private void Init()

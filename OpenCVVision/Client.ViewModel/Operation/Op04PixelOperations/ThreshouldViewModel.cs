@@ -113,16 +113,8 @@ namespace Client.ViewModel.Operation
                 Mat tmpmat = _rt.NewMat();
                 Mat grayMat = _src.Channels() > 0 ? _rt.T(_src.Split()[channel].Clone()) : _rt.T(_src.Clone());
                 tmpmat = grayMat.EmptyClone();
-                Mat.UnsafeIndexer<byte> grayMatInd = grayMat.GetUnsafeGenericIndexer<byte>();
-                Mat.UnsafeIndexer<byte> tmpmatInd = tmpmat.GetUnsafeGenericIndexer<byte>();
-                for (int y = 0; y < grayMat.Rows; y++)
-                {
-                    for (int x = 0; x < grayMat.Cols; x++)
-                    {
-                        byte tmpValue = grayMatInd[y, x];
-                        tmpmatInd[y, x] = tmpValue > thresh1 && tmpValue < thresh2 ? (byte)255 : (byte)0;
-                    }
-                }
+
+                Cv2.InRange(grayMat, new Scalar(thresh1), new Scalar(thresh2), tmpmat);
                 _imageDataManager.OutputMatSubject.OnNext(tmpmat);
             });
         }
