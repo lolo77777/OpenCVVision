@@ -11,7 +11,7 @@ using System.Reactive.Linq;
 
 namespace Client.ViewModel.Operation
 {
-    [OperationInfo(6, "轮廓", MaterialDesignThemes.Wpf.PackIconKind.VectorPolyline)]
+    [OperationInfo(6.9, "轮廓", MaterialDesignThemes.Wpf.PackIconKind.VectorPolyline)]
     public class ContoursViewModel : OperaViewModelBase
     {
         private const int THICK3 = 3;
@@ -87,6 +87,7 @@ namespace Client.ViewModel.Operation
                         Cv2.ArrowedLine(dst, pt11.ToPoint(), pt21, Scalar.RandomColor(), THICK3);
                     }
                     break;
+
                 default:
                     break;
             }
@@ -106,7 +107,7 @@ namespace Client.ViewModel.Operation
                 {
                     _contours = Cv2.FindContoursAsArray(_sigleSrc, Enum.Parse<RetrievalModes>(restrieval), Enum.Parse<ContourApproximationModes>(contourApproximation));
                 }
-            });
+            }, true);
             return _contours;
         }
 

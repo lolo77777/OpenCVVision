@@ -19,7 +19,6 @@ namespace Client.ViewModel
 
         public override void ConfigService()
         {
-
             _mutable.RegisterLazySingleton(() => new NavigationViewModel());
             _mutable.RegisterLazySingleton(() => new ImageViewModel());
             _mutable.RegisterLazySingleton(() => new ShellViewModel());
@@ -44,6 +43,7 @@ namespace Client.ViewModel
             _mutable.Register(() => new ImageToolViewModel());
 
             RegistOperationViewModel<TwoMatOperationViewModel>();
+            RegistOperationViewModel<CircleDetectViewModel>();
         }
     }
 }

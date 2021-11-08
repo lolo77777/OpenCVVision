@@ -36,9 +36,6 @@ namespace Client.ViewModel
         /// </summary>
         [Reactive] public bool CanOperat { get; set; }
 
-
-
-
         public OperaViewModelBase(IImageDataManager imageDataManager = null) : base()
         {
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
@@ -57,15 +54,47 @@ namespace Client.ViewModel
                 _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
                 _sigleSrc = _rt.T(_src.Channels() > 1 ? _src.CvtColor(ColorConversionCodes.BGR2GRAY) : _src);
                 MessageBus.Current.SendMessage("Wait...", "Time");
-                Observable.Start(action, RxApp.TaskpoolScheduler)
-                    .Subscribe(_ =>
-                    {
-                        _rt.Dispose();
-                        long t2 = Cv2.GetTickCount();
-                        double t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
-                        MessageBus.Current.SendMessage(t.ToString(), "Time");
-                        IsRun = false;
-                    });
+
+                var ob = Observable.Start(action, RxApp.TaskpoolScheduler);
+
+                ob.Subscribe(_ =>
+                {
+                    _rt.Dispose();
+                    long t2 = Cv2.GetTickCount();
+                    double t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
+                    MessageBus.Current.SendMessage(t.ToString(), "Time");
+                    IsRun = false;
+                });
+            }
+        }
+
+        /// <summary>
+        /// 执行操作，发送操作执行的时间
+        /// </summary>
+        /// <param name="action">图像的操作</param>
+        protected void SendTime(Action action, bool isWait)
+        {
+            if (!IsRun)
+            {
+                IsRun = true;
+                long t1 = Cv2.GetTickCount();
+                _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
+                _sigleSrc = _rt.T(_src.Channels() > 1 ? _src.CvtColor(ColorConversionCodes.BGR2GRAY) : _src);
+                MessageBus.Current.SendMessage("Wait...", "Time");
+
+                var ob = Observable.Start(action, RxApp.TaskpoolScheduler);
+                if (isWait)
+                {
+                    ob.Wait();
+                }
+                ob.Subscribe(_ => { }, () =>
+                 {
+                     _rt.Dispose();
+                     long t2 = Cv2.GetTickCount();
+                     double t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
+                     MessageBus.Current.SendMessage(t.ToString(), "Time");
+                     IsRun = false;
+                 });
             }
         }
 

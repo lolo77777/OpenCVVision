@@ -1,0 +1,65 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="Client.View.Operation.CircleDetectView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
+    x:TypeArguments="operation:CircleDetectViewModel"
+    mc:Ignorable="d"
+    d:DesignHeight="450"
+    d:DesignWidth="300">
+    <materialDesign:Card
+        x:Name="cardMain"
+        Margin="{StaticResource marginOp}">
+        <StackPanel>
+            <Label
+                Margin="{StaticResource marginOdd}"
+                Content="HoughCircle"
+                FontSize="22"
+                FontWeight="UltraBlack" />
+            <materialDesign:Card>
+                <StackPanel
+                    Grid.Row="2"
+                    Margin="{StaticResource marginEven}">
+                    <TextBox
+                        x:Name="txtDp"
+                        Margin="8,0"
+                        materialDesign:HintAssist.Hint="Dp" />
+                    <TextBox
+                        x:Name="txtMinDist"
+                        Margin="8,0"
+                        materialDesign:HintAssist.Hint="MinDist" />
+                    <TextBox
+                        x:Name="txtCannyParam"
+                        Margin="8,0"
+                        materialDesign:HintAssist.Hint="CannyParam" />
+                    <TextBox
+                        x:Name="txtParam2"
+                        Margin="8,0"
+                        materialDesign:HintAssist.Hint="Param2" />
+                    <TextBox
+                        x:Name="txtMinRadius"
+                        Margin="8,0"
+                        materialDesign:HintAssist.Hint="MinRadius" />
+                    <TextBox
+                        x:Name="txtMaxRadius"
+                        Margin="8,0"
+                        materialDesign:HintAssist.Hint="MaxRadius" />
+                    <ComboBox
+                        x:Name="cbxCircleItems"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="CircleItems">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>

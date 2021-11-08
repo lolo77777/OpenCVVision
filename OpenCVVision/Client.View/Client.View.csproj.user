@@ -42,6 +42,9 @@
     <Compile Update="Operation\Op05Morphology\MorphologyView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op06TargetDetection\CircleDetectView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Operation\Op06TargetDetection\ContoursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -117,6 +120,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op05Morphology\MorphologyView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op06TargetDetection\CircleDetectView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op06TargetDetection\ContoursView.xaml">
