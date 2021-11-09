@@ -57,14 +57,14 @@ namespace Client.ViewModel
 
                 var ob = Observable.Start(action, RxApp.TaskpoolScheduler);
 
-                ob.Subscribe(_ =>
-                {
-                    _rt.Dispose();
-                    long t2 = Cv2.GetTickCount();
-                    double t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
-                    MessageBus.Current.SendMessage(t.ToString(), "Time");
-                    IsRun = false;
-                });
+                ob.Subscribe(_ => { }, () =>
+                 {
+                     _rt.Dispose();
+                     long t2 = Cv2.GetTickCount();
+                     double t = Math.Round((t2 - t1) / Cv2.GetTickFrequency() * 1000, 0);
+                     MessageBus.Current.SendMessage(t.ToString(), "Time");
+                     IsRun = false;
+                 });
             }
         }
 

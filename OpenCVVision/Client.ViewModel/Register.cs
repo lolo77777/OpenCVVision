@@ -44,6 +44,7 @@ namespace Client.ViewModel
 
             RegistOperationViewModel<TwoMatOperationViewModel>();
             RegistOperationViewModel<CircleDetectViewModel>();
+            RegistOperationViewModel<BlobDetectViewModel>();
         }
     }
 }
