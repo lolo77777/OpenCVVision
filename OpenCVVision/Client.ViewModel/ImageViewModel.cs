@@ -1,23 +1,7 @@
 ﻿using Client.Model.Entity;
-using Client.Model.Service;
 
-using DynamicData;
-
-using OpenCvSharp;
 using OpenCvSharp.WpfExtensions;
 
-using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
-
-using Splat;
-
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
 using System.Windows.Media.Imaging;
 
 namespace Client.ViewModel
@@ -45,6 +29,7 @@ namespace Client.ViewModel
         [Reactive] public string OutputImageMarkTxt { get; set; }
         public ReactiveCommand<Unit, bool> RemoveImgFromImgManagerCommand { get; set; }
         [Reactive] public string Time { get; private set; }
+
         public ImageViewModel(IImageDataManager imageDataManager = null)
         {
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
@@ -58,6 +43,7 @@ namespace Client.ViewModel
 
             return new HistoryItem { HistoryItemId = imageData.ImageId, HistoryItemTxtMark = imageData.TxtMarker, HistoryItemImg = wtBitmap };
         }
+
         private WriteableBitmap MatResizeWt(Mat mat)
         {
             double scaleY = 60d / mat.Height;

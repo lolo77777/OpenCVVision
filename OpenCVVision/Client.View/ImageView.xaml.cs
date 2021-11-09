@@ -1,15 +1,6 @@
-﻿using Client.ViewModel;
-
-using ReactiveUI;
-
-using System.Reactive.Disposables;
-
-namespace Client.View
+﻿namespace Client.View
 {
     [SingleInstanceView]
-    /// <summary>
-    /// ImageView.xaml 的交互逻辑
-    /// </summary>
     public partial class ImageView : ReactiveUserControl<ImageViewModel>
     {
         public ImageView()

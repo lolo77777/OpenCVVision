@@ -1,16 +1,7 @@
-﻿using Client.ViewModel;
-
-using ReactiveUI;
-
-using System;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace Client.View
 {
-
     /// <summary>
     /// ImageToolView.xaml 的交互逻辑
     /// </summary>

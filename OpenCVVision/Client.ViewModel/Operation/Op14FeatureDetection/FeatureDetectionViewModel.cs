@@ -1,19 +1,5 @@
-﻿using DynamicData;
-
-using OpenCvSharp;
-using OpenCvSharp.Features2D;
+﻿using OpenCvSharp.Features2D;
 using OpenCvSharp.XFeatures2D;
-
-using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
-
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
 
 namespace Client.ViewModel.Operation
 {
@@ -133,26 +119,31 @@ namespace Client.ViewModel.Operation
                         aKAZE.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         aKAZE.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
+
                     case "Sift":
                         SIFT siftSam = SIFT.Create();
                         siftSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         siftSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
+
                     case "Surf":
                         SURF surfSam = SURF.Create(500);
                         surfSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         surfSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
+
                     case "Brisk":
                         BRISK briskSam = BRISK.Create();
                         briskSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         briskSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
+
                     case "Orb":
                         ORB orgSam = ORB.Create();
                         orgSam.DetectAndCompute(dst1, null, out kps1, descriptors1);
                         orgSam.DetectAndCompute(dst2, null, out kps2, descriptors2);
                         break;
+
                     default:
                         break;
                 }
@@ -191,6 +182,7 @@ namespace Client.ViewModel.Operation
                             matches = flannBasedMatcher.Match(descriptors1, descriptors2);
                         }
                         break;
+
                     default:
                         break;
                 }

@@ -1,14 +1,4 @@
-﻿using Client.ViewModel.Operation;
-
-using ReactiveUI;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Windows.Controls;
-
-namespace Client.View.Operation
+﻿namespace Client.View.Operation
 {
     /// <summary>
     /// ConnectedComponentsView.xaml 的交互逻辑

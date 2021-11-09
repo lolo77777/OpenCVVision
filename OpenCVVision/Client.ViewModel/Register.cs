@@ -1,50 +1,44 @@
-﻿using Client.Common;
-using Client.ViewModel.Operation;
+﻿namespace Client.ViewModel;
 
-using Splat;
-
-namespace Client.ViewModel
+internal class Register : RegisterBase
 {
-    internal class Register : RegisterBase
+    private void RegistOperationViewModel<T>() where T : IOperationViewModel, new()
     {
-        private void RegistOperationViewModel<T>() where T : IOperationViewModel, new()
-        {
-            _mutable.Register<IOperationViewModel>(() => new T(), OpStaticMethod.GetOpInfo<T>().info);
-        }
+        _mutable.Register<IOperationViewModel>(() => new T(), OpStaticMethod.GetOpInfo<T>().info);
+    }
 
-        public static T ResolveVM<T>() where T : IOperationViewModel
-        {
-            return (T)Locator.Current.GetService<IOperationViewModel>(OpStaticMethod.GetOpInfo<T>().info);
-        }
+    public static T ResolveVM<T>() where T : IOperationViewModel
+    {
+        return (T)Locator.Current.GetService<IOperationViewModel>(OpStaticMethod.GetOpInfo<T>().info);
+    }
 
-        public override void ConfigService()
-        {
-            _mutable.RegisterLazySingleton(() => new NavigationViewModel());
-            _mutable.RegisterLazySingleton(() => new ImageViewModel());
-            _mutable.RegisterLazySingleton(() => new ShellViewModel());
-            RegistOperationViewModel<LoadFileViewModel>();
-            RegistOperationViewModel<ColorSpaceViewModel>();
-            RegistOperationViewModel<FilterViewModel>();
-            RegistOperationViewModel<ThreshouldViewModel>();
-            RegistOperationViewModel<MorphologyViewModel>();
-            RegistOperationViewModel<ConnectedComponentsViewModel>();
-            RegistOperationViewModel<ContoursViewModel>();
-            RegistOperationViewModel<RoiViewModel>();
-            RegistOperationViewModel<LaserLineViewModel>();
-            RegistOperationViewModel<PyramidViewModel>();
-            RegistOperationViewModel<EdgeDetectViewModel>();
-            RegistOperationViewModel<YoloViewModel>();
-            RegistOperationViewModel<FeatureDetectionViewModel>();
-            //RegistLazySingletonOpVM<MatchTemplateViewModel>();
-            RegistOperationViewModel<GrayCodeViewModel>();
-            _mutable.Register(() => new View3DViewModel());
-            RegistOperationViewModel<PhotometricStereoViewModel>();
-            _mutable.RegisterLazySingleton(() => new ViewPhotometricViewModel());
-            _mutable.Register(() => new ImageToolViewModel());
+    public override void ConfigService()
+    {
+        _mutable.RegisterLazySingleton(() => new NavigationViewModel());
+        _mutable.RegisterLazySingleton(() => new ImageViewModel());
+        _mutable.RegisterLazySingleton(() => new ShellViewModel());
+        RegistOperationViewModel<LoadFileViewModel>();
+        RegistOperationViewModel<ColorSpaceViewModel>();
+        RegistOperationViewModel<FilterViewModel>();
+        RegistOperationViewModel<ThreshouldViewModel>();
+        RegistOperationViewModel<MorphologyViewModel>();
+        RegistOperationViewModel<ConnectedComponentsViewModel>();
+        RegistOperationViewModel<ContoursViewModel>();
+        RegistOperationViewModel<RoiViewModel>();
+        RegistOperationViewModel<LaserLineViewModel>();
+        RegistOperationViewModel<PyramidViewModel>();
+        RegistOperationViewModel<EdgeDetectViewModel>();
+        RegistOperationViewModel<YoloViewModel>();
+        RegistOperationViewModel<FeatureDetectionViewModel>();
+        //RegistLazySingletonOpVM<MatchTemplateViewModel>();
+        RegistOperationViewModel<GrayCodeViewModel>();
+        _mutable.Register(() => new View3DViewModel());
+        RegistOperationViewModel<PhotometricStereoViewModel>();
+        _mutable.RegisterLazySingleton(() => new ViewPhotometricViewModel());
+        _mutable.Register(() => new ImageToolViewModel());
 
-            RegistOperationViewModel<TwoMatOperationViewModel>();
-            RegistOperationViewModel<CircleDetectViewModel>();
-            RegistOperationViewModel<BlobDetectViewModel>();
-        }
+        RegistOperationViewModel<TwoMatOperationViewModel>();
+        RegistOperationViewModel<CircleDetectViewModel>();
+        RegistOperationViewModel<BlobDetectViewModel>();
     }
 }

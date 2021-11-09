@@ -1,18 +1,8 @@
-﻿using Client.ViewModel;
-
-using ReactiveUI;
-
-using System;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Windows.Media.Animation;
+﻿using System.Windows.Media.Animation;
 
 namespace Client.View
 {
     [SingleInstanceView]
-    /// <summary>
-    /// Navigation.xaml 的交互逻辑
-    /// </summary>
     public partial class NavigationView : ReactiveUserControl<NavigationViewModel>
     {
         private readonly DoubleAnimation withAnimation1 = new();

@@ -1,13 +1,4 @@
-﻿using Client.Data;
-
-using OpenCvSharp;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace Client.Model.Service.ImageProcess
+﻿namespace Client.Model.Service.ImageProcess
 {
     public class LightPlaneCalibrate : IDisposable
     {
@@ -434,7 +425,6 @@ namespace Client.Model.Service.ImageProcess
         public void Dispose()
         {
             _resourcesTracker?.Dispose();
-
         }
 
         #endregion 求旋转矩阵

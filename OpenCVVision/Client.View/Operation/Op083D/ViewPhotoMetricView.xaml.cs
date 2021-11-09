@@ -1,17 +1,8 @@
-﻿using Client.ViewModel.Operation;
-
-using ReactiveUI;
-
-using System.Diagnostics;
-using System.Reactive.Disposables;
-using System.Windows.Documents;
+﻿using System.Windows.Documents;
 
 namespace Client.View.Operation
 {
     [SingleInstanceView]
-    /// <summary>
-    /// ViewPhoteMetricView.xaml 的交互逻辑
-    /// </summary>
     public partial class ViewPhotometricView : ReactiveUserControl<ViewPhotometricViewModel>
     {
         public ViewPhotometricView()

@@ -1,8 +1,4 @@
-﻿using OpenCvSharp;
-
-using System;
-using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Numerics;
 
 using UnmanageUtility;
 
@@ -18,7 +14,8 @@ namespace Client.Model.Service.ImageProcess
         private double[] _camMatrixInv;//相机内参矩阵的inv
         private double[] _projectorMatrixInv;//投影仪内参矩阵的inv
         private ResourcesTracker _resourcesTracker = new();
-        UnmanagedArray<Point3f> _repts;
+        private UnmanagedArray<Point3f> _repts;
+
         public GrayCodeProcess(Mat rmat, Mat tmat, Mat camMat, Mat projectorMat)
         {
             _rmat = rmat;
@@ -32,7 +29,6 @@ namespace Client.Model.Service.ImageProcess
         {
             _resourcesTracker.Dispose();
             _repts.Dispose();
-
         }
 
         public UnmanagedArray<Point3f> GetPointsAsync(List<Mat> mats, bool display = false)

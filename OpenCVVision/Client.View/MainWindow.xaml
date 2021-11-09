@@ -56,5 +56,4 @@
         HorizontalContentAlignment="Stretch"
         VerticalContentAlignment="Stretch"
         Router="{Binding Router}" />
-    
 </mah:MetroWindow>

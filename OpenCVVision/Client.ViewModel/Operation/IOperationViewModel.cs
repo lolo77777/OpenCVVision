@@ -1,6 +1,5 @@
-﻿namespace Client.ViewModel
+﻿namespace Client.ViewModel;
+
+public interface IOperationViewModel
 {
-    public interface IOperationViewModel
-    {
-    }
 }

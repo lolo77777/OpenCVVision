@@ -1,13 +1,4 @@
-﻿using Client.ViewModel.Operation;
-
-using ReactiveUI;
-
-using System;
-using System.Diagnostics;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Windows;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Client.View.Operation
 {

@@ -1,16 +1,6 @@
-﻿using Client.ViewModel;
-
-using ReactiveUI;
-
-using System.Diagnostics;
-using System.Reactive.Disposables;
-
-namespace Client.View
+﻿namespace Client.View
 {
     [SingleInstanceView]
-    /// <summary>
-    /// Interaction logic for ShellView.xaml
-    /// </summary>
     public partial class ShellView : ReactiveUserControl<ShellViewModel>
     {
         public ShellView()
@@ -18,6 +8,7 @@ namespace Client.View
             InitializeComponent();
             SetupBinding();
         }
+
         private void SetupBinding()
         {
             this.WhenActivated(d =>
@@ -29,7 +20,6 @@ namespace Client.View
 #if DEBUG
                 Debug.WriteLine($"ShellView的HashCode:{this.GetHashCode()}") ;
 #endif
-
             });
         }
     }

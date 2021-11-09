@@ -1,10 +1,4 @@
-﻿using Client.ViewModel.Operation;
-
-using ReactiveUI;
-
-using System.Reactive.Disposables;
-
-namespace Client.View.Operation
+﻿namespace Client.View.Operation
 {
     /// <summary>
     /// ColorSpaceView.xaml 的交互逻辑
@@ -29,7 +23,6 @@ namespace Client.View.Operation
                 this.WhenAnyValue(x => x.isEnableInverse.IsChecked)
                     .BindTo(ViewModel, x => x.IsEnableInverse)
                     .DisposeWith(d);
-
             });
         }
     }

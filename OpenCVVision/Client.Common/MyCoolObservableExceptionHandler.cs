@@ -1,13 +1,4 @@
-﻿using Microsoft.AppCenter.Crashes;
-
-using ReactiveUI;
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reactive.Concurrency;
-
-namespace Client.Common
+﻿namespace Client.Common
 {
     public class MyCoolObservableExceptionHandler : IObserver<Exception>
     {

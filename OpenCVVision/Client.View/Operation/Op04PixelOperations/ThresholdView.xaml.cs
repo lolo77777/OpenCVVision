@@ -1,13 +1,4 @@
-﻿using Client.ViewModel.Operation;
-
-using ReactiveUI;
-
-using System;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-
-namespace Client.View.Operation
+﻿namespace Client.View.Operation
 {
     /// <summary>
     /// ThresholdView.xaml 的交互逻辑

@@ -1,14 +1,9 @@
-﻿using OpenCvSharp;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Client.Model.Service.ImageProcess
+﻿namespace Client.Model.Service.ImageProcess
 {
     public class LightPlaneCal : IDisposable
     {
         private ResourcesTracker _resourcesTracker = new();
+
         /// <summary>
         /// 通过光平面系数将像素坐标转换为深度坐标
         /// </summary>

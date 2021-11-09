@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
-
-using OpenCvSharp;
 
 namespace Client.Model.Service.ImageProcess
 {
@@ -14,7 +10,7 @@ namespace Client.Model.Service.ImageProcess
         /// </summary>
         /// <param name="p">条纹节距</param>
         /// <returns>该节距时的相位集合</returns>
-        private async static Task<Mat> calPhaseMat(List<Mat> listMat, bool display = false)
+        private static async Task<Mat> calPhaseMat(List<Mat> listMat, bool display = false)
         {
             int width = listMat[0].Width;
             int height = listMat[0].Height;

@@ -1,21 +1,10 @@
-﻿using Client.Common;
-
-using Microsoft.AppCenter;
+﻿using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 
 using NLog;
 
-using ReactiveUI;
-
-using Splat;
 using Splat.NLog;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 
 namespace Client.ViewModel
 {
@@ -23,10 +12,8 @@ namespace Client.ViewModel
     {
         public RoutingState Router { get; private set; } = new RoutingState();
 
-
         public AppBootstrapper()
         {
-
             AppCenter.Start("175bea4a-10d1-4db0-94e8-1f8979caed26", typeof(Analytics), typeof(Crashes));
             RxApp.DefaultExceptionHandler = new MyCoolObservableExceptionHandler();
             LoadDlls();
@@ -48,6 +35,7 @@ namespace Client.ViewModel
                 tmp.Clear();
             }
         }
+
         private void ConfigLog()
         {
             LogManager.GetCurrentClassLogger();

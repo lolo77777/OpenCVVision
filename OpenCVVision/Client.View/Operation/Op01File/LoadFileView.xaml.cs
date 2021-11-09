@@ -1,10 +1,4 @@
-﻿using Client.ViewModel.Operation;
-
-using ReactiveUI;
-
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Client.View.Operation
 {
@@ -30,7 +24,7 @@ namespace Client.View.Operation
                 this.OneWayBind(ViewModel, vm => vm.TxtImageFilePath, v => v.FilePathTextBox.Text).DisposeWith(d);
                 this.BindInteraction(ViewModel, vm => vm.LoadFileConfirm,
                     context => Observable.Return(openFileDialog.ShowDialog())
-                    .Do(result =>context.SetOutput(result.Equals(DialogResult.OK)?openFileDialog.FileName:string.Empty)
+                    .Do(result => context.SetOutput(result.Equals(DialogResult.OK) ? openFileDialog.FileName : string.Empty)
 
                 )).DisposeWith(d);
             });

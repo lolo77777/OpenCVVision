@@ -1,14 +1,7 @@
-﻿using Client.ViewModel.Operation;
-
-using ReactiveUI;
-
-using System.Diagnostics;
-using System.Reactive.Disposables;
-using System.Windows.Documents;
+﻿using System.Windows.Documents;
 
 namespace Client.View.Operation
 {
-
     /// <summary>
     /// View3DView.xaml 的交互逻辑
     /// </summary>
@@ -19,7 +12,6 @@ namespace Client.View.Operation
             InitializeComponent();
             //ViewModel = Locator.Current.GetService<View3DViewModel>();
             SetupBinding();
-
         }
 
         private void SetupBinding()
@@ -38,8 +30,6 @@ namespace Client.View.Operation
                 d.Add(viewPort);
                 d.Add(light);
                 d.Add(geometryModel3D);
-
-
             });
         }
 

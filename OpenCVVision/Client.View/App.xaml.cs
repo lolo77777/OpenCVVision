@@ -1,16 +1,4 @@
-﻿using Client.Common;
-using Client.ViewModel;
-
-using Splat;
-
-using System;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Windows;
-
-namespace Client
+﻿namespace Client
 {
     /// <summary>
     /// Interaction logic for App.xaml

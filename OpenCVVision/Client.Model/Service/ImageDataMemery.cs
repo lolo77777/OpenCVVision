@@ -1,13 +1,5 @@
-﻿using Client.Data;
-using Client.Model.Entity;
+﻿using Client.Model.Entity;
 
-using DynamicData;
-
-using OpenCvSharp;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Subjects;
 using System.Text;
 

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using OpenCvSharp;
-
-namespace Client.Model.Entity
+﻿namespace Client.Model.Entity
 {
     public class ImageData
     {

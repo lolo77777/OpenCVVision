@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30011.22
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.View", "Client.View\Client.View.csproj", "{3FB0A9C5-D793-4B84-8B1B-75E47FCC0B81}"
 EndProject
@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Model", "Client.Mode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Common", "Client.Common\Client.Common.csproj", "{B97BED1F-225B-4AE4-8FD0-6BC73C9093A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Data", "Client.Data\Client.Data.csproj", "{E0148F76-0EA2-42EC-92C6-92D700C23D05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Data", "Client.Data\Client.Data.csproj", "{E0148F76-0EA2-42EC-92C6-92D700C23D05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,10 +1,6 @@
-﻿using OpenCvSharp;
-using OpenCvSharp.Internal.Util;
+﻿using OpenCvSharp.Internal.Util;
 
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Client.ViewModel
