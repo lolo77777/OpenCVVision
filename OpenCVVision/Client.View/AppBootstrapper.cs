@@ -1,12 +1,4 @@
-﻿using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-
-using NLog;
-
-using Splat.NLog;
-
-namespace Client.ViewModel
+﻿namespace Client.ViewModel
 {
     public class AppBootstrapper : ReactiveObject, IScreen
     {
@@ -15,6 +7,7 @@ namespace Client.ViewModel
         public AppBootstrapper()
         {
             AppCenter.Start("175bea4a-10d1-4db0-94e8-1f8979caed26", typeof(Analytics), typeof(Crashes));
+
             RxApp.DefaultExceptionHandler = new MyCoolObservableExceptionHandler();
             LoadDlls();
             ConfigLog();
@@ -38,9 +31,7 @@ namespace Client.ViewModel
 
         private void ConfigLog()
         {
-            LogManager.GetCurrentClassLogger();
             Locator.CurrentMutable.UseNLogWithWrappingFullLogger();
-            RxApp.SuppressViewCommandBindingMessage = true;
         }
     }
 }
