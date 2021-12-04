@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Client.Model.Service
 {
-    public class ImageDataMemery : IImageDataManager
+    public class ImageDataMemery : IImageDataManager,IEnableLogger
     {
         public Guid? CurrentId { get; set; }
         public Subject<Guid?> InputMatGuidSubject { get; set; } = new();
@@ -29,27 +29,35 @@ namespace Client.Model.Service
 
         public bool AddImage(string imageMarkTxt, Mat mat)
         {
-            int itemCount = SourceCacheImageData.Items.Count(it => it.TxtMarker.Equals(imageMarkTxt, StringComparison.Ordinal));
-            if (itemCount.Equals(0))
+            if (mat != null && !mat.Empty())
             {
-                try
+                int itemCount = SourceCacheImageData.Items.Count(it => it.TxtMarker.Equals(imageMarkTxt, StringComparison.Ordinal));
+                if (itemCount.Equals(0))
                 {
-                    Guid guid = Guid.NewGuid();
-                    SourceCacheImageData.AddOrUpdate(new ImageData { ImageId = guid, TxtMarker = imageMarkTxt, ImageMat = mat });
-                    InputMatGuidSubject.OnNext(guid);
-                    return true;
+                    try
+                    {
+                        Guid guid = Guid.NewGuid();
+                        SourceCacheImageData.AddOrUpdate(new ImageData { ImageId = guid, TxtMarker = imageMarkTxt, ImageMat = mat });
+                        InputMatGuidSubject.OnNext(guid);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        this.Log().Error(ex, ex.Message);
+                        return false;
+                    }
                 }
-                catch (Exception)
+                else
                 {
-                    return false;
+                    StringBuilder strBuilderTxtNew = new();
+                    strBuilderTxtNew.Append(imageMarkTxt);
+                    strBuilderTxtNew.Append(DateTime.Now.ToLongTimeString());
+                    return AddImage(strBuilderTxtNew.ToString(), mat);
                 }
             }
             else
             {
-                StringBuilder strBuilderTxtNew = new();
-                strBuilderTxtNew.Append(imageMarkTxt);
-                strBuilderTxtNew.Append(DateTime.Now.ToLongTimeString());
-                return AddImage(strBuilderTxtNew.ToString(), mat);
+                return false;
             }
         }
 

@@ -6,9 +6,6 @@ global using DynamicData;
 
 global using MaterialDesignThemes.Wpf;
 
-global using Microsoft.AppCenter;
-global using Microsoft.AppCenter.Analytics;
-global using Microsoft.AppCenter.Crashes;
 
 global using NLog;
 global using NLog.Filters;

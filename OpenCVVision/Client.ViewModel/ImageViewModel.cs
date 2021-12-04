@@ -46,11 +46,18 @@ namespace Client.ViewModel
 
         private WriteableBitmap MatResizeWt(Mat mat)
         {
-            double scaleY = 60d / mat.Height;
-            Mat dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
-            WriteableBitmap writeableBitmap = dst.ToWriteableBitmap();
-            _rt.Dispose();
-            return writeableBitmap;
+            if (mat!=null && !mat.Empty())
+            {
+                double scaleY = 60d / mat.Height;
+                Mat dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
+                WriteableBitmap writeableBitmap = dst.ToWriteableBitmap();
+                _rt.Dispose();
+                return writeableBitmap;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private void UpdateHistoryItems(IChangeSet<HistoryItem, Guid> changes)
@@ -86,6 +93,7 @@ namespace Client.ViewModel
         {
             _imageDataManager.SourceCacheImageData
                 .Connect()
+                .Filter(imgdata=> imgdata.ImageMat!=null&&!imgdata.ImageMat.Empty())
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Transform(it => ConvertData(it))
                 .Subscribe(it => UpdateHistoryItems(it))

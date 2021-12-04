@@ -122,11 +122,14 @@ public class ImageToolViewModel : ViewModelBase
 
     private void UpdateWriteableBitmap(ref WriteableBitmap writeableBitmap, Mat mat)
     {
-        if (writeableBitmap == null || (int)writeableBitmap.Width != mat.Width || (int)writeableBitmap.Height != mat.Height)
+        if (writeableBitmap == null ||
+            (int)writeableBitmap.Width != mat.Width ||
+            (int)writeableBitmap.Height != mat.Height ||
+            writeableBitmap.Format.BitsPerPixel!= mat.Channels()*mat.ElemSize()*8)
         {
             var wb = mat.ToWriteableBitmap();
 
-            writeableBitmap = new WriteableBitmap(mat.Width, mat.Height, 24, 24, wb.Format, wb.Palette);
+            writeableBitmap = new WriteableBitmap(mat.Width, mat.Height, 96, 96, wb.Format, wb.Palette);
         }
 
         writeableBitmap.WritePixels(new System.Windows.Int32Rect(0, 0, mat.Width, mat.Height), mat.Data, mat.Height * mat.Width * mat.Channels(), mat.Width * mat.Channels());

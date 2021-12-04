@@ -1,4 +1,4 @@
-﻿global using Microsoft.AppCenter.Crashes;
+﻿
 
 global using ReactiveUI;
 

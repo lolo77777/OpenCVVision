@@ -2,6 +2,8 @@
 ## 是什么？
 这是一个使用.net 6基于OpencvSharp、ReactiveUI开发的自用工具，主要用来做ReactiveUI与OpencvSharp学习过程中的尝试；根据个人需求不定期更新添加功能，欢迎讨论交流。
 
+### ！其他信息请参考项目Client.View内AppBootstrapper.cs文件里的相关说明
+
 ## 引用
 |功能|引用包|
 |--|--|

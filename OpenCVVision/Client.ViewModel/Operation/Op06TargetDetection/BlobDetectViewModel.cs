@@ -97,6 +97,6 @@ public class BlobDetectViewModel : OperaViewModelBase
             }
             Cv2.DrawKeypoints(dst, keypoints, dst, Scalar.DarkRed, DrawMatchesFlags.DrawRichKeypoints);
             _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-        });
+        }, true);
     }
 }

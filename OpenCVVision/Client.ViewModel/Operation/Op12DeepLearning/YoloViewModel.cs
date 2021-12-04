@@ -29,8 +29,8 @@ public class YoloViewModel : OperaViewModelBase
     protected override void SetupDeactivate()
     {
         base.SetupDeactivate();
-        _net.Dispose();
-        _resourcesTracker.Dispose();
+        _net?.Dispose();
+        _resourcesTracker?.Dispose();
     }
 
     protected override void SetupSubscriptions(CompositeDisposable d)

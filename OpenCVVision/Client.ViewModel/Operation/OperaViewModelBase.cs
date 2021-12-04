@@ -38,7 +38,15 @@ public class OperaViewModelBase : ViewModelBase, IOperationViewModel
         {
             IsRun = true;
             long t1 = Cv2.GetTickCount();
-            _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
+            var currentMat = _imageDataManager.GetCurrentMat();
+            if (currentMat!=null)
+            {
+                _src = _rt.T(currentMat.Clone());
+            }
+            else
+            {
+                return;
+            }
             _sigleSrc = _rt.T(_src.Channels() > 1 ? _src.CvtColor(ColorConversionCodes.BGR2GRAY) : _src);
             MessageBus.Current.SendMessage("Wait...", "Time");
 
@@ -65,7 +73,16 @@ public class OperaViewModelBase : ViewModelBase, IOperationViewModel
         {
             IsRun = true;
             long t1 = Cv2.GetTickCount();
-            _src = _rt.T(_imageDataManager.GetCurrentMat().Clone());
+            var currentMat = _imageDataManager.GetCurrentMat();
+            if (currentMat != null)
+            {
+                _src = _rt.T(currentMat.Clone());
+            }
+            else
+            {
+                return;
+            }
+
             _sigleSrc = _rt.T(_src.Channels() > 1 ? _src.CvtColor(ColorConversionCodes.BGR2GRAY) : _src);
             MessageBus.Current.SendMessage("Wait...", "Time");
 

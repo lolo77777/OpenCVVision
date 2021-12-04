@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>True</UseWPF>
+	  <LangVersion>10.0</LangVersion>
     <ApplicationIcon>Vison.ico</ApplicationIcon>
-    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,13 +17,13 @@
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.10" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.2.1" />
-    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.9" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
-    <PackageReference Include="ReactiveUI" Version="16.3.10" />
+    <PackageReference Include="ReactiveUI" Version="17.0.1" />
     <PackageReference Include="ReactiveUI.Events.WPF" Version="15.1.1" />
-    <PackageReference Include="ReactiveUI.WPF" Version="16.3.10" />
-    <PackageReference Include="Splat.NLog" Version="13.1.42" />
+    <PackageReference Include="ReactiveUI.WPF" Version="17.0.1" />
+    <PackageReference Include="Splat.NLog" Version="14.1.1" />
     <PackageReference Include="Wpf.Controls.PanAndZoom" Version="2.3.4" />
   </ItemGroup>
 

@@ -3,10 +3,11 @@
 [OperationInfo(5.1, "连通域", MaterialDesignThemes.Wpf.PackIconKind.Connection)]
 public class ConnectedComponentsViewModel : OperaViewModelBase
 {
+    private HashSet<string> _filters = new();
     [ObservableAsProperty] public int AreaLimit { get; private set; }
     [Reactive] public int AreaMax { get; set; }
     [Reactive] public int AreaMin { get; set; }
-    public IList<string> Filters { get; set; }
+
     [ObservableAsProperty] public int HeightLimit { get; set; }
     [Reactive] public int HeightMax { get; set; }
     [Reactive] public int HeightMin { get; set; }
@@ -104,7 +105,7 @@ public class ConnectedComponentsViewModel : OperaViewModelBase
             .ObserveOn(RxApp.MainThreadScheduler);
 
         currentMatOb
-            .Do(g => UpdateOutput(Filters?.ToList()))
+            .Do(g => UpdateOutput(_filters?.ToList()))
             .Subscribe()
             .DisposeWith(d);
 
@@ -130,22 +131,38 @@ public class ConnectedComponentsViewModel : OperaViewModelBase
             .DisposeWith(d);
 
         IObservable<(int, int)> areaOb = this.WhenAnyValue(x => x.AreaMax, x => x.AreaMin)
-             .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Area", StringComparison.Ordinal)));
+            .Throttle(TimeSpan.FromMilliseconds(200))
+            .Do(vt => ChangeHashSet(vt, "Area").Invoke())
+            .Where(vt => _filters.Contains("Area"));
         IObservable<(int, int)> heightOb = this.WhenAnyValue(x => x.HeightMax, x => x.HeightMin)
-             .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Height", StringComparison.Ordinal)));
+            .Throttle(TimeSpan.FromMilliseconds(200))
+            .Do(vt => ChangeHashSet(vt, "Height").Invoke())
+             .Where(vt => _filters.Contains("Height"));
         IObservable<(int, int)> widthOb = this.WhenAnyValue(x => x.WidthMax, x => x.WidthMin)
-             .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Width", StringComparison.Ordinal)));
+            .Throttle(TimeSpan.FromMilliseconds(200))
+            .Do(vt => ChangeHashSet(vt, "Width").Invoke())
+             .Where(vt => _filters.Contains("Width"));
         IObservable<(int, int)> leftOb = this.WhenAnyValue(x => x.LeftMax, x => x.LeftMin)
-            .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Left", StringComparison.Ordinal)));
+            .Throttle(TimeSpan.FromMilliseconds(200))
+            .Do(vt => ChangeHashSet(vt, "Left").Invoke())
+            .Where(vt => _filters.Contains("Left"));
         IObservable<(int, int)> topOb = this.WhenAnyValue(x => x.TopMax, x => x.TopMin)
-            .Where(vt => Filters != null && Filters.Any() && Filters.Any(t => t.Equals("Top", StringComparison.Ordinal)));
+            .Throttle(TimeSpan.FromMilliseconds(200))
+            .Do(vt => ChangeHashSet(vt, "Top").Invoke())
+            .Where(vt => _filters.Contains("Top"));
 
         IObservable<(int, int)> paraOb = Observable.Merge(new[] { areaOb, heightOb, widthOb, leftOb, topOb });
         paraOb
             .Where(b => CanOperat)
             .Throttle(TimeSpan.FromMilliseconds(200))
             .SubscribeOn(RxApp.MainThreadScheduler)
-            .Subscribe(b => UpdateOutput(Filters?.ToList()))
+            .Subscribe(b => UpdateOutput(_filters?.ToList()))
             .DisposeWith(d);
+    }
+
+    private Action ChangeHashSet((int, int) vt, string msg)
+    {
+        Action action = (vt.Item1 - vt.Item2) > 0 ? () => _filters.Add(msg) : () => _filters.Remove(msg);
+        return action;
     }
 }

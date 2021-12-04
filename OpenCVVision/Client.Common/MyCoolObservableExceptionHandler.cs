@@ -1,33 +1,22 @@
 ﻿namespace Client.Common
 {
-    public class MyCoolObservableExceptionHandler : IObserver<Exception>
+    public class MyCoolObservableExceptionHandler : IObserver<Exception>,IEnableLogger
     {
         public void OnNext(Exception value)
         {
             if (Debugger.IsAttached) Debugger.Break();
-            Crashes.TrackError(value, new Dictionary<string, string>()
-                                                {
-                                                    {"Type", value.GetType().ToString()},
-                                                    {"Message", value.Message},
-                                                });
-            RxApp.MainThreadScheduler.Schedule(() => { throw value; });
+            RxApp.MainThreadScheduler.Schedule(() =>  this.Log().Fatal(value,value.Message) );
         }
 
         public void OnError(Exception error)
         {
             if (Debugger.IsAttached) Debugger.Break();
-            Crashes.TrackError(error, new Dictionary<string, string>()
-                                                {
-                                                    {"Type", error.GetType().ToString()},
-                                                    {"Message", error.Message},
-                                                });
-            RxApp.MainThreadScheduler.Schedule(() => { throw error; });
+            RxApp.MainThreadScheduler.Schedule(() => this.Log().Error(error, error.Message));
         }
 
         public void OnCompleted()
         {
-            if (Debugger.IsAttached) Debugger.Break();
-            RxApp.MainThreadScheduler.Schedule(() => { throw new NotImplementedException(); });
+
         }
     }
 }

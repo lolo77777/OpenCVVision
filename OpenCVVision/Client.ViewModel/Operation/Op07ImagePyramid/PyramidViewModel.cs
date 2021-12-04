@@ -58,7 +58,7 @@ public class PyramidViewModel : OperaViewModelBase
             Mat srcNew = dstDown.Resize(dstUp.Size());
             dst = srcNew - dstUp;
             _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-        });
+        },true);
     }
 
     private void DoLapaceNum(int num)
@@ -75,7 +75,7 @@ public class PyramidViewModel : OperaViewModelBase
             var srcNew = dstDown1.Resize(dstUp.Size());
             dst = srcNew - dstUp;
             _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-        });
+        },true);
     }
 
     private Mat DownMat(Mat src, int num)

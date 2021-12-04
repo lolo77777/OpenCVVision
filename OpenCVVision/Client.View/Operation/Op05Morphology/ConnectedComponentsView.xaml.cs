@@ -25,12 +25,12 @@
                 this.OneWayBind(ViewModel, vm => vm.HeightLimit, v => v.sliderTopMin.Maximum).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.WidthLimit, v => v.sliderLeftMax.Maximum).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.WidthLimit, v => v.sliderLeftMin.Maximum).DisposeWith(d);
-                this.WhenAnyValue(x => x.FilterList.SelectedItems)
-                    .Select(t => (IList<object>)t)
-                    .Where(listtmp => listtmp.Count > 0)
-                    .Select(listtmp => listtmp.Select(t => ((ListBoxItem)t).Content.ToString()).ToList())
-                    .BindTo(ViewModel, x => x.Filters)
-                    .DisposeWith(d);
+                //this.WhenAnyValue(x => x.FilterList.SelectedItems)
+                //    .Select(t => (IList<object>)FilterList.SelectedItems)
+                //    .Where(listtmp => listtmp.Count > 0)
+                //    .Select(listtmp => listtmp.Select(t => ((ListBoxItem)t).Content.ToString()).ToList())
+                //    .BindTo(ViewModel, x => x.Filters)
+                //    .DisposeWith(d);
                 this.WhenAnyValue(x => x.sliderAreaMax.Value)
                     .BindTo(ViewModel, x => x.AreaMax)
                     .DisposeWith(d);

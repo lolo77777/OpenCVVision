@@ -7,6 +7,16 @@ namespace Client.ViewModel
 {
     public static class MyExtensionMethods
     {
+        /// <summary>
+        /// 并行的blob绘图方法
+        /// </summary>
+        /// <param name="connec"></param>
+        /// <param name="outputMat"></param>
+        /// <param name="blobs"></param>
+        /// <param name="labels"></param>
+        /// <param name="blobsTotalCount"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="OpenCvSharpException"></exception>
         public static void RenderBlobs(this ConnectedComponents connec, Mat outputMat, IEnumerable<ConnectedComponents.Blob> blobs, ReadOnlyArray2D<int> labels, int blobsTotalCount)
         {
             Mat img = outputMat;
