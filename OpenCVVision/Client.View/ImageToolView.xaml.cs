@@ -77,6 +77,15 @@ namespace Client.View
                         tTran.Y = 0;
                     })
                     .DisposeWith(d);
+                scrollViewer.Events().MouseWheel
+                    .Subscribe(args => args.Handled = true)
+                    .DisposeWith(d);
+
+                this.WhenAnyValue(x => x.ActualWidth)
+                    .Select(w => w / 5 * 4)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Subscribe(h => scrollViewer.Height = h)
+                    .DisposeWith(d);
             });
         }
     }
