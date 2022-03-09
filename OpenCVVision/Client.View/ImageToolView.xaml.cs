@@ -7,6 +7,8 @@ namespace Client.View
     /// </summary>
     public partial class ImageToolView : ReactiveUserControl<ImageToolViewModel>
     {
+        private DateTime _lastMidlePressTime = DateTime.Now;
+
         public ImageToolView()
         {
             InitializeComponent();
@@ -37,7 +39,7 @@ namespace Client.View
                 imgWb.Events().MouseWheel
                     .Subscribe(arg =>
                     {
-                        double val = (double)arg.Delta / 2000;   //描述鼠标滑轮滚动
+                        double val = (double)arg.Delta / 3000;   //描述鼠标滑轮滚动
                         System.Windows.Point point = arg.GetPosition(imgWb);
                         if (sTran.ScaleX < 0.3 && sTran.ScaleY < 0.3 && arg.Delta < 0)
                         {
@@ -48,15 +50,32 @@ namespace Client.View
 
                         sTran.ScaleX += val;
                         sTran.ScaleY += val;
+                        var gw = tTran.Value;
+                        var g1 = sTran.Value;
                     })
                     .DisposeWith(d);
                 imgWb.Events().PreviewMouseDown
+                    .Where(args => args.ChangedButton == MouseButton.Left)
                     .Select(args => args.GetPosition(imgWb))
                     .InvokeCommand(this, x => x.ViewModel.MouseDownCommand)
                     .DisposeWith(d);
                 imgWb.Events().PreviewMouseMove
                     .Select(args => args.GetPosition(imgWb))
                     .InvokeCommand(this, x => x.ViewModel.MouseMoveCommand)
+                    .DisposeWith(d);
+                scrollViewer.Events().MouseDown
+                    .Where(args => args.ChangedButton == MouseButton.Middle)
+                    .Select(t => (DateTime.Now - _lastMidlePressTime).TotalMilliseconds)
+                    .Do(t => _lastMidlePressTime = DateTime.Now)
+                    .Where(i => i < 300)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Subscribe(e =>
+                    {
+                        sTran.ScaleX = 1;
+                        sTran.ScaleY = 1;
+                        tTran.X = 0;
+                        tTran.Y = 0;
+                    })
                     .DisposeWith(d);
             });
         }

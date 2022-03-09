@@ -15,7 +15,7 @@ public class ImageToolViewModel : ViewModelBase
     private WriteableBitmap _writeableBitmapCache;
 
     [Reactive] public WriteableBitmap DisplayImg { get; set; }
-    public bool IsControlEnable { [ObservableAsProperty]  get; }
+    public bool IsControlEnable { [ObservableAsProperty] get; }
 
     [Reactive] public Mat DisplayMat { get; set; }
     [Reactive] public bool IsDrawing { get; set; }
@@ -125,7 +125,7 @@ public class ImageToolViewModel : ViewModelBase
         if (writeableBitmap == null ||
             (int)writeableBitmap.Width != mat.Width ||
             (int)writeableBitmap.Height != mat.Height ||
-            writeableBitmap.Format.BitsPerPixel!= mat.Channels()*mat.ElemSize()*8)
+            writeableBitmap.Format.BitsPerPixel != mat.Channels() * mat.ElemSize() * 8)
         {
             var wb = mat.ToWriteableBitmap();
 
@@ -187,7 +187,7 @@ public class ImageToolViewModel : ViewModelBase
         double scale = ActualWidth / mat.Width;
         double x = position.X / scale;
         double y = position.Y / scale;
-        string posionStr = $"X:{x:F2},Y:{y:F2}";
+        string posionStr = $"X:{x:F3},Y:{y:F3}";
         if (y < mat.Height && x < mat.Width)
         {
             if (mat.Channels() == 3)

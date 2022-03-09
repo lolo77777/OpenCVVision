@@ -13,29 +13,43 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="*" />
         </Grid.RowDefinitions>
-
-        <StackPanel x:Name="sPanelControl" Orientation="Horizontal">
-            <CheckBox x:Name="cbxDrawing" Margin="5,0">
-                <materialDesign:PackIcon Kind="Draw" ToolTip="绘制" />
+        <StackPanel
+            x:Name="sPanelControl"
+            Orientation="Horizontal">
+            <CheckBox
+                x:Name="cbxDrawing"
+                Margin="5,0">
+                <materialDesign:PackIcon
+                    Kind="Draw"
+                    ToolTip="绘制" />
             </CheckBox>
             <ListBox
                 x:Name="listBoxDrawGeo"
                 Background="Transparent"
                 IsEnabled="{Binding ElementName=cbxDrawing, Path=IsChecked}"
                 Style="{StaticResource MaterialDesignToolToggleListBox}">
-                <ListBoxItem Padding="7,0" ToolTip="直线">
+                <ListBoxItem
+                    Padding="7,0"
+                    ToolTip="直线">
                     <materialDesign:PackIcon
                         Width="20"
                         Height="20"
                         Kind="Minus" />
                 </ListBoxItem>
-                <ListBoxItem Padding="7,0" ToolTip="矩形">
+                <ListBoxItem
+                    Padding="7,0"
+                    ToolTip="矩形">
                     <materialDesign:PackIcon
                         Width="20"
                         Height="20"
@@ -46,25 +60,38 @@
                 x:Name="btnAddGeo"
                 Margin="5,0"
                 ToolTip="添加图元">
-                <materialDesign:PackIcon Kind="AddBox" />
+                <materialDesign:PackIcon
+                    Kind="AddBox" />
             </Button>
-            <Button x:Name="btnClearGeo" ToolTip="清除图元">
-                <materialDesign:PackIcon Kind="ClearBoxOutline" />
+            <Button
+                x:Name="btnClearGeo"
+                ToolTip="清除图元">
+                <materialDesign:PackIcon
+                    Kind="ClearBoxOutline" />
             </Button>
         </StackPanel>
-        <Grid Grid.Row="1" />
+        <Grid
+            Grid.Row="1" />
         <!--<Separator
             Grid.Row="1"
             Background="{StaticResource AccentBaseColorBrush}"
             Style="{StaticResource MaterialDesignLightSeparator}" />-->
-        <Grid Grid.Row="2">
-            <materialDesign:Card Padding="2" materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Auto">
-                    <Grid>
+        <Grid
+            Grid.Row="2">
+            <materialDesign:Card
+                Padding="2"
+                materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                <ScrollViewer
+                    x:Name="scrollViewer"
+                    VerticalScrollBarVisibility="Auto">
+                    <Grid
+                        x:Name="imgGrid">
                         <Grid.RenderTransform>
                             <TransformGroup>
-                                <ScaleTransform x:Name="sTran" />
-                                <TranslateTransform x:Name="tTran" />
+                                <ScaleTransform
+                                    x:Name="sTran" />
+                                <TranslateTransform
+                                    x:Name="tTran" />
                             </TransformGroup>
                         </Grid.RenderTransform>
                         <Path
@@ -72,14 +99,20 @@
                             Panel.ZIndex="9999"
                             Stroke="Red"
                             StrokeThickness="1" />
-                        <Image x:Name="imgWb" Stretch="Uniform" />
+                        <Image
+                            x:Name="imgWb"
+                            RenderOptions.BitmapScalingMode="NearestNeighbor"
+                            Stretch="Uniform" />
                     </Grid>
                 </ScrollViewer>
             </materialDesign:Card>
         </Grid>
-
-        <Border Grid.Row="4" Margin="2,4">
-            <StackPanel VerticalAlignment="Bottom" Orientation="Vertical">
+        <Border
+            Grid.Row="4"
+            Margin="2,4">
+            <StackPanel
+                VerticalAlignment="Bottom"
+                Orientation="Vertical">
                 <TextBlock
                     x:Name="txtColorValue"
                     Grid.Row="4"
