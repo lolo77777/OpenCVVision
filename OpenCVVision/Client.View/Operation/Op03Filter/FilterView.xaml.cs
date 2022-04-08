@@ -27,7 +27,7 @@
                 this.OneWayBind(ViewModel, vm => vm.BolSizeIsEnable, v => v.sliderKernelSizeY.IsEnabled).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.SigmaX, v => v.txtBoxSigmaX.Text).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.SigmaY, v => v.txtBoxSigmaY.Text).DisposeWith(d);
-
+                this.Bind(ViewModel, vm => vm.Factor, v => v.txtFactor.Text).DisposeWith(d);
                 this.WhenAnyValue(x => x.sliderKernelSizeX.Value)
                     .BindTo(ViewModel, x => x.SizeX)
                     .DisposeWith(d);
@@ -45,6 +45,10 @@
                     .DisposeWith(d);
                 this.WhenAnyValue(x => x.slidersigmaSpace.Value)
                     .BindTo(ViewModel, x => x.SigmaSpace)
+                    .DisposeWith(d);
+                this.WhenAnyValue(x => x.cbxFilterType.SelectedIndex)
+                    .Select(i => i == 3)
+                    .BindTo(this, x => x.txtFactor.IsEnabled)
                     .DisposeWith(d);
             });
         }

@@ -16,12 +16,13 @@ public class FilterViewModel : OperaViewModelBase
     [Reactive] public double SigmaY { get; set; }
     [Reactive] public int SizeX { get; private set; } = 3;
     [Reactive] public int SizeY { get; private set; } = 3;
+    [Reactive] public float Factor { get; set; } = 1;
 
     private void UpdateUi(int filterModeSelectIndex, int kernelSizeX, int kernelSizeY, double sigmaX, double sigmaY, int kernelDiam, double sigmaColor, double sigmaSpace)
     {
         SendTime(() =>
         {
-            if (filterModeSelectIndex > 2)
+            if (filterModeSelectIndex > 3)
             {
                 Mat dst = _rt.NewMat();
                 dst = _src.BilateralFilter(kernelDiam, sigmaColor, sigmaSpace);
@@ -35,6 +36,7 @@ public class FilterViewModel : OperaViewModelBase
                     0 => _src.Blur(new Size(kernelSizeX, kernelSizeY)),
                     1 => _src.GaussianBlur(new Size(kernelSizeX, kernelSizeY), sigmaX, sigmaY),
                     2 => _src.MedianBlur(kernelSizeX),
+                    3 => _src.EmphasizeEx(SizeX, SizeY, Factor),
                     _ => _src.Clone()
                 };
                 _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
@@ -45,7 +47,7 @@ public class FilterViewModel : OperaViewModelBase
     protected override void SetupStart()
     {
         base.SetupStart();
-        FilterModes = new[] { "Blur", "Gaussian", "Median", "BilateralFilter" };
+        FilterModes = new[] { "Blur", "Gaussian", "Median", "Emphasize(Halcon)", "BilateralFilter" };
     }
 
     protected override void SetupSubscriptions(CompositeDisposable d)
@@ -60,20 +62,23 @@ public class FilterViewModel : OperaViewModelBase
             .ToPropertyEx(this, x => x.BolSizeYIsEnable)
             .DisposeWith(d);
         this.WhenAnyValue(x => x.FilterModeSelectIndex)
-            .Select(i => i.Equals(3))
+            .Select(i => i.Equals(4))
             .ToPropertyEx(this, x => x.BolSigmaColorAndSpace)
             .DisposeWith(d);
         this.WhenAnyValue(x => x.FilterModeSelectIndex)
-            .Select(i => !i.Equals(3))
+            .Select(i => !i.Equals(4))
             .ToPropertyEx(this, x => x.BolSizeIsEnable)
             .DisposeWith(d);
-        this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.SizeX, x => x.SizeY, x => x.SigmaX, x => x.SigmaY)
-            .Where(vt => CanOperat && vt.Item1 < 3 && vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
+        this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.SizeX, x => x.SizeY, x => x.SigmaX, x => x.SigmaY, x => x.Factor)
+            .Throttle(TimeSpan.FromMilliseconds(300))
+            .Where(vt => CanOperat && vt.Item1 < 4 && vt.Item1 >= 0 && vt.Item2 > 0 && vt.Item3 > 0)
+            .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
             .DisposeWith(d);
-
         this.WhenAnyValue(x => x.FilterModeSelectIndex, x => x.KernelDiam, x => x.SigmaColor, x => x.SigmaSpace)
-            .Where(vt => CanOperat && vt.Item1.Equals(3) && vt.Item2 > 0 && vt.Item3 > 0)
+            .Throttle(TimeSpan.FromMilliseconds(300))
+            .Where(vt => CanOperat && vt.Item1.Equals(4) && vt.Item2 > 0 && vt.Item3 > 0)
+            .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(vt => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
             .DisposeWith(d);
         _imageDataManager.InputMatGuidSubject

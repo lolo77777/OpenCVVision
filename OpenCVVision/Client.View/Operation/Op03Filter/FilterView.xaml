@@ -69,6 +69,10 @@
                         x:Name="txtBoxSigmaY"
                         Margin="{StaticResource marginOdd}"
                         materialDesign:HintAssist.Hint="SigmaY" />
+                    <TextBox
+                        x:Name="txtFactor"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="Factor" />
                     <StackPanel x:Name="BilateralFilterPanel" Orientation="Vertical">
 
                         <Grid Margin="{StaticResource marginOdd}">
