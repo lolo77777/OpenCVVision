@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(8.3, "条纹结构光", MaterialDesignThemes.Wpf.PackIconKind.Video3d)]
+[OperationInfo(8.3, "条纹结构光", "Video3d")]
 public class GrayCodeViewModel : OperaViewModelBase
 {
     public ReactiveCommand<Unit, Unit> View3dCommand { get; protected set; }

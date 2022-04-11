@@ -2,11 +2,11 @@
 
 public class OperationInfoAttribute : Attribute
 {
-    public PackIconKind Icon { get; private set; }
+    public string Icon { get; private set; }
     public double Id { get; private set; }
     public string Info { get; private set; }
 
-    public OperationInfoAttribute(double id, string info, PackIconKind icon)
+    public OperationInfoAttribute(double id, string info, string icon)
     {
         Info = info;
         Icon = icon;

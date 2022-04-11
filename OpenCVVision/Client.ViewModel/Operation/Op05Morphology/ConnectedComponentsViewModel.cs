@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(5.1, "连通域", MaterialDesignThemes.Wpf.PackIconKind.Connection)]
+[OperationInfo(5.1, "连通域", "Connection")]
 public class ConnectedComponentsViewModel : OperaViewModelBase
 {
     private HashSet<string> _filters = new();

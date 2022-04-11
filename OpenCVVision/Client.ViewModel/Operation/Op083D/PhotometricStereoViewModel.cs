@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(8.4, "光度立体法", MaterialDesignThemes.Wpf.PackIconKind.Lightbulb)]
+[OperationInfo(8.4, "光度立体法", "Lightbulb")]
 public class PhotometricStereoViewModel : OperaViewModelBase
 {
     public ReactiveCommand<Unit, Unit> ViewPhotometricCommand { get; protected set; }

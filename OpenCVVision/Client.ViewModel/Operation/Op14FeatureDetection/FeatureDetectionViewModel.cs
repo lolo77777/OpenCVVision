@@ -3,7 +3,7 @@ using OpenCvSharp.XFeatures2D;
 
 namespace Client.ViewModel.Operation
 {
-    [OperationInfo(14.1, "特征点检测", MaterialDesignThemes.Wpf.PackIconKind.FeatureHighlight)]
+    [OperationInfo(14.1, "特征点检测", "FeatureHighlight")]
     public class FeatureDetectionViewModel : OperaViewModelBase
     {
         private ReadOnlyObservableCollection<string> _imageItems;

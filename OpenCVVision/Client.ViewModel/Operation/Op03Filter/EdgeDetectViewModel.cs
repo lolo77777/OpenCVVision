@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(3.2, "边缘检测", MaterialDesignThemes.Wpf.PackIconKind.MicrosoftEdge)]
+[OperationInfo(3.2, "边缘检测", "MicrosoftEdge")]
 public class EdgeDetectViewModel : OperaViewModelBase
 {
     [Reactive] public bool IsL2gradient { get; set; }

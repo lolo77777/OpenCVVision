@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(2, "色彩空间", MaterialDesignThemes.Wpf.PackIconKind.Color)]
+[OperationInfo(2, "色彩空间", "Color")]
 public class ColorSpaceViewModel : OperaViewModelBase
 {
     [ObservableAsProperty] public IList<int> Channels { get; set; }

@@ -20,6 +20,7 @@
     <PackageReference Include="MaterialDesignThemes" Version="4.4.0" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.2.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
+    <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.5.5.20211231" />
     <PackageReference Include="ReactiveUI" Version="17.1.50" />
     <PackageReference Include="ReactiveUI.Events.WPF" Version="15.1.1" />
     <PackageReference Include="ReactiveUI.WPF" Version="17.1.50" />

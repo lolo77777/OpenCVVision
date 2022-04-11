@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(3, "滤波", MaterialDesignThemes.Wpf.PackIconKind.Filter)]
+[OperationInfo(3, "滤波", "Filter")]
 public class FilterViewModel : OperaViewModelBase
 {
     [ObservableAsProperty] public bool BolSigmaColorAndSpace { get; set; }

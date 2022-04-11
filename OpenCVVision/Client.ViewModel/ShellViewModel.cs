@@ -20,7 +20,7 @@ public class ShellViewModel : ViewModelBase, IRoutableViewModel
     protected override void SetupSubscriptions(CompositeDisposable d)
     {
         base.SetupSubscriptions(d);
-        MessageBus.Current.Listen<NaviItem>()
+        MessageBus.Current.Listen<NaviItemStr>()
             .Select(it => _resolver.GetService<IOperationViewModel>(it.OperaPanelInfo))
             .WhereNotNull()
             .Subscribe(vm =>

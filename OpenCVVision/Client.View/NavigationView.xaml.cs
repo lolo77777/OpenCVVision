@@ -30,7 +30,7 @@ namespace Client.View
         {
             this.WhenActivated(d =>
             {
-                this.OneWayBind(ViewModel, vm => vm.NaviItems, v => v.NavigationTab.ItemsSource).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.NaviItems, v => v.NavigationTab.ItemsSource, CvtNaviItem).DisposeWith(d);
                 this.WhenAnyValue(x => x.NavigationTab.SelectedIndex)
                     .BindTo(ViewModel, x => x.NaviSelectItemIndex)
                     .DisposeWith(d);
@@ -51,5 +51,17 @@ namespace Client.View
                     .DisposeWith(d);
             });
         }
+
+        private IEnumerable<NaviItemIcon> CvtNaviItem(IEnumerable<NaviItemStr> src)
+        {
+            return src.ToList().Select(s => new NaviItemIcon { Icon = Enum.Parse<PackIconKind>(s.Icon), Id = s.Id, OperaPanelInfo = s.OperaPanelInfo });
+        }
+    }
+
+    public class NaviItemIcon
+    {
+        public PackIconKind Icon { get; set; }
+        public double Id { get; set; }
+        public string OperaPanelInfo { get; set; }
     }
 }

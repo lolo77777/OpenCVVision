@@ -46,7 +46,7 @@ namespace Client.ViewModel
 
         private WriteableBitmap MatResizeWt(Mat mat)
         {
-            if (mat!=null && !mat.Empty())
+            if (mat != null && !mat.Empty())
             {
                 double scaleY = 60d / mat.Height;
                 Mat dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
@@ -93,7 +93,7 @@ namespace Client.ViewModel
         {
             _imageDataManager.SourceCacheImageData
                 .Connect()
-                .Filter(imgdata=> imgdata.ImageMat!=null&&!imgdata.ImageMat.Empty())
+                .Filter(imgdata => imgdata.ImageMat != null && !imgdata.ImageMat.Empty())
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Transform(it => ConvertData(it))
                 .Subscribe(it => UpdateHistoryItems(it))
@@ -111,14 +111,16 @@ namespace Client.ViewModel
                 .Subscribe(guid => _imageDataManager.InputMatGuidSubject.OnNext(guid))
                 .DisposeWith(d);
             _imageDataManager.InputMatGuidSubject
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .WhereNotNull()
                 .Select(guid => _imageDataManager.GetImage(guid).ImageMat)
-                .Subscribe(mat => InputImageVM.DisplayMat = mat)
+                .Where(mat => mat != null && !mat.Empty())
+                .Do(x => InputImageVM.DisplayMat?.Dispose())
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(mat => InputImageVM.DisplayMat = mat.Clone())
                 .DisposeWith(d);
 
             _imageDataManager.OutputMatSubject
-                .WhereNotNull()
+                .Where(mat => mat != null && !mat.Empty())
+                .Do(x => OutputImageVM.DisplayMat?.Dispose())
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(mat => OutputImageVM.DisplayMat = mat)
                 .DisposeWith(d);

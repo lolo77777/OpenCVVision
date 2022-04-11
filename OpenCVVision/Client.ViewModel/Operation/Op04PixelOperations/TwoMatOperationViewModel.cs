@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(4.2, "两图像计算", MaterialDesignThemes.Wpf.PackIconKind.ImageMultiple)]
+[OperationInfo(4.2, "两图像计算", "ImageMultiple")]
 public class TwoMatOperationViewModel : OperaViewModelBase
 {
     private ReadOnlyObservableCollection<string> _imageItems;
@@ -9,7 +9,7 @@ public class TwoMatOperationViewModel : OperaViewModelBase
     [Reactive] public string FirstImageSelectValue { get; private set; }
     [Reactive] public string SecondImageSelectValue { get; private set; }
     [Reactive] public string OperaMethod { get; private set; }
-    public bool IsOperaEnable { [ObservableAsProperty]get; }
+    public bool IsOperaEnable { [ObservableAsProperty] get; }
 
     protected override void SetupSubscriptions(CompositeDisposable d)
     {

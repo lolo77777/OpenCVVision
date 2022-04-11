@@ -1,4 +1,8 @@
-﻿using System.Windows.Input;
+﻿using OpenCvSharp;
+using OpenCvSharp.WpfExtensions;
+
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace Client.View
 {
@@ -8,6 +12,7 @@ namespace Client.View
     public partial class ImageToolView : ReactiveUserControl<ImageToolViewModel>
     {
         private DateTime _lastMidlePressTime = DateTime.Now;
+        private WriteableBitmap _writeableBitmapCache;
 
         public ImageToolView()
         {
@@ -21,7 +26,7 @@ namespace Client.View
             {
                 base.AddHandler(Button.MouseLeftButtonUpEvent, new MouseButtonEventHandler(ViewModel.Image_MouseUp), true);
                 this.Bind(ViewModel, vm => vm.MatInfo, v => v.txtInputImgInfo.Text).DisposeWith(d);
-                this.OneWayBind(ViewModel, vm => vm.DisplayImg, v => v.imgWb.Source).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.DisplayMat, v => v.imgWb.Source, UpdateWriteableBitmap).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.PathData, v => v.pathDraw.Data).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.TranslateTranX, v => v.tTran.X).DisposeWith(d);
                 this.Bind(ViewModel, vm => vm.TranslateTranY, v => v.tTran.Y).DisposeWith(d);
@@ -87,6 +92,25 @@ namespace Client.View
                     .Subscribe(h => scrollViewer.Height = h)
                     .DisposeWith(d);
             });
+        }
+
+        private WriteableBitmap UpdateWriteableBitmap(Mat mat)
+        {
+            if (mat != null && !mat.Empty())
+            {
+                if (_writeableBitmapCache == null ||
+               (int)_writeableBitmapCache.Width != mat.Width ||
+               (int)_writeableBitmapCache.Height != mat.Height ||
+               _writeableBitmapCache.Format.BitsPerPixel != mat.Channels() * mat.ElemSize() * 8)
+                {
+                    var wb = mat.ToWriteableBitmap();
+
+                    _writeableBitmapCache = new WriteableBitmap(mat.Width, mat.Height, 96, 96, wb.Format, wb.Palette);
+                }
+
+                _writeableBitmapCache.WritePixels(new System.Windows.Int32Rect(0, 0, mat.Width, mat.Height), mat.Data, mat.Height * mat.Width * mat.Channels(), mat.Width * mat.Channels());
+            }
+            return _writeableBitmapCache;
         }
     }
 }

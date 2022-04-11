@@ -4,7 +4,7 @@ using LiveChartsCore.SkiaSharpView;
 
 namespace Client.ViewModel.Operation;
 
-[OperationInfo(4, "二值化", MaterialDesignThemes.Wpf.PackIconKind.HomeFloorZero)]
+[OperationInfo(4, "二值化", "HomeFloorZero")]
 public class ThreshouldViewModel : OperaViewModelBase
 {
     private readonly ObservableCollection<ObservablePoint> _observablePoints = new();

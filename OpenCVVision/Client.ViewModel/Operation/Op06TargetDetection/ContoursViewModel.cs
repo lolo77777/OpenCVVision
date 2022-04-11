@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(6.9, "轮廓", MaterialDesignThemes.Wpf.PackIconKind.VectorPolyline)]
+[OperationInfo(6.9, "轮廓", "VectorPolyline")]
 public class ContoursViewModel : OperaViewModelBase
 {
     private const int THICK3 = 3;

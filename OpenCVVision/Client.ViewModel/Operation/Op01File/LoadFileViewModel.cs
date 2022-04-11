@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(1, "加载图片", MaterialDesignThemes.Wpf.PackIconKind.File)]
+[OperationInfo(1, "加载图片", "File")]
 public class LoadFileViewModel : OperaViewModelBase
 {
     private readonly Interaction<Unit, string> _loadFileConfirm = new();

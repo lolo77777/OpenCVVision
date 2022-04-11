@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Client.ViewModel.Operation;
 
-[OperationInfo(9.1, "模板匹配", MaterialDesignThemes.Wpf.PackIconKind.ShieldTemplar)]
+[OperationInfo(9.1, "模板匹配", "ShieldTemplar")]
 public class MatchTemplateViewModel : OperaViewModelBase
 {
     private ReadOnlyObservableCollection<string> _imageItems;

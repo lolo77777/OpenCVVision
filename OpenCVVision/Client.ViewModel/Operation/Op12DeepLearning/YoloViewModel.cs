@@ -3,7 +3,7 @@
 /// <summary>
 /// 参考引用了以下项目、资料 https://github.com/died/YOLO3-With-OpenCvSharp4 https://pjreddie.com/darknet/yolo/
 /// </summary>
-[OperationInfo(12.1, "YoloV4", MaterialDesignThemes.Wpf.PackIconKind.Yoga)]
+[OperationInfo(12.1, "YoloV4", "Yoga")]
 public class YoloViewModel : OperaViewModelBase
 {
     private readonly Scalar[] _colors = Enumerable.Repeat(false, 80).Select(x => Scalar.RandomColor()).ToArray();

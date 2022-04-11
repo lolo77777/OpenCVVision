@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(5.2, "形态学1", MaterialDesignThemes.Wpf.PackIconKind.MortarPestle)]
+[OperationInfo(5.2, "形态学1", "MortarPestle")]
 public class MorphologyViewModel : OperaViewModelBase
 {
     [Reactive] public string MorphShapeSelectValue { get; private set; }

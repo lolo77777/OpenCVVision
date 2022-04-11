@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(6.1, "HoughCircle", MaterialDesignThemes.Wpf.PackIconKind.Circle)]
+[OperationInfo(6.1, "HoughCircle", "Circle")]
 public class CircleDetectViewModel : OperaViewModelBase
 {
     private CircleSegment[] _circleSegments;

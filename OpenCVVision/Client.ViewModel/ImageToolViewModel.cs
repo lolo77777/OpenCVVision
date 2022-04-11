@@ -12,9 +12,7 @@ public class ImageToolViewModel : ViewModelBase
     private readonly RectangleGeometry _rect = new();
     private Point _endPoint;
     private readonly IImageDataManager _imageDataManager;
-    private WriteableBitmap _writeableBitmapCache;
 
-    [Reactive] public WriteableBitmap DisplayImg { get; set; }
     public bool IsControlEnable { [ObservableAsProperty] get; }
 
     [Reactive] public Mat DisplayMat { get; set; }
@@ -49,13 +47,13 @@ public class ImageToolViewModel : ViewModelBase
     protected override void SetupSubscriptions(CompositeDisposable d)
     {
         base.SetupSubscriptions(d);
-        this.WhenAnyValue(x => x.DisplayMat)
-            .WhereNotNull()
-            .Where(mat => !mat.Empty())
-            .Do(mat => UpdateWriteableBitmap(ref _writeableBitmapCache, mat.Clone()))
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .Subscribe(mat => DisplayImg = _writeableBitmapCache)
-            .DisposeWith(d);
+        //this.WhenAnyValue(x => x.DisplayMat)
+        //    .WhereNotNull()
+        //    .Where(mat => !mat.Empty())
+        //    .Do(mat => UpdateWriteableBitmap(ref _writeableBitmapCache, mat.Clone()))
+        //    .ObserveOn(RxApp.MainThreadScheduler)
+        //    .Subscribe(mat => DisplayImg = _writeableBitmapCache)
+        //    .DisposeWith(d);
         this.WhenAnyValue(x => x.GeoSelectIndex)
             .Where(ind => ind >= 0)
             .Subscribe(ind => PathData = ind == 0 ? _line : _rect)
@@ -119,22 +117,6 @@ public class ImageToolViewModel : ViewModelBase
     #endregion PublicFunction
 
     #region PrivateFunction
-
-    private void UpdateWriteableBitmap(ref WriteableBitmap writeableBitmap, Mat mat)
-    {
-        if (writeableBitmap == null ||
-            (int)writeableBitmap.Width != mat.Width ||
-            (int)writeableBitmap.Height != mat.Height ||
-            writeableBitmap.Format.BitsPerPixel != mat.Channels() * mat.ElemSize() * 8)
-        {
-            var wb = mat.ToWriteableBitmap();
-
-            writeableBitmap = new WriteableBitmap(mat.Width, mat.Height, 96, 96, wb.Format, wb.Palette);
-        }
-
-        writeableBitmap.WritePixels(new System.Windows.Int32Rect(0, 0, mat.Width, mat.Height), mat.Data, mat.Height * mat.Width * mat.Channels(), mat.Width * mat.Channels());
-        mat.Dispose();
-    }
 
     private Unit MouseDown(Point point)
     {

@@ -6,8 +6,6 @@ global using Client.ViewModel.Operation;
 
 global using DynamicData;
 
-global using MaterialDesignThemes.Wpf;
-
 global using OpenCvSharp;
 global using OpenCvSharp.Dnn;
 global using OpenCvSharp.WpfExtensions;

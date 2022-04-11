@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(7, "图像金字塔", MaterialDesignThemes.Wpf.PackIconKind.LanguagePython)]
+[OperationInfo(7, "图像金字塔", "LanguagePython")]
 public class PyramidViewModel : OperaViewModelBase
 {
     public ReactiveCommand<Unit, Unit> LaplaceCommand;
@@ -58,7 +58,7 @@ public class PyramidViewModel : OperaViewModelBase
             Mat srcNew = dstDown.Resize(dstUp.Size());
             dst = srcNew - dstUp;
             _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-        },true);
+        }, true);
     }
 
     private void DoLapaceNum(int num)
@@ -75,7 +75,7 @@ public class PyramidViewModel : OperaViewModelBase
             var srcNew = dstDown1.Resize(dstUp.Size());
             dst = srcNew - dstUp;
             _imageDataManager.OutputMatSubject.OnNext(dst.Clone());
-        },true);
+        }, true);
     }
 
     private Mat DownMat(Mat src, int num)

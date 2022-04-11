@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(8.1, "线激光中心", MaterialDesignThemes.Wpf.PackIconKind.LaserPointer)]
+[OperationInfo(8.1, "线激光中心", "LaserPointer")]
 public class LaserLineViewModel : OperaViewModelBase
 {
     private ResourcesTracker _resourcesTracker = new();

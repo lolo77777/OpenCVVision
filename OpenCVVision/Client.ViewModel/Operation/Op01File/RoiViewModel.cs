@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(1.5, "ROI", MaterialDesignThemes.Wpf.PackIconKind.RectangleOutline)]
+[OperationInfo(1.5, "ROI", "RectangleOutline")]
 public class RoiViewModel : OperaViewModelBase
 {
     [Reactive] public int Height { get; private set; }

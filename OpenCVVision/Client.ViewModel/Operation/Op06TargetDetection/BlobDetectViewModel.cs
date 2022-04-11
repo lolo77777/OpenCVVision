@@ -1,6 +1,6 @@
 ﻿namespace Client.ViewModel.Operation;
 
-[OperationInfo(6.3, "Blob", MaterialDesignThemes.Wpf.PackIconKind.BloodBag)]
+[OperationInfo(6.3, "Blob", "BloodBag")]
 public class BlobDetectViewModel : OperaViewModelBase
 {
     private SimpleBlobDetector.Params _params = new();
