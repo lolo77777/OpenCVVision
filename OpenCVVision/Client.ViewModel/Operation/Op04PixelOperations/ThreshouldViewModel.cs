@@ -24,14 +24,13 @@ public class ThreshouldViewModel : OperaViewModelBase
         SendTime(() =>
         {
             Mat reMat = _rt.NewMat();
-            float[] inRanges = new float[2] { 0, 255 };
             Mat grayMat = _src.Channels() > 0 ? _rt.T(_src.Split()[channel].Clone()) : _rt.T(_src.Clone());
             if (IsEnableEqualizeHist)
             {
                 Cv2.EqualizeHist(grayMat, grayMat);
             }
 
-            Cv2.CalcHist(new[] { grayMat }, new[] { 0 }, null, reMat, 1, new[] { 256 }, new[] { inRanges });
+            Cv2.CalcHist(new[] { grayMat }, new[] { 0 }, null, reMat, 1, new[] { 256 }, new[] { new[] { 0f, 256 } });
             Mat dst1 = _rt.T(reMat.Normalize(0, 255, NormTypes.MinMax));
             Mat dst2 = _rt.NewMat();
             dst1.ConvertTo(dst2, MatType.CV_8UC1);
