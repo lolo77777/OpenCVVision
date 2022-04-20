@@ -6,8 +6,8 @@ public class ViewPhotometricViewModel : ViewModelBase, IRoutableViewModel
     private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
     public string UrlPathSegment { get; }
     public IScreen HostScreen { get; }
-    [Reactive] public WriteableBitmap NormalmapWb { get; set; }
-    [Reactive] public WriteableBitmap ZWb { get; set; }
+    [Reactive] public Mat NormalmapWb { get; set; }
+    [Reactive] public Mat ZWb { get; set; }
     [Reactive] public bool IsRun { get; set; }
     public ReactiveCommand<Unit, Unit> DisplayCommand { get; set; }
     public ReactiveCommand<Unit, Unit> NaviBackCommand { get; set; }
@@ -48,8 +48,8 @@ public class ViewPhotometricViewModel : ViewModelBase, IRoutableViewModel
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(vt =>
             {
-                NormalmapWb = vt.NormalmapMat.ToWriteableBitmap();
-                ZWb = vt.ZMat.ToWriteableBitmap();
+                NormalmapWb = vt.NormalmapMat.Clone();
+                ZWb = vt.ZMat.Clone();
                 IsRun = false;
             });
     }

@@ -1,29 +1,54 @@
 ﻿using Client.Model.Entity;
 
-using OpenCvSharp.WpfExtensions;
+using DynamicData.Binding;
 
 using System.Windows.Media.Imaging;
 
 namespace Client.ViewModel
 {
-    public class HistoryItem
+    public class HistoryMatItem : AbstractNotifyPropertyChanged
     {
-        public Guid HistoryItemId { get; set; }
-        public WriteableBitmap HistoryItemImg { get; set; }
-        public string HistoryItemTxtMark { get; set; }
+        private Guid _itemId;
+
+        //public Guid ItemId
+        //{
+        //    get { return _itemId; }
+        //    set => SetAndRaise(ref _itemId, value);
+        //}
+
+        //private Mat _itemImg;
+
+        //public Mat ItemImg
+        //{
+        //    get { return _itemImg; }
+        //    set => SetAndRaise(ref _itemImg, value);
+        //}
+
+        //private string _itemTxtMark;
+
+        //public string ItemTxtMark
+        //{
+        //    get { return _itemTxtMark; }
+        //    set => SetAndRaise(ref _itemTxtMark, value);
+        //}
+
+        public Guid ItemId { get; set; }
+        public Mat ItemImg { get; set; }
+        public string ItemTxtMark { get; set; }
     }
 
     public class ImageViewModel : ViewModelBase
     {
-        private ReadOnlyObservableCollection<HistoryItem> _historyItems;
-        private readonly SourceCache<HistoryItem, Guid> _historyItemsTmp = new(t => t.HistoryItemId);
+        public readonly SourceCache<HistoryMatItem, Guid> HistoryItemsTmp = new(t => t.ItemId);
+
         private readonly IImageDataManager _imageDataManager;
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
         private readonly ResourcesTracker _rt = new();
 
         public ReactiveCommand<Unit, Unit> AddOutputImgToImgManagerCommand { get; set; }
-        public ReadOnlyObservableCollection<HistoryItem> HistoryItems => _historyItems;
+
         [Reactive] public ImageToolViewModel InputImageVM { get; set; }
+
         [Reactive] public ImageToolViewModel OutputImageVM { get; set; }
         [Reactive] public int HistoryItemSelectInd { get; set; }
         [Reactive] public string OutputImageMarkTxt { get; set; }
@@ -37,39 +62,16 @@ namespace Client.ViewModel
 
         #region PrivateFunction
 
-        private HistoryItem ConvertData(ImageData imageData)
+        private void UpdateHistoryItems(IChangeSet<HistoryMatItem, Guid> changes)
         {
-            WriteableBitmap wtBitmap = MatResizeWt(imageData.ImageMat);
-
-            return new HistoryItem { HistoryItemId = imageData.ImageId, HistoryItemTxtMark = imageData.TxtMarker, HistoryItemImg = wtBitmap };
-        }
-
-        private WriteableBitmap MatResizeWt(Mat mat)
-        {
-            if (mat != null && !mat.Empty())
-            {
-                double scaleY = 60d / mat.Height;
-                Mat dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
-                WriteableBitmap writeableBitmap = dst.ToWriteableBitmap();
-                _rt.Dispose();
-                return writeableBitmap;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        private void UpdateHistoryItems(IChangeSet<HistoryItem, Guid> changes)
-        {
-            List<HistoryItem> items = changes.Select(t => t.Current).ToList();
+            List<HistoryMatItem> items = changes.Select(t => t.Current).ToList();
             if (changes.Adds > 0 || changes.Updates > 0)
             {
-                _historyItemsTmp.AddOrUpdate(items);
+                HistoryItemsTmp.AddOrUpdate(items);
             }
             else if (changes.Removes > 0)
             {
-                _historyItemsTmp.Remove(items);
+                HistoryItemsTmp.Remove(items);
             }
         }
 
@@ -94,20 +96,13 @@ namespace Client.ViewModel
             _imageDataManager.SourceCacheImageData
                 .Connect()
                 .Filter(imgdata => imgdata.ImageMat != null && !imgdata.ImageMat.Empty())
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Transform(it => ConvertData(it))
+                .Transform(it => new HistoryMatItem { ItemId = it.ImageId, ItemTxtMark = it.TxtMarker, ItemImg = it.ImageMat })
                 .Subscribe(it => UpdateHistoryItems(it))
                 .DisposeWith(d);
-            _historyItemsTmp
-                .Connect()
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Bind(out _historyItems)
-                .Subscribe()
-                .DisposeWith(d);
+
             this.WhenAnyValue(x => x.HistoryItemSelectInd)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Where(i => i >= 0 && HistoryItems.Count > i)
-                .Select(i => HistoryItems.ElementAt(i).HistoryItemId)
+                .Where(i => i >= 0 && HistoryItemsTmp.Count > i)
+                .Select(i => HistoryItemsTmp.KeyValues.ElementAt(i).Value.ItemId)
                 .Subscribe(guid => _imageDataManager.InputMatGuidSubject.OnNext(guid))
                 .DisposeWith(d);
             _imageDataManager.InputMatGuidSubject
@@ -122,12 +117,12 @@ namespace Client.ViewModel
                 .Where(mat => mat != null && !mat.Empty())
                 .Do(x => OutputImageVM.DisplayMat?.Dispose())
                 .ObserveOn(RxApp.MainThreadScheduler)
-                .Subscribe(mat => OutputImageVM.DisplayMat = mat)
+                .Subscribe(mat => OutputImageVM.DisplayMat = mat.Clone())
                 .DisposeWith(d);
 
             MessageBus.Current.Listen<string>("Time")
-                .ObserveOn(RxApp.MainThreadScheduler)
                 .Select(d => $"{d}ms")
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .BindTo(this, x => x.Time)
                 .DisposeWith(d);
         }

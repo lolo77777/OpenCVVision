@@ -8,7 +8,6 @@ global using DynamicData;
 
 global using OpenCvSharp;
 global using OpenCvSharp.Dnn;
-global using OpenCvSharp.WpfExtensions;
 
 global using ReactiveUI;
 global using ReactiveUI.Fody.Helpers;

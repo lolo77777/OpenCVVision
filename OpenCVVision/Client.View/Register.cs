@@ -12,6 +12,7 @@ internal class Register : RegisterBase
         // Locator.CurrentMutable.RegisterLazySingleton(() => new ConventionalViewLocator(), typeof(IViewLocator));
         //通过反射IViewFor接口，自动注册IViewFor<viewmodel>与对应的view视图
         Locator.CurrentMutable.RegisterViewsForViewModels(Assembly.GetExecutingAssembly());
+        Locator.CurrentMutable.RegisterConstant<IBindingTypeConverter>(new Mat2WriteableBitmapConvert());
     }
 
     /// <summary>
