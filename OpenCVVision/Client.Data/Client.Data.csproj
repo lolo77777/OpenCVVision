@@ -496,6 +496,7 @@
 		<None Remove="Data\Image\YoloV3\OIP.xI9MTXkpsp09YrwHKEVZ1gHaE8.jpg" />
 		<None Remove="Data\Image\YoloV3\Rebun.jpeg" />
 		<None Remove="Data\Image\YoloV3\Shinjuku.jpeg" />
+		<None Remove="PaddleDll\推理DLL目录.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -1417,9 +1418,8 @@
 		<Content Include="Data\Image\YoloV3\Shinjuku.jpeg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="PaddleDll\" />
+		<Content Include="PaddleDll\推理DLL目录.txt">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 </Project>

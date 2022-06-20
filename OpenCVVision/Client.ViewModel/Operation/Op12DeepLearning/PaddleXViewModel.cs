@@ -130,6 +130,7 @@ public class PaddleXViewModel : OperaViewModelBase
             ClsLoaded = true;
             DetLoaded = false;
             _clsMatStr.Clear();
+            _resourcesTracker = new();
             var srcs = Directory.GetFiles(FilePath.Folder.PaddleXClsImagelFodel).Select(str => _resourcesTracker.T(Cv2.ImRead(str))).ToList();
             for (int i = 0; i < srcs.Count; i++)
             {
@@ -137,10 +138,12 @@ public class PaddleXViewModel : OperaViewModelBase
 
                 if (!_imageDataManager.IsExsitByMark(txtMark))
                 {
-                    _imageDataManager.AddImage(txtMark, srcs[i]);
+                    _imageDataManager.AddImage(txtMark, srcs[i].Clone());
                     _clsMatStr.Add(txtMark);
                 }
             }
+            srcs.Clear();
+            _resourcesTracker.Dispose();
         }
         else
         {
@@ -156,6 +159,7 @@ public class PaddleXViewModel : OperaViewModelBase
             ClsLoaded = false;
             DetLoaded = true;
             _detMatStr.Clear();
+            _resourcesTracker = new();
             var srcs = Directory.GetFiles(FilePath.Folder.PaddleXDetImageFodel).Select(str => _resourcesTracker.T(Cv2.ImRead(str))).ToList();
             for (int i = 0; i < srcs.Count; i++)
             {
@@ -163,10 +167,12 @@ public class PaddleXViewModel : OperaViewModelBase
 
                 if (!_imageDataManager.IsExsitByMark(txtMark))
                 {
-                    _imageDataManager.AddImage(txtMark, srcs[i]);
+                    _imageDataManager.AddImage(txtMark, srcs[i].Clone());
                     _detMatStr.Add(txtMark);
                 }
             }
+            srcs.Clear();
+            _resourcesTracker?.Dispose();
         }
         else
         {
