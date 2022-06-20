@@ -8,109 +8,126 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rxui="http://reactiveui.net"
     xmlns:vm="clr-namespace:Client.ViewModel.Operation;assembly=Client.ViewModel"
-    d:DesignHeight="650"
+    d:DesignHeight="950"
     d:DesignWidth="300"
     x:TypeArguments="vm:PaddleXViewModel"
     mc:Ignorable="d">
     <materialDesign:Card
         x:Name="cardMain"
+        MinWidth="300"
         Margin="{StaticResource marginOp}">
-        <StackPanel>
-            <Label
-                x:Name="Title"
-                Margin="{StaticResource marginOdd}"
-                Content="Yolo"
-                FontSize="22"
-                FontWeight="UltraBlack" />
-            <materialDesign:Card>
-                <StackPanel
-                    Margin="{StaticResource marginEven}">
-                    <TextBlock
-                        Margin="{StaticResource marginOdd}"
-                        FontSize="16"
-                        LineHeight="30"
-                        TextWrapping="Wrap">
-                        使用paddlex训练模型，通过paddleinference.dll的方式部署;C#推理文件在Model项目中，PaddleXInference.cs</TextBlock>
-                    <Label
+        <ScrollViewer>
+            <StackPanel>
+                <Label
+                    x:Name="Title"
+                    Margin="{StaticResource marginOdd}"
+                    Content="PaddleX推理CPU"
+                    FontSize="22"
+                    FontWeight="UltraBlack" />
+                <materialDesign:Card>
+                    <StackPanel
                         Margin="{StaticResource marginEven}">
-                        <Hyperlink
-                            Click="Hyperlink_Click"
+                        <TextBlock
+                            Margin="{StaticResource marginOdd}"
                             FontSize="16"
-                            NavigateUri="https://gitee.com/paddlepaddle/PaddleX/tree/develop/deploy/cpp/docs/csharp_deploy">部署说明</Hyperlink>
-                    </Label>
-                </StackPanel>
-            </materialDesign:Card>
-            <Label
-                Margin="{StaticResource marginOdd}"
-                Content="分类"
-                FontSize="22"
-                FontWeight="UltraBlack" />
-            <materialDesign:Card>
-                <StackPanel
-                    Name="panelCls"
-                    Margin="{StaticResource marginEven}">
-                    <TextBlock
-                        Margin="{StaticResource marginOdd}"
-                        FontSize="16"
-                        LineHeight="30"
-                        TextWrapping="Wrap">
-                        可在程序目录中替换自己的模型测试，注意替换viewmodel中的相关代码</TextBlock>
-                    <StackPanel
-                        Margin="{StaticResource marginEven}"
-                        Orientation="Horizontal">
-                        <Button
-                            Name="btnClsLoad"
-                            Width="100"
-                            HorizontalAlignment="Left"
-                            Content="加载模型" />
-                        <Button
-                            Name="btnClsDestory"
-                            Width="100"
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            Content="销毁模型" />
+                            LineHeight="30"
+                            TextWrapping="Wrap">
+                            使用paddlex训练模型，通过paddleinference.dll的方式部署;C#推理文件在Model项目中，PaddleXInference.cs；依赖dll已打包，下载后放置于程序目录下\PaddleDll\中</TextBlock>
+                        <Label
+                            Margin="{StaticResource marginEven}">
+                            <Hyperlink
+                                Click="Hyperlink_Click"
+                                FontSize="16"
+                                Foreground="Blue">点击复制链接查看paddelx说明</Hyperlink>
+                        </Label>
+                        <Label
+                            Margin="{StaticResource marginOdd}">
+                            <Hyperlink
+                                Click="Modellink_Click1"
+                                FontSize="16"
+                                Foreground="Blue">点击复制链接下载DLL</Hyperlink>
+                        </Label>
                     </StackPanel>
-                    <TextBlock
-                        Name="txtClsResult"
-                        Margin="{StaticResource marginOdd}"
-                        FontSize="16"
-                        Foreground="Blue"
-                        LineHeight="30"
-                        TextWrapping="Wrap">
-                        检测结果</TextBlock>
-                </StackPanel>
-            </materialDesign:Card>
-            <Label
-                Margin="{StaticResource marginOdd}"
-                Content="目标检测"
-                FontSize="22"
-                FontWeight="UltraBlack" />
-            <materialDesign:Card>
-                <StackPanel
-                    Name="panelDet"
-                    Margin="{StaticResource marginEven}">
-                    <TextBlock
-                        Margin="{StaticResource marginOdd}"
-                        FontSize="16"
-                        LineHeight="30"
-                        TextWrapping="Wrap">
-                        可在程序目录中替换自己的模型测试，注意替换viewmodel中的相关代码</TextBlock>
+                </materialDesign:Card>
+                <Label
+                    Margin="{StaticResource marginOdd}"
+                    Content="分类"
+                    FontSize="22"
+                    FontWeight="UltraBlack" />
+                <materialDesign:Card>
                     <StackPanel
-                        Margin="{StaticResource marginEven}"
-                        Orientation="Horizontal">
-                        <Button
-                            Name="btnDetLoad"
-                            Width="100"
-                            HorizontalAlignment="Left"
-                            Content="加载模型" />
-                        <Button
-                            Name="btnDetDestory"
-                            Width="100"
-                            Margin="10,0"
-                            Content="销毁模型" />
+                        Name="panelCls"
+                        Margin="{StaticResource marginEven}">
+                        <TextBlock
+                            Margin="{StaticResource marginOdd}"
+                            FontSize="16"
+                            LineHeight="30"
+                            TextWrapping="Wrap">
+                            可在程序目录中替换自己的模型测试，注意替换viewmodel中的相关代码</TextBlock>
+                        <StackPanel
+                            Margin="{StaticResource marginEven}"
+                            Orientation="Horizontal">
+                            <Button
+                                Name="btnClsLoad"
+                                Width="90"
+                                HorizontalAlignment="Left"
+                                Content="加载模型" />
+                            <Button
+                                Name="btnClsDestory"
+                                Width="90"
+                                Margin="10,0"
+                                HorizontalAlignment="Left"
+                                Content="销毁模型" />
+                        </StackPanel>
+                        <TextBlock
+                            Name="txtClsResult"
+                            Margin="{StaticResource marginOdd}"
+                            FontSize="16"
+                            Foreground="Green"
+                            LineHeight="30"
+                            TextWrapping="Wrap">
+                            检测结果</TextBlock>
                     </StackPanel>
-                </StackPanel>
-            </materialDesign:Card>
-        </StackPanel>
+                </materialDesign:Card>
+                <Label
+                    Margin="{StaticResource marginOdd}"
+                    Content="目标检测"
+                    FontSize="22"
+                    FontWeight="UltraBlack" />
+                <materialDesign:Card>
+                    <StackPanel
+                        Name="panelDet"
+                        Margin="{StaticResource marginEven}">
+                        <TextBlock
+                            Margin="{StaticResource marginOdd}"
+                            FontSize="16"
+                            LineHeight="30"
+                            TextWrapping="Wrap">
+                            可在程序目录中替换自己的模型测试，注意替换viewmodel中的相关代码；由于模型太大，请另行下载放置于程序Data\File\PaddleX\det中</TextBlock>
+                        <Label
+                            Margin="{StaticResource marginEven}">
+                            <Hyperlink
+                                Click="Modellink_Click"
+                                FontSize="16"
+                                Foreground="Blue">点击复制链接，下载模型</Hyperlink>
+                        </Label>
+                        <StackPanel
+                            Margin="{StaticResource marginOdd}"
+                            Orientation="Horizontal">
+                            <Button
+                                Name="btnDetLoad"
+                                Width="90"
+                                HorizontalAlignment="Left"
+                                Content="加载模型" />
+                            <Button
+                                Name="btnDetDestory"
+                                Width="90"
+                                Margin="10,0"
+                                Content="销毁模型" />
+                        </StackPanel>
+                    </StackPanel>
+                </materialDesign:Card>
+            </StackPanel>
+        </ScrollViewer>
     </materialDesign:Card>
 </rxui:ReactiveUserControl>
