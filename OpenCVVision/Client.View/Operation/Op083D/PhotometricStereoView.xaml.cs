@@ -1,17 +1,16 @@
-﻿namespace Client.View.Operation
+﻿namespace Client.View.Operation;
+
+/// <summary>
+/// PhotometricStereo1View.xaml 的交互逻辑
+/// </summary>
+public partial class PhotometricStereoView
 {
-    /// <summary>
-    /// PhotometricStereo1View.xaml 的交互逻辑
-    /// </summary>
-    public partial class PhotometricStereoView : ReactiveUserControl<PhotometricStereoViewModel>
+    public PhotometricStereoView()
     {
-        public PhotometricStereoView()
+        InitializeComponent();
+        this.WhenActivated(d =>
         {
-            InitializeComponent();
-            this.WhenActivated(d =>
-            {
-                this.BindCommand(ViewModel, vm => vm.ViewPhotometricCommand, v => v.btnGotoSample).DisposeWith(d);
-            });
-        }
+            this.BindCommand(ViewModel, vm => vm.ViewPhotometricCommand, v => v.btnGotoSample).DisposeWith(d);
+        });
     }
 }

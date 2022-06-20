@@ -70,7 +70,7 @@ public class View3DViewModel : ViewModelBase, IRoutableViewModel
         _rt.Dispose();
         _grayCodeProcess.Dispose();
         PointGeometry.ClearAllGeometryData();
-        EffectsManager.DisposeAndClear();
+        EffectsManager.Dispose();
         PointGeometry.ClearOctree();
         PointGeometry = null;
         EffectsManager = null;

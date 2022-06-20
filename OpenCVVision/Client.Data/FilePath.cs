@@ -17,6 +17,10 @@
             public const string YoloV3TestImage = @"Data\Image\YoloV3\";
             public const string PatternFolder = @"Data\Image\GrayCode\";
             public const string PhotometricStereoFolder = @"Data\Image\PhotometricStereo\";
+            public const string PaddleXClsModelFodel = @"Data\File\PaddleX\cls\";
+            public const string PaddleXDetModelFodel = @"Data\File\PaddleX\det\";
+            public const string PaddleXClsImagelFodel = @"Data\Image\PaddleX\Cls\";
+            public const string PaddleXDetImageFodel = @"Data\Image\PaddleX\Det\";
         }
 
         public static class Image

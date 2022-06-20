@@ -13,18 +13,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HelixToolkit.SharpDX.Core.Wpf" Version="2.20.2" />
+    <PackageReference Include="HelixToolkit.SharpDX.Core.Wpf" Version="2.21.1" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.10" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.4.0" />
-    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.2.1" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
-    <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.5.5.20211231" />
-    <PackageReference Include="ReactiveUI" Version="17.1.50" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.2.2" />
+    <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.6.0.20220608" />
+    <PackageReference Include="ReactiveUI" Version="18.1.8" />
     <PackageReference Include="ReactiveUI.Events.WPF" Version="15.1.1" />
-    <PackageReference Include="ReactiveUI.WPF" Version="17.1.50" />
-    <PackageReference Include="Splat.NLog" Version="14.2.1" />
+    <PackageReference Include="ReactiveUI.WPF" Version="18.1.8" />
+    <PackageReference Include="Splat.NLog" Version="14.2.8" />
     <PackageReference Include="Wpf.Controls.PanAndZoom" Version="2.3.4" />
   </ItemGroup>
 

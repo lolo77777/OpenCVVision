@@ -7,6 +7,12 @@
 
 	<ItemGroup>
 		<None Remove="Data\File\GrayCode\patternCalibrate.yaml" />
+		<None Remove="Data\File\PaddleX\cls\model.pdiparams" />
+		<None Remove="Data\File\PaddleX\cls\model.pdmodel" />
+		<None Remove="Data\File\PaddleX\cls\model.yml" />
+		<None Remove="Data\File\PaddleX\det\model.pdiparams" />
+		<None Remove="Data\File\PaddleX\det\model.pdmodel" />
+		<None Remove="Data\File\PaddleX\det\model.yml" />
 		<None Remove="Data\File\Yolo\coco.names" />
 		<None Remove="Data\File\Yolo\object_detection_classes_yolov3.txt" />
 		<None Remove="Data\Image\GrayCode\1\637349141122531860.bmp" />
@@ -376,6 +382,20 @@
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165624_0297_0003.jpg" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.bmp" />
 		<None Remove="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.jpg" />
+		<None Remove="Data\Image\PaddleX\Cls\2285837532559.png" />
+		<None Remove="Data\Image\PaddleX\Cls\2288703078266.png" />
+		<None Remove="Data\Image\PaddleX\Cls\2289860380640.png" />
+		<None Remove="Data\Image\PaddleX\Cls\2291746348480.png" />
+		<None Remove="Data\Image\PaddleX\Cls\2346092395836.png" />
+		<None Remove="Data\Image\PaddleX\Cls\2346371995076.png" />
+		<None Remove="Data\Image\PaddleX\Cls\2346388593044.png" />
+		<None Remove="Data\Image\PaddleX\Cls\2346402711775.png" />
+		<None Remove="Data\Image\PaddleX\Det\Image_20220315142410936.bmp" />
+		<None Remove="Data\Image\PaddleX\Det\Image_20220315142424056.bmp" />
+		<None Remove="Data\Image\PaddleX\Det\Image_20220315142429618.bmp" />
+		<None Remove="Data\Image\PaddleX\Det\Image_20220315142526505.bmp" />
+		<None Remove="Data\Image\PaddleX\Det\Image_20220315142538319.bmp" />
+		<None Remove="Data\Image\PaddleX\Det\Image_20220315142543963.bmp" />
 		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.0.png" />
 		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.1.png" />
 		<None Remove="Data\Image\PhotometricStereo\buddha\buddha.10.png" />
@@ -477,11 +497,35 @@
 		<None Remove="Data\Image\YoloV3\OIP.xI9MTXkpsp09YrwHKEVZ1gHaE8.jpg" />
 		<None Remove="Data\Image\YoloV3\Rebun.jpeg" />
 		<None Remove="Data\Image\YoloV3\Shinjuku.jpeg" />
+		<None Remove="PaddleDll\libiomp5md.dll" />
+		<None Remove="PaddleDll\mkldnn.dll" />
+		<None Remove="PaddleDll\mklml.dll" />
+		<None Remove="PaddleDll\model_infer.dll" />
+		<None Remove="PaddleDll\opencv_world346.dll" />
+		<None Remove="PaddleDll\paddle_inference.dll" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Data\File\GrayCode\patternCalibrate.yaml">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\PaddleX\cls\model.pdiparams">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\PaddleX\cls\model.pdmodel">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\PaddleX\cls\model.yml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\PaddleX\det\model.pdiparams">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\PaddleX\det\model.pdmodel">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\PaddleX\det\model.yml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Data\File\Yolo\coco.names">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1038,6 +1082,48 @@
 		<Content Include="Data\Image\LaserLine\Test\0000_20201210_165802_0618_0003.jpg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Data\Image\PaddleX\Cls\2285837532559.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Cls\2288703078266.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Cls\2289860380640.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Cls\2291746348480.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Cls\2346092395836.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Cls\2346371995076.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Cls\2346388593044.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Cls\2346402711775.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Det\Image_20220315142410936.bmp">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Det\Image_20220315142424056.bmp">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Det\Image_20220315142429618.bmp">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Det\Image_20220315142526505.bmp">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Det\Image_20220315142538319.bmp">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\PaddleX\Det\Image_20220315142543963.bmp">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Data\Image\PhotometricStereo\buddha\buddha.0.png">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -1340,6 +1426,24 @@
 		</Content>
 		<Content Include="Data\Image\YoloV3\Shinjuku.jpeg">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="PaddleDll\libiomp5md.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="PaddleDll\mkldnn.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="PaddleDll\mklml.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="PaddleDll\model_infer.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="PaddleDll\opencv_world346.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="PaddleDll\paddle_inference.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 </Project>

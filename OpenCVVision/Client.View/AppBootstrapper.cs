@@ -1,4 +1,6 @@
-﻿namespace Client.ViewModel
+﻿using System.Linq;
+
+namespace Client.ViewModel
 {
     /*
     ------------rxui介绍-------------

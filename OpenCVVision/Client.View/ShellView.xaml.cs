@@ -1,7 +1,7 @@
 ﻿namespace Client.View;
 
 [SingleInstanceView]
-public partial class ShellView : ReactiveUserControl<ShellViewModel>
+public partial class ShellView
 {
     public ShellView()
     {

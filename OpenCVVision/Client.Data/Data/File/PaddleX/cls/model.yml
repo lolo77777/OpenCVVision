@@ -1,0 +1,44 @@
+Model: PPLCNet
+Transforms:
+- ResizeByShort:
+    interp: LINEAR
+    max_size: -1
+    short_size: 146
+- CenterCrop:
+    crop_size: 128
+- Normalize:
+    is_scale: true
+    max_val:
+    - 255.0
+    - 255.0
+    - 255.0
+    mean:
+    - 0.485
+    - 0.456
+    - 0.406
+    min_val:
+    - 0
+    - 0
+    - 0
+    std:
+    - 0.229
+    - 0.224
+    - 0.225
+_Attributes:
+  eval_metrics:
+    acc1: 1.0
+  fixed_input_shape:
+  - -1
+  - 3
+  - -1
+  - -1
+  labels:
+  - Front
+  - Reverse
+  model_type: classifier
+  num_classes: 2
+_init_params:
+  num_classes: 2
+completed_epochs: 0
+status: Infer
+version: 2.1.0
