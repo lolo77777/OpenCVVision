@@ -12,6 +12,10 @@
 		<None Remove="Data\File\PaddleX\cls\model.yml" />
 		<None Remove="Data\File\PaddleX\det\model.pdmodel" />
 		<None Remove="Data\File\PaddleX\det\model.yml" />
+		<None Remove="Data\File\WechatQRCodeModel\detect.caffemodel" />
+		<None Remove="Data\File\WechatQRCodeModel\detect.prototxt" />
+		<None Remove="Data\File\WechatQRCodeModel\sr.caffemodel" />
+		<None Remove="Data\File\WechatQRCodeModel\sr.prototxt" />
 		<None Remove="Data\File\Yolo\coco.names" />
 		<None Remove="Data\File\Yolo\object_detection_classes_yolov3.txt" />
 		<None Remove="Data\Image\GrayCode\1\637349141122531860.bmp" />
@@ -488,6 +492,7 @@
 		<None Remove="Data\Image\PhotometricStereo\rock\rock.mask.png" />
 		<None Remove="Data\Image\ta.bmp" />
 		<None Remove="Data\File\LaserLine\LightLaserCali.yaml" />
+		<None Remove="Data\Image\WechatQRCode\QRCode.png" />
 		<None Remove="Data\Image\YoloV3\bali-crop.jpg" />
 		<None Remove="Data\Image\YoloV3\dog.jpg" />
 		<None Remove="Data\Image\YoloV3\horses.jpg" />
@@ -517,6 +522,18 @@
 		</Content>
 		<Content Include="Data\File\PaddleX\det\model.yml">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\WechatQRCodeModel\detect.caffemodel">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\WechatQRCodeModel\detect.prototxt">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\WechatQRCodeModel\sr.caffemodel">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\File\WechatQRCodeModel\sr.prototxt">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Data\File\Yolo\coco.names">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1392,6 +1409,9 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Data\File\LaserLine\LightLaserCali.yaml">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Data\Image\WechatQRCode\QRCode.png">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Data\Image\YoloV3\bali-crop.jpg">

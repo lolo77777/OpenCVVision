@@ -78,6 +78,9 @@
     <Compile Update="Operation\Op12DeepLearning\PaddleXView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op12DeepLearning\WechatQRCodeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Operation\Op12DeepLearning\YoloView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -162,6 +165,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op12DeepLearning\PaddleXView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op12DeepLearning\WechatQRCodeView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Operation\Op12DeepLearning\YoloView.xaml">

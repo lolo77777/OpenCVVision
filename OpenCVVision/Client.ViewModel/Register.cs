@@ -42,6 +42,7 @@ internal class Register : RegisterBase
         RegistOperationViewModel<EdgeDetectViewModel>();
         RegistOperationViewModel<YoloViewModel>();
         RegistOperationViewModel<PaddleXViewModel>();
+        RegistOperationViewModel<WechatQRCodeViewModel>();
         RegistOperationViewModel<FeatureDetectionViewModel>();
         //RegistLazySingletonOpVM<MatchTemplateViewModel>();
         RegistOperationViewModel<GrayCodeViewModel>();

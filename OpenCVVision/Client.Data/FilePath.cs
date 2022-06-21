@@ -7,6 +7,10 @@
             public const string LaserLineCaliYaml = @"Data\File\LaserLine\LightLaserCali.yaml";
             public const string ObjectNames = @"Data\File\Yolo\coco.names";
             public const string PatternCalibrateYaml = @"Data\File\GrayCode\patternCalibrate.yaml";
+            public const string DetectorPrototxtPath = @"Data\File\WechatQRCodeModel\detect.prototxt";
+            public const string DetectorCaffeModelPath = @"Data\File\WechatQRCodeModel\detect.caffemodel";
+            public const string SuperResolutionPrototxtPath = @"Data\File\WechatQRCodeModel\sr.prototxt";
+            public const string SuperResolutionCaffeModelPath = @"Data\File\WechatQRCodeModel\sr.caffemodel";
         }
 
         public static class Folder
@@ -27,6 +31,7 @@
         {
             public const string LaserLineLightTemplate = @"Data\Image\LaserLine\Template.bmp";
             public const string Ta = @"Data\Image\ta.bmp";
+            public const string QRCodeTest = @"Data\Image\WechatQRCode\QRCode.png";
         }
     }
 }
