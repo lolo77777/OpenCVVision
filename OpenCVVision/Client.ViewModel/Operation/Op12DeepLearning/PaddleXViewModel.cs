@@ -182,7 +182,14 @@ public class PaddleXViewModel : OperaViewModelBase
 
     protected override void SetupDeactivate()
     {
-        _pInfer.Dispose();
+        if (ClsLoaded)
+        {
+            ClsDestoryModel();
+        }
+        if (DetLoaded)
+        {
+            DetDestoryModel();
+        }
         base.SetupDeactivate();
     }
 }
