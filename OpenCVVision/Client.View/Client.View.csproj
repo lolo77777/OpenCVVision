@@ -20,10 +20,10 @@
     <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.2.2" />
     <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.6.0.20220608" />
-    <PackageReference Include="ReactiveUI" Version="18.1.8" />
+    <PackageReference Include="ReactiveUI" Version="18.3.1" />
     <PackageReference Include="ReactiveUI.Events.WPF" Version="15.1.1" />
-    <PackageReference Include="ReactiveUI.WPF" Version="18.1.8" />
-    <PackageReference Include="Splat.NLog" Version="14.2.8" />
+    <PackageReference Include="ReactiveUI.WPF" Version="18.3.1" />
+    <PackageReference Include="Splat.NLog" Version="14.4.1" />
     <PackageReference Include="Wpf.Controls.PanAndZoom" Version="2.3.4" />
   </ItemGroup>
 
@@ -36,12 +36,7 @@
     <Resource Include="Vison.ico" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Operation\Op10Camera\" />
-    <Folder Include="Operation\Op11MachineLearning\" />
-    <Folder Include="Operation\Op13ImageSegmentation\" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <None Update="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

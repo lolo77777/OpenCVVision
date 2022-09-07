@@ -30,6 +30,7 @@ internal class Register : RegisterBase
         _mutable.RegisterLazySingleton(() => new ImageViewModel());
         _mutable.RegisterLazySingleton(() => new ShellViewModel());
         RegistOperationViewModel<LoadFileViewModel>();
+        RegistOperationViewModel<CameraViewModel>();
         RegistOperationViewModel<ColorSpaceViewModel>();
         RegistOperationViewModel<FilterViewModel>();
         RegistOperationViewModel<ThreshouldViewModel>();

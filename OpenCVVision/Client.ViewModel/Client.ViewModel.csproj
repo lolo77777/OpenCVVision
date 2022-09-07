@@ -7,18 +7,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FluentResults" Version="3.7.0" />
+		<PackageReference Include="FluentResults" Version="3.10.0" />
 		<PackageReference Include="HelixToolkit.SharpDX.Core.Wpf" Version="2.21.1" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView" Version="2.0.0-beta.10" />
 		<PackageReference Include="OpenCvSharp4.Windows" Version="4.6.0.20220608" />
-		<PackageReference Include="ReactiveUI" Version="18.1.8" />
-		<PackageReference Include="ReactiveUI.Fody" Version="18.1.8" />
+		<PackageReference Include="ReactiveUI" Version="18.3.1" />
+		<PackageReference Include="ReactiveUI.Fody" Version="18.3.1" />
 		<PackageReference Include="UnmanagedArray" Version="2.1.3" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Client.Common\Client.Common.csproj" />
 		<ProjectReference Include="..\Client.Model\Client.Model.csproj" />
+		<ProjectReference Include="..\Client.Services\Client.Services.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

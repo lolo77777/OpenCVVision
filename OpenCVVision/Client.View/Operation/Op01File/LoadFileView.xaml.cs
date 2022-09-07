@@ -7,7 +7,7 @@ namespace Client.View.Operation;
 /// </summary>
 public partial class LoadFileView : ReactiveUserControl<LoadFileViewModel>
 {
-    private OpenFileDialog openFileDialog = new();
+    private readonly OpenFileDialog openFileDialog = new();
 
     public LoadFileView()
     {
