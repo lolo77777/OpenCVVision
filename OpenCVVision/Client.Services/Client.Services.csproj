@@ -14,11 +14,13 @@
     <PackageReference Include="FluentResults" Version="3.10.0" />
     <PackageReference Include="OpenCvSharp4.Windows" Version="4.6.0.20220608" />
     <PackageReference Include="Splat" Version="14.4.1" />
+    <PackageReference Include="Splat.NLog" Version="14.4.1" />
     <PackageReference Include="System.Reactive" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Client.Common\Client.Common.csproj" />
+    <ProjectReference Include="..\Client.Model\Client.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>

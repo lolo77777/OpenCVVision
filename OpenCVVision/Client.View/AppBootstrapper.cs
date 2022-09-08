@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using Client.Services;
 
 namespace Client.ViewModel
 {
@@ -31,7 +31,7 @@ namespace Client.ViewModel
     /// <summary>
     /// 程序引导部分
     /// </summary>
-    public class AppBootstrapper : ReactiveObject, IScreen
+    public class AppBootstrapper : ReactiveObject, IScreen, IEnableLogger
     {
         public RoutingState Router { get; private set; } = new RoutingState();
 
@@ -40,9 +40,17 @@ namespace Client.ViewModel
             //默认的异常处理方式设置
             RxApp.DefaultExceptionHandler = new MyCoolObservableExceptionHandler();
             RxApp.SuppressViewCommandBindingMessage = true;
-            LoadDlls();
             //注入NLog
-            Locator.CurrentMutable.UseNLogWithWrappingFullLogger();
+            Locator.CurrentMutable.RegisterConstant(LogManager.GetLogger("*"));
+            //使用自定义的log注入ILogger，在自定义的log中使用NLog写入文件、控制台输出；同时写入日志表格
+            Locator.CurrentMutable.RegisterLazySingleton<Splat.ILogger>(() => new ObservableLogger());
+
+            LoadDlls();
+
+            this.Log().Info("*******************");
+            this.Log().Info("******程序启动******");
+            this.Log().Info("*******************");
+
             //窗体Screen名称注册
             Locator.CurrentMutable.RegisterConstant<IScreen>(this, "MainHost");
             //rxui是iewmoedl first模式，导航至主窗体ViewModel，以显示对应的view

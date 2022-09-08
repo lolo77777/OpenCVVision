@@ -120,9 +120,7 @@ public class ImageToolViewModel : ViewModelBase
 
     private Unit MouseDown(Point point)
     {
-#if DEBUG
-        this.Log().Debug("触发鼠标Down");
-#endif
+
         _isMouseLeftPress = true;
         _startPoint = new Point(point.X, point.Y);
         if (IsDrawing)
