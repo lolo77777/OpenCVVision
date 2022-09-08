@@ -1,6 +1,4 @@
-﻿using Client.Services.Contract;
-
-namespace Client.ViewModel.Operation;
+﻿namespace Client.ViewModel.Operation;
 
 [OperationInfo(1.2, "相机图片", "Camera")]
 public class CameraViewModel : OperaViewModelBase
@@ -112,12 +110,17 @@ public class CameraViewModel : OperaViewModelBase
 
     protected override void SetupDeactivate()
     {
-        if (_camera?.ConnectStatus.Value == true)
+        if (_camera != null)
         {
-            _camera.CloseDevices();
+            if (_camera?.ConnectStatus.Value == true)
+            {
+                _camera.CloseDevices();
+            }
+
+            _camera.Dispose();
+            _camera = null;
         }
-        _camera.Dispose();
-        _camera = null;
+
         base.SetupDeactivate();
     }
 

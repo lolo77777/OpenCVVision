@@ -18,7 +18,7 @@ public class ObservableLogger : Splat.ILogger
     {
         _logger = Locator.Current.GetService<Logger>();
         _displayLog = Locator.Current.GetService<IDisplayLog>();
-        ClearLogs();
+        Task.Run(async () => await ClearLogs());
     }
 
     public LogLevel Level { get; }
@@ -81,24 +81,24 @@ public class ObservableLogger : Splat.ILogger
         switch (logLevel)
         {
             case LogLevel.Debug:
-                _logger.Debug(message);
+                _logger?.Debug(message);
                 break;
 
             case LogLevel.Info:
-                _logger.Info(message);
+                _logger?.Info(message);
                 break;
 
             case LogLevel.Warn:
-                _logger.Warn(message);
+                _logger?.Warn(message);
                 break;
 
             case LogLevel.Error:
-                _logger.Error(message);
+                _logger?.Error(message);
 
                 break;
 
             case LogLevel.Fatal:
-                _logger.Fatal(message);
+                _logger?.Fatal(message);
 
                 break;
 

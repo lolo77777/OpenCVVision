@@ -1,13 +1,6 @@
-﻿using FluentResults;
+﻿using System.Text;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Client.Model.Service;
+namespace Client.Services;
 
 public class PaddleXInference : IDisposable, IEnableLogger
 {
@@ -152,9 +145,9 @@ public class PaddleXInference : IDisposable, IEnableLogger
 
             var inputData = GetBGRValues(src.Clone());
 
-            float[] pre_score = new float[1];
-            int[] pre_category_id = new int[1];
-            byte[] pre_category = new byte[200];
+            float[]? pre_score = new float[1];
+            int[]? pre_category_id = new int[1];
+            byte[]? pre_category = new byte[200];
 
             NativeMethod.Cls_ModelPredict(inputData, src.Width, src.Height, 3, ref pre_score[0], ref pre_category[0], ref pre_category_id[0]);
             TimeSpan infer_end_time = new(DateTime.Now.Ticks);

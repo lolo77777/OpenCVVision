@@ -84,7 +84,6 @@ public class FilterViewModel : OperaViewModelBase
         _imageDataManager.InputMatGuidSubject
             .WhereNotNull()
             .Where(guid => CanOperat)
-            .Log(this, "图像触发选择更新")
             .Subscribe(guid => UpdateUi(FilterModeSelectIndex, SizeX, SizeY, SigmaX, SigmaY, KernelDiam, SigmaColor, SigmaSpace))
             .DisposeWith(d);
     }

@@ -20,7 +20,7 @@ internal class Register : RegisterBase
     /// </summary>
     public class ConventionalViewLocator : IViewLocator
     {
-        public IViewFor ResolveView<T>(T? viewModel, string contract = null)
+        public IViewFor ResolveView<T>(T viewModel, string contract = null)
         {
             string viewModelName = viewModel.GetType().FullName;
             string viewTypeName = viewModelName.Replace("ViewModel", "View");

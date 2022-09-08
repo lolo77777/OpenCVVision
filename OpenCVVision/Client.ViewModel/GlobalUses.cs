@@ -1,7 +1,8 @@
 ﻿global using Client.Common;
 global using Client.Data;
-global using Client.Model.Service;
-global using Client.Model.Service.ImageProcess;
+global using Client.Services;
+global using Client.Services.Contract;
+global using Client.Services.ImageProcess;
 global using Client.ViewModel.Operation;
 
 global using DynamicData;
@@ -26,4 +27,3 @@ global using System.Reactive.Linq;
 global using System.Reflection;
 global using System.Windows.Input;
 global using System.Windows.Media;
-global using System.Windows.Media.Imaging;

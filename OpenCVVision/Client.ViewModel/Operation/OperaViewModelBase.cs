@@ -39,7 +39,7 @@ public class OperaViewModelBase : ViewModelBase, IOperationViewModel
             IsRun = true;
             long t1 = Cv2.GetTickCount();
             var currentMat = _imageDataManager.GetCurrentMat();
-            if (currentMat!=null)
+            if (currentMat != null)
             {
                 _src = _rt.T(currentMat.Clone());
             }

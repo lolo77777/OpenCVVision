@@ -172,6 +172,7 @@
             </DockPanel>
         </Border>
         <GridSplitter
+            Grid.Row="2"
             Grid.Column="2"
             Margin="-4,8"
             HorizontalAlignment="Stretch" />

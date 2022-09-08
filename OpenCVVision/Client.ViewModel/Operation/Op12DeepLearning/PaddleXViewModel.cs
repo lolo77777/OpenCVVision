@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using FluentResults;
-
-namespace Client.ViewModel.Operation;
+﻿namespace Client.ViewModel.Operation;
 
 [OperationInfo(12.2, "PaddleX", "AlphaXCircleOutline")]
 public class PaddleXViewModel : OperaViewModelBase
