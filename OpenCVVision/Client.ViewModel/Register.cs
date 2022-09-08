@@ -33,6 +33,7 @@ internal class Register : RegisterBase
         RegistOperationViewModel<CameraViewModel>();
         RegistOperationViewModel<ColorSpaceViewModel>();
         RegistOperationViewModel<FilterViewModel>();
+        RegistOperationViewModel<LightAndDarkFilterViewModel>();
         RegistOperationViewModel<ThreshouldViewModel>();
         RegistOperationViewModel<MorphologyViewModel>();
         RegistOperationViewModel<ConnectedComponentsViewModel>();

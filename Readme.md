@@ -15,6 +15,7 @@
 | 界面控件        | [MaterialDesignInXamlToolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit) |
 | 标题栏         | [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)                                          |
 | 响应式集合       | [DynamicData](https://github.com/reactivemarbles/DynamicData)                                      |
+| 返回结果包装      | [FluentResults](https://github.com/altmann/FluentResults)              |
 
 ## 推荐
 
@@ -24,7 +25,17 @@
 
 ## 部分功能截图
 
-### 22/09/08更新
+### 22/09/08更新2
+
+从朋友处了解到基恩士的浓淡补正算法，感觉挺有意思，查找了下相关的资料，尝试简单的实现一下明暗局部的筛选。思路是选取一个卷积核，进行滑移，规则是先排列挑出核内部的中值，在通过设置删除亮暗比例设置中值附近的阈值，来筛选出局部过亮或过暗的部分；可以通过卷积核长宽设置方向，来实现特定方向的筛选，示意如下图：
+筛选出不均匀的边缘
+![筛选边缘](Img/23.png)
+筛选出中间的过亮部分和过暗部分
+![筛选暗点亮点](Img/24.png)
+沿着Y方向，筛选出过亮部分，因为选定了方向，条纹不会被选出,仅选出非条纹的亮线
+![Y方向筛选](Img/25.png)
+
+### 22/09/08更新1
 
 调整解决方案项目目录，新增服务子项目
 添加海康，大恒相机采集图像。需要自行安装对应品牌SDK。由以往项目中使用程序汇总而来，暂时不具备测试条件，等待后续测试硬件。

@@ -15,6 +15,9 @@
     <Compile Update="ImageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Operation\Op03Filter\LightAndDarkFilterView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="NavigationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -102,6 +105,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ImageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Operation\Op03Filter\LightAndDarkFilterView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
