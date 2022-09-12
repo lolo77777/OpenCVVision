@@ -6,14 +6,9 @@ global using DynamicData;
 
 global using MaterialDesignThemes.Wpf;
 
-
-global using NLog;
-global using NLog.Filters;
-
 global using ReactiveUI;
 
 global using Splat;
-global using Splat.NLog;
 
 global using System;
 global using System.Collections.Generic;

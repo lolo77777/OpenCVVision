@@ -1,35 +1,34 @@
 ﻿using Client.Contracts;
 
-using NLog;
-
 using System.ComponentModel;
 
 using LogLevel = Splat.LogLevel;
 
 namespace Client.Services;
 
-public class ObservableLogger : Splat.ILogger
+public class ObservableLogger : Splat.ILogger, IDisposable
 {
-    private readonly Logger? _logger;
     private readonly IDisplayLog? _displayLog;
+    private readonly StreamWriter _streamWriter;
+    private object _lock = new();
+    private bool _disposedValue;
+
     public static Subject<(string msg, LogLevel level)> LogMsg { get; } = new Subject<(string msg, LogLevel level)>();
 
     public ObservableLogger()
     {
-        _logger = Locator.Current.GetService<Logger>();
         _displayLog = Locator.Current.GetService<IDisplayLog>();
         Task.Run(async () => await ClearLogs());
+        _streamWriter = InitFile();
     }
 
     public LogLevel Level { get; }
 
     public void Write(string message, LogLevel logLevel)
     {
-        //WriteDebug(message, logLevel);
-        WriteTxt(message, logLevel);
-
         if (logLevel > LogLevel.Debug && !message.Contains("POCO") && !message.Contains("MessageBus"))
         {
+            WriteFile(message, logLevel);
             _displayLog?.Log(message, DateTime.Now, logLevel);
             LogMsg.OnNext((message, logLevel));
         }
@@ -37,10 +36,9 @@ public class ObservableLogger : Splat.ILogger
 
     public void Write(Exception exception, [Localizable(false)] string message, LogLevel logLevel)
     {
-        WriteTxt(message, logLevel);
-
         if (logLevel > LogLevel.Debug && !message.Contains("POCO") && !message.Contains("MessageBus"))
         {
+            WriteFile(message, logLevel);
             _displayLog?.Log(message, DateTime.Now, logLevel);
             LogMsg.OnNext((message, logLevel));
         }
@@ -48,12 +46,44 @@ public class ObservableLogger : Splat.ILogger
 
     public void Write([Localizable(false)] string message, [Localizable(false)] Type type, LogLevel logLevel)
     {
-        throw new NotImplementedException();
+        if (logLevel > LogLevel.Debug && !message.Contains("POCO") && !message.Contains("MessageBus"))
+        {
+            WriteFile(message, logLevel);
+            _displayLog?.Log(message, DateTime.Now, logLevel);
+            LogMsg.OnNext((message, logLevel));
+        }
     }
 
     public void Write(Exception exception, [Localizable(false)] string message, [Localizable(false)] Type type, LogLevel logLevel)
     {
-        throw new NotImplementedException();
+        if (logLevel > LogLevel.Debug && !message.Contains("POCO") && !message.Contains("MessageBus"))
+        {
+            WriteFile(message, logLevel);
+            _displayLog?.Log(message, DateTime.Now, logLevel);
+            LogMsg.OnNext((message, logLevel));
+        }
+    }
+
+    private static StreamWriter InitFile()
+    {
+        var folder = Path.Combine(Environment.CurrentDirectory, "logs");
+        var filename = $"{DateTime.Now:yyyy-MM-dd}.txt";
+        var filePath = Path.Combine(folder, filename);
+
+        return !File.Exists(filePath) ? File.CreateText(filePath) : File.AppendText(filePath);
+    }
+
+    private void WriteFile(string message, LogLevel logLevel)
+    {
+        if (!string.IsNullOrEmpty(message) && !message.Contains("POCOObservableForProperty"))
+        {
+            lock (_lock)
+            {
+                var logText = $"{DateTime.Now:HH:mm:ss}:  {Enum.GetName(logLevel),-6}  {message}";
+                _streamWriter.WriteLine(logText);
+                _streamWriter.Flush();
+            }
+        }
     }
 
     private static async Task ClearLogs()
@@ -76,34 +106,29 @@ public class ObservableLogger : Splat.ILogger
         });
     }
 
-    private void WriteTxt(string message, LogLevel logLevel)
+    protected virtual void Dispose(bool disposing)
     {
-        switch (logLevel)
+        if (!_disposedValue)
         {
-            case LogLevel.Debug:
-                _logger?.Debug(message);
-                break;
+            if (disposing)
+            {
+                // TODO: 释放托管状态(托管对象)
+                _streamWriter?.Dispose();
+            }
 
-            case LogLevel.Info:
-                _logger?.Info(message);
-                break;
-
-            case LogLevel.Warn:
-                _logger?.Warn(message);
-                break;
-
-            case LogLevel.Error:
-                _logger?.Error(message);
-
-                break;
-
-            case LogLevel.Fatal:
-                _logger?.Fatal(message);
-
-                break;
-
-            default:
-                break;
+            // TODO: 释放未托管的资源(未托管的对象)并重写终结器
+            // TODO: 将大型字段设置为 null
+            _disposedValue = true;
         }
+    }
+
+    // // TODO: 仅当“Dispose(bool disposing)”拥有用于释放未托管资源的代码时才替代终结器 ~ObservableLogger() { //
+    // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中 Dispose(disposing: false); }
+
+    public void Dispose()
+    {
+        // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
     }
 }

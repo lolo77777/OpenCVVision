@@ -40,9 +40,7 @@ namespace Client.ViewModel
             //默认的异常处理方式设置
             RxApp.DefaultExceptionHandler = new MyCoolObservableExceptionHandler();
             RxApp.SuppressViewCommandBindingMessage = true;
-            //注入NLog
-            Locator.CurrentMutable.RegisterConstant(LogManager.GetLogger("*"));
-            //使用自定义的log注入ILogger，在自定义的log中使用NLog写入文件、控制台输出；同时写入日志表格
+
             Locator.CurrentMutable.RegisterLazySingleton<Splat.ILogger>(() => new ObservableLogger());
 
             LoadDlls();
