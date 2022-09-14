@@ -67,6 +67,10 @@ public class ObservableLogger : Splat.ILogger, IDisposable
     private static StreamWriter InitFile()
     {
         var folder = Path.Combine(Environment.CurrentDirectory, "logs");
+        if (!Directory.Exists(folder))
+        {
+            Directory.CreateDirectory(folder);
+        }
         var filename = $"{DateTime.Now:yyyy-MM-dd}.txt";
         var filePath = Path.Combine(folder, filename);
 
