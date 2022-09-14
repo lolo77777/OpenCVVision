@@ -13,25 +13,18 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition
-                Height="*" />
-            <RowDefinition
-                Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition
-                Width="auto" />
-            <ColumnDefinition
-                Width="4*" />
-            <ColumnDefinition
-                Width="4" />
-            <ColumnDefinition
-                Width="1*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <rxui:ViewModelViewHost
             Name="Nagivate"
             Grid.RowSpan="2"
-            MinWidth="100"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch" />
         <rxui:ViewModelViewHost
@@ -63,12 +56,10 @@
                     PlacementMode="LeftAndAlignBottomEdges"
                     StaysOpen="True">
                     <materialdesign:PopupBox.ToggleContent>
-                        <materialdesign:PackIcon
-                            Kind="ChevronDoubleUp" />
+                        <materialdesign:PackIcon Kind="ChevronDoubleUp" />
                     </materialdesign:PopupBox.ToggleContent>
                     <materialdesign:PopupBox.ToggleCheckedContent>
-                        <materialdesign:PackIcon
-                            Kind="ChevronDoubleDown" />
+                        <materialdesign:PackIcon Kind="ChevronDoubleDown" />
                     </materialdesign:PopupBox.ToggleCheckedContent>
                     <Grid
                         MinWidth="900"
@@ -76,10 +67,8 @@
                         MaxWidth="1024"
                         MaxHeight="800">
                         <Grid.RowDefinitions>
-                            <RowDefinition
-                                Height="auto" />
-                            <RowDefinition
-                                Height="*" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Border>
                             <ListBox
@@ -88,30 +77,18 @@
                                 Style="{StaticResource MaterialDesignToolToggleListBox}">
                                 <ListBox.ToolTip>
                                     <StackPanel>
-                                        <TextBlock
-                                            Text="MaterialDesignToolToggleListBox" />
-                                        <TextBlock
-                                            Text="Exclusive selection" />
-                                        <TextBlock
-                                            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                                        <TextBlock Text="MaterialDesignToolToggleListBox" />
+                                        <TextBlock Text="Exclusive selection" />
+                                        <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
                                     </StackPanel>
                                 </ListBox.ToolTip>
-                                <ListBoxItem
-                                    Content="{materialdesign:PackIcon Kind=InformationOutline, Size=36}"
-                                    Foreground="Green" />
-                                <ListBoxItem
-                                    Content="{materialdesign:PackIcon Kind=AlertDecagramOutline, Size=36}"
-                                    Foreground="OrangeRed" />
-                                <ListBoxItem
-                                    Content="{materialdesign:PackIcon Kind=AlertCircleOutline, Size=36}"
-                                    Foreground="IndianRed" />
-                                <ListBoxItem
-                                    Content="{materialdesign:PackIcon Kind=CloseCircleOutline, Size=36}"
-                                    Foreground="DarkRed" />
+                                <ListBoxItem Content="{materialdesign:PackIcon Kind=InformationOutline, Size=36}" Foreground="Green" />
+                                <ListBoxItem Content="{materialdesign:PackIcon Kind=AlertDecagramOutline, Size=36}" Foreground="OrangeRed" />
+                                <ListBoxItem Content="{materialdesign:PackIcon Kind=AlertCircleOutline, Size=36}" Foreground="IndianRed" />
+                                <ListBoxItem Content="{materialdesign:PackIcon Kind=CloseCircleOutline, Size=36}" Foreground="DarkRed" />
                             </ListBox>
                         </Border>
-                        <Border
-                            Grid.Row="1">
+                        <Border Grid.Row="1">
                             <DataGrid
                                 x:Name="dataGridLogInfo"
                                 Grid.Column="1"
@@ -128,35 +105,20 @@
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                                 VirtualizingPanel.ScrollUnit="Pixel">
                                 <DataGrid.ColumnHeaderStyle>
-                                    <Style
-                                        BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}"
-                                        TargetType="DataGridColumnHeader">
-                                        <Setter
-                                            Property="HorizontalContentAlignment"
-                                            Value="Center" />
+                                    <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     </Style>
                                 </DataGrid.ColumnHeaderStyle>
                                 <DataGrid.CellStyle>
-                                    <Style
-                                        BasedOn="{StaticResource MaterialDesignDataGridCell}"
-                                        TargetType="DataGridCell">
-                                        <Setter
-                                            Property="HorizontalContentAlignment"
-                                            Value="Center" />
+                                    <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     </Style>
                                 </DataGrid.CellStyle>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn
-                                        Binding="{Binding Id}"
-                                        Header="序号" />
-                                    <DataGridTextColumn
-                                        Binding="{Binding Time}"
-                                        Header="时间" />
-                                    <DataGridTextColumn
-                                        Binding="{Binding Level}"
-                                        Header="级别" />
-                                    <DataGridTextColumn
-                                        Binding="{Binding Msg}">
+                                    <DataGridTextColumn Binding="{Binding Id}" Header="序号" />
+                                    <DataGridTextColumn Binding="{Binding Time}" Header="时间" />
+                                    <DataGridTextColumn Binding="{Binding Level}" Header="级别" />
+                                    <DataGridTextColumn Binding="{Binding Msg}">
                                         <DataGridTextColumn.Header>
                                             <TextBlock
                                                 MinWidth="160"

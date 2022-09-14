@@ -16,14 +16,16 @@
     mc:Ignorable="d">
     <Grid
         x:Name="GridMain"
-        Width="41"
         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
         ScrollViewer.VerticalScrollBarVisibility="Hidden">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
         </Grid.RowDefinitions>
-        <Grid Background="{StaticResource MahApps.Brushes.WindowTitle}">
+        <Grid
+            Background="{StaticResource MahApps.Brushes.WindowTitle}">
             <ToggleButton
                 x:Name="HumToggle"
                 Width="22"
@@ -35,7 +37,6 @@
                 IsChecked="True"
                 Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
         </Grid>
-
         <ListView
             x:Name="NavigationTab"
             Grid.Row="1"
@@ -43,19 +44,20 @@
             ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Background="{StaticResource MahApps.Brushes.WindowTitle}" />
+                    <StackPanel
+                        Background="{StaticResource MahApps.Brushes.WindowTitle}" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Canvas Height="24">
+                    <Canvas
+                        Height="24">
                         <materialDesign:PackIcon
                             Width="24"
                             Height="24"
                             Foreground="LightCyan"
                             Kind="{Binding Icon}"
                             ToolTip="{Binding OperaPanelInfo}" />
-
                         <Label
                             Margin="30,0,0,0"
                             HorizontalAlignment="Center"
