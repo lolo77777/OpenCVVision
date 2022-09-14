@@ -1,0 +1,97 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="OpenCVVision.View.LightAndDarkFilterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:OpenCVVision.View"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:OpenCVVision.ViewModel.Operation;assembly=OpenCVVision.ViewModel"
+    xmlns:rxui="http://reactiveui.net"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    x:TypeArguments="operation:LightAndDarkFilterViewModel"
+    mc:Ignorable="d">
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
+        <StackPanel Orientation="Vertical">
+            <Label
+                Margin="8"
+                Content="亮暗筛选"
+                FontSize="22"
+                FontWeight="UltraBlack" />
+            <materialDesign:Card>
+                <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
+                    <TextBlock
+                        Margin="{StaticResource marginEven}"
+                        FontStyle="Italic"
+                        TextWrapping="Wrap">
+                        说明：使用局部中值，并设置与中值的两侧阈值比例来挑选局部过亮，过暗的区域
+                    </TextBlock>
+                    <ComboBox
+                        x:Name="cbxFilterType"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="滤波类型" />
+                    <TextBox
+                        x:Name="txtBoxWindowSize"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="像素窗口大小(&gt;=16)" />
+                    <TextBox
+                        x:Name="txtBoxWidth"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="像素窗口宽度(&gt;=1)" />
+                    <TextBox
+                        x:Name="txtBoxHeight"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="像素窗口高度(&gt;=1)"
+                        IsEnabled="False" />
+                    <TextBlock
+                        Margin="{StaticResource marginEven}"
+                        FontStyle="Italic"
+                        TextWrapping="Wrap">
+                        说明：可以设置窗口大小来设置卷积的窗口大小，通过宽高来设置卷积方向。
+                        例如：设置窗口16，宽4，高4，即XY方向
+                        设置窗口16，宽1，2；高16，8；即Y方向
+                        设置窗口16，宽16，8；高1，2；即Y方向
+                    </TextBlock>
+                    <StackPanel
+                        x:Name="BilateralFilterPanel"
+                        Margin="0,10,0,0"
+                        Orientation="Vertical">
+                        <Grid Name="darkGrid" Margin="{StaticResource marginOdd}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Margin="0,0,8,0" Content="暗部比例" />
+                            <Slider
+                                x:Name="sliderDarkValue"
+                                Grid.Column="1"
+                                Maximum="100"
+                                Minimum="0"
+                                TickFrequency="1"
+                                TickPlacement="BottomRight"
+                                ToolTip="暗部比例"
+                                Value="3" />
+                        </Grid>
+                        <Grid Name="lightGrid" Margin="{StaticResource marginOdd}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Margin="0,0,8,0" Content="亮部比例" />
+                            <Slider
+                                x:Name="sliderLightValue"
+                                Grid.Column="1"
+                                Maximum="100"
+                                Minimum="0"
+                                TickFrequency="1"
+                                TickPlacement="BottomRight"
+                                ToolTip="亮部比例"
+                                Value="3" />
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>

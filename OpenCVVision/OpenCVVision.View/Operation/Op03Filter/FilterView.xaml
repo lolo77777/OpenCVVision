@@ -1,0 +1,131 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="OpenCVVision.View.Operation.FilterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:op03preprocessing="clr-namespace:OpenCVVision.ViewModel.Operation;assembly=OpenCVVision.ViewModel"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    x:TypeArguments="op03preprocessing:FilterViewModel"
+    mc:Ignorable="d">
+
+    <materialDesign:Card x:Name="cardMain" Margin="{StaticResource marginOp}">
+        <StackPanel Orientation="Vertical">
+            <Label
+                Margin="8"
+                Content="Filter"
+                FontSize="22"
+                FontWeight="UltraBlack" />
+
+            <materialDesign:Card>
+
+                <StackPanel Grid.Row="1" Margin="{StaticResource marginEven}">
+
+                    <ComboBox
+                        x:Name="cbxFilterType"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="滤波类型" />
+                    <Grid Margin="{StaticResource marginOdd}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Margin="0,0,8,0" Content="SizeX" />
+                        <Slider
+                            x:Name="sliderKernelSizeX"
+                            Grid.Column="1"
+                            Maximum="11"
+                            Minimum="3"
+                            TickFrequency="2"
+                            TickPlacement="BottomRight"
+                            ToolTip="KernelSize"
+                            Value="3" />
+                    </Grid>
+                    <Grid Margin="{StaticResource marginEven}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Margin="0,0,8,0" Content="SizeY" />
+                        <Slider
+                            x:Name="sliderKernelSizeY"
+                            Grid.Column="1"
+                            Maximum="11"
+                            Minimum="3"
+                            TickFrequency="2"
+                            TickPlacement="BottomRight"
+                            ToolTip="KernelSize"
+                            Value="3" />
+                    </Grid>
+
+                    <TextBox
+                        x:Name="txtBoxSigmaX"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="SigmaX" />
+                    <TextBox
+                        x:Name="txtBoxSigmaY"
+                        Margin="{StaticResource marginOdd}"
+                        materialDesign:HintAssist.Hint="SigmaY" />
+                    <TextBox
+                        x:Name="txtFactor"
+                        Margin="{StaticResource marginEven}"
+                        materialDesign:HintAssist.Hint="Factor" />
+                    <StackPanel x:Name="BilateralFilterPanel" Orientation="Vertical">
+
+                        <Grid Margin="{StaticResource marginOdd}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Margin="0,0,8,0" Content="KernelDiam" />
+                            <Slider
+                                x:Name="sliderKernelDiam"
+                                Grid.Column="1"
+                                Maximum="100"
+                                Minimum="0"
+                                TickFrequency="1"
+                                TickPlacement="BottomRight"
+                                ToolTip="KernelDiam"
+                                Value="3" />
+                        </Grid>
+                        <Grid Margin="{StaticResource marginOdd}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Margin="0,0,8,0" Content="SigmaColor" />
+                            <Slider
+                                x:Name="slidersigmaColor"
+                                Grid.Column="1"
+                                Maximum="100"
+                                Minimum="0"
+                                TickFrequency="1"
+                                TickPlacement="BottomRight"
+                                ToolTip="SigmaColor"
+                                Value="3" />
+                        </Grid>
+                        <Grid Margin="{StaticResource marginOdd}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Margin="0,0,8,0" Content="SigmaSpace" />
+                            <Slider
+                                x:Name="slidersigmaSpace"
+                                Grid.Column="1"
+                                Maximum="100"
+                                Minimum="0"
+                                TickFrequency="1"
+                                TickPlacement="BottomRight"
+                                ToolTip="SigmaSpace"
+                                Value="3" />
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>

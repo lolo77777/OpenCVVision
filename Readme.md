@@ -4,7 +4,7 @@
 
 这是一个使用.net 6基于OpencvSharp、ReactiveUI开发的自用工具，主要用来做ReactiveUI与OpencvSharp学习过程中的尝试；根据个人需求不定期更新添加功能，欢迎讨论交流。
 
-### ！其他信息请参考项目Client.View内AppBootstrapper.cs文件里的相关说明
+### ！其他信息请参考项目OpenCVVision.View内AppBootstrapper.cs文件里的相关说明
 
 ## 引用
 
@@ -15,7 +15,7 @@
 | 界面控件        | [MaterialDesignInXamlToolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit) |
 | 标题栏         | [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)                                          |
 | 响应式集合       | [DynamicData](https://github.com/reactivemarbles/DynamicData)                                      |
-| 返回结果包装      | [FluentResults](https://github.com/altmann/FluentResults)              |
+| 返回结果包装      | [FluentResults](https://github.com/altmann/FluentResults)                                          |
 
 ## 推荐
 

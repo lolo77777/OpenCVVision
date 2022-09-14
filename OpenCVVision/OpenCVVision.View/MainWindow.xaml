@@ -1,0 +1,59 @@
+﻿<mah:MetroWindow
+    x:Class="OpenCVVision.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:rxui="http://reactiveui.net"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:view="clr-namespace:OpenCVVision.View"
+    Title="Vision"
+    Width="800"
+    Height="450"
+    Background="{DynamicResource MaterialDesignPaper}"
+    Icon="Vison.ico"
+    TextElement.FontSize="14"
+    TextElement.FontWeight="Medium"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+
+            <Button
+                x:Name="OpenGitSite"
+                Click="OpenGitSite_Click"
+                ToolTip="打开Git托管地址">
+                <materialdesign:PackIcon
+                    Width="22"
+                    Height="22"
+                    Kind="Git" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <ToggleButton
+                x:Name="TBtnTheme"
+                Width="30"
+                Height="30"
+                Margin="4,0"
+                Click="ToggleButton_Click"
+                Content="{materialdesign:PackIcon Kind=WhiteBalanceSunny}"
+                Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                ToolTip="切换主题">
+                <materialdesign:ToggleButtonAssist.OnContent>
+                    <materialdesign:PackIcon
+                        Width="22"
+                        Height="22"
+                        Kind="WeatherNight" />
+                </materialdesign:ToggleButtonAssist.OnContent>
+            </ToggleButton>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+
+    <rxui:RoutedViewHost
+        HorizontalContentAlignment="Stretch"
+        VerticalContentAlignment="Stretch"
+        Router="{Binding Router}" />
+</mah:MetroWindow>

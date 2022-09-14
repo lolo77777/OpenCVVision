@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.View", "Client.View\Client.View.csproj", "{3FB0A9C5-D793-4B84-8B1B-75E47FCC0B81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCVVision.View", "OpenCVVision.View\OpenCVVision.View.csproj", "{3FB0A9C5-D793-4B84-8B1B-75E47FCC0B81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.ViewModel", "Client.ViewModel\Client.ViewModel.csproj", "{617A856A-35EE-4249-8EDD-D64C0F350373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCVVision.ViewModel", "OpenCVVision.ViewModel\OpenCVVision.ViewModel.csproj", "{617A856A-35EE-4249-8EDD-D64C0F350373}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Model", "Client.Model\Client.Model.csproj", "{585D61C3-CA08-4933-823B-5531596A68D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCVVision.Model", "OpenCVVision.Model\OpenCVVision.Model.csproj", "{585D61C3-CA08-4933-823B-5531596A68D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Common", "Client.Common\Client.Common.csproj", "{B97BED1F-225B-4AE4-8FD0-6BC73C9093A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCVVision.Assets", "OpenCVVision.Assets\OpenCVVision.Assets.csproj", "{E0148F76-0EA2-42EC-92C6-92D700C23D05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Data", "Client.Data\Client.Data.csproj", "{E0148F76-0EA2-42EC-92C6-92D700C23D05}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Services", "Client.Services\Client.Services.csproj", "{2900D2C0-F3F2-4D35-9651-75D0F0CA9B67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCVVision.Services", "OpenCVVision.Services\OpenCVVision.Services.csproj", "{2900D2C0-F3F2-4D35-9651-75D0F0CA9B67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		{585D61C3-CA08-4933-823B-5531596A68D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{585D61C3-CA08-4933-823B-5531596A68D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{585D61C3-CA08-4933-823B-5531596A68D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B97BED1F-225B-4AE4-8FD0-6BC73C9093A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B97BED1F-225B-4AE4-8FD0-6BC73C9093A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B97BED1F-225B-4AE4-8FD0-6BC73C9093A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B97BED1F-225B-4AE4-8FD0-6BC73C9093A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0148F76-0EA2-42EC-92C6-92D700C23D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0148F76-0EA2-42EC-92C6-92D700C23D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0148F76-0EA2-42EC-92C6-92D700C23D05}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,0 +1,279 @@
+﻿<rxui:ReactiveUserControl
+    x:Class="OpenCVVision.View.Operation.ConnectedComponentsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:operation="clr-namespace:OpenCVVision.ViewModel.Operation;assembly=OpenCVVision.ViewModel"
+    xmlns:rxui="http://reactiveui.net"
+    d:DesignHeight="650"
+    d:DesignWidth="300"
+    x:TypeArguments="operation:ConnectedComponentsViewModel"
+    mc:Ignorable="d">
+    <materialDesign:Card
+        x:Name="cardMain"
+        Margin="{StaticResource marginOp}">
+        <StackPanel>
+            <Label
+                Margin="8"
+                Content="连通域"
+                FontSize="22"
+                FontWeight="UltraBlack" />
+            <materialDesign:Card>
+                <StackPanel
+                    Grid.Row="2"
+                    Margin="8,0">
+                    <!--<ListBox
+                        x:Name="FilterList"
+                        SelectionMode="Multiple">
+                        <ListBoxItem
+                            Content="Area"
+                            IsSelected="False" />
+                        -->
+                    <!--<ListBoxItem Content="Centroid" IsSelected="True" />-->
+                    <!--
+                        <ListBoxItem
+                            IsSelected="False"
+                            Content="Height" />
+                        -->
+                    <!--<ListBoxItem Content="Label" IsSelected="True" />-->
+                    <!--
+                        <ListBoxItem
+                            Content="Left" />
+                        -->
+                    <!--<ListBoxItem Content="Rect" />-->
+                    <!--
+                        <ListBoxItem
+                            Content="Top" />
+                        <ListBoxItem
+                            Content="Width" />
+                    </ListBox>-->
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="AreaMin " />
+                        <Slider
+                            x:Name="sliderAreaMin"
+                            Grid.Column="1"
+                            Margin="2,0"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="2"
+                            TickPlacement="BottomRight"
+                            ToolTip="AreaMin"
+                            Value="0" />
+                        <TextBox
+                            Grid.Column="2"
+                            Style="{StaticResource MaterialDesignTextBox}"
+                            Text="{Binding ElementName=sliderAreaMin, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="AreaMax " />
+                        <Slider
+                            x:Name="sliderAreaMax"
+                            Grid.Column="1"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="2"
+                            TickPlacement="BottomRight"
+                            ToolTip="AreaMax"
+                            Value="0" />
+                        <TextBox
+                            Grid.Column="2"
+                            Style="{StaticResource MaterialDesignTextBox}"
+                            Text="{Binding ElementName=sliderAreaMax, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="HeightMin " />
+                        <Slider
+                            x:Name="sliderHeightMin"
+                            Grid.Column="1"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="HeightMin"
+                            Value="0" />
+                    </Grid>
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="HeightMax " />
+                        <Slider
+                            x:Name="sliderHeightMax"
+                            Grid.Column="1"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="HeightMax"
+                            Value="0" />
+                    </Grid>
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="WidthMin " />
+                        <Slider
+                            x:Name="sliderWidthMin"
+                            Grid.Column="1"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="WidthMin"
+                            Value="0" />
+                    </Grid>
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="WidthMax " />
+                        <Slider
+                            x:Name="sliderWidthMax"
+                            Grid.Column="1"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="WidthMax"
+                            Value="0" />
+                    </Grid>
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="LeftMin" />
+                        <Slider
+                            x:Name="sliderLeftMin"
+                            Grid.Column="1"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="LeftMin"
+                            Value="0" />
+                    </Grid>
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="LeftMax " />
+                        <Slider
+                            x:Name="sliderLeftMax"
+                            Grid.Column="1"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="LeftMax"
+                            Value="0" />
+                    </Grid>
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="TopMin" />
+                        <Slider
+                            x:Name="sliderTopMin"
+                            Grid.Column="1"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="LeftMin"
+                            Value="0" />
+                    </Grid>
+                    <Grid
+                        Margin="8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,0,8,0"
+                            Content="TopMax " />
+                        <Slider
+                            x:Name="sliderTopMax"
+                            Grid.Column="1"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="1"
+                            TickPlacement="BottomRight"
+                            ToolTip="TopMax"
+                            Value="0" />
+                    </Grid>
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+    </materialDesign:Card>
+</rxui:ReactiveUserControl>
