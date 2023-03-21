@@ -67,22 +67,22 @@ public class View3DViewModel : ViewModelBase, IRoutableViewModel
     protected override void SetupDeactivate()
     {
         base.SetupDeactivate();
-        _rt.Dispose();
-        _grayCodeProcess.Dispose();
-        PointGeometry.ClearAllGeometryData();
-        EffectsManager.Dispose();
-        PointGeometry.ClearOctree();
+        _rt?.Dispose();
+        _grayCodeProcess?.Dispose();
+        PointGeometry?.ClearAllGeometryData();
+        EffectsManager?.Dispose();
+        PointGeometry?.ClearOctree();
         PointGeometry = null;
         EffectsManager = null;
         CamDx = null;
-        _pts.Dispose();
-        _vector3s.Clear();
+        _pts?.Dispose();
+        _vector3s?.Clear();
 
-        _color4s.Clear();
+        _color4s?.Clear();
 
-        _vec3sCollec.Clear();
-        _color4sCollec.Clear();
-        _ids.Clear();
+        _vec3sCollec?.Clear();
+        _color4sCollec?.Clear();
+        _ids?.Clear();
         GC.Collect();
         GC.WaitForPendingFinalizers();
         GC.Collect();

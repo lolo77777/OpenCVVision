@@ -17,6 +17,7 @@ public class Register : RegisterBase
 
         _mutable.RegisterLazySingleton<IDisplayLog>(() => new DisplayLogService());
         _mutable.RegisterConstant<ICamera>(new HIKCamera(), "海康");
-        _mutable.RegisterConstant<ICamera>(new DaHengCamera(), "大恒");
+        //如果需要使用大恒相机，请自行安装大恒软件，并引用.net库。然后取消下面注释
+        //_mutable.RegisterConstant<ICamera>(new DaHengCamera(), "大恒");
     }
 }

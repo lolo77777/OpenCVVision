@@ -76,7 +76,14 @@ public class ImageDataMemery : IImageDataManager, IEnableLogger
 
     public ImageData? GetImage(Guid? guid)
     {
-        return guid.HasValue ? SourceCacheImageData.Items.Single(t => t.ImageId.Equals(guid)) : null;
+        if (guid.HasValue && SourceCacheImageData.Items.Any(t => t.ImageId.Equals(guid.Value)))
+        {
+            return SourceCacheImageData.Items.Single(t => t.ImageId.Equals(guid));
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public bool IsExsitByMark(string markTxt)

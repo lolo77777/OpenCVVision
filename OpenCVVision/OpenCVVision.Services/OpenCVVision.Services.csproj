@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentResults" Version="3.10.0" />
+    <PackageReference Include="MvCamCtrl.Net" Version="4.0.0" />
     <PackageReference Include="OpenCvSharp4.Windows" Version="4.6.0.20220608" />
     <PackageReference Include="ReactiveUI" Version="18.3.1" />
     <PackageReference Include="Splat" Version="14.4.1" />
@@ -26,9 +27,7 @@
   <ItemGroup>
     <Reference Include="GxIAPINET">
       <HintPath>LibDll\GxIAPINET.dll</HintPath>
-    </Reference>
-    <Reference Include="MvCameraControl.Net">
-      <HintPath>LibDll\MvCameraControl.Net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
 

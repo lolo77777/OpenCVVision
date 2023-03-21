@@ -24,9 +24,13 @@
             <materialDesign:Card>
                 <StackPanel
                     Orientation="Vertical">
-                    <Label
+                    <TextBlock
                         Margin="{StaticResource marginEven}"
-                        Content="需要自行安装对应的相机SDK" />
+                        TextWrapping="Wrap"
+                        FontSize="14"
+                        FontStyle="Italic"
+                        Text="请自行安装相机sdk，如需使用大恒相机请查看service项目中register部分的注释。
+                        若出现无法加载dll的情形，请删除service项目中相机dll或包的引用，重新添加自己sdk内置的dll" />
                     <ComboBox
                         Name="cboxDeviceFactory"
                         Width="300"
