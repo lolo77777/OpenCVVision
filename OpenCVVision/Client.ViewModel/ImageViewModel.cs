@@ -1,4 +1,13 @@
-﻿using Client.Model.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Windows.Media.Imaging;
+
+using Client.Model.Entity;
 using Client.Model.Service;
 
 using DynamicData;
@@ -10,15 +19,6 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 using Splat;
-
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Windows.Media.Imaging;
 
 namespace Client.ViewModel
 {
@@ -36,7 +36,6 @@ namespace Client.ViewModel
         private readonly IImageDataManager _imageDataManager;
         private readonly IReadonlyDependencyResolver _resolver = Locator.Current;
         private readonly ResourcesTracker _rt = new();
-
         public ReactiveCommand<Unit, Unit> AddOutputImgToImgManagerCommand { get; set; }
         public ReadOnlyObservableCollection<HistoryItem> HistoryItems => _historyItems;
         [Reactive] public ImageToolViewModel InputImageVM { get; set; }
@@ -45,6 +44,7 @@ namespace Client.ViewModel
         [Reactive] public string OutputImageMarkTxt { get; set; }
         public ReactiveCommand<Unit, bool> RemoveImgFromImgManagerCommand { get; set; }
         [Reactive] public string Time { get; private set; }
+
         public ImageViewModel(IImageDataManager imageDataManager = null)
         {
             _imageDataManager = imageDataManager ?? _resolver.GetService<IImageDataManager>();
@@ -55,16 +55,23 @@ namespace Client.ViewModel
         private HistoryItem ConvertData(ImageData imageData)
         {
             WriteableBitmap wtBitmap = MatResizeWt(imageData.ImageMat);
-
             return new HistoryItem { HistoryItemId = imageData.ImageId, HistoryItemTxtMark = imageData.TxtMarker, HistoryItemImg = wtBitmap };
         }
+
         private WriteableBitmap MatResizeWt(Mat mat)
         {
-            double scaleY = 60d / mat.Height;
-            Mat dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
-            WriteableBitmap writeableBitmap = dst.ToWriteableBitmap();
-            _rt.Dispose();
-            return writeableBitmap;
+            if (mat != null && !mat.Empty())
+            {
+                double scaleY = 60d / mat.Height;
+                Mat dst = _rt.T(mat.Resize(Size.Zero, scaleY, scaleY));
+                WriteableBitmap writeableBitmap = dst.ToWriteableBitmap();
+                _rt.Dispose();
+                return writeableBitmap;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private void UpdateHistoryItems(IChangeSet<HistoryItem, Guid> changes)
@@ -122,13 +129,11 @@ namespace Client.ViewModel
                 .Select(guid => _imageDataManager.GetImage(guid).ImageMat)
                 .Subscribe(mat => InputImageVM.DisplayMat = mat)
                 .DisposeWith(d);
-
             _imageDataManager.OutputMatSubject
                 .WhereNotNull()
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(mat => OutputImageVM.DisplayMat = mat)
                 .DisposeWith(d);
-
             MessageBus.Current.Listen<string>("Time")
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Select(d => $"{d}ms")
