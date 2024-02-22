@@ -19,7 +19,6 @@
 
 ## 推荐
 
-> 交流讨论QQ群:827888895  
 > 其它项目： 
 > [OpenCVSharpHelper](https://gitee.com/tfarcraw/opencvsharphelper)
 
